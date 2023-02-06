@@ -19,34 +19,26 @@
         <!-- Hero -->
         <section id="hero">
             <div class="container d-block mt-2">
-                <div class="row row-cols-2 row-container m-auto">
+                <div class="row row-cols-2 row-container pe-5">
                     <!-- Left column -->
                     <div class="col d-flex justify-content-center align-items-center">
                         <img src="images/HeroImg.jpg" class="img-fluid">
                     </div>
 
                     <!-- Right column -->
-                    <div class="col p-5">
-                        <div class="row d-flex justify-content-center align-items-center h-100">
-                            <div class="container d-block h-auto">
+                    <div class="col p-3 d-flex flex-column justify-content-center align-items-center h-auto pe-5">
 
-                                <h1 class="text-center">Group dining made <span class="text-primary">convenient</span>.</h1>
+                        <h1 class="text-center pb-5">Group dining made <span class="text-primary">convenient</span>.</h1>
 
-                                <div class="container d-block h-auto py-5">
-                                    <p class="fs-5 text-center">
-                                        <span style="color:#005fbb; font-weight:bolder;">Kira Makan</span> is a food ordering web application designed to improve group dining experience.
-                                        Enjoy various features such as <span style="color:#0584ff;">group payment calculation</span>,
-                                        and <span style="color:#0584ff;">send payment receipt</span>
-                                        to ease your problems when eating out in a group. Just register an account and you can enjoy the perks above.
-                                    </p>
-                                </div>
+                        <p class="fs-5 text-center pb-5">
+                            <span style="color:#005fbb; font-weight:bolder;">Kira Makan</span> is a food ordering web application designed to improve group dining experience.
+                            Enjoy various features such as <span style="color:#0584ff;">group payment calculation</span>,
+                            and <span style="color:#0584ff;">send payment receipt</span>
+                            to ease your problems when eating out in a group. Just register an account and you can enjoy the perks above.
+                        </p>
 
-                                <div class="container d-flex h-auto justify-content-center align-items-center">
-                                    <button type="button" class="btn btn-primary fs-4">Order now</button>
-                                </div>
+                        <button type="button" class="btn btn-primary fs-4">Order now</button>
 
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
