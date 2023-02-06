@@ -1,0 +1,37 @@
+body {
+    font-family: "Lato",sans-serif !important;
+  }
+
+/* Header Navbar Start */
+.navbar-nav{
+    font-weight:bolder;
+    font-size:larger;
+    color:#0584ff;
+}
+
+.nav-link{
+    color:#0584ff; 
+}
+
+.nav-link:hover, .navbar-nav .show > .nav-link, .navbar-nav .nav-link.active{
+    color:#005fbb;
+}
+
+.navbar-toggler{
+    border: 0px;
+}
+
+.navbar-toggler:focus{
+    color:#005fbb;
+}
+
+header .btn:hover{
+    border:1px solid #005fbb;
+}
+
+/* Header Navbar End */
+
+
+
+
+
