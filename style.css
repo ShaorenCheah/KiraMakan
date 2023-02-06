@@ -2,7 +2,21 @@ body {
     font-family: "Lato",sans-serif !important;
   }
 
+.text-primary{
+    color:#005fbb;
+}
+
+.text-secondary{
+    color:#0584ff;
+}
+
 /* Header Navbar Start */
+header{
+    height:100vh;
+    width:100vw;
+
+}
+
 .navbar-nav{
     font-weight:bolder;
     font-size:larger;
@@ -29,7 +43,26 @@ header .btn:hover{
     border:1px solid #005fbb;
 }
 
+
+
 /* Header Navbar End */
+
+/* Hero section Start */
+
+#hero .col{
+    height:85vh;
+}
+
+#hero .row-container{
+    border:2px solid #005fbb;
+    border-radius:25px;
+    margin-bottom:50px;
+}
+
+
+
+
+/* Hero section End */
 
 
 
