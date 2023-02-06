@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg bg-white">
+<nav class="navbar navbar-expand-lg bg-white ">
     <div class="container-fluid">
         <!-- Navbar brand -->
-        <div class="col-1  d-flex ps-4">
-            <a class="navbar-brand" href="#">
-                <img src="images/KiraMakanLogo.jpg" alt="Bootstrap" height="70">
+        <div class="col-1 w-auto ps-4">
+            <a class="navbar-brand h-auto" href="#">
+                <img src="images/KiraMakanLogo.jpg" alt="Bootstrap" height="55">
             </a>
         </div>
         <!-- Navbar brand -->
@@ -15,32 +15,32 @@
         <!-- Navbar collapse menu button -->
 
         <!-- Navbar and Navitems -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse py-2" id="navbarSupportedContent" >
             <div class="col-7 d-flex justify-content-around align-items-center flex-fill">
                 <ul class="navbar-nav me-25">
                     <div class="w-auto">
                         <li class="nav-item p-2 px-4">
-                            <a class="nav-link active " aria-current="page" href="#">Home</a>
+                            <a class="nav-link active fs-4" aria-current="page" href="#">Home</a>
                         </li>
                     </div>
                     <div class="w-auto p-2 px-4">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Menu</a>
+                            <a class="nav-link fs-4" href="#">Menu</a>
                         </li>
                     </div>
                     <div class="w-auto p-2 px-4">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">How it works</a>
+                            <a class="nav-link fs-4" href="#">How it works</a>
                         </li>
                     </div>
                     <div class="w-auto p-2 px-4">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Partners</a>
+                            <a class="nav-link fs-4" href="#">Partners</a>
                         </li>
                     </div>
                     <div class="w-auto p-2 px-4">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link fs-4" href="#">Contact</a>
                         </li>
                     </div>
                 </ul>
@@ -48,13 +48,13 @@
             <!-- Navbar logo right -->
             <div class="col-2 w-auto d-flex align-items-center justify-content-center p-3">
                 <button class="btn me-3" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#0584ff" class="bi bi-cart" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#0584ff" class="bi bi-cart" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg>
                 </button>
 
                 <button class="btn me-3" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#0584ff" class="bi bi-person" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#0584ff" class="bi bi-person" viewBox="0 0 16 16">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
                     </svg>
                 </button>
