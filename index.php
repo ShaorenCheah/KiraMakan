@@ -18,17 +18,17 @@
 
         <!-- Hero -->
         <section id="hero">
-            <div class="container d-block mt-2">
-                <div class="row row-cols-2 row-container pe-5">
+            <div class="container row-container col-12 d-flex justify-content-center align-items-center mt-2 py-3 px-2">
+                
                     <!-- Left column -->
-                    <div class="col d-flex justify-content-center align-items-center">
+                    <div class="col-4 d-flex justify-content-center align-items-center px-5">
                         <img src="images/HeroImg.jpg" class="img-fluid">
                     </div>
 
                     <!-- Right column -->
-                    <div class="col p-3 d-flex flex-column justify-content-center align-items-center h-auto pe-5">
+                    <div class="col-8 p-3 d-flex flex-column justify-content-center align-items-center h-auto ps-2">
 
-                        <h1 class="text-center pb-5">Group dining made <span class="text-primary">convenient</span>.</h1>
+                        <h1 class="text-center pb-5"><b>Group dining made <span class="text-primary">convenient</span>.</b></h1>
 
                         <p class="fs-5 text-center pb-5">
                             <span style="color:#005fbb; font-weight:bolder;">Kira Makan</span> is a food ordering web application designed to improve group dining experience.
@@ -40,7 +40,7 @@
                         <button type="button" class="btn btn-primary fs-4">Order now</button>
 
                     </div>
-                </div>
+              
             </div>
         </section>
         <!-- Hero -->
