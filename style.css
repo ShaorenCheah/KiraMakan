@@ -60,6 +60,94 @@ header .btn:hover{
 /* Hero section End */
 
 
+/* Contact-us Section Start */
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contactus {
+    margin: 10px;
+    max-width: 500px;
+    margin-right: 80px;
+  }
+  
+  .contactus b {
+    padding-left: 3px
+  }
+  
+  .inputcontainer {
+    display: flex;
+    margin-top: 15px;
+    border: 2px solid #005fbb;
+    border-radius: 20px;
+    padding: 20px;
+    padding-bottom: 100px;
+    height: 220px;
+  }
+  
+  .input {
+    display: block;
+    border: 2px solid #0584ff;
+    border-radius: 5px;
+    margin-top: 15px;
+    align-items: center;
+    width: 300px;
+    height: 30px;
+  }
+  
+  .input:focus {
+    outline: none;
+    transition: 0.5s
+  }
+  
+  .input::placeholder {
+    color: #0584ff;
+  }
+  
+  .text {
+    display: block;
+    border: 2px solid #0584ff;
+    border-radius: 5px;
+    margin-top: 15px;
+    align-items: center;
+    width: 300px;
+    height: 80px;
+    resize: none;
+  }
+  
+  .text:focus {
+    outline: none;
+    transition: 0.5s
+  }
+  
+  .text::placeholder {
+    color: #0584ff;
+  }
+  
+  .submit {
+    border: 2px solid #0584ff;
+    border-radius: 15px;
+    margin-top: 15px;
+    width: 80px;
+    height: 30px;
+    background-color: #0584ff;
+    color: white;
+  }
+  
+  .submit:hover {
+    transition: 0.5s;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+  
+  i {
+    color: #0584ff;
+  }
+
+  /* Contact-Us Section End */
 
 
 
