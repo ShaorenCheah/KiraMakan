@@ -50,7 +50,7 @@
                                 <?php for ($j = $i; $j < $i + 3 && $j < count($rows); $j++) { ?>
                                     <div class="col-md-4">
                                         <div class="card">
-                                            <img src="<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top" alt="<?php echo $rows[$j]['restaurantName']; ?>">
+                                            <img src="images/restaurants/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top" alt="<?php echo $rows[$j]['restaurantName']; ?>">
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $rows[$j]['restaurantName']; ?></h5>
                                                 <p class="card-text"><?php echo $rows[$j]['restaurantDescription']; ?></p>
