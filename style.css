@@ -3,6 +3,7 @@
   --secondary: #0584ff;
 }
 
+
 body {
   font-family: "Lato", sans-serif !important;
 }
@@ -16,12 +17,6 @@ body {
 }
 
 /* Header Navbar Start */
-header {
-  min-height: 100vh;
-  max-height: 100vh;
-  max-width: 100vw;
-
-}
 
 .navbar-nav {
   font-weight: bolder;
@@ -55,14 +50,17 @@ header .btn:hover {
 /* Header Navbar End */
 
 /* Hero section Start */
+#hero {
+  min-height: 100vh;
+  max-height: 100vh;
 
+}
 
 #hero .row-container {
   border: 2px solid #005fbb;
   border-radius: 25px;
   margin-bottom: 50px;
-  height: 80vh;
-
+  min-height:80vh;
 }
 
 /* Hero section End */
@@ -157,16 +155,49 @@ i {
 
 /* Contact-Us Section End */
 
+/* Restaurant options Section Start */
+
+.cards-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.card img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.card {
+  margin: 0 0.5em;
+  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  border: none;
+  border-radius: 0;
+}
+.carousel-inner {
+  padding: 1em;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: #e1e1e1;
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+@media (min-width: 768px) {
+  .card img {
+    height: 11em;
+  }
+}
+
+/* Restaurant options Section End */
 
 /* Footer Section Start */
 
 #footer {
   background-color: white;
-  padding: 40px 0;
 }
 
 .footer {
-  max-width: 1100px;
   margin: 0 auto;
 }
 
