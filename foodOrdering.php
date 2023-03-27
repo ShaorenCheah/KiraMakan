@@ -9,6 +9,7 @@
     <!-- Bootstrap JavaScript and jQuery libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="cart.js" async></script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Kira Makan</title>
@@ -62,15 +63,18 @@
 
                     // Create a card for the menu item
                     echo '<div class="col-md-3">
-                          <div class="card">
-                              <img src="images/restaurants/menu/' . $row['menuURL'] . '" class="card-img-top" alt="' . $row['itemName'] . '">
-                              <div class="card-body">
-                                  <h5 class="card-title">' . $row['itemName'] . '</h5>
-                                  <p class="card-text">' . $row['itemDescription'] . '</p>
-                                  <p class="card-price">RM' . $row['itemPrice'] . '</p>
-                              </div>
-                          </div>
-                      </div>';
+                            <div class="card">
+                                <img src="images/restaurants/menu/' . $row['menuURL'] . '" class="card-img-top" alt="' . $row['itemName'] . '">
+                                <div class="card-body">
+                                    <h5 class="card-title">' . $row['itemName'] . '</h5>
+                                    <p class="card-text">' . $row['itemDescription'] . '</p>
+                                    <p class="card-price">RM' . $row['itemPrice'] . '</p>
+                                    <button class="btn btn-primary restaurantButton" data-bs-target="#' . $row['menuID'] . '" value="' . $row['menuID'] . '" data-bs-toggle="modal">Order</button>
+                                </div>
+                            </div>
+                        </div>';
+
+                    include 'menuItemPopUp.php';
 
                     $counter++;
                 }
@@ -129,6 +133,22 @@
             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">...</div>
             <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">...</div>
         </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="cart-items">
+            </div>
+            <div class="cart-total">
+                <strong class="cart-total-title">Total</strong>
+                <span class="cart-total-price">RM 0</span>
+            </div>
+        </div>
+    </div>
     </div>
 
 </body>
