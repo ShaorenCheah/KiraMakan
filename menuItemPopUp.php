@@ -5,6 +5,7 @@ echo '
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">' . $row['itemName'] . '</h1><br>
+
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex h-auto flex-row w-100 container-fluid justify-content-between" id="type-modal">
@@ -13,6 +14,7 @@ echo '
                         <div class="shop-item-details">
                             <input type="hidden" class="menu-item-id" value="' . $row['menuID'] . '">
                             <input type="hidden" class="menu-item-name" value="' . $row['itemName'] . '">
+                            <input type="hidden" class="menu-item-price" value="' . $row['itemPrice'] . '">
                             <h6 class="primary-color pb-3">' . $row['itemDescription'] . '</h6>
                             <div class="row">
                                 <div class="col-9">

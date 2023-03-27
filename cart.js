@@ -42,10 +42,8 @@ function ready() {
         var button = event.target;
         var shopItem = button.closest('.shop-item-details');
         var title = shopItem.getElementsByClassName('menu-item-name')[0].value;
-        console.log(title)
         var quantity = shopItem.querySelector('input[name="quantity"]').value; 
-        var priceString = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
-        var price = parseFloat(priceString.replace(/[^0-9.-]+/g, ""));
+        var price = shopItem.getElementsByClassName('menu-item-price')[0].value;
         var menuID = shopItem.getElementsByClassName('menu-item-id')[0].value;
         console.log(quantity);
         addItemToCart(title, quantity, price, menuID);
@@ -73,7 +71,7 @@ function ready() {
             <span class="cart-item-title">${title}</span>
             <input class="menu-item-id" type="hidden" value="${menuID}">
           </div>
-          <div class="cart-price cart-column">RM ${price.toFixed(2)}</div>
+          <div class="cart-price cart-column">RM ${price}</div>
           <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="${quantity}">
             <button class="btn btn-danger" type="button">REMOVE</button>

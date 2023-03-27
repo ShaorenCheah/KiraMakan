@@ -20,7 +20,7 @@
             <ul class="navbar-nav me-25">
                 <div class="w-auto">
                     <li class="nav-item p-2 px-4">
-                        <a class="nav-link active fs-4" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active fs-4" aria-current="page" href="index.php">Home</a>
                     </li>
                 </div>
                 <div class="w-auto p-2 px-4">

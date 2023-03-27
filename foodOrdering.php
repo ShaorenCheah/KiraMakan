@@ -64,20 +64,20 @@
 
                         // Create a card for the menu item
                         echo '
-                    <div class="col-md-3">
-                            <div class="card">
-                                <img src="images/restaurants/menu/' . $row['menuURL'] . '" class="card-img-top" alt="' . $row['itemName'] . '">
-                                <div class="card-body">
-                                    <h5 class="card-title"><b>' . $row['itemName'] . '</b></h5>
-                                    <p class="card-text d-flex">' . $row['itemDescription'] . '</p>
-                                    <div class="row d-flex align-items-center">
-                                        <h6 class="card-price col-8 align-items-center ">RM' . $row['itemPrice'] . '</h6>
-                                        <button class="btn btn-primary restaurantButton col-4" data-bs-target="#' . $row['menuID'] . '" value="' . $row['menuID'] . '" data-bs-toggle="modal">Order</button>
+                        <div class="col-md-3">
+                                <div class="card">
+                                    <img src="images/restaurants/menu/' . $row['menuURL'] . '" class="card-img-top" alt="' . $row['itemName'] . '">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>' . $row['itemName'] . '</b></h5>
+                                        <p class="card-text d-flex">' . $row['itemDescription'] . '</p>
+                                        <div class="row d-flex align-items-center">
+                                            <h6 class="card-price col-8 align-items-center ">RM' . $row['itemPrice'] . '</h6>
+                                            <button class="btn btn-primary restaurantButton col-4" data-bs-target="#' . $row['menuID'] . '" value="' . $row['menuID'] . '" data-bs-toggle="modal">Order</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        ';
+                            ';
 
                         include 'menuItemPopUp.php';
 
