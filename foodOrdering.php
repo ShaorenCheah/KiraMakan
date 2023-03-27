@@ -140,6 +140,7 @@
             </div>
         </div>
     </div>
+
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
@@ -154,6 +155,7 @@
             </div>
         </div>
     </div>
+    
     </div>
 
 </body>
