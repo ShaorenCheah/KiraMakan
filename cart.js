@@ -40,17 +40,20 @@ function ready() {
 
     function addToCartClicked(event) {
         var button = event.target;
-        var shopItem = button.parentElement.parentElement;
-        var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
+        var shopItem = button.closest('.shop-item-details');
+        var title = shopItem.getElementsByClassName('menu-item-name')[0].value;
+        console.log(title)
+        var quantity = shopItem.querySelector('input[name="quantity"]').value; 
         var priceString = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
         var price = parseFloat(priceString.replace(/[^0-9.-]+/g, ""));
         var menuID = shopItem.getElementsByClassName('menu-item-id')[0].value;
-        addItemToCart(title, price, menuID);
+        console.log(quantity);
+        addItemToCart(title, quantity, price, menuID);
         updateCartTotal();
     };
 
 
-    function addItemToCart(title, price, menuID) {
+    function addItemToCart(title, quantity, price, menuID) {
         var cartItems = document.getElementsByClassName('cart-items')[0];
         var cartItemsID = cartItems.getElementsByClassName('menu-item-id');
 
@@ -72,7 +75,7 @@ function ready() {
           </div>
           <div class="cart-price cart-column">RM ${price.toFixed(2)}</div>
           <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
+            <input class="cart-quantity-input" type="number" value="${quantity}">
             <button class="btn btn-danger" type="button">REMOVE</button>
           </div>
         `;
@@ -98,5 +101,5 @@ function ready() {
         total = Math.round(total * 100) / 100;
         document.getElementsByClassName('cart-total-price')[0].innerText = 'RM ' + total.toFixed(2);
     }
-    
+
 };

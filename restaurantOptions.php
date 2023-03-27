@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <!-- Bootstrap JavaScript and jQuery libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <!-- Bootstrap JavaScript and jQuery libraries -->
     <title>Kira Makan</title>
 </head>
 
@@ -20,14 +19,14 @@
         <?php include 'header.php'; ?>
     </header>
 
-    <div class="container col-10">
-        <div class="row w-100">
+    <div class="container py-4 h-80">
+        <div class="row col-11">
             <div class="col-12 d-flex justify-content-center my-4">
-                <h1>Select a restaurant</h1>
+                <h1><strong>Select a restaurant</strong></h1>
             </div>
 
 
-            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div id="myCarousel" class="carousel slide my-3" data-bs-ride="carousel">
                 <?php
                 include 'connection.php';
                 $sql = "SELECT * FROM Restaurants";
@@ -35,15 +34,8 @@
                 $rows = mysqli_fetch_all($run, MYSQLI_ASSOC);
                 ?>
 
-                <!-- Indicators -->
-                <div class="carousel-indicators">
-                    <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
-                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="<?php echo $i / 3; ?>" class="<?php echo $i == 0 ? 'active' : ''; ?>" aria-current="<?php echo $i == 0 ? 'true' : 'false'; ?>" aria-label="Slide <?php echo $i / 3 + 1; ?>"></button>
-                    <?php } ?>
-                </div>
-
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner">
+                <div class="carousel-inner pb-5">
                     <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
                         <div class="carousel-item <?php echo $i == 0 ? 'active' : ''; ?>">
                             <div class="row">
@@ -55,7 +47,7 @@
                                                 <h5 class="card-title"><?php echo $rows[$j]['restaurantName']; ?></h5>
                                                 <p class="card-text"><?php echo $rows[$j]['restaurantDescription']; ?></p>
                                                 <div class="d-flex justify-content-end">
-                                                    <button class="btn btn-primary restaurantButton" data-bs-target="#exampleModalToggle" value="<?php echo $rows[$j]['restaurantID'] ?>" data-bs-toggle="modal">Order</button>
+                                                    <button class="btn btn-primary restaurant-button" data-bs-target="#exampleModalToggle" value="<?php echo $rows[$j]['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,6 +56,14 @@
                             </div>
                         </div>
                     <?php } ?>
+                </div>
+                <div class="pt-5">
+                    <!-- Indicators -->
+                    <div class="carousel-indicators mt-5">
+                        <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
+                            <button type="button" style="background-color:#005fbb;"data-bs-target="#myCarousel" data-bs-slide-to="<?php echo $i / 3; ?>" class="<?php echo $i == 0 ? 'active' : ''; ?>" aria-current="<?php echo $i == 0 ? 'true' : 'false'; ?>" aria-label="Slide <?php echo $i / 3 + 1; ?>"></button>
+                        <?php } ?>
+                    </div>
                 </div>
 
                 <!-- Left and right controls -->
@@ -78,11 +78,17 @@
                 </button>
             </div>
 
+
             <?php include 'restaurantPopUp.php'; ?>
+        </div>
+    </div>
+    <footer>
+        <?php include 'footer.php'; ?>
+    </footer>
 
 </body>
 <script>
-    const restaurantButtons = document.querySelectorAll('.restaurantButton');
+    const restaurantButtons = document.querySelectorAll('.restaurant-button');
     const restaurantIDInput = document.getElementById('restaurantID');
     const submitBtn = document.getElementById('submitBtn');
 
