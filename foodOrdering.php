@@ -177,12 +177,15 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <div class="cart-items">
-            </div>
-            <div class="cart-total">
-                <strong class="cart-total-title">Total</strong>
-                <span class="cart-total-price">RM 0</span>
-            </div>
+            <form id="cart-form">
+                <div class="cart-items">
+                </div>
+                <div class="cart-total">
+                    <strong class="cart-total-title">Total</strong>
+                    <span class="cart-total-price">RM 0</span>
+                </div>
+                <button class="btn btn-primary" id="submitCart">Submit Cart</button>
+            </form>
         </div>
     </div>
 
