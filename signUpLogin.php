@@ -35,6 +35,7 @@ if (isset($_POST['loginSubmit'])) {
             $_SESSION['email'] = $email;
             $_SESSION['accountID'] = $fetch['accountID'];
             $_SESSION['accountType'] = $accountType;
+            $_SESSION['name'] = $name;
             $_SESSION[$accountType . 'Name'] = $name;
             echo "<script>alert('Successful Login! Welcome $name!'); window.location='index.php'</script>"; //To be changed into redirecting to customer / restaurant index page
         } else {

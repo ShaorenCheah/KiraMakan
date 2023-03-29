@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <?php session_start()?>
     <header>
         <!-- Header -->
         <?php include 'header.php'; ?>
@@ -128,7 +129,8 @@
         var slotInput = document.createElement("input");
         slotInput.setAttribute("type", "text");
         slotInput.setAttribute("name", "user-name");
-        slotInput.setAttribute("placeholder", "Enter the name here");
+        slotInput.setAttribute("autocomplete", "off");
+        slotInput.setAttribute("placeholder", "Enter name here");
         slotInput.required = true;
         slotCol.appendChild(slotInput);
 
@@ -225,8 +227,8 @@
 
             // Submit the form with names array and selectedRestaurantID attribute in URL
             const urlParams = new URLSearchParams();
-            urlParams.set('namesArray', namesArray.join(','));
             urlParams.set('restaurantID', selectedRestaurantID);
+            urlParams.set('namesArray', namesArray.join(','));
             const url = `foodOrdering.php?${urlParams.toString()}`;
             window.location.href = url;
         }
