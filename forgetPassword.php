@@ -4,8 +4,8 @@ session_start();
 include 'connection.php';
 
 if(isset($_POST['forgetSubmit'])){
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $checkEmail = "SELECT * FROM user WHERE email='$email'";
+    $email = mysqli_real_escape_string($conn, $_POST['altEmail']);
+    $checkEmail = "SELECT * FROM accounts WHERE email='$email'";
     $run = mysqli_query($conn, $checkEmail);
 
     if(mysqli_num_rows($run) > 0){
