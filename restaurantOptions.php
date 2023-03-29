@@ -61,7 +61,7 @@
                     <!-- Indicators -->
                     <div class="carousel-indicators mt-5">
                         <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
-                            <button type="button" style="background-color:#005fbb;"data-bs-target="#myCarousel" data-bs-slide-to="<?php echo $i / 3; ?>" class="<?php echo $i == 0 ? 'active' : ''; ?>" aria-current="<?php echo $i == 0 ? 'true' : 'false'; ?>" aria-label="Slide <?php echo $i / 3 + 1; ?>"></button>
+                            <button type="button" style="background-color:#005fbb;" data-bs-target="#myCarousel" data-bs-slide-to="<?php echo $i / 3; ?>" class="<?php echo $i == 0 ? 'active' : ''; ?>" aria-current="<?php echo $i == 0 ? 'true' : 'false'; ?>" aria-label="Slide <?php echo $i / 3 + 1; ?>"></button>
                         <?php } ?>
                     </div>
                 </div>
@@ -104,6 +104,33 @@
     submitBtn.addEventListener('click', () => {
         // Redirect to the other page
         window.location.href = 'foodOrdering.php?restaurantID=' + selectedRestaurantID + '';
+    });
+
+
+    const addSlotBtn = document.getElementById("add-slot");
+    const slotsDiv = document.getElementById("slots");
+    let slotCount = 1;
+
+    addSlotBtn.addEventListener("click", function() {
+        // Create a new input field
+        const slotInput = document.createElement("input");
+        slotInput.type = "text";
+        slotInput.name = `slot-${slotCount}`;
+        slotInput.placeholder = "Slot Name";
+        slotsDiv.appendChild(slotInput);
+
+        // Create a delete button for the input field
+        const deleteBtn = document.createElement("button");
+        deleteBtn.type = "button";
+        deleteBtn.classList.add("delete-btn");
+        deleteBtn.textContent = "X";
+        deleteBtn.addEventListener("click", function() {
+            slotsDiv.removeChild(slotInput);
+            slotsDiv.removeChild(deleteBtn);
+        });
+        slotsDiv.appendChild(deleteBtn);
+
+        slotCount++;
     });
 </script>
 

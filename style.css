@@ -18,10 +18,11 @@ body {
 
 /* Header Navbar Start */
 
-.navbar{
+.navbar {
   background-color: #005fbb;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08), 0 20px 20px 0 rgba(0, 0, 0, 0.12);
 }
+
 #header .navbar-nav {
   font-weight: bolder;
   font-size: larger;
@@ -64,7 +65,7 @@ header .btn:hover {
   border: 2px solid #005fbb;
   border-radius: 25px;
   margin-bottom: 50px;
-  min-height:80vh;
+  min-height: 80vh;
 }
 
 /* Hero section End */
@@ -160,10 +161,10 @@ i {
 /* Contact-Us Section End */
 
 /* Restaurant options Section Start */
-#myCarousel .restaurant-button{
-  border:none;
+#myCarousel .restaurant-button {
+  border: none;
   background-color: white;
-  color:#005fbb;
+  color: #005fbb;
 
 }
 
@@ -171,10 +172,12 @@ i {
   display: flex;
   justify-content: center;
 }
+
 #myCarousel .card img {
   max-width: 100%;
   max-height: 100%;
 }
+
 #myCarousel .card {
   margin: 0 0.5em;
   box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
@@ -182,12 +185,14 @@ i {
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
 }
+
 #myCarousel .carousel-inner {
   padding: 1em;
 }
-#myCarousel .card-body{
-  background-color: #005fbb ;
-  color:white;
+
+#myCarousel .card-body {
+  background-color: #005fbb;
+  color: white;
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
 }
@@ -196,7 +201,7 @@ i {
 .carousel-control-next {
   position: absolute;
   top: 50%;
-  height:100px;
+  height: 100px;
   transform: translateY(-50%);
   width: auto;
   margin-top: -22px;
@@ -213,7 +218,44 @@ i {
   right: -50px;
 }
 
+/* Center the form */
+#name-list form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+/* Style the input fields */
+#name-list input[type="text"] {
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #ccc;
+  width: 300px;
+}
+
+/* Style the delete button */
+#name-list .delete-btn {
+  margin-left: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+}
+
+/* Style the submit button */
+#name-list input[type="submit"] {
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
 
 
 @media (min-width: 768px) {
@@ -225,28 +267,29 @@ i {
 /* Restaurant options Section End */
 
 /* Food options Section Start */
-#v-pills-tab .nav-link{
+#v-pills-tab .nav-link {
   border: 2px solid #005fbb;
   border-radius: 10px;
   padding: 5px 10px;
   background-color: white;
   color: black;
-  width:20%;
-  font-weight:bold;
+  width: 20%;
+  font-weight: bold;
 }
 
-#v-pills-tab .active{
+#v-pills-tab .active {
   border-radius: 10px;
   padding: 5px 10px;
   background-color: #005fbb;
   color: white;
- 
+
 }
 
 #v-pills-tab button.nav-link:hover {
   background-color: #005fbb;
   color: white;
 }
+
 /* Food options Section End */
 
 /* Footer Section Start */
