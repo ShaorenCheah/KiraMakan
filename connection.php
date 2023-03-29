@@ -2,8 +2,8 @@
 
 // Define database connection variables
 $host = 'localhost';
-$user = 'username';
-$password = 'password';
+$user = 'root';
+$password = '';
 $database = 'kiramakan';
 
 // Create a connection object
