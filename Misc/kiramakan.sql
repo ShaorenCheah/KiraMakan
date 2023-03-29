@@ -43,6 +43,7 @@ CREATE TABLE `accounts` (
 CREATE TABLE `customers` (
   `customerID` varchar(5) NOT NULL,
   `customerName` varchar(256) NOT NULL,
+  `phoneNo` varchar(255) DEFAULT NULL,
   `accountID` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
