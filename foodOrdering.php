@@ -55,7 +55,7 @@
             <select class="form-select w-25 ms-3 order-name-dropdown" aria-label="Default select example">
                 <?php
                 if (!isset($_SESSION["email"])) {
-                    echo "<option value=\"\">Guest</option>";
+                    echo "<option value=\"Guest\">Guest</option>";
                 } else {
                     echo "<option value='{$_SESSION["name"]}'>{$_SESSION["name"]}</option>";
                 }
@@ -66,7 +66,8 @@
             </select>
         </div>
         <div class="col-md-3"></div>
-        <div class="tab-content col-md-12" id="v-pills-tabContent">
+        <div class="col-md-1"></div>
+        <div class="tab-content col-md-10 mt-5" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
                 <?php
 
@@ -83,19 +84,16 @@
 
                 $result = mysqli_query($conn, $sql);
 
-                // Display the menu items in cards
-                echo '<div class="container-fluid">
-                      <div class="row">';
                 $counter = 0;
                 while ($row = mysqli_fetch_assoc($result)) {
                     // Start a new row every four cards
                     if (($offset + $counter) % 3 == 0) {
-                        echo '</div><div class="row mt-1 g-3 d-flex justify-content-center">';
+                        echo '<div class="row g-5 d-flex justify-content-center">';
                     }
 
                     // Create a card for the menu item
                     echo '
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                                 <div class="card">
                                     <img src="images/restaurants/menu/' . $row['menuURL'] . '" class="card-img-top" alt="' . $row['itemName'] . '">
                                     <div class="card-body">
@@ -170,6 +168,7 @@
             <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">...</div>
         </div>
     </div>
+    <div class="col-md-1"></div>
 
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
