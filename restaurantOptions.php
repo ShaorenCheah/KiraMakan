@@ -98,7 +98,6 @@
     restaurantButtons.forEach(button => {
         button.addEventListener('click', () => {
             selectedRestaurantID = button.value;
-            restaurantIDInput.value = selectedRestaurantID;
         });
     });
 
