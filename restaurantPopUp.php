@@ -42,7 +42,7 @@
       </div>
 
       <div id="names-form" class="modal-body">
-        <form action="foodOrdering.php" method="GET">
+        <form id="add-names" action="foodOrdering.php" method="GET">
           <div id="slots">
             <div class="row d-flex align-items-center">
               <div class="col-1 numCol">
@@ -55,9 +55,8 @@
             </div>
           </div>
           <button type="button" id="add-slot">Add Slot</button>
-          <input type="submit" value="Submit">
+          <input type="submit" id="submit-btn" value="Submit">
         </form>
-
       </div>
 
       <div class="modal-footer">
