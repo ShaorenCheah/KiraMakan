@@ -107,6 +107,11 @@
     var slotCount = 1;
     var lastDeletedSlot = null;
 
+    var addSlotBtn = document.getElementById("add-slot");
+    var slotsDiv = document.getElementById("slots");
+    var slotCount = 1;
+    var lastDeletedSlot = null;
+
     // Create the first delete button (which cannot be removed)
     var deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-btn");
@@ -118,14 +123,14 @@
         var numCol = document.createElement("div");
         numCol.classList.add("col-1");
         var numColContents = `
-        <label for="user-name">${slotCount+1}.</label>
-        `;
+    <label for="user-name">${slotCount+1}.</label>
+    `;
 
         var slotCol = document.createElement("div");
         slotCol.classList.add("col-10");
         var slotColContents = `
-        <input type="text" name="slot-${slotCount}" placeholder="Enter the name here" required>
-        `;
+    <input type="text" name="slot-${slotCount}" placeholder="Enter the name here" required>
+    `;
 
         numCol.innerHTML = numColContents;
         slotsDiv.appendChild(numCol);
@@ -133,9 +138,10 @@
         slotsDiv.appendChild(slotCol);
 
 
-        // Remove the delete button from the last deleted slot, if any
-        if (lastDeletedSlot) {
-            lastDeletedSlot.removeChild(lastDeletedSlot.lastElementChild);
+        // Remove the delete button from the previous slot, if any
+        if (slotCount > 2) {
+            var prevSlot = slotsDiv.children[slotsDiv.children.length - 4];
+            prevSlot.removeChild(prevSlot.lastElementChild);
         }
 
         // Create a new delete button for the latest slot
@@ -150,10 +156,19 @@
             lastDeletedSlot = slotCol;
             if (slotCount > 2) { // enable the delete button on the previous slot
                 var prevSlot = slotsDiv.children[slotsDiv.children.length - 4];
-                prevSlot.lastElementChild.appendChild(deleteBtn);
+                var prevDeleteBtn = prevSlot.lastElementChild;
+                prevSlot.removeChild(prevDeleteBtn);
+                prevDeleteBtn.disabled = false;
+                slotCount--;
             }
-            slotCount--;
         });
+
+        // Disable the delete button on the previous slot, if any
+        if (slotCount > 2) {
+            var prevSlot = slotsDiv.children[slotsDiv.children.length - 4];
+            var prevDeleteBtn = prevSlot.lastElementChild;
+            prevDeleteBtn.disabled = true;
+        }
 
         slotCount++;
     });
