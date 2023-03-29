@@ -38,8 +38,9 @@
                 <label for="password">Password</label>
               </div>
             </div>
-            <div class="col-12 d-flex justify-content-center">
-              <button type="submit" class="btn btn-outline-secondary" name="loginSubmit">Login</button>
+            <div class="col-12 d-flex justify-content-center flex-column">
+              <button type="submit" class="btn btn-outline-secondary btn-b mx-auto d-block fs-6" name="loginSubmit">Login</button>
+              <button class="btn bg-transparent border-0 text-secondary text-decoration-underline" data-bs-target="#forgetPasswordModalToggle" data-bs-toggle="modal"><span class="fs-6">Forget Password?</span></button>
             </div>
           </form>
         </div>
@@ -133,4 +134,43 @@
       </div>
     </div>
   </div>
+
+  <!-- Forget Password Modal -->
+  <div class="modal fade" id="forgetPasswordModalToggle" aria-hidden="true" aria-labelledby="forgetPasswordModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="loginModalToggleLabel">Please input an email:</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="login-modal">
+          <form action="signUpLogin.php" method="post">
+            <div class="input-group mb-3">
+              <span class="input-group-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-envelope" viewBox="0 0 16 16">
+                  <path
+                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                </svg>
+              </span>
+              <div class="form-floating">
+                <input type="email" class="form-control" id="altEmail" name="altEmail" placeholder="name@example.com" required
+                  autocomplete="off">
+                <label for="altEmail">Email address</label>
+              </div>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+              <button type="submit" class="btn btn-outline-secondary" name="forgetSubmit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-target="#loginModalToggle" data-bs-toggle="modal"><span
+              class="fs-6">Back to Login</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
