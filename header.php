@@ -1,19 +1,26 @@
 <nav id="header" class="navbar navbar-expand-lg row p-2 py-4 m-0">
 
+    <!-- Navbar brand -->
+    <div class="col-2 w-auto">
+        <a class="navbar-brand h-auto" href="#">
+            <img src="images/KiraMakanLogoPrimary.jpg" alt="Bootstrap" height="55">
+        </a>
+    </div>
+    <!-- Navbar brand -->
+
     <!-- Navbar collapse menu button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Navbar collapse menu button -->
 
     <!-- Navbar and Navitems -->
-    <div class="collapse navbar-collapse py-2" id="navbarSupportedContent">
-        <div class="col-7 d-flex justify-content-around align-items-center flex-fill">
+    <div class="collapse navbar-collapse col-10 " id="navbarSupportedContent">
+        <div class="d-flex justify-content-around align-items-center flex-fill">
             <ul class="navbar-nav me-25">
                 <div class="w-auto">
                     <li class="nav-item p-2 px-4">
-                        <a class="nav-link active fs-4" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active fs-4" aria-current="page" href="index.php">Home</a>
                     </li>
                 </div>
                 <div class="w-auto p-2 px-4">
@@ -39,7 +46,7 @@
             </ul>
         </div>
         <!-- Navbar logo right -->
-        <div class="col-2 w-auto d-flex align-items-center justify-content-center p-3">
+        <div class="w-auto d-flex align-items-center justify-content-center">
             <?php if (!isset($_SESSION["email"])) {
                 echo '
                 <!-- Button trigger modal -->
@@ -71,13 +78,8 @@
             ?>
         </div>
         <!-- Navbar logo right -->
-
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample">
-            Test Cart
-        </button>
     </div>
-    <!-- Navbar logo right -->
+
     <!-- Navbar and Navitems -->
 
 </nav>
