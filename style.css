@@ -219,14 +219,18 @@ i {
 }
 
 /* Center the form */
-#name-list form {
+#names-form form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+#names-form .deleteCol{
+  padding:0px;
+}
+
 /* Style the input fields */
-#name-list input[type="text"] {
+#names-form input[type="text"] {
   padding: 10px;
   margin: 10px;
   border: none;
@@ -235,19 +239,9 @@ i {
   width: 300px;
 }
 
-/* Style the delete button */
-#name-list .delete-btn {
-  margin-left: 10px;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  background-color: #f44336;
-  color: white;
-  cursor: pointer;
-}
 
 /* Style the submit button */
-#name-list input[type="submit"] {
+#names-form input[type="submit"] {
   margin: 10px;
   padding: 10px;
   border: none;

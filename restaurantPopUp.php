@@ -10,7 +10,7 @@
         <div class=" col-6 d-flex flex-column">
           <div class="d-flex justify-content-center">
 
-            <button class="btn btn-primary" type="submit" id="submitBtn">Just me</button>
+            <button class="btn btn-primary" type="button" id="submitBtn">Just me</button>
 
           </div>
           <div class="d-flex justify-content-center mt-3 ms-1">
@@ -21,7 +21,6 @@
         <div class=" col-6 d-flex flex-column">
           <div class="d-flex justify-content-center">
             <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">In a group</button>
-
           </div>
           <div class="d-flex justify-content-center mt-3 ms-1">
             <!-- Image -->
@@ -38,22 +37,31 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Add Customers Name</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form action="submit.php" method="GET" id="name-list">
-          <label for="my-name">My Name:</label>
-          <input type="text" name="my-name" id="my-name" value="Your Name" readonly>
-          <label for="user-name">User Name:</label>
-          <input type="text" name="user-name" id="user-name">
-          <div id="slots"></div>
+
+      <div id="names-form" class="modal-body">
+        <form action="foodOrdering.php" method="GET">
+          <div id="slots">
+            <div class="row d-flex align-items-center">
+              <div class="col-1 numCol">
+                <label for="user-name">1</label>
+              </div>
+              <div class="col-9 slotCol">
+                <input type="text" name="user-name" placeholder="Enter the name here" required>
+              </div>
+              <div class="col-2"></div>
+            </div>
+          </div>
           <button type="button" id="add-slot">Add Slot</button>
           <input type="submit" value="Submit">
         </form>
+
       </div>
+
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
       </div>
     </div>
   </div>

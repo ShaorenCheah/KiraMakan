@@ -47,7 +47,7 @@
                                                 <h5 class="card-title"><?php echo $rows[$j]['restaurantName']; ?></h5>
                                                 <p class="card-text"><?php echo $rows[$j]['restaurantDescription']; ?></p>
                                                 <div class="d-flex justify-content-end">
-                                                    <button class="btn btn-primary restaurant-button" data-bs-target="#exampleModalToggle" value="<?php echo $rows[$j]['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
+                                                    <button class="btn btn-primary restaurant-button" data-bs-target="#exampleModalToggle" id="restaurantID" value="<?php echo $rows[$j]['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,9 +87,10 @@
     </footer>
 
 </body>
+
 <script>
     const restaurantButtons = document.querySelectorAll('.restaurant-button');
-    const restaurantIDInput = document.getElementById('restaurantID');
+    let restaurantIDInput = document.getElementById('restaurantID');
     const submitBtn = document.getElementById('submitBtn');
 
     let selectedRestaurantID = '';
@@ -101,36 +102,129 @@
         });
     });
 
-    submitBtn.addEventListener('click', () => {
-        // Redirect to the other page
-        window.location.href = 'foodOrdering.php?restaurantID=' + selectedRestaurantID + '';
+    // Initialize slot count
+    var slotCount = 2;
+    var addSlotButton = document.getElementById("add-slot");
+
+    // Add slot button click event
+    addSlotButton.addEventListener("click", function() {
+        var num = document.querySelectorAll(".numCol").length + 1;
+        var slots = document.getElementById("slots");
+
+        // Create new slot row
+        var slotRow = document.createElement("div");
+        slotRow.classList.add("row", "d-flex", "align-items-center");
+
+        // Create number column
+        var numCol = document.createElement("div");
+        numCol.classList.add("col-1", "numCol");
+        var numLabel = document.createElement("label");
+        numLabel.setAttribute("for", "user-name");
+        numLabel.innerText = num;
+        numCol.appendChild(numLabel);
+
+        // Create slot column
+        var slotCol = document.createElement("div");
+        slotCol.classList.add("col-9", "slotCol");
+        var slotInput = document.createElement("input");
+        slotInput.setAttribute("type", "text");
+        slotInput.setAttribute("name", "user-name");
+        slotInput.setAttribute("placeholder", "Enter the name here");
+        slotCol.appendChild(slotInput);
+
+        // Create delete column
+        var deleteCol = document.createElement("div");
+        deleteCol.classList.add("col-2", "deleteCol");
+        var deleteButton = document.createElement("button");
+        deleteButton.setAttribute("type", "button");
+        deleteButton.classList.add("btn", "btn-danger", "delete-slot");
+        deleteButton.innerText = "Delete";
+        deleteCol.appendChild(deleteButton);
+
+        // Append columns to row
+        slotRow.appendChild(numCol);
+        slotRow.appendChild(slotCol);
+
+        // Add delete column if it's not the first slot
+        if (num > 1) {
+            // Hide delete button for all slots except the last one
+            var deleteButtons = document.querySelectorAll(".delete-slot");
+            for (var i = 0; i < deleteButtons.length; i++) {
+                deleteButtons[i].style.display = "none";
+            }
+
+            // Show delete button for the last slot
+            slotRow.appendChild(deleteCol);
+        } else {
+            // Hide delete button for the first slot
+            deleteButton.style.display = "none";
+        }
+
+        // Append row to slots container
+        slots.appendChild(slotRow);
+
+        // Increase slot count
+        slotCount++;
     });
 
+    // Delete slot button click event
+    document.addEventListener("click", function(event) {
+        if (event.target && event.target.classList.contains("delete-slot")) {
+            var slotRow = event.target.closest(".row");
+            var slots = document.getElementById("slots");
 
-    const addSlotBtn = document.getElementById("add-slot");
-    const slotsDiv = document.getElementById("slots");
-    let slotCount = 1;
+            // Check if the slot being deleted is not the first one
+            if (slotRow.previousElementSibling) {
+                // Remove slot row
+                slotRow.remove();
 
-    addSlotBtn.addEventListener("click", function() {
-        // Create a new input field
-        const slotInput = document.createElement("input");
-        slotInput.type = "text";
-        slotInput.name = `slot-${slotCount}`;
-        slotInput.placeholder = "Slot Name";
-        slotsDiv.appendChild(slotInput);
+                // Show delete button for the new last slot
+                var deleteButtons = document.querySelectorAll(".delete-slot");
+                deleteButtons[deleteButtons.length - 1].style.display = "inline-block";
 
-        // Create a delete button for the input field
-        const deleteBtn = document.createElement("button");
-        deleteBtn.type = "button";
-        deleteBtn.classList.add("delete-btn");
-        deleteBtn.textContent = "X";
-        deleteBtn.addEventListener("click", function() {
-            slotsDiv.removeChild(slotInput);
-            slotsDiv.removeChild(deleteBtn);
+                // Update slot numbers
+                var numCols = slots.getElementsByClassName("numCol");
+                for (var i = 0; i < numCols.length; i++) {
+                    numCols[i].querySelector("label").innerText = i + 1;
+                }
+            }
+        }
+    });
+
+    submitBtn.addEventListener('click', function() {
+        window.location.href = 'foodOrdering.php?restaurantID=' + selectedRestaurantID;
+    });
+
+    document.querySelector('input[type="submit"]').addEventListener('click', function(event) {
+        event.preventDefault();
+        // Check if all required fields are filled
+        const requiredInputs = document.querySelectorAll('input[required]');
+        let allInputsFilled = true;
+        requiredInputs.forEach(function(input) {
+            if (input.value.trim() === '') {
+                allInputsFilled = false;
+                input.classList.add('is-invalid'); // Optional: add a CSS class to indicate invalid input
+            } else {
+                input.classList.remove('is-invalid');
+            }
         });
-        slotsDiv.appendChild(deleteBtn);
-
-        slotCount++;
+        if (allInputsFilled) {
+            const userNameInputs = document.querySelectorAll('input[name="user-name"]');
+            const namesArray = [];
+            userNameInputs.forEach(function(input) {
+                const userName = input.value.trim();
+                if (userName.length > 0 && !namesArray.includes(userName)) {
+                    namesArray.push(userName);
+                }
+            });
+            console.log(namesArray);
+            // redirect to foodOrdering.php with names array and selectedRestaurantID attribute in URL
+            const urlParams = new URLSearchParams();
+            urlParams.set('namesArray', namesArray.join(','));
+            urlParams.set('restaurantID', selectedRestaurantID);
+            const url = `foodOrdering.php?${urlParams.toString()}`;
+            window.location.href = url;
+        }
     });
 </script>
 
