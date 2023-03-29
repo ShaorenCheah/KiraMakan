@@ -1,8 +1,8 @@
 <section id = "footer">
-  <div class = "footer">
+  <div class = "footer w-75 pb-5">
     <div class ="footer-container-1">
       <div class = "footer-logo">
-        <img src = "images/KiraMakanLogo.jpg">
+        <img src = "images/KiraMakanLogoWhite.jpg">
       </div>
       <div class = "footer-nav">
         <ul class = "footer-into">

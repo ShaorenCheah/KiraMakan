@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2023 at 05:32 PM
+-- Generation Time: Mar 24, 2023 at 10:43 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -56,8 +56,9 @@ CREATE TABLE `menu` (
   `menuID` varchar(5) NOT NULL,
   `restaurantID` varchar(5) NOT NULL,
   `itemName` varchar(100) NOT NULL,
-  `itemNescription` varchar(255) NOT NULL,
-  `itemPrice` decimal(10,2) NOT NULL
+  `itemDescription` longtext NOT NULL,
+  `itemPrice` decimal(10,2) NOT NULL,
+  `menuURL` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -107,7 +108,9 @@ CREATE TABLE `order_person` (
 CREATE TABLE `restaurants` (
   `restaurantID` varchar(5) NOT NULL,
   `restaurantName` varchar(256) NOT NULL,
-  `accountID` varchar(5) NOT NULL
+  `accountID` varchar(5) NOT NULL,
+  `restaurantDescription` longtext NOT NULL,
+  `restaurantURL` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

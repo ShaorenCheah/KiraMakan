@@ -3,6 +3,7 @@
   --secondary: #0584ff;
 }
 
+
 body {
   font-family: "Lato", sans-serif !important;
 }
@@ -16,35 +17,34 @@ body {
 }
 
 /* Header Navbar Start */
-header {
-  min-height: 100vh;
-  max-height: 100vh;
-  max-width: 100vw;
 
+.navbar {
+  background-color: #005fbb;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08), 0 20px 20px 0 rgba(0, 0, 0, 0.12);
 }
 
-.navbar-nav {
+#header .navbar-nav {
   font-weight: bolder;
   font-size: larger;
-  color: #0584ff;
+  color: white;
 }
 
-.nav-link {
-  color: #0584ff;
+#header .nav-link {
+  color: white;
 }
 
-.nav-link:hover,
+#header .nav-link:hover,
 .navbar-nav .show>.nav-link,
 .navbar-nav .nav-link.active,
 .nav-link:focus {
-  color: #005fbb;
+  color: white;
 }
 
-.navbar-toggler {
+#header .navbar-toggler {
   border: 0px;
 }
 
-.navbar-toggler:focus {
+#header .navbar-toggler:focus {
   color: #005fbb;
 }
 
@@ -55,14 +55,17 @@ header .btn:hover {
 /* Header Navbar End */
 
 /* Hero section Start */
+#hero {
+  min-height: 100vh;
+  max-height: 100vh;
 
+}
 
 #hero .row-container {
   border: 2px solid #005fbb;
   border-radius: 25px;
   margin-bottom: 50px;
-  height: 80vh;
-
+  min-height: 80vh;
 }
 
 /* Hero section End */
@@ -157,16 +160,145 @@ i {
 
 /* Contact-Us Section End */
 
+/* Restaurant options Section Start */
+#myCarousel .restaurant-button {
+  border: none;
+  background-color: white;
+  color: #005fbb;
+
+}
+
+#myCarousel .cards-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#myCarousel .card img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#myCarousel .card {
+  margin: 0 0.5em;
+  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  border: none;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+#myCarousel .carousel-inner {
+  padding: 1em;
+}
+
+#myCarousel .card-body {
+  background-color: #005fbb;
+  color: white;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  height: 100px;
+  transform: translateY(-50%);
+  width: auto;
+  margin-top: -22px;
+  background-color: #005fbb;
+  opacity: 100%;
+  border-radius: 25px;
+}
+
+.carousel-control-prev {
+  left: -50px;
+}
+
+.carousel-control-next {
+  right: -50px;
+}
+
+/* Center the form */
+#name-list form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style the input fields */
+#name-list input[type="text"] {
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #ccc;
+  width: 300px;
+}
+
+/* Style the delete button */
+#name-list .delete-btn {
+  margin-left: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+}
+
+/* Style the submit button */
+#name-list input[type="submit"] {
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+
+@media (min-width: 768px) {
+  .card img {
+    height: 11em;
+  }
+}
+
+/* Restaurant options Section End */
+
+/* Food options Section Start */
+#v-pills-tab .nav-link {
+  border: 2px solid #005fbb;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: white;
+  color: black;
+  width: 20%;
+  font-weight: bold;
+}
+
+#v-pills-tab .active {
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #005fbb;
+  color: white;
+
+}
+
+#v-pills-tab button.nav-link:hover {
+  background-color: #005fbb;
+  color: white;
+}
+
+/* Food options Section End */
 
 /* Footer Section Start */
 
 #footer {
   background-color: white;
-  padding: 40px 0;
 }
 
 .footer {
-  max-width: 1100px;
   margin: 0 auto;
 }
 
