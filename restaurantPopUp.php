@@ -41,14 +41,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <div class="modal-body">
+      <div id="names-form" class="modal-body">
         <form action="foodOrdering.php" method="GET">
-          <div id="slots" class="row d-flex">
-            <div class="col-1">
-              <label for="user-name">1</label>
-            </div>
-            <div class="col-11">
-              <input type="text" name="slot-1" placeholder="Enter the name here" required>
+          <div id="slots">
+            <div class="row d-flex align-items-center">
+              <div class="col-1 numCol">
+                <label for="user-name">1</label>
+              </div>
+              <div class="col-9 slotCol">
+                <input type="text" name="user-name" placeholder="Enter the name here" required>
+              </div>
+              <div class="col-2"></div>
             </div>
           </div>
           <button type="button" id="add-slot">Add Slot</button>

@@ -102,75 +102,97 @@
         });
     });
 
-    var addSlotBtn = document.getElementById("add-slot");
-    var slotsDiv = document.getElementById("slots");
-    var slotCount = 1;
-    var lastDeletedSlot = null;
+    // Initialize slot count
+    var slotCount = 2;
+    var addSlotButton = document.getElementById("add-slot");
 
-    var addSlotBtn = document.getElementById("add-slot");
-    var slotsDiv = document.getElementById("slots");
-    var slotCount = 1;
-    var lastDeletedSlot = null;
+    // Add slot button click event
+    addSlotButton.addEventListener("click", function() {
+        var num = document.querySelectorAll(".numCol").length + 1;
+        var slots = document.getElementById("slots");
 
-    // Create the first delete button (which cannot be removed)
-    var deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("delete-btn");
-    deleteBtn.disabled = true; // disable the button
-    slotsDiv.lastElementChild.appendChild(deleteBtn);
+        // Create new slot row
+        var slotRow = document.createElement("div");
+        slotRow.classList.add("row", "d-flex", "align-items-center");
 
-    addSlotBtn.addEventListener("click", function() {
-        // Create a new input field
+        // Create number column
         var numCol = document.createElement("div");
-        numCol.classList.add("col-1");
-        var numColContents = `
-    <label for="user-name">${slotCount+1}.</label>
-    `;
+        numCol.classList.add("col-1", "numCol");
+        var numLabel = document.createElement("label");
+        numLabel.setAttribute("for", "user-name");
+        numLabel.innerText = num;
+        numCol.appendChild(numLabel);
 
+        // Create slot column
         var slotCol = document.createElement("div");
-        slotCol.classList.add("col-10");
-        var slotColContents = `
-    <input type="text" name="slot-${slotCount}" placeholder="Enter the name here" required>
-    `;
+        slotCol.classList.add("col-9", "slotCol");
+        var slotInput = document.createElement("input");
+        slotInput.setAttribute("type", "text");
+        slotInput.setAttribute("name", "user-name");
+        slotInput.setAttribute("placeholder", "Enter the name here");
+        slotCol.appendChild(slotInput);
 
-        numCol.innerHTML = numColContents;
-        slotsDiv.appendChild(numCol);
-        slotCol.innerHTML = slotColContents;
-        slotsDiv.appendChild(slotCol);
+        // Create delete column
+        var deleteCol = document.createElement("div");
+        deleteCol.classList.add("col-2", "deleteCol");
+        var deleteButton = document.createElement("button");
+        deleteButton.setAttribute("type", "button");
+        deleteButton.classList.add("btn", "btn-danger", "delete-slot");
+        deleteButton.innerText = "Delete";
+        deleteCol.appendChild(deleteButton);
 
+        // Append columns to row
+        slotRow.appendChild(numCol);
+        slotRow.appendChild(slotCol);
 
-        // Remove the delete button from the previous slot, if any
-        if (slotCount > 2) {
-            var prevSlot = slotsDiv.children[slotsDiv.children.length - 4];
-            prevSlot.removeChild(prevSlot.lastElementChild);
-        }
-
-        // Create a new delete button for the latest slot
-        deleteBtn = document.createElement("button");
-        deleteBtn.classList.add("delete-btn");
-        slotCol.appendChild(deleteBtn);
-
-        // Attach the delete button click event listener
-        deleteBtn.addEventListener("click", function() {
-            slotsDiv.removeChild(numCol);
-            slotsDiv.removeChild(slotCol);
-            lastDeletedSlot = slotCol;
-            if (slotCount > 2) { // enable the delete button on the previous slot
-                var prevSlot = slotsDiv.children[slotsDiv.children.length - 4];
-                var prevDeleteBtn = prevSlot.lastElementChild;
-                prevSlot.removeChild(prevDeleteBtn);
-                prevDeleteBtn.disabled = false;
-                slotCount--;
+        // Add delete column if it's not the first slot
+        if (num > 1) {
+            // Hide delete button for all slots except the last one
+            var deleteButtons = document.querySelectorAll(".delete-slot");
+            for (var i = 0; i < deleteButtons.length; i++) {
+                deleteButtons[i].style.display = "none";
             }
-        });
 
-        // Disable the delete button on the previous slot, if any
-        if (slotCount > 2) {
-            var prevSlot = slotsDiv.children[slotsDiv.children.length - 4];
-            var prevDeleteBtn = prevSlot.lastElementChild;
-            prevDeleteBtn.disabled = true;
+            // Show delete button for the last slot
+            slotRow.appendChild(deleteCol);
+        } else {
+            // Hide delete button for the first slot
+            deleteButton.style.display = "none";
         }
 
+        // Append row to slots container
+        slots.appendChild(slotRow);
+
+        // Increase slot count
         slotCount++;
+    });
+
+    // Delete slot button click event
+    document.addEventListener("click", function(event) {
+        if (event.target && event.target.classList.contains("delete-slot")) {
+            var slotRow = event.target.closest(".row");
+            var slots = document.getElementById("slots");
+
+            // Check if the slot being deleted is not the first one
+            if (slotRow.previousElementSibling) {
+                // Remove slot row
+                slotRow.remove();
+
+                // Show delete button for the new last slot
+                var deleteButtons = document.querySelectorAll(".delete-slot");
+                deleteButtons[deleteButtons.length - 1].style.display = "inline-block";
+
+                // Update slot numbers
+                var numCols = slots.getElementsByClassName("numCol");
+                for (var i = 0; i < numCols.length; i++) {
+                    numCols[i].querySelector("label").innerText = i + 1;
+                }
+            }
+        }
+    });
+
+    submitBtn.addEventListener('click', function() {
+        window.location.href = 'foodOrdering.php?restaurantID=' + selectedRestaurantID;
     });
 
     document.querySelector('input[type="submit"]').addEventListener('click', function(event) {
@@ -187,25 +209,22 @@
             }
         });
         if (allInputsFilled) {
-            const userNameInput = document.getElementById('user-name');
-            const userName = userNameInput.value.trim();
-            if (userName.length > 0 && !namesArray.includes(userName)) {
-                namesArray.push(userName);
-            }
-            for (let i = 1; i < slotCount; i++) {
-                const slotInput = document.querySelector(`input[name="slot-${i}"]`);
-                const slotValue = slotInput.value.trim();
-                if (slotValue.length > 0 && !namesArray.includes(slotValue)) {
-                    namesArray.push(slotValue);
+            const userNameInputs = document.querySelectorAll('input[name="user-name"]');
+            const namesArray = [];
+            userNameInputs.forEach(function(input) {
+                const userName = input.value.trim();
+                if (userName.length > 0 && !namesArray.includes(userName)) {
+                    namesArray.push(userName);
                 }
-            }
-            console.log(namesArray); // replace with your own code to send the data to the server
-
-            // Pass namesArray through GET to submit.php
-            const queryString = `names=${encodeURIComponent(namesArray.join(','))}`;
-            window.location.href = `foodOrdering.php?restaurantID=${selectedRestaurantID}&${queryString}`;
+            });
+            console.log(namesArray);
+            // redirect to foodOrdering.php with names array and selectedRestaurantID attribute in URL
+            const urlParams = new URLSearchParams();
+            urlParams.set('namesArray', namesArray.join(','));
+            urlParams.set('restaurantID', selectedRestaurantID);
+            const url = `foodOrdering.php?${urlParams.toString()}`;
+            window.location.href = url;
         }
-
     });
 </script>
 
