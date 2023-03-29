@@ -219,14 +219,14 @@ i {
 }
 
 /* Center the form */
-#name-list form {
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 /* Style the input fields */
-#name-list input[type="text"] {
+input[type="text"] {
   padding: 10px;
   margin: 10px;
   border: none;
@@ -236,7 +236,7 @@ i {
 }
 
 /* Style the delete button */
-#name-list .delete-btn {
+.delete-btn {
   margin-left: 10px;
   padding: 5px;
   border: none;
@@ -247,7 +247,7 @@ i {
 }
 
 /* Style the submit button */
-#name-list input[type="submit"] {
+input[type="submit"] {
   margin: 10px;
   padding: 10px;
   border: none;

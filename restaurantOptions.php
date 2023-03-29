@@ -47,7 +47,7 @@
                                                 <h5 class="card-title"><?php echo $rows[$j]['restaurantName']; ?></h5>
                                                 <p class="card-text"><?php echo $rows[$j]['restaurantDescription']; ?></p>
                                                 <div class="d-flex justify-content-end">
-                                                    <button class="btn btn-primary restaurant-button" data-bs-target="#exampleModalToggle" value="<?php echo $rows[$j]['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
+                                                    <button class="btn btn-primary restaurant-button" data-bs-target="#exampleModalToggle" id="restaurantID" value="<?php echo $rows[$j]['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,9 +87,10 @@
     </footer>
 
 </body>
+
 <script>
     const restaurantButtons = document.querySelectorAll('.restaurant-button');
-    const restaurantIDInput = document.getElementById('restaurantID');
+    let restaurantIDInput = document.getElementById('restaurantID');
     const submitBtn = document.getElementById('submitBtn');
 
     let selectedRestaurantID = '';
@@ -101,36 +102,95 @@
         });
     });
 
-    submitBtn.addEventListener('click', () => {
-        // Redirect to the other page
-        window.location.href = 'foodOrdering.php?restaurantID=' + selectedRestaurantID + '';
-    });
+    var addSlotBtn = document.getElementById("add-slot");
+    var slotsDiv = document.getElementById("slots");
+    var slotCount = 1;
+    var lastDeletedSlot = null;
 
-
-    const addSlotBtn = document.getElementById("add-slot");
-    const slotsDiv = document.getElementById("slots");
-    let slotCount = 1;
+    // Create the first delete button (which cannot be removed)
+    var deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.disabled = true; // disable the button
+    slotsDiv.lastElementChild.appendChild(deleteBtn);
 
     addSlotBtn.addEventListener("click", function() {
         // Create a new input field
-        const slotInput = document.createElement("input");
-        slotInput.type = "text";
-        slotInput.name = `slot-${slotCount}`;
-        slotInput.placeholder = "Slot Name";
-        slotsDiv.appendChild(slotInput);
+        var numCol = document.createElement("div");
+        numCol.classList.add("col-1");
+        var numColContents = `
+        <label for="user-name">${slotCount+1}.</label>
+        `;
 
-        // Create a delete button for the input field
-        const deleteBtn = document.createElement("button");
-        deleteBtn.type = "button";
+        var slotCol = document.createElement("div");
+        slotCol.classList.add("col-10");
+        var slotColContents = `
+        <input type="text" name="slot-${slotCount}" placeholder="Enter the name here" required>
+        `;
+
+        numCol.innerHTML = numColContents;
+        slotsDiv.appendChild(numCol);
+        slotCol.innerHTML = slotColContents;
+        slotsDiv.appendChild(slotCol);
+
+
+        // Remove the delete button from the last deleted slot, if any
+        if (lastDeletedSlot) {
+            lastDeletedSlot.removeChild(lastDeletedSlot.lastElementChild);
+        }
+
+        // Create a new delete button for the latest slot
+        deleteBtn = document.createElement("button");
         deleteBtn.classList.add("delete-btn");
-        deleteBtn.textContent = "X";
+        slotCol.appendChild(deleteBtn);
+
+        // Attach the delete button click event listener
         deleteBtn.addEventListener("click", function() {
-            slotsDiv.removeChild(slotInput);
-            slotsDiv.removeChild(deleteBtn);
+            slotsDiv.removeChild(numCol);
+            slotsDiv.removeChild(slotCol);
+            lastDeletedSlot = slotCol;
+            if (slotCount > 2) { // enable the delete button on the previous slot
+                var prevSlot = slotsDiv.children[slotsDiv.children.length - 4];
+                prevSlot.lastElementChild.appendChild(deleteBtn);
+            }
+            slotCount--;
         });
-        slotsDiv.appendChild(deleteBtn);
 
         slotCount++;
+    });
+
+    document.querySelector('input[type="submit"]').addEventListener('click', function(event) {
+        event.preventDefault();
+        // Check if all required fields are filled
+        const requiredInputs = document.querySelectorAll('input[required]');
+        let allInputsFilled = true;
+        requiredInputs.forEach(function(input) {
+            if (input.value.trim() === '') {
+                allInputsFilled = false;
+                input.classList.add('is-invalid'); // Optional: add a CSS class to indicate invalid input
+            } else {
+                input.classList.remove('is-invalid');
+            }
+        });
+        if (allInputsFilled) {
+            const userNameInput = document.getElementById('user-name');
+            const userName = userNameInput.value.trim();
+            if (userName.length > 0 && !namesArray.includes(userName)) {
+                namesArray.push(userName);
+            }
+            for (let i = 1; i < slotCount; i++) {
+                const slotInput = document.querySelector(`input[name="slot-${i}"]`);
+                const slotValue = slotInput.value.trim();
+                if (slotValue.length > 0 && !namesArray.includes(slotValue)) {
+                    namesArray.push(slotValue);
+                }
+            }
+            console.log(namesArray); // replace with your own code to send the data to the server
+
+            // Pass namesArray through GET to submit.php
+            const queryString = `names=${encodeURIComponent(namesArray.join(','))}`;
+            window.location.href = `foodOrdering.php?restaurantID=${selectedRestaurantID}&${queryString}`;
+        }
+
     });
 </script>
 
