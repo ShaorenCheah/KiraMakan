@@ -1,5 +1,5 @@
-INSERT INTO Accounts (accountID, email, password, accountType) VALUES ('A0001', 'mcd@gmail.com', '12345', NULL, 'Restaurant');
-INSERT INTO Accounts (accountID, email, password, accountType) VALUES ('A0002', 'guest@gmail.com', '$2y$10$5M4sMHISEPYD46Oc732kVu/II/iudTm60bvM6eR6IIdNA1anUw2qi', NULL, 'Customer');
+INSERT INTO Accounts (accountID, email, password, token, accountType) VALUES ('A0001', 'mcd@gmail.com', '12345', NULL, 'Restaurant');
+INSERT INTO Accounts (accountID, email, password, token, accountType) VALUES ('A0002', 'guest@gmail.com', '$2y$10$5M4sMHISEPYD46Oc732kVu/II/iudTm60bvM6eR6IIdNA1anUw2qi', NULL, 'Customer');
 
 INSERT INTO Customers (customerID, customerName, phoneNo, accountID) VALUES ('C0001', 'Guest', '012-3456789', 'A0002');
 
