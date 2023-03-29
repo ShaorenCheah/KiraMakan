@@ -1,7 +1,7 @@
 INSERT INTO Accounts (accountID, email, password, accountType) VALUES ('A0001', 'mcd@gmail.com', '12345', 'Restaurant');
 INSERT INTO Accounts (accountID, email, password, accountType) VALUES ('A0002', 'guest@gmail.com', '12345', 'Customer');
 
-INSERT INTO Customers (customerID, customerName, accountID) VALUES ('C0001', 'Guest', 'A0002');
+INSERT INTO Customers (customerID, customerName, phoneNo, accountID) VALUES ('C0001', 'Guest', '012-3456789', 'A0002');
 
 INSERT INTO Restaurants (restaurantID, restaurantName, accountID, restaurantDescription, restaurantURL) VALUES ('R0001', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png');
 INSERT INTO Restaurants (restaurantID, restaurantName, accountID, restaurantDescription, restaurantURL) VALUES ('R0002', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png');
@@ -11,6 +11,6 @@ INSERT INTO Restaurants (restaurantID, restaurantName, accountID, restaurantDesc
 INSERT INTO Restaurants (restaurantID, restaurantName, accountID, restaurantDescription, restaurantURL) VALUES ('R0006', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png');
 INSERT INTO Restaurants (restaurantID, restaurantName, accountID, restaurantDescription, restaurantURL) VALUES ('R0007', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png');
 
-INSERT INTO Menu (menuID, restaurantID, itemName, itemDescription, itemPrice, menuURL) VALUES ('M0001', 'R0001', 'Fillet O\' Fish', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '12', 'filletofish.jpg');
+INSERT INTO Menu (menuID, restaurantID, itemName, itemDescription, itemPrice, menuURL) VALUES ('M0001', 'R0001', 'Fillet O Fish', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '12', 'filletofish.jpg');
 INSERT INTO Menu (menuID, restaurantID, itemName, itemDescription, itemPrice, menuURL) VALUES ('M0002', 'R0001', 'Mc Chicken', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '10', 'mcchicken.jpg');
 INSERT INTO Menu (menuID, restaurantID, itemName, itemDescription, itemPrice, menuURL) VALUES ('M0003', 'R0001', 'Ayam Goreng McD', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '14', 'ayamgorengmcd.png');

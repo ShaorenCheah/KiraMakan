@@ -30,8 +30,8 @@ if (isset($_POST['loginSubmit'])) {
             echo "error";
         }
         
-        $fetch_pass = $fetch['password'];
-        if ($password == $fetch_pass) {
+        $hashedPassword = $fetch['password'];
+        if (password_verify($password, $hashedPassword)) {
             $_SESSION['email'] = $email;
             $_SESSION['accountID'] = $fetch['accountID'];
             $_SESSION['accountType'] = $accountType;
@@ -56,6 +56,7 @@ if (isset($_POST['loginSubmit'])) {
     // Define form inputs
     $customerName = $_POST['customerName'];
     $email = $_POST['email'];
+    $phoneNo = $_POST['phoneNo'];
     $password = $_POST['password'];
     $repeatPassword = $_POST['repeatPassword'];
     $accountType = 'Customer';
@@ -65,6 +66,9 @@ if (isset($_POST['loginSubmit'])) {
         echo "<script>alert('Passwords do not match!'); window.location='index.php'</script>";
         mysqli_close($conn);
     }
+
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
     // Generate new accountID by getting the last accountID from the database and incrementing it by 1
     $sql = "SELECT accountID FROM accounts ORDER BY accountID DESC LIMIT 1";
@@ -79,7 +83,7 @@ if (isset($_POST['loginSubmit'])) {
     $new_accountID = "A" . str_pad($new_accountID_num, 4, "0", STR_PAD_LEFT);
 
     // Insert account data into accounts table
-    $sql = "INSERT INTO accounts (accountID, email, password, accountType) VALUES ('$new_accountID', '$email', '$password', '$accountType')";
+    $sql = "INSERT INTO accounts (accountID, email, password, accountType) VALUES ('$new_accountID', '$email', '$hashedPassword', '$accountType')";
     if ($conn->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $conn->error;
         mysqli_close($conn);
@@ -98,7 +102,7 @@ if (isset($_POST['loginSubmit'])) {
         $new_customerID = "C" . str_pad($new_customerID_num, 4, "0", STR_PAD_LEFT);
 
         // Insert customer data into customers table
-        $sql = "INSERT INTO customers (customerID, customerName, accountID) VALUES ('$new_customerID', '$customerName', '$new_accountID')";
+        $sql = "INSERT INTO customers (customerID, customerName, phoneNo, accountID) VALUES ('$new_customerID', '$customerName', '$phoneNo', '$new_accountID')";
         if ($conn->query($sql) === FALSE) {
             echo "Error: " . $sql . "<br>" . $conn->error;
             mysqli_close($conn);
