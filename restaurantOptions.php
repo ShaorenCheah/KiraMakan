@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <?php session_start()?>
     <header>
         <!-- Header -->
         <?php include 'header.php'; ?>
@@ -98,7 +99,6 @@
     restaurantButtons.forEach(button => {
         button.addEventListener('click', () => {
             selectedRestaurantID = button.value;
-            restaurantIDInput.value = selectedRestaurantID;
         });
     });
 
@@ -129,7 +129,9 @@
         var slotInput = document.createElement("input");
         slotInput.setAttribute("type", "text");
         slotInput.setAttribute("name", "user-name");
-        slotInput.setAttribute("placeholder", "Enter the name here");
+        slotInput.setAttribute("autocomplete", "off");
+        slotInput.setAttribute("placeholder", "Enter name here");
+        slotInput.required = true;
         slotCol.appendChild(slotInput);
 
         // Create delete column
@@ -195,12 +197,15 @@
         window.location.href = 'foodOrdering.php?restaurantID=' + selectedRestaurantID;
     });
 
-    document.querySelector('input[type="submit"]').addEventListener('click', function(event) {
+    document.getElementById('submit-btn').addEventListener('click', function(event) {
         event.preventDefault();
+
         // Check if all required fields are filled
-        const requiredInputs = document.querySelectorAll('input[required]');
+        const form = document.getElementById('add-names');
+        const inputs = form.querySelectorAll('input:not([type="submit"]):not([type="checkbox"]), textarea');
+
         let allInputsFilled = true;
-        requiredInputs.forEach(function(input) {
+        inputs.forEach(function(input) {
             if (input.value.trim() === '') {
                 allInputsFilled = false;
                 input.classList.add('is-invalid'); // Optional: add a CSS class to indicate invalid input
@@ -208,20 +213,22 @@
                 input.classList.remove('is-invalid');
             }
         });
+
         if (allInputsFilled) {
+            // Store user names in an array
             const userNameInputs = document.querySelectorAll('input[name="user-name"]');
             const namesArray = [];
             userNameInputs.forEach(function(input) {
                 const userName = input.value.trim();
-                if (userName.length > 0 && !namesArray.includes(userName)) {
+                if (userName.length > 0) {
                     namesArray.push(userName);
                 }
             });
-            console.log(namesArray);
-            // redirect to foodOrdering.php with names array and selectedRestaurantID attribute in URL
+
+            // Submit the form with names array and selectedRestaurantID attribute in URL
             const urlParams = new URLSearchParams();
-            urlParams.set('namesArray', namesArray.join(','));
             urlParams.set('restaurantID', selectedRestaurantID);
+            urlParams.set('namesArray', namesArray.join(','));
             const url = `foodOrdering.php?${urlParams.toString()}`;
             window.location.href = url;
         }

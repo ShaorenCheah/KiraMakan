@@ -42,22 +42,21 @@
       </div>
 
       <div id="names-form" class="modal-body">
-        <form action="foodOrdering.php" method="GET">
+        <form id="add-names" action="foodOrdering.php" method="GET">
           <div id="slots">
             <div class="row d-flex align-items-center">
               <div class="col-1 numCol">
                 <label for="user-name">1</label>
               </div>
               <div class="col-9 slotCol">
-                <input type="text" name="user-name" placeholder="Enter the name here" required>
+                <input type="text" name="user-name" placeholder="Enter name here" required autocomplete="off">
               </div>
               <div class="col-2"></div>
             </div>
           </div>
           <button type="button" id="add-slot">Add Slot</button>
-          <input type="submit" value="Submit">
+          <input type="submit" id="submit-btn" value="Submit">
         </form>
-
       </div>
 
       <div class="modal-footer">
