@@ -82,16 +82,18 @@ if (isset($_POST['loginSubmit'])) {
 
     // Generate new accountID by getting the last accountID from the database and incrementing it by 1
     $sql = "SELECT accountID FROM accounts ORDER BY accountID DESC LIMIT 1";
-    $result = mysqli_prepare($conn, $sql);
-    mysqli_stmt_execute($result);
-    mysqli_stmt_bind_result($result, $last_accountID);
-    mysqli_stmt_fetch($result);
-    if ($last_accountID !== null) {
+    $stmt = mysqli_prepare($conn, $sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $last_accountID = $row["accountID"];
         $new_accountID_num = intval(substr($last_accountID, 1)) + 1;
     } else {
         $new_accountID_num = 1;
     }
     $new_accountID = "A" . str_pad($new_accountID_num, 4, "0", STR_PAD_LEFT);
+    $stmt->close();
 
     // Prepare and bind parameters for account data insertion
     $stmt = mysqli_prepare($conn, "INSERT INTO accounts (accountID, email, password, accountType) VALUES (?, ?, ?, ?)");
@@ -106,16 +108,18 @@ if (isset($_POST['loginSubmit'])) {
 
     // Get the latest customerID from customers table
     $sql = "SELECT customerID FROM customers ORDER BY customerID DESC LIMIT 1";
-    $result = mysqli_prepare($conn, $sql);
-    mysqli_stmt_execute($result);
-    mysqli_stmt_bind_result($result, $last_customerID);
-    mysqli_stmt_fetch($result);
-    if ($last_customerID !== null) {
+    $stmt = mysqli_prepare($conn, $sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $last_customerID = $row["customerID"];
         $new_customerID_num = intval(substr($last_customerID, 1)) + 1;
     } else {
         $new_customerID_num = 1;
     }
     $new_customerID = "C" . str_pad($new_customerID_num, 4, "0", STR_PAD_LEFT);
+    $stmt->close();
 
     // Prepare and bind parameters for customer data insertion
     $stmt = mysqli_prepare($conn, "INSERT INTO customers (customerID, customerName, phoneNo, accountID) VALUES (?, ?, ?, ?)");
