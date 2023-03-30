@@ -69,11 +69,8 @@
                 </button>
                 ';
                 include 'signUpLoginModal.php';
-            };
-
-
-            if (isset($_SESSION["email"])) {
-
+                
+            } else {
                 echo '
                 <!-- Button trigger modal -->
                 <button class="btn me-3" type="button" data-bs-toggle = "modal" data-bs-target = "#logOutModalToggle">
@@ -83,6 +80,7 @@
                 </button>
                 ';
                 include 'logOutModal.php';
+                
             }
             ?>
         </div>

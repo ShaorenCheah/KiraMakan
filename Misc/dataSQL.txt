@@ -1,3 +1,5 @@
+INSERT INTO Accounts (accountID, email, password, token, accountType) VALUES ('A0001', 'mcd@gmail.com', '12345', NULL, 'Restaurant');
+
 INSERT INTO Restaurants (restaurantID, restaurantName, accountID, restaurantDescription, restaurantURL) VALUES ('R0001', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png');
 INSERT INTO Restaurants (restaurantID, restaurantName, accountID, restaurantDescription, restaurantURL) VALUES ('R0002', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png');
 INSERT INTO Restaurants (restaurantID, restaurantName, accountID, restaurantDescription, restaurantURL) VALUES ('R0003', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png');
