@@ -74,3 +74,22 @@ function validateRegisterForm() {
   return true;
 
 }
+
+function validateForgetForm() {
+  
+    // get input values
+    const altEmail = document.getElementById('altEmail').value.trim();
+  
+    // regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    // check if email is empty or in the wrong format
+    if (altEmail === '' || !emailRegex.test(altEmail)) {
+      alert('Please enter a valid email address.');
+      return false;
+    }
+  
+    // if form is valid, return true to submit form
+    return true;
+  
+}

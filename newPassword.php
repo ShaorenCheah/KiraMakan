@@ -7,14 +7,14 @@ if (isset($_SESSION['token']) || $email == true) {
     include './includes/connection.inc.php';
 
     if (isset($_POST['changePassword'])) {
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
-        $repeatPassword = mysqli_real_escape_string($conn, $_POST['repeatPassword']);
-        if ($password !== $repeatPassword) {
+        $newPassword = mysqli_real_escape_string($conn, $_POST['newPassword']);
+        $newRepeatPassword = mysqli_real_escape_string($conn, $_POST['newRepeatPassword']);
+        if ($newPassword !== $newRepeatPassword) {
             echo "<script>alert('Password does not match. Please try again.'); window.location='newPassword.php'</script>";
         } else {
             $token = NULL;
             $email = $_SESSION['email']; //getting this email using session
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
             $sql = "UPDATE accounts SET token = '$token', `password` = '$hashedPassword' WHERE email = '$email'";
             $run_query = mysqli_query($conn, $sql);
             if ($run_query) {
@@ -68,9 +68,9 @@ if (isset($_SESSION['token']) || $email == true) {
                                     </svg>
                                 </span>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="password" name="password"
+                                    <input type="password" class="form-control" id="newPassword" name="newPassword"
                                         placeholder="Password" required autocomplete="off">
-                                    <label for="password">New Password</label>
+                                    <label for="newPassword">New Password</label>
                                 </div>
                             </div>
 
@@ -85,9 +85,9 @@ if (isset($_SESSION['token']) || $email == true) {
                                     </svg>
                                 </span>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="repeatPassword"
-                                        name="repeatPassword" placeholder="Repeat Password" required autocomplete="off">
-                                    <label for="repeatPassword">Repeat Password</label>
+                                    <input type="password" class="form-control" id="newRepeatPassword"
+                                        name="newRepeatPassword" placeholder="Repeat Password" required autocomplete="off">
+                                    <label for="newRepeatPassword">Repeat Password</label>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary" name="changePassword">Change Password</button>

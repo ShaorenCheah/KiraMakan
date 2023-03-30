@@ -162,7 +162,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="login-modal">
-        <form action="forgetPassword.php" method="post">
+        <form action="forgetPassword.php" novalidate method="post" onsubmit="return validateForgetForm()">
           <div class="input-group mb-3">
             <span class="input-group-text">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope"
