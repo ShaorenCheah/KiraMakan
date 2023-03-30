@@ -34,6 +34,7 @@ if (isset($_POST['loginSubmit'])) {
             $result = mysqli_stmt_get_result($stmt);
             $fetch_name = mysqli_fetch_assoc($result);
             $name = $fetch_name['customerName'];
+            $customerID = $fetch_name['customerID'];
         } else {
             echo "error";
         }
@@ -44,6 +45,7 @@ if (isset($_POST['loginSubmit'])) {
             $_SESSION['accountID'] = $fetch['accountID'];
             $_SESSION['accountType'] = $accountType;
             $_SESSION['name'] = $name;
+            $_SESSION['customerID'] = $customerID;
             $_SESSION[$accountType . 'Name'] = $name;
             echo "<script>alert('Successful Login! Welcome $name!'); window.location='index.php'</script>"; //To be changed into redirecting to customer / restaurant index page
         } else {

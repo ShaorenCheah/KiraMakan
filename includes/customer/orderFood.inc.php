@@ -18,15 +18,70 @@ $row = mysqli_fetch_assoc($result);
 $orderID = $row['orderID'];
 
 $stmt = $conn->prepare("INSERT INTO Orders (orderID, restaurantID, customerID, orderDate, totalPrice) VALUES (?, ?, ?, ?, ?)");
-$customerID="C0002";
+$customerID = $_SESSION['customerID'];
 // Bind the parameters
-$stmt->bind_param('ssssd', $orderID, $restaurantID,$_SESSION['customerID'] ,$current_time, $totalPrice);
+$stmt->bind_param('ssssd', $orderID, $restaurantID, $customerID, $current_time, $totalPrice);
+$stmt->execute();
 
 $success = true;
 
-if (!$stmt->execute()) {
-    $success = false;
+//Get the order persons 
+
+foreach ($order['orderData'] as $personName) {
+    $customerName = $personName['name'];
+
+    // Check if the name already exists in the database
+    $sql = "SELECT opID FROM order_person WHERE personName = ? AND orderID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ss', $customerName, $orderID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // If the name exists, skip to the next orderItem
+    if ($result->num_rows > 0) {
+        continue;
+    }
+
+    // If the name doesn't exist, insert it into the database
+    $sql = "SELECT CONCAT('OP', LPAD(COUNT(*)+1, 4, '0')) AS opID FROM order_person;";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $opID = $row['opID'];
+
+    $stmt = $conn->prepare("INSERT INTO order_person (opID, orderID, personName) VALUES (?, ?, ?)");
+    $stmt->bind_param('sss', $opID, $orderID, $customerName);
+
+    if (!$stmt->execute()) {
+        $success = false;
+        break;
+    }
 }
+
+// Get the order items
+foreach ($order['orderData'] as $orderItem){
+    $menuID = $orderItem['menuID'];
+    $quantity = $orderItem['quantity'];
+    $price = $orderItem['price'] * $quantity;
+    $personName = $orderItem['name'];
+
+    // Get the opID of the customer
+    $sql = "SELECT opID FROM order_person WHERE personName = ? AND orderID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ss', $personName , $orderID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = mysqli_fetch_assoc($result);
+    $opID = $row['opID'];
+
+    $stmt = $conn->prepare("INSERT INTO order_item_person (orderID, opID, menuID, quantity, price) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param('sssid', $orderID, $opID, $menuID, $quantity, $price);
+
+    if (!$stmt->execute()) {
+        $success = false;
+        break;
+    }
+}
+
 
 // Close the statement and connection
 $stmt->close();
@@ -38,4 +93,3 @@ $response = [
 ];
 
 echo json_encode($response);
-?>

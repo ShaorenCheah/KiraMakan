@@ -196,15 +196,15 @@ function ready() {
             var cartRow = cartRows[i];
 
             var selectedName = cartRow.getElementsByClassName('cart-order-name')[0].textContent;
-            var title = cartRow.getElementsByClassName('cart-item-title')[0].textContent;
+            var item = cartRow.getElementsByClassName('cart-item-title')[0].textContent;
             var menuID = cartRow.getElementsByClassName('menu-item-id')[0].value;
             var price = parseFloat(cartRow.getElementsByClassName('cart-price')[0].textContent.replace('RM ', ''));
             var quantity = parseInt(cartRow.getElementsByClassName('cart-quantity-input')[0].value);
 
             orderData.push({
                 name: selectedName,
-                title: title,
                 menuID: menuID,
+                item: item,
                 price: price,
                 quantity: quantity
             });
