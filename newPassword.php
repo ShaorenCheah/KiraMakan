@@ -59,13 +59,36 @@ if (isset($_SESSION['token']) || $email == true) {
                     </div>
                     <div class="card-body">
                         <form action="newPassword.php" method="POST" autocomplete="off">
-                            <div class="form-group mb-3">
-                                <label for="password">New Password:</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-lock" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+                                    </svg>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Password" required autocomplete="off">
+                                    <label for="password">New Password</label>
+                                </div>
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="repeatPassword">Repeat Password:</label>
-                                <input type="password" class="form-control" id="repeatPassword" name="repeatPassword"required>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check2-circle" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
+                                        <path
+                                            d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
+                                    </svg>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="repeatPassword"
+                                        name="repeatPassword" placeholder="Repeat Password" required autocomplete="off">
+                                    <label for="repeatPassword">Repeat Password</label>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary" name="changePassword">Change Password</button>
                         </form>
