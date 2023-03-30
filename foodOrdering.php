@@ -176,8 +176,8 @@
             <h5 class="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-            <form id="cart-form">
+        <div class="offcanvas-body row w-auto h-auto mx-2">
+            <form id="cart-form" class="p-0">
                 <div class="cart-items">
                 </div>
                 <div class="cart-total">
