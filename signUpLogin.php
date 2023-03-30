@@ -65,20 +65,14 @@ if (isset($_POST['loginSubmit'])) {
 
     // Define form inputs
     $customerName = $_POST['customerName'];
-    $email = $_POST['email'];
+    $regEmail = $_POST['regEmail'];
     $phoneNo = $_POST['phoneNo'];
-    $password = $_POST['password'];
-    $repeatPassword = $_POST['repeatPassword'];
+    $regPassword = $_POST['regPassword'];
+    $regRepeatPassword = $_POST['regRepeatPassword'];
     $accountType = 'Customer';
 
-    // Check if password and repeat password match
-    if ($password !== $repeatPassword) {
-        echo "<script>alert('Passwords do not match!'); window.location='index.php'</script>";
-        mysqli_close($conn);
-    }
-
     // Hash the password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $hashedPassword = password_hash($regPassword, PASSWORD_DEFAULT);
 
     // Generate new accountID by getting the last accountID from the database and incrementing it by 1
     $sql = "SELECT accountID FROM accounts ORDER BY accountID DESC LIMIT 1";
@@ -97,7 +91,7 @@ if (isset($_POST['loginSubmit'])) {
 
     // Prepare and bind parameters for account data insertion
     $stmt = mysqli_prepare($conn, "INSERT INTO accounts (accountID, email, password, accountType) VALUES (?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "ssss", $new_accountID, $email, $hashedPassword, $accountType);
+    mysqli_stmt_bind_param($stmt, "ssss", $new_accountID, $regEmail, $hashedPassword, $accountType);
     if (mysqli_stmt_execute($stmt) === FALSE) {
         echo "Error: " . mysqli_stmt_error($stmt);
         mysqli_stmt_close($stmt);
