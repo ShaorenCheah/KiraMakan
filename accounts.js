@@ -14,7 +14,7 @@ function validateLoginForm() {
   }
 
   // check if password is empty or too short
-  if (password === '' || password.length <= 8) {
+  if (password === '' || password.length < 8) {
     alert('Please enter a password that is at least 8 characters long.');
     return false;
   }
@@ -59,7 +59,7 @@ function validateRegisterForm() {
   }
 
   // check if password is empty or too short
-  if (regPassword === '' || password.length <= 8) {
+  if (regPassword === '' || password.length < 8) {
     alert('Please enter a password that is at least 8 characters long.');
     return false;
   }
