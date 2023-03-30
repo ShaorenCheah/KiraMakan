@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2023 at 12:44 PM
+-- Generation Time: Mar 30, 2023 at 05:31 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -31,8 +31,7 @@ CREATE TABLE `accounts` (
   `accountID` varchar(5) NOT NULL,
   `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `token` varchar(6),
-
+  `token` varchar(6) DEFAULT NULL,
   `accountType` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -43,7 +42,7 @@ CREATE TABLE `accounts` (
 INSERT INTO `accounts` (`accountID`, `email`, `password`, `token`, `accountType`) VALUES
 ('A0001', 'mcd@gmail.com', '12345', NULL, 'Restaurant'),
 ('A0002', 'guest@gmail.com', '$2y$10$5M4sMHISEPYD46Oc732kVu/II/iudTm60bvM6eR6IIdNA1anUw2qi', NULL, 'Customer'),
-('A0003', 'shaorencheah@gmail.com', '$2y$10$ILU7sSWCQOQxDZj.cq1nVeTKRT8115AJmzzRkPSAs8J4XAXJ1v/Ma', '122724', 'Customer');
+('A0003', 'shaorencheah@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', '931986', 'Customer');
 
 -- --------------------------------------------------------
 
@@ -109,8 +108,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`orderID`, `restaurantID`, `customerID`, `orderDate`, `totalPrice`) VALUES
-('O0001', 'R0001', 'C0002', '2023-03-30 09:55:43', '0.00'),
-('O0002', 'R0001', 'C0002', '0000-00-00 00:00:00', '10.00');
+('ORD0001', 'R0001', 'C0002', '2023-03-30 16:59:19', '86.00'),
+('ORD0002', 'R0001', 'C0002', '2023-03-30 17:14:16', '62.00');
 
 -- --------------------------------------------------------
 
@@ -121,8 +120,24 @@ INSERT INTO `orders` (`orderID`, `restaurantID`, `customerID`, `orderDate`, `tot
 CREATE TABLE `order_item_person` (
   `orderID` varchar(7) NOT NULL,
   `opID` varchar(7) NOT NULL,
-  `menuID` varchar(5) NOT NULL
+  `menuID` varchar(5) NOT NULL,
+  `quantity` int(2) NOT NULL,
+  `price` double(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_item_person`
+--
+
+INSERT INTO `order_item_person` (`orderID`, `opID`, `menuID`, `quantity`, `price`) VALUES
+('ORD0001', 'OP0001', 'M0001', 1, 12.00),
+('ORD0001', 'OP0001', 'M0002', 2, 20.00),
+('ORD0001', 'OP0002', 'M0001', 1, 12.00),
+('ORD0001', 'OP0003', 'M0003', 3, 42.00),
+('ORD0002', 'OP0004', 'M0001', 1, 12.00),
+('ORD0002', 'OP0004', 'M0003', 2, 28.00),
+('ORD0002', 'OP0005', 'M0001', 1, 12.00),
+('ORD0002', 'OP0005', 'M0002', 1, 10.00);
 
 -- --------------------------------------------------------
 
@@ -135,6 +150,17 @@ CREATE TABLE `order_person` (
   `orderID` varchar(7) NOT NULL,
   `personName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_person`
+--
+
+INSERT INTO `order_person` (`opID`, `orderID`, `personName`) VALUES
+('OP0001', 'ORD0001', 'Cheah Shaoren'),
+('OP0002', 'ORD0001', 'Kun'),
+('OP0003', 'ORD0001', 'Yong'),
+('OP0004', 'ORD0002', 'Cheah Shaoren'),
+('OP0005', 'ORD0002', 'Hazim');
 
 -- --------------------------------------------------------
 
