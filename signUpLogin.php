@@ -70,7 +70,7 @@ if (isset($_POST['loginSubmit'])) {
 
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    
+
     // Generate new accountID by getting the last accountID from the database and incrementing it by 1
     $sql = "SELECT accountID FROM accounts ORDER BY accountID DESC LIMIT 1";
     $result = $conn->query($sql);
@@ -83,35 +83,39 @@ if (isset($_POST['loginSubmit'])) {
     }
     $new_accountID = "A" . str_pad($new_accountID_num, 4, "0", STR_PAD_LEFT);
 
-    // Insert account data into accounts table
-    $sql = "INSERT INTO accounts (accountID, email, password, accountType) VALUES ('$new_accountID', '$email', '$hashedPassword', '$accountType')";
-    if ($conn->query($sql) === FALSE) {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    // Prepare and bind parameters for account data insertion
+    $stmt = $conn->prepare("INSERT INTO accounts (accountID, email, password, accountType) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $new_accountID, $email, $hashedPassword, $accountType);
+    if ($stmt->execute() === FALSE) {
+        echo "Error: " . $stmt->error;
         mysqli_close($conn);
         exit();
-    } else {
-        // Get the latest customerID from customers table
-        $sql = "SELECT customerID FROM customers ORDER BY customerID DESC LIMIT 1";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $last_customerID = $row["customerID"];
-            $new_customerID_num = intval(substr($last_customerID, 1)) + 1;
-        } else {
-            $new_customerID_num = 1;
-        }
-        $new_customerID = "C" . str_pad($new_customerID_num, 4, "0", STR_PAD_LEFT);
-
-        // Insert customer data into customers table
-        $sql = "INSERT INTO customers (customerID, customerName, phoneNo, accountID) VALUES ('$new_customerID', '$customerName', '$phoneNo', '$new_accountID')";
-        if ($conn->query($sql) === FALSE) {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-            mysqli_close($conn);
-            exit();
-        } else {
-            echo "<script>alert('Successful Registration! Welcome $customerName!'); window.location='index.php'</script>";
-        }
     }
+    $stmt->close();
+
+    // Get the latest customerID from customers table
+    $sql = "SELECT customerID FROM customers ORDER BY customerID DESC LIMIT 1";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $last_customerID = $row["customerID"];
+        $new_customerID_num = intval(substr($last_customerID, 1)) + 1;
+    } else {
+        $new_customerID_num = 1;
+    }
+    $new_customerID = "C" . str_pad($new_customerID_num, 4, "0", STR_PAD_LEFT);
+
+    // Prepare and bind parameters for customer data insertion
+    $stmt = $conn->prepare("INSERT INTO customers (customerID, customerName, phoneNo, accountID) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $new_customerID, $customerName, $phoneNo, $new_accountID);
+    if ($stmt->execute() === FALSE) {
+        echo "Error: " . $stmt->error;
+        mysqli_close($conn);
+        exit();
+    }
+    $stmt->close();
+
+    echo "<script>alert('Successful Registration! Welcome $customerName!'); window.location='index.php'</script>";
 
     mysqli_close($conn);
 
