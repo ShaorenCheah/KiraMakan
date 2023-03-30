@@ -9,7 +9,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" id="login-modal">
-          <form action="signUpLogin.php" method="post">
+          <form action="signUpLogin.php" method="post" onsubmit="return validateLoginForm()">
             <div class="input-group mb-3">
               <span class="input-group-text">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

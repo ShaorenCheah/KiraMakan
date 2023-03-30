@@ -8,8 +8,11 @@ if (isset($_POST['loginSubmit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM accounts WHERE email = '$email'";
-    $result = mysqli_query($conn, $sql);
+    // Use prepared statement to prevent SQL injection
+    $stmt = mysqli_prepare($conn, "SELECT * FROM accounts WHERE email = ?");
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($result) > 0) {
 
@@ -17,19 +20,25 @@ if (isset($_POST['loginSubmit'])) {
         $accountType = $fetch['accountType'];
 
         if ($accountType == "Restaurant") {
-            $sql = "SELECT * FROM restaurants WHERE accountID = '" . $fetch['accountID'] . "'";
-            $result = mysqli_query($conn, $sql);
+            // Use prepared statement to prevent SQL injection
+            $stmt = mysqli_prepare($conn, "SELECT * FROM restaurants WHERE accountID = ?");
+            mysqli_stmt_bind_param($stmt, "s", $fetch['accountID']);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             $fetch_name = mysqli_fetch_assoc($result);
             $name = $fetch_name['restaurantName'];
         } else if ($accountType == "Customer") {
-            $sql = "SELECT * FROM customers WHERE accountID = '" . $fetch['accountID'] . "'";
-            $result = mysqli_query($conn, $sql);
+            // Use prepared statement to prevent SQL injection
+            $stmt = mysqli_prepare($conn, "SELECT * FROM customers WHERE accountID = ?");
+            mysqli_stmt_bind_param($stmt, "s", $fetch['accountID']);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             $fetch_name = mysqli_fetch_assoc($result);
             $name = $fetch_name['customerName'];
         } else {
             echo "error";
         }
-        
+
         $hashedPassword = $fetch['password'];
         if (password_verify($password, $hashedPassword)) {
             $_SESSION['email'] = $email;
@@ -41,7 +50,7 @@ if (isset($_POST['loginSubmit'])) {
         } else {
             echo "<script>alert('Woops! Password is Wrong.'); window.location='index.php'</script>";
         }
-        
+
     } else {
 
         echo "<script>alert('Woops! Invalid or Wrong Email.'); window.location='index.php'</script>";
@@ -70,10 +79,12 @@ if (isset($_POST['loginSubmit'])) {
 
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    
+
     // Generate new accountID by getting the last accountID from the database and incrementing it by 1
     $sql = "SELECT accountID FROM accounts ORDER BY accountID DESC LIMIT 1";
-    $result = $conn->query($sql);
+    $stmt = mysqli_prepare($conn, $sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $last_accountID = $row["accountID"];
@@ -82,39 +93,50 @@ if (isset($_POST['loginSubmit'])) {
         $new_accountID_num = 1;
     }
     $new_accountID = "A" . str_pad($new_accountID_num, 4, "0", STR_PAD_LEFT);
+    $stmt->close();
 
-    // Insert account data into accounts table
-    $sql = "INSERT INTO accounts (accountID, email, password, accountType) VALUES ('$new_accountID', '$email', '$hashedPassword', '$accountType')";
-    if ($conn->query($sql) === FALSE) {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    // Prepare and bind parameters for account data insertion
+    $stmt = mysqli_prepare($conn, "INSERT INTO accounts (accountID, email, password, accountType) VALUES (?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssss", $new_accountID, $email, $hashedPassword, $accountType);
+    if (mysqli_stmt_execute($stmt) === FALSE) {
+        echo "Error: " . mysqli_stmt_error($stmt);
+        mysqli_stmt_close($stmt);
         mysqli_close($conn);
         exit();
-    } else {
-        // Get the latest customerID from customers table
-        $sql = "SELECT customerID FROM customers ORDER BY customerID DESC LIMIT 1";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $last_customerID = $row["customerID"];
-            $new_customerID_num = intval(substr($last_customerID, 1)) + 1;
-        } else {
-            $new_customerID_num = 1;
-        }
-        $new_customerID = "C" . str_pad($new_customerID_num, 4, "0", STR_PAD_LEFT);
-
-        // Insert customer data into customers table
-        $sql = "INSERT INTO customers (customerID, customerName, phoneNo, accountID) VALUES ('$new_customerID', '$customerName', '$phoneNo', '$new_accountID')";
-        if ($conn->query($sql) === FALSE) {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-            mysqli_close($conn);
-            exit();
-        } else {
-            echo "<script>alert('Successful Registration! Welcome $customerName!'); window.location='index.php'</script>";
-        }
     }
+    mysqli_stmt_close($stmt);
+
+    // Get the latest customerID from customers table
+    $sql = "SELECT customerID FROM customers ORDER BY customerID DESC LIMIT 1";
+    $stmt = mysqli_prepare($conn, $sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $last_customerID = $row["customerID"];
+        $new_customerID_num = intval(substr($last_customerID, 1)) + 1;
+    } else {
+        $new_customerID_num = 1;
+    }
+    $new_customerID = "C" . str_pad($new_customerID_num, 4, "0", STR_PAD_LEFT);
+    $stmt->close();
+
+    // Prepare and bind parameters for customer data insertion
+    $stmt = mysqli_prepare($conn, "INSERT INTO customers (customerID, customerName, phoneNo, accountID) VALUES (?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssss", $new_customerID, $customerName, $phoneNo, $new_accountID);
+    if (mysqli_stmt_execute($stmt) === FALSE) {
+        echo "Error: " . mysqli_stmt_error($stmt);
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        exit();
+    }
+    mysqli_stmt_close($stmt);
+
+    echo "<script>alert('Successful Registration! Welcome $customerName!'); window.location='index.php'</script>";
 
     mysqli_close($conn);
 
 }
+
 
 ?>
