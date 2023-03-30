@@ -101,16 +101,18 @@ function ready() {
         var cartRow = document.createElement('div');
         cartRow.classList.add('cart-row');
         var cartRowContents = `
-    <div class="cart-item cart-column">
-      <span class="cart-order-name">${selectedName}</span>
-      <span class="cart-item-title">${title}</span>
-      <input class="menu-item-id" type="hidden" value="${menuID}">
-    </div>
-    <div class="cart-price cart-column">RM ${price}</div>
-    <div class="cart-quantity cart-column">
-      <input class="cart-quantity-input" type="number" value="${quantity}">
-      <button class="btn btn-danger" type="button">REMOVE</button>
-    </div>
+        <div class="row">
+            <div class="cart-item cart-column">
+                <span class="cart-order-name">${selectedName}</span>
+                <span class="cart-item-title">${title}</span>
+                <input class="menu-item-id" type="hidden" value="${menuID}">
+            </div>
+            <div class="cart-price cart-column">RM ${price}</div>
+            <div class="cart-quantity cart-column">
+                <input class="cart-quantity-input" type="number" value="${quantity}">
+                <button class="btn btn-danger" type="button">REMOVE</button>
+            </div>
+        </div>
   `;
         cartRow.innerHTML = cartRowContents;
         cartItems.append(cartRow);
