@@ -18,11 +18,6 @@
 <body>
     <?php
     session_start();
-    if (isset($_SESSION['email'])) {
-        $disabled = "";
-    } else {
-        $disabled = "disabled";
-    }
 
     $restaurantID = $_GET['restaurantID'];
     if (isset($_GET['namesArray'])) {
@@ -49,11 +44,11 @@
             <input type="hidden" name="restaurantID" id="restaurantID" value="<?= $restaurantID ?>">
         </div>
         <div class="col-md-3"></div>
-        <div class="nav col-md-6 d-flex flex-row justify-content-between nav-pills w-40 px-4 mb-3 my-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <button class="nav-link active w-20" id="v-pills" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Meals</button>
-            <button class="nav-link" id="v-pills" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Drinks</button>
-            <button class="nav-link" id="v-pills" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Desserts</button>
-            <button class="nav-link" id="v-pills" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Add-Ons</button>
+        <div class="nav col-md-6 d-flex flex-row justify-content-between nav-pills w-40 px-4 mb-3 my-2" id="pills-tab" role="tablist">
+            <button class="nav-link active w-20" id="pills-meals" data-bs-toggle="pill" data-bs-target="#pills-meal-tab" type="button" role="tab" aria-controls="pills-meal" aria-selected="true">Meals</button>
+            <button class="nav-link" id="pills-drinks" data-bs-toggle="pill" data-bs-target="#pills-drinks-tab" type="button" role="tab" aria-controls="pills-drinks" aria-selected="false">Drinks</button>
+            <button class="nav-link" id="pills-desserts" data-bs-toggle="pill" data-bs-target="#pills-desserts-tab" type="button" role="tab" aria-controls="pills-desserts" aria-selected="false">Desserts</button>
+            <button class="nav-link" id="pills-addons" data-bs-toggle="pill" data-bs-target="#pills-addons-tab" type="button" role="tab" aria-controls="pills-addons" aria-selected="false">Add-Ons</button>
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
@@ -73,9 +68,10 @@
             </select>
         </div>
         <div class="col-md-3"></div>
+
         <div class="col-md-1"></div>
-        <div class="tab-content col-md-10 mt-5" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+        <div class="tab-content col-md-10 mt-5" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-meal-tab" role="tabpanel" aria-labelledby="pills-meal-tab" tabindex="0">
                 <?php
 
                 // Get the current page number from the query string
@@ -163,16 +159,15 @@
                 } else {
                     echo '<li class="page-item"><a class="page-link" href="?restaurantID=' . $restaurantID . '&page=' . ($page + 1) . '">Next</a></li>';
                 }
-
-                echo '</ul></nav></div>';
-
+                echo '</ul></nav>';
                 ?>
+             </div>
+
+                
+                <div class="tab-pane fade" id="pills-drinks-tab" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">HI</div>
+                <div class="tab-pane fade" id="pills-desserts-tab" role="tabpanel" aria-labelledby="pills-desserts-tab" tabindex="0">BYE</div>
+                <div class="tab-pane fade" id="pills-addons-tab" role="tabpanel" aria-labelledby="pills-addons-tab" tabindex="0">HEY</div>
             </div>
-
-
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">HI</div>
-            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">...</div>
-            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">...</div>
         </div>
     </div>
     <div class="col-md-1"></div>
@@ -196,9 +191,9 @@
                             <?php if (!isset($_SESSION['email'])) { ?>
                                 <!-- Button trigger modal -->
                                 <button class="btn btn-primary me-3" type="button" data-bs-toggle="modal" data-bs-target="#loginModalToggle">
-                                Please Login First
+                                    Please Login First
                                 </button>
-                            <?php }else{?>
+                            <?php } else { ?>
                                 <button class="btn btn-primary" id="submitCart">Submit Cart</button>
                             <?php }; ?>
                         </div>

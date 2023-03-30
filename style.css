@@ -261,7 +261,7 @@ i {
 /* Restaurant options Section End */
 
 /* Food options Section Start */
-#v-pills-tab .nav-link {
+#pills-tab .nav-link {
   border: 2px solid #005fbb;
   border-radius: 10px;
   padding: 5px 10px;
@@ -271,7 +271,7 @@ i {
   font-weight: bold;
 }
 
-#v-pills-tab .active {
+#pills-tab .active {
   border-radius: 10px;
   padding: 5px 10px;
   background-color: #005fbb;
@@ -279,7 +279,7 @@ i {
 
 }
 
-#v-pills-tab button.nav-link:hover {
+#pills-tab button.nav-link:hover {
   background-color: #005fbb;
   color: white;
 }
