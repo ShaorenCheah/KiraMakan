@@ -42,7 +42,7 @@
               <button type="submit" class="btn btn-outline-secondary btn-b mx-auto d-block fs-6"
                 name="loginSubmit">Login</button>
           </form>
-          <button class="btn bg-transparent border-0 text-secondary text-decoration-underline"
+          <button type="button" class="btn bg-transparent border-0 text-secondary text-decoration-underline"
             data-bs-target="#forgetPasswordModalToggle" data-bs-toggle="modal"><span class="fs-6">Forget
               Password?</span></button>
         </div>
