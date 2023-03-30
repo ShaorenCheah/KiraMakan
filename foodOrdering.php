@@ -18,11 +18,17 @@
 <body>
     <?php
     session_start();
+    if (isset($_SESSION['email'])) {
+        $disabled = "";
+    } else {
+        $disabled = "disabled";
+    }
+
     $restaurantID = $_GET['restaurantID'];
     if (isset($_GET['namesArray'])) {
         $namesArray = explode(",", $_GET['namesArray']);
     }
-    include 'connection.php';
+    include './includes/connection.inc.php';
     ?>
 
     <header>
@@ -187,7 +193,14 @@
                             <span class="cart-total-price">RM 0</span>
                         </div>
                         <div class="col-12 d-flex justify-content-center">
-                            <button class="btn btn-primary " id="submitCart">Submit Cart</button>
+                            <?php if (!isset($_SESSION['email'])) { ?>
+                                <!-- Button trigger modal -->
+                                <button class="btn btn-primary me-3" type="button" data-bs-toggle="modal" data-bs-target="#loginModalToggle">
+                                Please Login First
+                                </button>
+                            <?php }else{?>
+                                <button class="btn btn-primary" id="submitCart">Submit Cart</button>
+                            <?php }; ?>
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,12 @@ if (document.readyState == 'loading') {
 
 function ready() {
 
+    // Initialize Bootstrap popover
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    });
+
     // Function to get restaurantID from the URL
     function getRestaurantIDFromURL() {
         var urlParams = new URLSearchParams(window.location.search);
@@ -23,6 +29,15 @@ function ready() {
 
         localStorage.setItem('previousRestaurantID', currentRestaurantID);
         return false;
+    }
+
+    function clearCart() {
+        var cartItemContainer = document.getElementsByClassName('cart-items')[0];
+        while (cartItemContainer.hasChildNodes()) {
+            cartItemContainer.removeChild(cartItemContainer.firstChild);
+        }
+        updateCartTotal();
+        localStorage.removeItem('cartData');
     }
 
     // Check if the restaurantID has changed and clear the cart if necessary
@@ -203,6 +218,7 @@ function ready() {
 
         console.log(order);
 
+        clearCart();
         // Send the order to your server
         sendDataToServer(order);
     }
@@ -210,7 +226,7 @@ function ready() {
     function sendDataToServer(orderData) {
         var formData = new FormData();
         formData.append('orderData', JSON.stringify(orderData));
-    
+
         fetch('/kiramakan/includes/customer/orderFood.inc.php', {
             method: 'POST',
             body: formData
@@ -222,14 +238,12 @@ function ready() {
             .then(data => {
                 if (data.success) {
                     alert('Order submitted successfully');
+                    window.location.href = 'orderReceipt.php'; // Redirect to orderReceipt.php
                 } else {
                     alert('Error submitting order');
                 }
             })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error submitting order');
-            });
+
     }
     updateCartTotal();
 };
