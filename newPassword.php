@@ -4,7 +4,7 @@ $email = $_SESSION['email'];
 
 if (isset($_SESSION['token']) || $email == true) {
 
-    include 'connection.php';
+    include './includes/connection.inc.php';
 
     if (isset($_POST['changePassword'])) {
         $password = mysqli_real_escape_string($conn, $_POST['password']);

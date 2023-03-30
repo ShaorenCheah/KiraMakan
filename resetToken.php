@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connection.php';
+include './includes/connection.inc.php';
 $email = $_SESSION['email'];
 
 if ($email == true && isset($_SESSION['status'])) {

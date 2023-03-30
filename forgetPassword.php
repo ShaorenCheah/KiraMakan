@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include 'connection.php';
+include './includes/connection.inc.php';
 
 if(isset($_POST['forgetSubmit'])){
     $email = mysqli_real_escape_string($conn, $_POST['altEmail']);

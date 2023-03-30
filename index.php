@@ -23,7 +23,7 @@
 
     <!-- Hero -->
     <div id="hero">
-        <div class="container row-container col-9 d-flex justify-content-center align-items-center mt-2 py-3 px-2">
+        <div class="container row-container col-9 d-flex justify-content-center align-items-center mt-5 py-3 px-2">
 
             <!-- Left column -->
             <div class="col-4 d-flex justify-content-center align-items-center px-5">
@@ -42,7 +42,7 @@
                     to ease your problems when eating out in a group. Just register an account and you can enjoy the perks above.
                 </p>
 
-                <button type="button" class="btn btn-primary fs-4">Order now</button>
+                <a href="restaurantOptions.php" class="btn btn-primary fs-4">Order now</a>
 
             </div>
 

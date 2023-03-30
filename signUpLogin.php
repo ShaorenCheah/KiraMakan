@@ -1,9 +1,8 @@
 <?php
-
+include './includes/connection.inc.php';
 if (isset($_POST['loginSubmit'])) {
 
     session_start();
-    include 'connection.php';
 
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -50,18 +49,16 @@ if (isset($_POST['loginSubmit'])) {
         } else {
             echo "<script>alert('Woops! Password is Wrong.'); window.location='index.php'</script>";
         }
-
     } else {
 
         echo "<script>alert('Woops! Invalid or Wrong Email.'); window.location='index.php'</script>";
-
     }
 
     mysqli_close($conn);
 
 } else if (isset($_POST['userRegisterSubmit'])) {
 
-    include 'connection.php';
+  
 
     // Define form inputs
     $customerName = $_POST['customerName'];
@@ -135,8 +132,4 @@ if (isset($_POST['loginSubmit'])) {
     echo "<script>alert('Successful Registration! Welcome $customerName!'); window.location='index.php'</script>";
 
     mysqli_close($conn);
-
 }
-
-
-?>
