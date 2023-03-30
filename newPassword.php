@@ -54,7 +54,9 @@ if (isset($_SESSION['token']) || $email == true) {
         <div class="row justify-content-center align-items-center">
             <div class="col-md-12">
                 <div class="card">
-                    <h5 class="card-header">Change Password</h5>
+                    <div class="card-header">
+                        <h5>Change Password</h5>
+                    </div>
                     <div class="card-body">
                         <form action="newPassword.php" method="POST" autocomplete="off">
                             <div class="form-group mb-3">
