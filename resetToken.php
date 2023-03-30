@@ -25,30 +25,38 @@ if ($email == true && isset($_SESSION['status'])) {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Code Verification</title>
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Kira Makan</title>
 </head>
 
 <body>
-    <div class="center background container">
-        <div class="form-container">
-            <form action="resetToken.php" method="POST" autocomplete="off">
-                <div class="text">Code Verification <a href="index.php"><span class="close"
-                            id="close1">&times;</span></a></div>
-                <div class="data">
-                    <label for="otp">Enter the 6 digit One Time Password</label><br><br>
-                    <input class="form-control" type="text" name="otp" placeholder="Enter code" required>
-                </div>
-                <br>
-                <div class="btn-row">
-                    <button class="submit-btn" type="submit" name="checkToken" value="Submit">Submit</button>
-                </div>
-            </form>
+    <div class="container d-flex justify-content-center align-items-center mt-5 py-5">
+        <div class="card">
+            <div class="card-header">
+                <h5>Enter OTP</h5>
+            </div>
+            <div class="card-body">
+                <form action="resetToken.php" method="post" autocomplete="off">
+                    <div class="form-group mb-3">
+                        <label for="otp">OTP:</label>
+                        <input type="text" class="form-control" id="otp" name="otp" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="checkToken">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>

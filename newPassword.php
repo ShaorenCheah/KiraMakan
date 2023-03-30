@@ -38,31 +38,38 @@ if (isset($_SESSION['token']) || $email == true) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Create a New Password</title>
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Kira Makan</title>
 </head>
 
 <body>
-    <div class="center background container">
-        <div class="form-container">
-            <form action="newPassword.php" method="POST" autocomplete="off">
-                <div class="text">New Password <a href="index.php"><span class="close" id="close1">&times;</span></a>
+    <div class="container d-flex justify-content-center align-items-center mt-5 py-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <h5 class="card-header">Change Password</h5>
+                    <div class="card-body">
+                        <form action="newPassword.php" method="POST" autocomplete="off">
+                            <div class="form-group mb-3">
+                                <label for="password">New Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="repeatPassword">Repeat Password:</label>
+                                <input type="password" class="form-control" id="repeatPassword" name="repeatPassword"required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" name="changePassword">Change Password</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="data">
-                    <label for="password">Enter your new password:</label><br><br>
-                    <input type="password" name="password" minlength="8" maxlength="15" placeholder="Enter password"
-                        required>
-                </div><br>
-                <div class="data">
-                    <label for="repeatPassword">Confirm your password:</label><br><br>
-                    <input type="password" name="repeatPassword" minlength="8" maxlength="15"
-                        placeholder="Enter password again" required>
-                </div>
-                <br>
-                <div class="btn-row">
-                    <button class="submit-btn" type="submit" name="changePassword" value="Change">Change</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </body>
