@@ -29,7 +29,7 @@
 
             <div id="myCarousel" class="carousel slide my-3" data-bs-ride="carousel">
                 <?php
-                include 'connection.php';
+                include './includes/connection.inc.php';
                 $sql = "SELECT * FROM Restaurants";
                 $run = mysqli_query($conn, $sql);
                 $rows = mysqli_fetch_all($run, MYSQLI_ASSOC);

@@ -1,43 +1,31 @@
 <?php
-header('Content-Type: application/json');
+session_start();
+include '../connection.inc.php';
 
-// Database configuration
-$db_host = 'localhost';
-$db_user = 'username';
-$db_pass = 'password';
-$db_name = 'foodOrdering';
+// Retrieve the order data from the POST request
+$orderJSON = $_POST['orderData'];
+$order = json_decode($orderJSON, true);
 
-// Create a connection to the database
-$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+$restaurantID = $order['restaurantID'];
+$totalPrice = $order['totalPrice'];
+$current_time = date("Y-m-d H:i:s");
 
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Get latest orderID
+$sql = "SELECT CONCAT('ORD', LPAD(COUNT(*)+1, 4, '0')) AS orderID FROM orders;";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
 
-// Read JSON data from the request body
-$inputJSON = file_get_contents('php://input');
-$orderData = json_decode($inputJSON, true);
+$orderID = $row['orderID'];
 
-// Prepare the SQL statement for inserting the order data
-$stmt = $conn->prepare("INSERT INTO `Order` (customer_name, menu_id, item_title, quantity, price) VALUES (?, ?, ?, ?, ?)");
-
+$stmt = $conn->prepare("INSERT INTO Orders (orderID, restaurantID, customerID, orderDate, totalPrice) VALUES (?, ?, ?, ?, ?)");
+$customerID="C0002";
 // Bind the parameters
-$stmt->bind_param('ssidi', $customer_name, $menu_id, $item_title, $quantity, $price);
+$stmt->bind_param('ssssd', $orderID, $restaurantID,$_SESSION['customerID'] ,$current_time, $totalPrice);
 
-// Insert the order data into the database
 $success = true;
-foreach ($orderData as $orderItem) {
-    $customer_name = $orderItem['name'];
-    $menu_id = $orderItem['menuID'];
-    $item_title = $orderItem['title'];
-    $quantity = $orderItem['quantity'];
-    $price = $orderItem['price'];
 
-    if (!$stmt->execute()) {
-        $success = false;
-        break;
-    }
+if (!$stmt->execute()) {
+    $success = false;
 }
 
 // Close the statement and connection

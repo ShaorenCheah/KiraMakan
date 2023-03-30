@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2023 at 10:43 AM
+-- Generation Time: Mar 30, 2023 at 12:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -32,8 +32,18 @@ CREATE TABLE `accounts` (
   `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
   `token` varchar(6),
+
   `accountType` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`accountID`, `email`, `password`, `token`, `accountType`) VALUES
+('A0001', 'mcd@gmail.com', '12345', NULL, 'Restaurant'),
+('A0002', 'guest@gmail.com', '$2y$10$5M4sMHISEPYD46Oc732kVu/II/iudTm60bvM6eR6IIdNA1anUw2qi', NULL, 'Customer'),
+('A0003', 'shaorencheah@gmail.com', '$2y$10$ILU7sSWCQOQxDZj.cq1nVeTKRT8115AJmzzRkPSAs8J4XAXJ1v/Ma', '122724', 'Customer');
 
 -- --------------------------------------------------------
 
@@ -47,6 +57,14 @@ CREATE TABLE `customers` (
   `phoneNo` varchar(255) DEFAULT NULL,
   `accountID` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`customerID`, `customerName`, `phoneNo`, `accountID`) VALUES
+('C0001', 'Guest', '012-3456789', 'A0002'),
+('C0002', 'Cheah Shaoren', '016-3381806', 'A0003');
 
 -- --------------------------------------------------------
 
@@ -63,6 +81,15 @@ CREATE TABLE `menu` (
   `menuURL` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `itemDescription`, `itemPrice`, `menuURL`) VALUES
+('M0001', 'R0001', 'Fillet O Fish', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '12.00', 'filletofish.jpg'),
+('M0002', 'R0001', 'Mc Chicken', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '10.00', 'mcchicken.jpg'),
+('M0003', 'R0001', 'Ayam Goreng McD', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '14.00', 'ayamgorengmcd.png');
+
 -- --------------------------------------------------------
 
 --
@@ -70,12 +97,20 @@ CREATE TABLE `menu` (
 --
 
 CREATE TABLE `orders` (
-  `orderID` varchar(5) NOT NULL,
+  `orderID` varchar(7) NOT NULL,
   `restaurantID` varchar(5) NOT NULL,
   `customerID` varchar(5) DEFAULT NULL,
   `orderDate` datetime NOT NULL,
   `totalPrice` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderID`, `restaurantID`, `customerID`, `orderDate`, `totalPrice`) VALUES
+('O0001', 'R0001', 'C0002', '2023-03-30 09:55:43', '0.00'),
+('O0002', 'R0001', 'C0002', '0000-00-00 00:00:00', '10.00');
 
 -- --------------------------------------------------------
 
@@ -84,9 +119,9 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `order_item_person` (
-  `oipID` varchar(5) NOT NULL,
-  `menuID` varchar(5) NOT NULL,
-  `opID` varchar(5) NOT NULL
+  `orderID` varchar(7) NOT NULL,
+  `opID` varchar(7) NOT NULL,
+  `menuID` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -96,8 +131,8 @@ CREATE TABLE `order_item_person` (
 --
 
 CREATE TABLE `order_person` (
-  `opID` varchar(5) NOT NULL,
-  `orderID` varchar(5) NOT NULL,
+  `opID` varchar(6) NOT NULL,
+  `orderID` varchar(7) NOT NULL,
   `personName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -114,6 +149,19 @@ CREATE TABLE `restaurants` (
   `restaurantDescription` longtext NOT NULL,
   `restaurantURL` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `restaurants`
+--
+
+INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `restaurantURL`) VALUES
+('R0001', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
+('R0002', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
+('R0003', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
+('R0004', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
+('R0005', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
+('R0006', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
+('R0007', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png');
 
 --
 -- Indexes for dumped tables
@@ -151,9 +199,10 @@ ALTER TABLE `orders`
 -- Indexes for table `order_item_person`
 --
 ALTER TABLE `order_item_person`
-  ADD PRIMARY KEY (`oipID`),
+  ADD PRIMARY KEY (`orderID`,`opID`,`menuID`),
+  ADD KEY `opID` (`opID`),
   ADD KEY `menuID` (`menuID`),
-  ADD KEY `opID` (`opID`);
+  ADD KEY `orderID` (`orderID`);
 
 --
 -- Indexes for table `order_person`
@@ -196,8 +245,9 @@ ALTER TABLE `orders`
 -- Constraints for table `order_item_person`
 --
 ALTER TABLE `order_item_person`
-  ADD CONSTRAINT `order_item_person_ibfk_1` FOREIGN KEY (`menuID`) REFERENCES `menu` (`menuID`),
-  ADD CONSTRAINT `order_item_person_ibfk_2` FOREIGN KEY (`opID`) REFERENCES `order_person` (`opID`);
+  ADD CONSTRAINT `order_item_person_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`),
+  ADD CONSTRAINT `order_item_person_ibfk_2` FOREIGN KEY (`opID`) REFERENCES `order_person` (`opID`),
+  ADD CONSTRAINT `order_item_person_ibfk_3` FOREIGN KEY (`menuID`) REFERENCES `menu` (`menuID`);
 
 --
 -- Constraints for table `order_person`

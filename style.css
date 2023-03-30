@@ -284,6 +284,51 @@ i {
   color: white;
 }
 
+.cart-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+
+.cart-total{
+  height:20%
+}
+
+.cart-item-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.cart-order-name {
+  font-size: 14px;
+  font-weight: 400;
+  color: #888;
+}
+
+.cart-price {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cart-quantity {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.cart-quantity-input {
+  width: 50px;
+  text-align: center;
+}
+
+.btn-danger {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+
 /* Food options Section End */
 
 /* Footer Section Start */
