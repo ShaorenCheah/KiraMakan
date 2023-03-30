@@ -123,8 +123,12 @@ function ready() {
         <div class="row cart-item">
             <div class="col-md-8 d-flex flex-column justify-content-between">
                 <div class="d-flex align-items-center">
+                    <div class="col-8">
                     <h5 class="cart-item-title m-0">${title}</h5>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
                     <span class=" ms-2 badge bg-secondary cart-price">RM ${price.toFixed(2)}</span>
+                    </div>
                     <input class="menu-item-id" type="hidden" value="${menuID}" >
                 </div>
                 <span class="cart-order-name">${selectedName}</span>
@@ -171,7 +175,8 @@ function ready() {
         var cartItems = document.getElementsByClassName('cart-items')[0];
         var cartRows = cartItems.getElementsByClassName('cart-row');
         var orderData = [];
-
+        var totalPrice = parseFloat(document.getElementsByClassName('cart-total-price')[0].textContent.replace('RM ', ''));
+        var restaurantID = document.getElementById('restaurantID').value;
         for (var i = 0; i < cartRows.length; i++) {
             var cartRow = cartRows[i];
 
@@ -190,19 +195,30 @@ function ready() {
             });
         }
 
-        // Send the orderData to your server
-        sendDataToServer(orderData);
+        var order = {
+            restaurantID: restaurantID,
+            orderData: orderData,
+            totalPrice: totalPrice
+        };
+
+        console.log(order);
+
+        // Send the order to your server
+        sendDataToServer(order);
     }
 
     function sendDataToServer(orderData) {
-        fetch('your-server-endpoint.php', {
+        var formData = new FormData();
+        formData.append('orderData', JSON.stringify(orderData));
+
+        fetch('/includes/customer/orderFood.inc.php', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(orderData)
+            body: formData
         })
-            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     alert('Order submitted successfully');

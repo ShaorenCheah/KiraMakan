@@ -40,6 +40,7 @@
             ?>
 
             <h1><?= $restaurantName ?></h1>
+            <input type="hidden" name="restaurantID" id="restaurantID" value="<?= $restaurantID ?>">
         </div>
         <div class="col-md-3"></div>
         <div class="nav col-md-6 d-flex flex-row justify-content-between nav-pills w-40 px-4 mb-3 my-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -176,20 +177,25 @@
             <h5 class="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body row w-auto h-auto mx-2">
-            <form id="cart-form" class="p-0">
-                <div class="cart-items">
+        <div class="offcanvas-body row w-auto h-100 mx-2 d-flex flex-column">
+            <form id="cart-form" class="p-0 h-100 d-flex flex-column">
+                <div class="cart-items flex-grow-1"></div>
+                <div class="cart-total container-fluid w-100 p-0">
+                    <div class="row">
+                        <div class="col-12 d-flex flex-row">
+                            <strong class="cart-total-title">Total: </strong>
+                            <span class="cart-total-price">RM 0</span>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <button class="btn btn-primary " id="submitCart">Submit Cart</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="cart-total">
-                    <strong class="cart-total-title">Total</strong>
-                    <span class="cart-total-price">RM 0</span>
-                </div>
-                <button class="btn btn-primary" id="submitCart">Submit Cart</button>
             </form>
         </div>
     </div>
 
-    </div>
+
 
 </body>
 

@@ -289,6 +289,11 @@ i {
   padding: 10px 0;
 }
 
+
+.cart-total{
+  height:20%
+}
+
 .cart-item-title {
   font-size: 18px;
   font-weight: 600;
@@ -322,6 +327,7 @@ i {
   font-size: 14px;
   font-weight: 400;
 }
+
 
 /* Food options Section End */
 
