@@ -238,7 +238,7 @@ function ready() {
             .then(data => {
                 if (data.success) {
                     alert('Order submitted successfully');
-                    window.location.href = 'orderReceipt.php'; // Redirect to orderReceipt.php
+                    window.location.href = 'orderReceipt.php?orderID=' + data.orderID;
                 } else {
                     alert('Error submitting order');
                 }

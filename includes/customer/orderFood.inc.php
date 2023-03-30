@@ -89,7 +89,8 @@ $conn->close();
 
 // Send a JSON response indicating success or failure
 $response = [
-    'success' => $success
+    'success' => $success,
+    'orderID' => $orderID
 ];
 
 echo json_encode($response);
