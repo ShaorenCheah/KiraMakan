@@ -210,8 +210,8 @@ function ready() {
     function sendDataToServer(orderData) {
         var formData = new FormData();
         formData.append('orderData', JSON.stringify(orderData));
-
-        fetch('/includes/customer/orderFood.inc.php', {
+    
+        fetch('/kiramakan/includes/customer/orderFood.inc.php', {
             method: 'POST',
             body: formData
         })
@@ -231,6 +231,5 @@ function ready() {
                 alert('Error submitting order');
             });
     }
-
     updateCartTotal();
 };
