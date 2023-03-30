@@ -9,7 +9,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" id="login-modal">
-          <form action="signUpLogin.php" method="post" onsubmit="return validateLoginForm()">
+          <form action="signUpLogin.php" method="post" novalidate onsubmit="return validateLoginForm()">
             <div class="input-group mb-3">
               <span class="input-group-text">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -65,7 +65,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="login-modal">
-        <form action="signUpLogin.php" method="post">
+        <form action="signUpLogin.php" method="post" novalidate onsubmit="return validateRegisterForm()">
           <div class="input-group mb-3">
             <span class="input-group-text">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -90,9 +90,9 @@
               </svg>
             </span>
             <div class="form-floating">
-              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required
-                autocomplete="off">
-              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="name@example.com"
+                required autocomplete="off">
+              <label for="regEmail">Email address</label>
             </div>
           </div>
           <div class="input-group mb-3">
@@ -118,9 +118,9 @@
               </svg>
             </span>
             <div class="form-floating">
-              <input type="password" class="form-control" id="password" name="password" placeholder="Password" required
-                autocomplete="off">
-              <label for="password">Password</label>
+              <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="Password"
+                required autocomplete="off">
+              <label for="regPassword">Password</label>
             </div>
           </div>
           <div class="input-group mb-3">
@@ -134,9 +134,9 @@
               </svg>
             </span>
             <div class="form-floating">
-              <input type="password" class="form-control" id="repeatPassword" name="repeatPassword"
+              <input type="password" class="form-control" id="regRepeatPassword" name="regRepeatPassword"
                 placeholder="Repeat Password" required autocomplete="off">
-              <label for="repeatPassword">Repeat Password</label>
+              <label for="regRepeatPassword">Repeat Password</label>
             </div>
           </div>
           <div class="col-12 d-flex justify-content-center">
