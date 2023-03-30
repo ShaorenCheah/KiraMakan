@@ -26,6 +26,7 @@ if (isset($_POST['loginSubmit'])) {
             $result = mysqli_stmt_get_result($stmt);
             $fetch_name = mysqli_fetch_assoc($result);
             $name = $fetch_name['restaurantName'];
+            $restaurantID = $fetch_name['restaurantID'];
         } else if ($accountType == "Customer") {
             // Use prepared statement to prevent SQL injection
             $stmt = mysqli_prepare($conn, "SELECT * FROM customers WHERE accountID = ?");
