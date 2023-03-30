@@ -92,7 +92,7 @@
             <div class="form-floating">
               <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="name@example.com"
                 required autocomplete="off">
-              <label for="email">Email address</label>
+              <label for="regEmail">Email address</label>
             </div>
           </div>
           <div class="input-group mb-3">
@@ -120,7 +120,7 @@
             <div class="form-floating">
               <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="Password"
                 required autocomplete="off">
-              <label for="password">Password</label>
+              <label for="regPassword">Password</label>
             </div>
           </div>
           <div class="input-group mb-3">
@@ -136,7 +136,7 @@
             <div class="form-floating">
               <input type="password" class="form-control" id="regRepeatPassword" name="regRepeatPassword"
                 placeholder="Repeat Password" required autocomplete="off">
-              <label for="repeatPassword">Repeat Password</label>
+              <label for="regRepeatPassword">Repeat Password</label>
             </div>
           </div>
           <div class="col-12 d-flex justify-content-center">

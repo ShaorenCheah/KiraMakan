@@ -59,7 +59,7 @@
                 </svg>';
             };
 
-            if (!isset($_SESSION["email"])) {
+            if (!isset($_SESSION["accountID"])) {
                 echo '
                 <!-- Button trigger modal -->
                 <button class="btn me-3" type="button" data-bs-toggle = "modal" data-bs-target = "#loginModalToggle">

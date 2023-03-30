@@ -261,7 +261,7 @@ i {
 /* Restaurant options Section End */
 
 /* Food options Section Start */
-#v-pills-tab .nav-link {
+#pills-tab .nav-link {
   border: 2px solid #005fbb;
   border-radius: 10px;
   padding: 5px 10px;
@@ -271,7 +271,7 @@ i {
   font-weight: bold;
 }
 
-#v-pills-tab .active {
+#pills-tab .active {
   border-radius: 10px;
   padding: 5px 10px;
   background-color: #005fbb;
@@ -279,10 +279,54 @@ i {
 
 }
 
-#v-pills-tab button.nav-link:hover {
+#pills-tab button.nav-link:hover {
   background-color: #005fbb;
   color: white;
 }
+
+.cart-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.cart-total{
+  height:20%
+}
+
+.cart-item-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.cart-order-name {
+  font-size: 14px;
+  font-weight: 400;
+  color: #888;
+}
+
+.cart-price {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cart-quantity {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.cart-quantity-input {
+  width: 50px;
+  text-align: center;
+}
+
+.btn-danger {
+  font-size: 14px;
+  font-weight: 400;
+}
+
 
 /* Food options Section End */
 
@@ -290,6 +334,7 @@ i {
 
 #footer {
   background-color: white;
+  
 }
 
 .footer {

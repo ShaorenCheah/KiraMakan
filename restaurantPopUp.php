@@ -54,8 +54,10 @@
               <div class="col-2"></div>
             </div>
           </div>
-          <button type="button" id="add-slot">Add Slot</button>
-          <input type="submit" id="submit-btn" value="Submit">
+          <div class="d-flex flex-row mt-2">
+            <button type="button" class="btn btn-primary m-3" id="add-slot">Add Slot</button>
+            <input type="submit" id="submit-btn" class="btn m-3" value="Submit">
+          </div>
         </form>
       </div>
 
