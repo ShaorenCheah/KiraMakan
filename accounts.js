@@ -40,26 +40,47 @@ function validateRegisterForm() {
   const phoneNoRegex10 = /^01\d{8}$/;
   const phoneNoRegex11 = /^01\d{9}$/;
 
-  // check if name is empty
+  // array to hold incomplete fields
+  const incompleteFields = [];
+
+  // check for incomplete fields
   if (customerName === '') {
-    alert('Please enter your name.');
+    incompleteFields.push('Name');
+  }
+  if (regEmail === '') {
+    incompleteFields.push('Email');
+  }
+  if (phoneNo === '') {
+    incompleteFields.push('Phone number');
+  }
+  if (regPassword === '') {
+    incompleteFields.push('Password');
+  }
+  if (regRepeatPassword === '') {
+    incompleteFields.push('Repeat password');
+  }
+
+  // if any fields are incomplete, alert the user
+  if (incompleteFields.length > 0) {
+    const alertMessage = `Please complete the following fields:\n${incompleteFields.join('\n')}`;
+    alert(alertMessage);
     return false;
   }
 
-  // check if email is empty or in the wrong format
-  if (regEmail === '' || !emailRegex.test(regEmail)) {
+  // check if email is in the wrong format
+  if (!emailRegex.test(regEmail)) {
     alert('Please enter a valid email address.');
     return false;
   }
 
-  // check if phone number is empty
-  if (phoneNo === '' || (!phoneNoRegex10.test(phoneNo) && !phoneNoRegex11.test(phoneNo))) {
+  // check if phone number is invalid
+  if (!phoneNoRegex10.test(phoneNo) && !phoneNoRegex11.test(phoneNo)) {
     alert('Please enter a valid phone number.');
     return false;
   }
 
-  // check if password is empty or too short
-  if (regPassword === '' || password.length < 8) {
+  // check if password is too short
+  if (regPassword.length < 8) {
     alert('Please enter a password that is at least 8 characters long.');
     return false;
   }
@@ -74,6 +95,7 @@ function validateRegisterForm() {
   return true;
 
 }
+
 
 function validateForgetForm() {
   
