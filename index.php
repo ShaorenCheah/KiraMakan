@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="col-md-12 h-100">
-                                <img src="images/pastries.jpg" class="img-fluid rounded h-100" alt="hero">
+                                <img src="images/pastries.jpg" class="img-fluid rounded h-100 " alt="hero">
                             </div>
                         </div>
                     </div>

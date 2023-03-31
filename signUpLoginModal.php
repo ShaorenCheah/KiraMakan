@@ -6,52 +6,45 @@
 
         <div class="modal-body" id="login-modal">
           <div class="row m-0 d-flex justify-content-center align-items-center">
-            <div class="col-12 d-flex justify-content-center align-items-center mt-5">
+          <div class="col-12 d-flex justify-content-center align-items-center mt-5">
+              <img src="images/KiraMakanIcon.png" class="img-fluid" alt="Kira Makan Icon" style="width: 75px;">
+            </div>
+            <div class="col-12 d-flex justify-content-center align-items-center mt-4">
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
             </div>
             <div class="col-12 d-flex justify-content-center align-items-center">
-              <p class=" mb-5">Please enter your login and password!</p>
+              <p class=" mb-3">Please enter your login and password!</p>
             </div>
-          </div>
-          <form action="signUpLogin.php" method="post" novalidate onsubmit="return validateLoginForm()">
-            <div class="col-12 px-5">
-              <div class="input-group mb-3" >
-                <span class="input-group-text" style="background-color:var(--orange)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-envelope" viewBox="0 0 16 16">
-                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
-                  </svg>
-                </span>
+
+            <form action="signUpLogin.php" method="post" novalidate onsubmit="return validateLoginForm()" class="col-12 row g-4 m-0">
+              <div class="col-1"></div>
+              <div class="col-10 px-5">
                 <div class="form-floating">
                   <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required autocomplete="off">
                   <label for="email">Email address</label>
                 </div>
               </div>
-            </div>
-            <div class="col-12 px-5">
-              <div class="input-group mb-3">
-                <span class="input-group-text" style="background-color:var(--orange)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-lock" viewBox="0 0 16 16">
-                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
-                  </svg>
-                </span>
+              <div class="col-1"></div>
+              <div class="col-1"></div>
+              <div class="col-10 px-5">
                 <div class="form-floating">
                   <input type="password" class="form-control" id="password" name="password" placeholder="Password" required autocomplete="off">
                   <label for="password">Password</label>
                 </div>
               </div>
-            </div>
+              <div class="col-1"></div>
+              <div class="col-12 d-flex justify-content-center align-items-center mb-3">
+                <button type="button" class="btn bg-transparent border-0 text-secondary text-decoration-underline" data-bs-target="#forgetPasswordModalToggle" data-bs-toggle="modal"><span class="fs-6">Forget
+                    Password?</span></button>
+              </div>
+              <div class="col-12 d-flex justify-content-center flex-column mb-5">
+                <button type="submit" class="btn orange-btn btn-b mx-auto px-3 d-block fs-5" name="loginSubmit">Login</button>
+              </div>
+            </form>
             <div class="col-12 d-flex justify-content-center align-items-center mb-3">
-              <button type="button" class="btn bg-transparent border-0 text-secondary text-decoration-underline" data-bs-target="#forgetPasswordModalToggle" data-bs-toggle="modal"><span class="fs-6">Forget
-                  Password?</span></button>
+              <a class="btn" data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><span class="fs-6">Register Account?</span></a>
             </div>
-            <div class="col-12 d-flex justify-content-center flex-column mb-5">
-              <button type="submit" class="btn orange-btn btn-b mx-auto px-3 d-block fs-5" name="loginSubmit">Login</button>
-            </div>
-          </form>
-          <div class="col-12 d-flex justify-content-center align-items-center mb-3">
-            <a class="btn" data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><span class="fs-6">Register Account?</span></a>
           </div>
-
         </div>
       </div>
     </div>
