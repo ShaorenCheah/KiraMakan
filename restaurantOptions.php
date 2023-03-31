@@ -39,9 +39,9 @@
                 <div class="carousel-inner pb-5">
                     <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
                         <div class="carousel-item <?php echo $i == 0 ? 'active' : ''; ?>">
-                            <div class="row">
+                            <div class="row g-5">
                                 <?php for ($j = $i; $j < $i + 3 && $j < count($rows); $j++) { ?>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 px-5">
                                         <div class="card">
                                             <img src="images/restaurants/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top" alt="<?php echo $rows[$j]['restaurantName']; ?>">
                                             <div class="card-body">

@@ -53,7 +53,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
         <div class="col-md-6 d-flex flex-row align-items-center justify-content-start px-4">
-            <h4>Currently ordering for</h4>
+            <h4 class="m-0">Currently ordering for</h4>
             <select class="form-select w-25 ms-3 order-name-dropdown" aria-label="Default select example">
                 <?php
                 if (!isset($_SESSION["email"])) {
@@ -70,7 +70,7 @@
         <div class="col-md-3"></div>
 
         <div class="col-md-1"></div>
-        <div class="tab-content col-md-10 mt-5" id="pills-tabContent">
+        <div class="tab-content col-md-10 mt-3" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-meal-tab" role="tabpanel" aria-labelledby="pills-meal-tab" tabindex="0">
                 <?php
 
@@ -181,9 +181,9 @@
         <div class="offcanvas-body row w-auto h-100 mx-2 d-flex flex-column">
             <form id="cart-form" class="p-0 h-100 d-flex flex-column">
                 <div class="cart-items flex-grow-1"></div>
-                <div class="cart-total container-fluid w-100 p-0">
-                    <div class="row">
-                        <div class="col-12 d-flex flex-row">
+                <div class="cart-total container-fluid w-100 p-2 d-flex flex-column align-items-center ">
+                    <div class="row d-flex justify-content-evenly h-100">
+                        <div class="col-12 d-flex flex-row align-items-center justify-content-center mb-4">
                             <strong class="cart-total-title">Total: </strong>
                             <span class="cart-total-price">RM 0</span>
                         </div>

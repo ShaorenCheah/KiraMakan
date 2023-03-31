@@ -8,22 +8,22 @@
       <div class="modal-body d-flex h-auto flex-row w-100 container-fluid justify-content-between" id="type-modal">
 
         <div class=" col-6 d-flex flex-column">
-          <div class="d-flex justify-content-center">
-
-            <button class="btn btn-primary" type="button" id="submitBtn">Just me</button>
-
+          <div class="d-flex justify-content-center mt-2">
+            <button class="btn btn-primary w-50" type="button" id="submitBtn">Just me</button>
           </div>
-          <div class="d-flex justify-content-center mt-3 ms-1">
+          <div class="d-flex justify-content-center align-items-center mt-3 ms-1">
             <!-- Image -->
+            <img src="images/justMe.jpg" alt="Just me" class="img-fluid w-75" id="justMeImg">
           </div>
         </div>
 
         <div class=" col-6 d-flex flex-column">
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center mt-2">
             <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">In a group</button>
           </div>
-          <div class="d-flex justify-content-center mt-3 ms-1">
+          <div class="d-flex justify-content-center align-items-center mt-3 ms-1">
             <!-- Image -->
+            <image src="images/group.jpg" alt="In a group" class="img-fluid w-75" id="inAGroupImg">
           </div>
         </div>
 

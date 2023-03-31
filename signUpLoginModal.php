@@ -39,7 +39,7 @@
               </div>
             </div>
             <div class="col-12 d-flex justify-content-center flex-column">
-              <button type="submit" class="btn btn-outline-secondary btn-b mx-auto d-block fs-6"
+              <button type="submit" class="btn btn-primary btn-b mx-auto d-block fs-6"
                 name="loginSubmit">Login</button>
           </form>
           <button type="button" class="btn bg-transparent border-0 text-secondary text-decoration-underline"
@@ -158,7 +158,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="loginModalToggleLabel">Please input an email:</h1>
+        <h1 class="modal-title fs-5" id="loginModalToggleLabel">Please enter your email</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="login-modal">
@@ -178,7 +178,7 @@
             </div>
           </div>
           <div class="col-12 d-flex justify-content-center">
-            <button type="submit" class="btn btn-outline-secondary" name="forgetSubmit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="forgetSubmit">Submit</button>
           </div>
         </form>
       </div>

@@ -2,7 +2,7 @@
 
     <!-- Navbar brand -->
     <div class="col-2 w-auto">
-        <a class="navbar-brand h-auto" href="#">
+        <a class="navbar-brand h-auto" href="index.php">
             <img src="images/KiraMakanLogoPrimary.jpg" alt="Bootstrap" height="55">
         </a>
     </div>
@@ -25,17 +25,12 @@
                 </div>
                 <div class="w-auto p-2 px-4">
                     <li class="nav-item">
-                        <a class="nav-link fs-4" href="#">Menu</a>
+                        <a class="nav-link fs-4" href="restaurantOptions.php">Restaurants</a>
                     </li>
                 </div>
                 <div class="w-auto p-2 px-4">
                     <li class="nav-item">
                         <a class="nav-link fs-4" href="#">How it works</a>
-                    </li>
-                </div>
-                <div class="w-auto p-2 px-4">
-                    <li class="nav-item">
-                        <a class="nav-link fs-4" href="#">Partners</a>
                     </li>
                 </div>
                 <div class="w-auto p-2 px-4">
