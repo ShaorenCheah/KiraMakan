@@ -45,10 +45,16 @@ if (isset($_POST['loginSubmit'])) {
             $_SESSION['email'] = $email;
             $_SESSION['accountID'] = $fetch['accountID'];
             $_SESSION['accountType'] = $accountType;
-            $_SESSION['name'] = $name;
-            $_SESSION['customerID'] = $customerID;
-            $_SESSION[$accountType . 'Name'] = $name;
-            echo "<script>alert('Successful Login! Welcome $name!'); window.location='index.php'</script>"; //To be changed into redirecting to customer / restaurant index page
+            if ($accountType == "Customer") {
+                $_SESSION['name'] = $name;
+                $_SESSION['customerID'] = $customerID;
+                $_SESSION[$accountType . 'Name'] = $name;
+                echo "<script>alert('Successful Login! Welcome $name!'); window.location='index.php'</script>";
+            } else {
+                $_SESSION['name'] = $name;
+                $_SESSION['restaurantID'] = $restaurantID;
+                echo "<script>alert('Successful Login! Welcome $name!'); window.location='./restaurant/index.php'</script>";
+            }
         } else {
             echo "<script>alert('Woops! Password is Wrong.'); window.location='index.php'</script>";
         }
@@ -58,10 +64,9 @@ if (isset($_POST['loginSubmit'])) {
     }
 
     mysqli_close($conn);
-
 } else if (isset($_POST['userRegisterSubmit'])) {
 
-  
+
 
     // Define form inputs
     $customerName = $_POST['customerName'];

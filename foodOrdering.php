@@ -53,15 +53,14 @@
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
         <div class="col-md-6 d-flex flex-row align-items-center justify-content-start px-4">
-            <h4 class="m-0">Currently ordering for</h4>
+            <h4>Currently ordering for</h4>
             <select class="form-select w-25 ms-3 order-name-dropdown" aria-label="Default select example">
                 <?php
-                if (!isset($_SESSION["accountID"])) {
+                if (!isset($_SESSION["email"])) {
                     echo "<option value=\"Guest\">Guest</option>";
                 } else {
                     echo "<option value='{$_SESSION["name"]}'>{$_SESSION["name"]}</option>";
                 }
-                
                 foreach ($namesArray as $name) {
                     echo "<option value=\"$name\">$name</option>";
                 }
@@ -71,7 +70,7 @@
         <div class="col-md-3"></div>
 
         <div class="col-md-1"></div>
-        <div class="tab-content col-md-10 mt-3" id="pills-tabContent">
+        <div class="tab-content col-md-10 mt-5" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-meal-tab" role="tabpanel" aria-labelledby="pills-meal-tab" tabindex="0">
                 <?php
 
@@ -104,8 +103,14 @@
                                         <h5 class="card-title"><b>' . $row['itemName'] . '</b></h5>
                                         <p class="card-text d-flex">' . $row['itemDescription'] . '</p>
                                         <div class="row d-flex align-items-center">
-                                            <h6 class="card-price col-md-8 align-items-center ">RM' . $row['itemPrice'] . '</h6>
-                                            <button class="btn btn-primary restaurantButton col-md-4" data-bs-target="#' . $row['menuID'] . '" value="' . $row['menuID'] . '" data-bs-toggle="modal">Order</button>
+                                            <h6 class="card-price col-md-8 align-items-center ">RM' . $row['itemPrice'] . '</h6>';
+                    if (isset($_SESSION['accountID'])) {
+                        echo '
+                                            <button class="btn btn-primary restaurantButton col-md-4" data-bs-target="#' . $row['menuID'] . '" value="' . $row['menuID'] . '" data-bs-toggle="modal">Order</button>';
+                    } else {
+                        echo '<div class-"col-md-4"></div>';
+                    };
+                    echo '
                                         </div>
                                     </div>
                                 </div>
@@ -162,46 +167,49 @@
                 }
                 echo '</ul></nav>';
                 ?>
-             </div>
-
-                
-                <div class="tab-pane fade" id="pills-drinks-tab" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">HI</div>
-                <div class="tab-pane fade" id="pills-desserts-tab" role="tabpanel" aria-labelledby="pills-desserts-tab" tabindex="0">BYE</div>
-                <div class="tab-pane fade" id="pills-addons-tab" role="tabpanel" aria-labelledby="pills-addons-tab" tabindex="0">HEY</div>
             </div>
+
+
+            <div class="tab-pane fade" id="pills-drinks-tab" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">HI</div>
+            <div class="tab-pane fade" id="pills-desserts-tab" role="tabpanel" aria-labelledby="pills-desserts-tab" tabindex="0">BYE</div>
+            <div class="tab-pane fade" id="pills-addons-tab" role="tabpanel" aria-labelledby="pills-addons-tab" tabindex="0">HEY</div>
         </div>
+    </div>
     </div>
     <div class="col-md-1"></div>
 
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body row w-auto h-100 mx-2 d-flex flex-column">
-            <form id="cart-form" class="p-0 h-100 d-flex flex-column">
-                <div class="cart-items flex-grow-1"></div>
-                <div class="cart-total container-fluid w-100 p-2 d-flex flex-column align-items-center ">
-                    <div class="row d-flex justify-content-evenly h-100">
-                        <div class="col-12 d-flex flex-row align-items-center justify-content-center mb-4">
-                            <strong class="cart-total-title">Total: </strong>
-                            <span class="cart-total-price">RM 0</span>
-                        </div>
-                        <div class="col-12 d-flex justify-content-center">
-                            <?php if (!isset($_SESSION['email'])) { ?>
-                                <!-- Button trigger modal -->
-                                <button class="btn btn-primary me-3" type="button" data-bs-toggle="modal" data-bs-target="#loginModalToggle">
-                                    Please Login First
-                                </button>
-                            <?php } else { ?>
+        <?php if (isset($_SESSION['accountID'])) {
+        ?>
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body row w-auto h-100 mx-2 d-flex flex-column">
+                <form id="cart-form" class="p-0 h-100 d-flex flex-column">
+                    <div class="cart-items flex-grow-1"></div>
+                    <div class="cart-total container-fluid w-100 p-0">
+                        <div class="row">
+                            <div class="col-12 d-flex flex-row">
+                                <strong class="cart-total-title">Total: </strong>
+                                <span class="cart-total-price">RM 0</span>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
                                 <button class="btn btn-primary" id="submitCart">Submit Cart</button>
-                            <?php }; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        <?php } else {
+        ?> <div class="offcanvas-body row w-auto h-100 mx-2 d-flex flex-column justify-content-center align-items-center">
+                <button class="btn btn-primary me-3 w-50" type="button" data-bs-toggle="modal" data-bs-target="#loginModalToggle">
+                    Please Login First
+                </button>
+            </div>
+        <?php
+        }; ?>
     </div>
 
 
