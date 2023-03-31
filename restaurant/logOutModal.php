@@ -12,7 +12,7 @@
                         <h5 class='text-center'>Are you sure you want to log out?</h5>
                     </div>
                     <div class='col-12 d-flex justify-content-center mt-3'>
-                        <a href='./logOut.php' class='btn btn-primary'><i class='me-2'>
+                        <a href='logOut.php' class='btn btn-primary'><i class='me-2'>
                                 <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white'
                                     class='bi bi-box-arrow-right' viewBox='0 0 16 16'>
                                     <path fill-rule='evenodd'

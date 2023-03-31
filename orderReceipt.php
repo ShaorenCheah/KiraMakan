@@ -47,7 +47,7 @@
 
                         echo "<h5 class='mt-3'>$personName</h5>";
 
-                        $sql = "SELECT * FROM order_item_person WHERE opID = '$opID'";
+                        $sql = "SELECT * FROM person_menu WHERE opID = '$opID'";
                         $result2 = mysqli_query($conn, $sql);
                         $sum = 0;
 

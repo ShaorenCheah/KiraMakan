@@ -17,10 +17,11 @@ $row = mysqli_fetch_assoc($result);
 
 $orderID = $row['orderID'];
 
-$stmt = $conn->prepare("INSERT INTO Orders (orderID, restaurantID, customerID, orderDate, totalPrice) VALUES (?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO Orders (orderID, restaurantID, customerID, orderDate, totalPrice,status) VALUES (?, ?, ?, ?, ?,?)");
 $customerID = $_SESSION['customerID'];
+$status = "Pending";
 // Bind the parameters
-$stmt->bind_param('ssssd', $orderID, $restaurantID, $customerID, $current_time, $totalPrice);
+$stmt->bind_param('ssssds', $orderID, $restaurantID, $customerID, $current_time, $totalPrice,$status);
 $stmt->execute();
 
 $success = true;
@@ -73,8 +74,8 @@ foreach ($order['orderData'] as $orderItem){
     $row = mysqli_fetch_assoc($result);
     $opID = $row['opID'];
 
-    $stmt = $conn->prepare("INSERT INTO order_item_person (orderID, opID, menuID, quantity, price) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param('sssid', $orderID, $opID, $menuID, $quantity, $price);
+    $stmt = $conn->prepare("INSERT INTO person_menu (opID, menuID, quantity, price) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param('ssid', $opID, $menuID, $quantity, $price);
 
     if (!$stmt->execute()) {
         $success = false;
