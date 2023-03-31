@@ -70,7 +70,7 @@
         <div class="col-md-3"></div>
 
         <div class="col-md-1"></div>
-        <div class="tab-content col-md-10 mt-5" id="pills-tabContent">
+        <div class="tab-content col-md-10 mt-4" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-meal-tab" role="tabpanel" aria-labelledby="pills-meal-tab" tabindex="0">
                 <?php
 
@@ -91,7 +91,7 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     // Start a new row every four cards
                     if (($offset + $counter) % 3 == 0) {
-                        echo '<div class="row g-5 d-flex justify-content-center">';
+                        echo '<div class="row gap-5 d-flex justify-content-center">';
                     }
 
                     // Create a card for the menu item
