@@ -56,11 +56,12 @@
             <h4 class="m-0">Currently ordering for</h4>
             <select class="form-select w-25 ms-3 order-name-dropdown" aria-label="Default select example">
                 <?php
-                if (!isset($_SESSION["email"])) {
+                if (!isset($_SESSION["accountID"])) {
                     echo "<option value=\"Guest\">Guest</option>";
                 } else {
                     echo "<option value='{$_SESSION["name"]}'>{$_SESSION["name"]}</option>";
                 }
+                
                 foreach ($namesArray as $name) {
                     echo "<option value=\"$name\">$name</option>";
                 }
