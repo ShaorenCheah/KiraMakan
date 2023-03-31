@@ -31,7 +31,7 @@
                             <h6>Group dining made convenient.</b>
                         </div>
                         <div class="col-md-12 mt-3">
-                            <h1 class="display-1 fw-bold">Find your next meal <br>with <span style="color:var(--orange)">Kira Makan</span>.
+                            <h1 class="display-3 fw-bold">Find your next meal <br>with <span style="color:var(--orange)">Kira Makan</span>.
                             </h1>
                         </div>
                         <div class="col-md-12 mt-5">
