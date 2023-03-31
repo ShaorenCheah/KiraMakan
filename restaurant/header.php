@@ -3,7 +3,7 @@
     <!-- Navbar brand -->
     <div class="col-2 w-auto">
         <a class="navbar-brand h-auto" href="index.php">
-            <img src="../images/KiraMakanLogoPrimary.jpg" alt="Bootstrap" height="55">
+            <img src="../images/KiraMakanLogo.png" alt="KiraMakan" height="55">
         </a>
     </div>
     <!-- Navbar brand -->

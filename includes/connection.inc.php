@@ -6,12 +6,10 @@ $user = 'root';
 $password = '';
 $database = 'kiramakan';
 
-// Create a connection object
-$conn = new mysqli($host, $user, $password, $database);
+$conn = mysqli_connect($host, $user, $password, $database);
 
-// Check if the connection was successful
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 ?>

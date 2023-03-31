@@ -15,44 +15,57 @@
 </head>
 
 <body>
-    <?php session_start()?>
-    <header>
-        <!-- Header -->
-        <?php include 'header.php'; ?>
-    </header>
+    <?php session_start() ?>
+    <div class="min-vh-100">
+        <div class="row d-flex flex-col ">
+            <header class="col-md-12 mb-5">
+                <!-- Header -->
+                <?php include 'header.php'; ?>
+            </header>
 
-    <!-- Hero -->
-    <div id="hero">
-        <div class="container row-container col-9 d-flex justify-content-center align-items-center mt-5 py-3 px-2">
+            <!-- Hero -->
+            <div id="hero" class="col-md-12 mt-5 g-5">
+                <div class="row mx-5 d-flex  g-5 flex-row">
+                    <div class="col-md-6 mt-5 d-flex flex-column">
+                        <div class="col-12 ms-2 text-muted">
+                            <h6>Group dining made convenient.</b>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <h1 class="display-1 fw-bold">Find your next meal <br>with <span style="color:var(--orange)">Kira Makan</span>.
+                            </h1>
+                        </div>
+                        <div class="col-md-12 mt-5">
+                            <p class="fs-5 pb-5 lead">
+                                <span style="color:var(--orange); font-weight:bolder;">Kira Makan</span> is a food ordering web application designed to improve group dining experience.
+                                Enjoy various features such as <span style="color:#ef4207;">group payment calculation</span>,
+                                and <span style="color:#ef4207;">send payment receipt</span>
+                                to ease your problems when eating out in a group. Just register an account and you can enjoy the perks above.
+                            </p>
+                        </div>
+                        <div class="col-md-12 mt-2 d-flex">
+                            <a href="restaurantOptions.php"  class="btn orange-btn fs-4">Order now</a>
+                        </div>
+                    </div>
 
-            <!-- Left column -->
-            <div class="col-4 d-flex justify-content-center align-items-center px-5">
-                <img src="images/HeroImg.jpg" class="img-fluid">
+                    <div class="col-md-6 ps-5 d-flex h-100 gap-3 align-items-stretch flex-row">
+                        <div class="col-md-5 d-flex gap-3 flex-column">
+                            <div class="col-md-12 d-flex justify-content-center align-items-center">
+                                <img src="images/coffee.png" class="object-fit-cover img-fluid rounded h-100" alt="hero">
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-center align-items-center">
+                                <img src="images/noodles.png" class="img-fluid rounded h-100 w-100 object-fit-cover" alt="hero">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="col-md-12 h-100">
+                                <img src="images/pastries.jpg" class="img-fluid rounded h-100" alt="hero">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Right column -->
-            <div class="col-8 p-3 d-flex flex-column justify-content-center align-items-center h-auto ps-2">
-
-                <h1 class="text-center pb-5"><b>Group dining made <span class="text-primary">convenient</span>.</b></h1>
-
-                <p class="fs-5 text-center pb-5">
-                    <span style="color:#005fbb; font-weight:bolder;">Kira Makan</span> is a food ordering web application designed to improve group dining experience.
-                    Enjoy various features such as <span style="color:#0584ff;">group payment calculation</span>,
-                    and <span style="color:#0584ff;">send payment receipt</span>
-                    to ease your problems when eating out in a group. Just register an account and you can enjoy the perks above.
-                </p>
-
-                <a href="restaurantOptions.php" class="btn btn-primary fs-4">Order now</a>
-
-            </div>
-
         </div>
-    </div>
 
-
-    <footer>
-        <?php include 'footer.php'; ?>
-    </footer>
 
 </body>
 
