@@ -20,6 +20,7 @@
     <?php
     session_start();
     include '../includes/connection.inc.php';
+    
     if(isset($_POST['completeOrder'])){
         $orderID = $_POST['completeOrder'];
         $sql = "UPDATE orders SET status = 'Completed' WHERE orderID = '$orderID'";

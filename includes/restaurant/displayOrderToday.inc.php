@@ -94,8 +94,7 @@ if (mysqli_num_rows($result) > 0) {
     // If no rows were returned, display a message in a table row
     echo "<tr><td colspan='9'>No records found.</td></tr>";
 }
-// Close the database connection
-$conn = null;
+
 
 // Return the total number of pages for pagination 
 return $total_pages;

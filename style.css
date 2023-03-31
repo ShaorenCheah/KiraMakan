@@ -1,92 +1,126 @@
 :root {
-  --main: #005fbb;
-  --secondary: #0584ff;
+  --main: #222222;
+  --secondary: #504c4a;
+  --orange: #ff7629;
+  --orange-secondary:#ffad71;
+  --pastel: #ffe9d4;
+  --light:#fff5ed;
 }
+
 
 
 body {
   font-family: "Lato", sans-serif !important;
+  color: var(--main);
 }
 
 body::-webkit-scrollbar {
   display: none;
 }
 
-.text-primary {
-  color: #005fbb;
+
+.form-floating input:focus,
+.form-floating input:active {
+  border-color: #ff7629;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
 }
 
-.text-secondary {
-  color: #0584ff;
+.white-btn.btn {
+  border: 1px solid var(--orange);
+  background-color: white;
+  color: var(--primary);
 }
 
-.bg-color {
-  background-color: #005fbb;
+
+.white-btn:hover {
+  background-color: var(--orange);
+  color: white !important;
+}
+
+.white-btn:hover i {
+  color: white;
+}
+
+.white-btn:hover svg {
+  transition: filter 0.1s ease-in-out;
+  filter: invert(1);
+}
+
+.orange-btn.btn {
+  border: 1px solid var(--orange);
+  background-color: var(--orange);
+  color: white;
+}
+
+
+.orange-btn:hover {
+  background-color: var(--white);
+  color: var(--main) !important;
+}
+
+.orange-btn:hover i {
+  color: var(--main);
+}
+
+.orange-btn:hover svg {
+  transition: filter 0.1s ease-in-out;
+  filter: invert(1);
 }
 
 
 /* Header Navbar Start */
 
 .navbar {
-  background-color: #005fbb;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08), 0 20px 20px 0 rgba(0, 0, 0, 0.12);
-}
-
-#header .navbar-nav {
-  font-weight: bolder;
-  font-size: larger;
-  color: white;
+  background-color: transparent;
+  box-shadow: 0px 16px 22px 0px rgba(0,0,0,0.1);
 }
 
 #header .nav-link {
-  color: white;
+  border-bottom: 2px solid transparent; /* Add border instead of text-decoration */
+  padding-bottom: 3px; /* Increase the padding to add spacing */
+  transition: border-color 0.3s ease-in-out; /* Transition border-color instead of text-decoration-color */
+}
+
+#header .active{
+  color: var(--main);
+  font-weight: bolder;
+  border-bottom: 2px solid var(--orange); /* Add border-bottom to active class */
 }
 
 #header .nav-link:hover,
-.navbar-nav .show>.nav-link,
+.navbar-nav .show > .nav-link,
 .navbar-nav .nav-link.active,
 .nav-link:focus {
-  color: white;
+  color: var(--main);
+  border-color: var(--orange); /* Change border-color on hover/focus */
 }
 
 #header .navbar-toggler {
+  margin-top: 20px;
   border: 0px;
+  width: 100%;
 }
 
 #header .navbar-toggler:focus {
-  color: #005fbb;
+  color:transparent
 }
 
-header .btn:hover {
-  border: 1px solid #005fbb;
-}
+
+
 
 /* Header Navbar End */
 
 /* Hero section Start */
-#hero {
-  min-height: 100vh;
-  max-height: 100vh;
 
-}
 
-#hero .row-container {
-  border: 2px solid #005fbb;
-  border-radius: 25px;
-  margin-bottom: 50px;
-  min-height: 80vh;
-}
+
 
 /* Hero section End */
 
 
 /* Contact-us Section Start */
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .contactus {
   margin: 10px;
