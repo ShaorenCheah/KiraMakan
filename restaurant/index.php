@@ -103,14 +103,14 @@
                     <div class="col d-flex justify-content-center align-items-center my-4" id="pagination">
                         <?php
                         if ($pageno > 1) {
-                            echo "<a href='hotelCustomer.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex' ><i class='fa fa-angle-left big' ></i></a>";
+                            echo "<a href='index.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex' ><i class='fa fa-angle-left big' ></i></a>";
                         }
 
                         for ($i = 0; $i < $total_pages; $i++) {
-                            echo "<a href='hotelCustomer.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex'>" . ($i + 1) . "</a>";
+                            echo "<a href='index.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex'>" . ($i + 1) . "</a>";
                         }
                         if ($i > $pageno) {
-                            echo "<a href='hotelCustomer.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex'><i class='fa fa-angle-right big'></i></a>";
+                            echo "<a href='index.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex'><i class='fa fa-angle-right big'></i></a>";
                         }
                         ?>
                     </div>
