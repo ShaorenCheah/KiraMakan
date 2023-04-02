@@ -85,7 +85,7 @@ CREATE TABLE `menu` (
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `itemDescription`, `itemPrice`, `menuURL`) VALUES
+INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `itemDescription`, `itemPrice`, `menuURL`, `availability`) VALUES
 ('M0001', 'R0001', 'Fillet O Fish', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '12.00', 'filletofish.jpg', 'Available'),
 ('M0002', 'R0001', 'Mc Chicken', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '10.00', 'mcchicken.jpg', 'Available'),
 ('M0003', 'R0001', 'Ayam Goreng McD', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '14.00', 'ayamgorengmcd.png', 'Available');
