@@ -16,7 +16,7 @@ $restaurantID = $_SESSION['restaurantID'];
 // Query the database to get the total number of orders that are completed for any date, any time and current restaurant
 $sql = "SELECT DISTINCT COUNT(*)
                 FROM orders o  
-                WHERE o.restaurantID = '$restaurantID' AND o.status ='Completed' ;";
+                WHERE o.restaurantID = '$restaurantID';";
 
 // Execute the query and get the total number of rows
 $result = mysqli_query($conn, $sql);
@@ -29,7 +29,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 $sql = "SELECT *, DATE(o.orderDate) AS orderDate, TIME(o.orderDate) AS orderTime
     FROM orders o
     JOIN customers c ON o.customerID = c.customerID
-    WHERE o.restaurantID = '$restaurantID'  AND o.status ='Completed'
+    WHERE o.restaurantID = '$restaurantID'
     LIMIT $offset, $no_of_records_per_page;";
 
 // Execute the query and check if any rows were returned
