@@ -22,6 +22,28 @@
     session_start();
     include '../includes/connection.inc.php';
 
+    if (isset($_POST['manageMenu'])) {
+        $menuID = $_POST['manageMenu'];
+        $availability = $_POST['availability'];
+        if ($availability == "Available") {
+            $availability = "Unavailable";
+            $sql = "UPDATE menu SET `availability` = '$availability' WHERE menuID = '$menuID'";
+            mysqli_query($conn, $sql);
+            if (mysqli_affected_rows($conn) > 0) {
+                echo "<script>alert('Menu Availability Updated!'); window.location='manageMenu.php'</script>";
+            }
+        } else if ($availability == "Unavailable") {
+            $availability = "Available";
+            $sql = "UPDATE menu SET `availability` = '$availability' WHERE menuID = '$menuID'";
+            mysqli_query($conn, $sql);
+            if (mysqli_affected_rows($conn) > 0) {
+                echo "<script>alert('Menu Availability Updated!'); window.location='manageMenu.php'</script>";
+            }
+        } else {
+            echo "<script>alert('Error!'); window.location='manageMenu.php'</script>";
+        }
+    }
+
     ?>
     <header>
         <!-- Header -->
@@ -89,6 +111,7 @@
                                 <th scope="col">Item Description</th>
                                 <th scope="col">Item Price</th>
                                 <th scope="col">Availability</th>
+                                <th scope="col">Manage</th>
                             </tr>
                         </thead>
 
@@ -102,14 +125,14 @@
                     <div class="col d-flex justify-content-center align-items-center my-4" id="pagination">
                         <?php
                         if ($pageno > 1) {
-                            echo "<a href='orderHistory.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex' ><i class='fa fa-angle-left big' ></i></a>";
+                            echo "<a href='manageMenu.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex' ><i class='fa fa-angle-left big' ></i></a>";
                         }
 
                         for ($i = 0; $i < $total_pages; $i++) {
-                            echo "<a href='orderHistory.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex'>" . ($i + 1) . "</a>";
+                            echo "<a href='manageMenu.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex'>" . ($i + 1) . "</a>";
                         }
                         if ($i > $pageno) {
-                            echo "<a href='orderHistory.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex'><i class='fa fa-angle-right big'></i></a>";
+                            echo "<a href='manageMenu.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex'><i class='fa fa-angle-right big'></i></a>";
                         }
                         ?>
                     </div>

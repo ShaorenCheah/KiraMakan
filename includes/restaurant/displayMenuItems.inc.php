@@ -34,12 +34,39 @@ if (mysqli_num_rows($result) > 0) {
     $count = 1;
     while ($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
-            <th scope='row'><?= $count ?></th>
-            <td><?= $row["menuID"] ?></td>
-            <td><?= $row["itemName"] ?></td>
-            <td><?= $row["itemDescription"] ?></td>
-            <td><?= $row["itemPrice"] ?></td>
-            <td><?= $row["availability"] ?></td>
+            <th scope='row'>
+                <?= $count ?>
+            </th>
+            <td>
+                <?= $row["menuID"] ?>
+            </td>
+            <td>
+                <?= $row["itemName"] ?>
+            </td>
+            <td>
+                <?= $row["itemDescription"] ?>
+            </td>
+            <td>
+                <?= $row["itemPrice"] ?>
+            </td>
+            <td>
+                <?= $row["availability"] ?>
+            </td>
+            <td>
+                <form action="manageMenu.php" method="POST">
+                    <?php
+                    if ($row['availability'] == 'Available') {
+                        echo '<button class="btn btn-danger" value="' . $row['menuID'] . '" id="' . $row['menuID'] . '" name="manageMenu">Disable</button>';
+                        echo '<input type="hidden" name="availability" value="Available">';
+                    } else if ($row['availability'] == 'Unavailable'){
+                        echo '<button class="btn btn-success" value="' . $row['menuID'] . '" id="' . $row['menuID'] . '" name="manageMenu">Enable</button>';
+                        echo '<input type="hidden" name="availability" value="Unavailable">';
+                    } else {
+                        echo 'error';
+                    }
+                    ?>
+                </form>
+            </td>
         </tr>
 
         <?php $count++;
