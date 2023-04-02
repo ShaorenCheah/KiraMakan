@@ -115,3 +115,22 @@ function validateForgetForm() {
     return true;
   
 }
+
+function validateRecipientForm() {
+  
+  // get input values
+  const recEmail = document.getElementById('recEmail').value.trim();
+
+  // regular expression for email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // check if email is empty or in the wrong format
+  if (recEmail === '' || !emailRegex.test(altEmail)) {
+    alert('Please enter a valid email address.');
+    return false;
+  }
+
+  // if form is valid, return true to submit form
+  return true;
+
+}
