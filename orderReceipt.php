@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="accounts.js" async></script>
 
@@ -33,7 +34,11 @@
     <div class="container col-5 h-100 my-4">
         <div class="card w-100">
             <div class="card-header">
-                Order <strong>#<?= $orderID ?></strong> on <strong><?= $orderDate ?></strong>
+                Order <strong>#
+                    <?= $orderID ?>
+                </strong> on <strong>
+                    <?= $orderDate ?>
+                </strong>
             </div>
             <div class="card-body">
                 <?php
@@ -51,7 +56,7 @@
                         $result2 = mysqli_query($conn, $sql);
                         $sum = 0;
 
-                        while($row2 = mysqli_fetch_assoc($result2)){
+                        while ($row2 = mysqli_fetch_assoc($result2)) {
                             $menuID = $row2['menuID'];
                             $quantity = $row2['quantity'];
                             $price = $row2['price'];
@@ -62,13 +67,18 @@
 
                             $itemName = $row3['itemName'];
                             $unit = $row3['itemPrice'];
-                            echo"<p>$itemName x $quantity (RM ".$unit."/unit)</p>";
-                            echo"<p>RM ".$price."</p>";
+                            echo "<p>$itemName x $quantity (RM " . $unit . "/unit)</p>";
+                            echo "<p>RM " . $price . "</p>";
                         }
-                        echo"<p class='d-flex justify-content-end'>Total : RM ".$sum."</p>";
-                        echo"<div class='cart-item mb-4'></div>";
+                        echo
+                            "<div class='d-flex justify-content-between'>
+                        <button class='btn btn-primary align-self-end' data-bs-target='#emailRecipientModalToggle' data-bs-toggle='modal'>Send Email</button>
+                        <p class='d-flex justify-content-end'>Total : RM " . $sum . "</p>
+                        </div>";
+                        include './includes/Customer/emailRecipient.inc.php';
+                        echo "<div class='cart-item mb-4'></div>";
                     }
-                        echo"<h5 class='d-flex justify-content-end'>Grand Total : <strong>RM ".$totalPrice."</strong></h5>";
+                    echo "<h5 class='d-flex justify-content-end'>Grand Total : <strong>RM " . $totalPrice . "</strong></h5>";
                 } else {
                     echo "No results found";
                 }
