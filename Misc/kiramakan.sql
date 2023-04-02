@@ -78,7 +78,7 @@ CREATE TABLE `menu` (
   `itemDescription` longtext NOT NULL,
   `itemPrice` decimal(10,2) NOT NULL,
   `menuURL` longtext NOT NULL,
-  'availability' varchar(11) NOT NULL
+  `availability` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
