@@ -77,7 +77,8 @@ CREATE TABLE `menu` (
   `itemName` varchar(100) NOT NULL,
   `itemDescription` longtext NOT NULL,
   `itemPrice` decimal(10,2) NOT NULL,
-  `menuURL` longtext NOT NULL
+  `menuURL` longtext NOT NULL,
+  'availability' varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -85,9 +86,9 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `itemDescription`, `itemPrice`, `menuURL`) VALUES
-('M0001', 'R0001', 'Fillet O Fish', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '12.00', 'filletofish.jpg'),
-('M0002', 'R0001', 'Mc Chicken', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '10.00', 'mcchicken.jpg'),
-('M0003', 'R0001', 'Ayam Goreng McD', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '14.00', 'ayamgorengmcd.png');
+('M0001', 'R0001', 'Fillet O Fish', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '12.00', 'filletofish.jpg', 'Available'),
+('M0002', 'R0001', 'Mc Chicken', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '10.00', 'mcchicken.jpg', 'Available'),
+('M0003', 'R0001', 'Ayam Goreng McD', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '14.00', 'ayamgorengmcd.png', 'Available');
 
 -- --------------------------------------------------------
 
