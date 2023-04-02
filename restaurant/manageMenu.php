@@ -119,16 +119,5 @@
     </div>
 
 </body>
-<script>
-    let selectedOrderID = '';
-    const orderButtons = document.querySelectorAll('.order-button');
-
-    orderButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            selectedOrderID = button.value;
-            console.log(selectedOrderID)
-        });
-    });
-</script>
 
 </html>
