@@ -83,7 +83,7 @@
                 // Calculate the offset of the first menu item to display on the current page
                 $offset = ($page - 1) * $itemsPerPage;
 
-                $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND `availability` = 'Available' LIMIT $offset, $itemsPerPage";
+                $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' LIMIT $offset, $itemsPerPage";
 
                 $result = mysqli_query($conn, $sql);
 
