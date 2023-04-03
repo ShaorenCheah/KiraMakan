@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <div class=" restaurant-carousel mt-2" id="restaurant-carousel">
+    <div class=" restaurant-carousel mt-2 min-vh-100" id="restaurant-carousel">
         <div class="row">
             <div class="col-12 d-flex justify-content-center mt-5 mb-4">
                 <h1 class="display-4 font-weight-bold" style="color:var(--primary)"><strong>Our <span style="color:var(--orange)">Restaurant</span> Partners</strong></h1>
@@ -86,10 +86,10 @@
                 <div class="carousel-inner pb-5">
                     <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
                         <div class="carousel-item <?php echo $i == 0 ? 'active' : ''; ?>">
-                            <div class="row g-2 ">
+                            <div class="row gap-4 d-flex justify-content-evenly">
                                 <?php for ($j = $i; $j < $i + 3 && $j < count($rows); $j++) { ?>
-                                    <div class="col-md-4">
-                                        <div class="card px-2">
+                                    <div class="col-md-3">
+                                        <div class="card ">
                                             <img src="images/restaurants/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top rounded" alt="<?php echo $rows[$j]['restaurantName']; ?>">
                                             <div class="card-body">
                                                 <h4 class="card-title" style="font-weight:500"><?php echo $rows[$j]['restaurantName']; ?></h4>
@@ -131,7 +131,7 @@
             </div>
             <div class="col-"></div>
             <div class="col-12 d-flex justify-content-center mb-5">
-                <a href="restaurantOptions.php" class="btn orange-btn fs-4">Order now</a>
+                <a href="restaurantOptions.php" class="btn orange-btn fs-4">Explore All</a>
             </div>
 
             <?php include 'restaurantPopUp.php'; ?>
