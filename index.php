@@ -24,7 +24,7 @@
             </header>
 
             <!-- Hero -->
-            <div id="hero" class="col-md-12 mt-5 g-5">
+            <div id="hero" class="col-md-12 mt-4 g-5">
                 <div class="row mx-5 d-flex  g-5 flex-row">
                     <div class="col-md-6 mt-5 d-flex flex-column">
                         <div class="col-12 ms-2 text-muted">

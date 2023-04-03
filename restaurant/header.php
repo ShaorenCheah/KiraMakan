@@ -30,7 +30,7 @@
                 </div>
                 <div class="w-auto p-2 px-4">
                     <li class="nav-item">
-                        <a class="nav-link fs-4" href="#">Menu Items</a>
+                        <a class="nav-link fs-4" href="manageMenu.php">Menu Items</a>
                     </li>
                 </div>
             </ul>
