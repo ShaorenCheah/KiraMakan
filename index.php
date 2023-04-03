@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <div class=" restaurant-carousel mt-2 min-vh-100" id="restaurant-carousel">
+    <div class=" restaurant-carousel mt-2 min-vh-100 d-flex justify-content-center align-items-center" id="restaurant-carousel">
         <div class="row">
             <div class="col-12 d-flex justify-content-center mt-5 mb-4">
                 <h1 class="display-4 font-weight-bold" style="color:var(--primary)"><strong>Our <span style="color:var(--orange)">Restaurant</span> Partners</strong></h1>
@@ -83,7 +83,7 @@
                 ?>
 
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner pb-5">
+                <div class="carousel-inner py-5 rounded">
                     <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
                         <div class="carousel-item <?php echo $i == 0 ? 'active' : ''; ?>">
                             <div class="row gap-4 d-flex justify-content-evenly">
