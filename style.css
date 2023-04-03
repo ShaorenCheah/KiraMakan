@@ -26,6 +26,29 @@ body::-webkit-scrollbar {
   box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
 }
 
+.input-group input:focus,
+.input-group input:active {
+  border-color: #ff7629;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
+}
+
+.back-btn.btn {
+  border: none;
+  border-radius: 0px;
+  background-color: white;
+  color: var(--primary);
+  border-bottom: 2px solid transparent; /* Add border instead of text-decoration */
+  padding-bottom: 3px; /* Increase the padding to add spacing */
+  transition: all 0.3s ease-in-out; /* add a transition effect for a smooth animation */
+}
+
+
+.back-btn:hover {
+  transform: scale(1.05); /* scale the button up by 5% on hover */
+}
+
+
+
 .white-btn.btn {
   border: 1px solid var(--orange);
   background-color: white;
@@ -288,16 +311,10 @@ i {
   width: 300px;
 }
 
-
-/* Style the submit button */
-#names-form input[type="submit"] {
-  margin: 10px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
+.is-invalid {
+  border-color: red;
+  background-color: #ffe6e6;
+  color: #721c24;
 }
 
 .numCol{

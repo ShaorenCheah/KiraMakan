@@ -14,78 +14,84 @@
 </head>
 
 <body>
-    <?php session_start()?>
+    <?php session_start() ?>
     <header>
         <!-- Header -->
         <?php include 'header.php'; ?>
     </header>
 
-    <div class="container py-4 h-80">
-        <div class="row col-11">
-            <div class="col-12 d-flex justify-content-center my-4">
-                <h1><strong>Select a restaurant</strong></h1>
+    <div class="container pt-4 min-vh-100">
+        <div class="row m-0">
+            <div class="col-12 d-flex justify-content-center mt-4 mb-3">
+                <h1><strong>Select a <span style="color:var(--orange)">Restaurant</span></strong></h1>
             </div>
 
-
-            <div id="myCarousel" class="carousel slide my-3" data-bs-ride="carousel">
-                <?php
-                include './includes/connection.inc.php';
-                $sql = "SELECT * FROM Restaurants";
-                $run = mysqli_query($conn, $sql);
-                $rows = mysqli_fetch_all($run, MYSQLI_ASSOC);
-                ?>
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner pb-5">
-                    <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
-                        <div class="carousel-item <?php echo $i == 0 ? 'active' : ''; ?>">
-                            <div class="row g-5">
-                                <?php for ($j = $i; $j < $i + 3 && $j < count($rows); $j++) { ?>
-                                    <div class="col-md-4 px-5">
-                                        <div class="card">
-                                            <img src="images/restaurants/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top" alt="<?php echo $rows[$j]['restaurantName']; ?>">
-                                            <div class="card-body">
-                                                <h5 class="card-title"><?php echo $rows[$j]['restaurantName']; ?></h5>
-                                                <p class="card-text"><?php echo $rows[$j]['restaurantDescription']; ?></p>
-                                                <div class="d-flex justify-content-end">
-                                                    <button class="btn btn-primary restaurant-button" data-bs-target="#exampleModalToggle" id="restaurantID" value="<?php echo $rows[$j]['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
-                <div class="pt-5">
-                    <!-- Indicators -->
-                    <div class="carousel-indicators mt-5">
-                        <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
-                            <button type="button" style="background-color:#005fbb;" data-bs-target="#myCarousel" data-bs-slide-to="<?php echo $i / 3; ?>" class="<?php echo $i == 0 ? 'active' : ''; ?>" aria-current="<?php echo $i == 0 ? 'true' : 'false'; ?>" aria-label="Slide <?php echo $i / 3 + 1; ?>"></button>
-                        <?php } ?>
+            <form class="col-12 d-flex flex-row justify-content-center align-items-center" action="restaurantOptions.php" method="GET">
+                <div class="col-3"></div>
+                <div class="col-5">
+                    <div class="input-group">
+                        
+                        <input type="text" class="form-control w-25" name="search" placeholder="Enter restaurant name..." value="<?php if (isset($_GET['search'])) {
+                                                                                                                                echo $_GET['search'];
+                                                                                                                            } ?>" autocomplete="off">
                     </div>
                 </div>
+                <div class="col-2 d-flex align-items-center">
+                    <button type="submit" id="dashboard-search" class=" btn orange-btn search-btn ms-3"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg></i> Search
+                    </button>
+                </div>
+                <div class="col-2"></div>
+            </form>
 
-                <!-- Left and right controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
 
-                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+
+            <div class="row col-12 g-5 m-0 mt-1 p-0 d-flex justify-content-center align-items-center">
+            
+                <?php
+                if(isset($_GET['search'])){
+                    $filterValues = $_GET['search'];
+                }else{
+                    $filterValues = '';
+                }
+
+                include './includes/connection.inc.php';
+                $sql = "SELECT * FROM Restaurants WHERE CONCAT(restaurantName, restaurantDescription) LIKE '%$filterValues%';";
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    while ($rows = mysqli_fetch_assoc($result)) {
+                ?>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="images/restaurants/<?php echo $rows['restaurantURL']; ?>" class="card-img-top" alt="<?php echo $rows['restaurantName']; ?>">
+                                <div class="card-body">
+                                    <h5 class="card-title"><strong><?php echo $rows['restaurantName']; ?></strong></h5>
+                                    <p class="card-text"><?php echo $rows['restaurantDescription']; ?></p>
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn white-btn restaurant-button" data-bs-target="#exampleModalToggle" id="restaurantID" value="<?php echo $rows['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                <?php
+                    }
+                }else{
+                    echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
+                            <h5><strong>No results found for <span style="color:var(--orange)">'.$filterValues.'</span></strong></h5>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center mb-3 p-0">
+                            <img src="images/search.png" alt="empty" class="img-fluid" style="width: 25%;">
+                        </div>';
+                } ?>
             </div>
-
-
-            <?php include 'restaurantPopUp.php'; ?>
         </div>
     </div>
-    <footer>
-        <?php include 'footer.php'; ?>
-    </footer>
+
+
+    <?php include 'restaurantPopUp.php'; ?>
+    </div>
+    </div>
 
 </body>
 
