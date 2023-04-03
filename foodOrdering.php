@@ -40,7 +40,7 @@
             $restaurantName = $row['restaurantName'];
             ?>
 
-            <h1><?= $restaurantName ?></h1>
+            <h1><strong><?= $restaurantName ?></strong></h1>
             <input type="hidden" name="restaurantID" id="restaurantID" value="<?= $restaurantID ?>">
         </div>
         <div class="col-md-3"></div>
@@ -69,148 +69,251 @@
         </div>
         <div class="col-md-3"></div>
 
-        <div class="col-md-1"></div>
-        <div class="tab-content col-md-10 mt-4" id="pills-tabContent">
+        <div class="col-md-2"></div>
+        <div class="tab-content col-md-8 mt-4" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-meal-tab" role="tabpanel" aria-labelledby="pills-meal-tab" tabindex="0">
                 <?php
 
-                // Get the current page number from the query string
-                $page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-                // Number of menu items to display per page
-                $itemsPerPage = 6;
-
-                // Calculate the offset of the first menu item to display on the current page
-                $offset = ($page - 1) * $itemsPerPage;
-
-                $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' LIMIT $offset, $itemsPerPage";
+                $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Meals'";
 
                 $result = mysqli_query($conn, $sql);
 
-                $counter = 0;
-                while ($row = mysqli_fetch_assoc($result)) {
-                    // Start a new row every four cards
-                    if (($offset + $counter) % 3 == 0) {
-                        echo '<div class="row gap-5 d-flex justify-content-center">';
-                    }
+                echo '<div class="row gap-5 d-flex flex-row justify-content-start">';
+                if (mysqli_num_rows($result) > 0) {
 
-                    // Create a card for the menu item
-                    echo '
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        // Create a card for the menu item
+                ?>
                         <div class="col-md-3">
-                                <div class="card">
-                                    <img src="images/restaurants/menu/' . $row['menuURL'] . '" class="card-img-top" alt="' . $row['itemName'] . '">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><b>' . $row['itemName'] . '</b></h5>
-                                        <p class="card-text d-flex">' . $row['itemDescription'] . '</p>
-                                        <div class="row d-flex align-items-center">
-                                            <h6 class="card-price col-md-8 align-items-center ">RM' . $row['itemPrice'] . '</h6>';
-                    if (isset($_SESSION['accountID'])) {
-                        echo '
-                                            <button class="btn btn-primary restaurantButton col-md-4" data-bs-target="#' . $row['menuID'] . '" value="' . $row['menuID'] . '" data-bs-toggle="modal">Order</button>';
-                    } else {
-                        echo '<div class-"col-md-4"></div>';
-                    };
-                    echo '
-                                        </div>
+                            <div class="card">
+                                <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
+                                    <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
+                                    <div class="row d-flex align-items-center">
+                                        <h6 class="card-price col-md-8 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                        <?php
+                                        if (isset($_SESSION['accountID'])) {
+                                        ?>
+                                            <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                        <?php } else { ?>
+                                            <div class="col-md-4"></div>
+                                        <?php
+                                        };
+                                        ?>
                                     </div>
                                 </div>
                             </div>
-                            ';
+                        </div>
 
-                    include 'menuItemPopUp.php';
-
-                    $counter++;
-                }
-
-                // End the row if there are less than four cards
-                if (($offset + $counter) % 4 != 0) {
-                    echo '</div>';
-                }
-
-                echo '</div>';
-
-                // Pagination
-                $sql = "SELECT COUNT(*) AS total FROM Menu WHERE restaurantID = '$restaurantID'";
-                $result = mysqli_query($conn, $sql);
-                $row = mysqli_fetch_assoc($result);
-                $totalItems = $row['total'];
-                $totalPages = ceil($totalItems / $itemsPerPage);
-
-                echo '<div class="d-flex justify-content-center mt-3">
-                      <nav aria-label="Menu item navigation">
-                          <ul class="pagination">';
-
-                // Disable the previous button on the first page
-                if ($page == 1) {
-                    echo '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a></li>';
-                } else {
-                    echo '<li class="page-item"><a class="page-link" href="?restaurantID=' . $restaurantID . '&page=' . ($page - 1) . '">Previous</a></li>';
-                }
-
-                // Display up to five page links
-                $startPage = max(1, $page - 2);
-                $endPage = min($totalPages, $page + 2);
-
-                for ($i = $startPage; $i <= $endPage; $i++) {
-                    if ($i == $page) {
-                        echo '<li class="page-item active"><a class="page-link" href="#">' . $i . '</a></li>';
-                    } else {
-                        echo '<li class="page-item"><a class="page-link" href="?restaurantID=' . $restaurantID . '&page=' . $i . '">' . $i . '</a></li>';
+                <?php include 'menuItemPopUp.php';
                     }
-                }
-
-                // Disable the next button on the last page
-                if ($page == $totalPages) {
-                    echo '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a></li>';
                 } else {
-                    echo '<li class="page-item"><a class="page-link" href="?restaurantID=' . $restaurantID . '&page=' . ($page + 1) . '">Next</a></li>';
-                }
-                echo '</ul></nav>';
-                ?>
+                    echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
+                        <h5><strong>There are currently no <span style="color:var(--orange)">meals</span> available</strong></h5>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mb-3 p-0">
+                        <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 25%;">
+                    </div>';
+                } ?>
             </div>
+        </div>
+        <div class="tab-pane fade" id="pills-drinks-tab" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
 
+            <?php
 
-            <div class="tab-pane fade" id="pills-drinks-tab" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">HI</div>
-            <div class="tab-pane fade" id="pills-desserts-tab" role="tabpanel" aria-labelledby="pills-desserts-tab" tabindex="0">BYE</div>
-            <div class="tab-pane fade" id="pills-addons-tab" role="tabpanel" aria-labelledby="pills-addons-tab" tabindex="0">HEY</div>
+            $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Drinks'";
+
+            $result = mysqli_query($conn, $sql);
+
+            echo '<div class="row gap-5 d-flex flex-row justify-content-start">';
+            if (mysqli_num_rows($result) > 0) {
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    // Create a card for the menu item
+            ?>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
+                                <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
+                                <div class="row d-flex align-items-center">
+                                    <h6 class="card-price col-md-8 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                    <?php
+                                    if (isset($_SESSION['accountID'])) {
+                                    ?>
+                                        <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                    <?php } else { ?>
+                                        <div class="col-md-4"></div>
+                                    <?php
+                                    };
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            <?php include 'menuItemPopUp.php';
+                }
+            } else {
+                echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
+                        <h5><strong>There are currently no <span style="color:var(--orange)">drinks</span> available</strong></h5>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mb-3 p-0">
+                        <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 25%;">
+                    </div>';
+            } ?>
         </div>
     </div>
+    <div class="tab-pane fade" id="pills-desserts-tab" role="tabpanel" aria-labelledby="pills-desserts-tab" tabindex="0">
+
+        <?php
+
+        $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Desserts'";
+
+        $result = mysqli_query($conn, $sql);
+
+        echo '<div class="row gap-5 d-flex flex-row justify-content-start">';
+        if (mysqli_num_rows($result) > 0) {
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Create a card for the menu item
+        ?>
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
+                            <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
+                            <div class="row d-flex align-items-center">
+                                <h6 class="card-price col-md-8 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                <?php
+                                if (isset($_SESSION['accountID'])) {
+                                ?>
+                                    <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                <?php } else { ?>
+                                    <div class="col-md-4"></div>
+                                <?php
+                                };
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <?php include 'menuItemPopUp.php';
+            }
+        } else {
+            echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
+                        <h5><strong>There are currently no <span style="color:var(--orange)">desserts</span> available</strong></h5>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mb-3 p-0">
+                        <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 25%;">
+                    </div>';
+        } ?>
     </div>
-    <div class="col-md-1"></div>
+
+    </div>
 
 
+    <div class="tab-pane fade" id="pills-addons-tab" role="tabpanel" aria-labelledby="pills-addons-tab" tabindex="0">
+
+        <?php
+
+        $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Add-Ons'";
+
+        $result = mysqli_query($conn, $sql);
+
+        echo '<div class="row gap-5 d-flex flex-row justify-content-start">';
+        if (mysqli_num_rows($result) > 0) {
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Create a card for the menu item
+        ?>
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
+                            <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
+                            <div class="row d-flex align-items-center">
+                                <h6 class="card-price col-md-8 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                <?php
+                                if (isset($_SESSION['accountID'])) {
+                                ?>
+                                    <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                <?php } else { ?>
+                                    <div class="col-md-4"></div>
+                                <?php
+                                };
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <?php include 'menuItemPopUp.php';
+            }
+        } else {
+            echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
+                        <h5><strong>There are currently no <span style="color:var(--orange)">add-ons</span> available</strong></h5>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mb-3 p-0">
+                        <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 25%;">
+                    </div>';
+        } ?>
+    </div>
+    </div>
+
+
+    <div class="col-md-2"></div>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <?php if (isset($_SESSION['accountID'])) {
         ?>
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <div class="offcanvas-header d-flex justify-content-center flex-column">
+                <h5 class="offcanvas-title"><strong>Your Cart</strong></h5>
+                <h6 class="text-muted mt-2" id="add-text">Start adding items into your cart</h6>
             </div>
-            <div class="offcanvas-body row w-auto h-100 mx-2 d-flex flex-column">
+
+            <div class="offcanvas-body px-4 pb-4  w-100 h-100 p-0 d-flex flex-column">
                 <form id="cart-form" class="p-0 h-100 d-flex flex-column">
                     <div class="cart-items flex-grow-1"></div>
                     <div class="cart-total container-fluid w-100 p-0">
-                        <div class="row">
-                            <div class="col-12 d-flex flex-row">
-                                <strong class="cart-total-title">Total: </strong>
-                                <span class="cart-total-price">RM 0</span>
+                        <div class="d-flex flex-column">
+                            <div class="col-12 d-flex flex-row justify-content-between">
+                                <h6>Service Tax (10%)</h6>
+                                <h6  class="cart-service">RM 0</h6>
                             </div>
-                            <div class="col-12 d-flex justify-content-center">
-                                <button class="btn btn-primary" id="submitCart">Submit Cart</button>
+                            <div class="col-12 d-flex flex-row justify-content-between">
+                                <h6>Sales Tax (6%)</h6>
+                                <h6 class="cart-sales">RM 0</h6>
+                            </div>
+                            <div class="col-12 d-flex flex-row justify-content-between mt-2">
+                                <h5><strong class="cart-total-title">Grand Total</strong></h5>
+                                <h5><strong><span class="cart-total-price">RM 0</span></strong></h5>
+                            </div>
+                            <div class="col-12 d-flex mt-4 justify-content-center align-items-end">
+                                <button class="btn orange-btn" id="submitCart">Submit Cart</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
+
         <?php } else {
         ?> <div class="offcanvas-body row w-auto h-100 mx-2 d-flex flex-column justify-content-center align-items-center">
-                <button class="btn btn-primary me-3 w-50" type="button" data-bs-toggle="modal" data-bs-target="#loginModalToggle">
+                <div class="col-12 mb-5">
+                    <img src="images/login.jpg" class="img-fluid" alt="Login First">
+                </div>
+                <button class="btn orange-btn me-3 w-50" type="button" data-bs-toggle="modal" data-bs-target="#loginModalToggle">
                     Please Login First
                 </button>
             </div>
         <?php
         }; ?>
     </div>
+
 
 
 

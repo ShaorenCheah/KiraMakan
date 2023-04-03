@@ -32,6 +32,12 @@ body::-webkit-scrollbar {
   box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
 }
 
+.form-select select:focus,
+.form-select select:active {
+  border-color: #ff7629;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
+}
+
 .back-btn.btn {
   border: none;
   border-radius: 0px;
@@ -67,7 +73,8 @@ body::-webkit-scrollbar {
 
 .white-btn:hover svg {
   transition: filter 0.1s ease-in-out;
-  filter: invert(1);
+  filter: invert(1) brightness(100%) grayscale(100%);
+  color: white;
 }
 
 .orange-btn.btn {
@@ -333,26 +340,22 @@ i {
 
 /* Food options Section Start */
 #pills-tab .nav-link {
-  border: 2px solid #005fbb;
-  border-radius: 10px;
-  padding: 5px 10px;
+  border: 1px solid var(--orange);
   background-color: white;
-  color: black;
-  width: 20%;
-  font-weight: bold;
+  color: var(--primary);
+  width:20%;
 }
 
 #pills-tab .active {
-  border-radius: 10px;
-  padding: 5px 10px;
-  background-color: #005fbb;
+  border: 1px solid var(--orange);
+  background-color: var(--orange);
   color: white;
 
 }
 
 #pills-tab button.nav-link:hover {
-  background-color: #005fbb;
-  color: white;
+  background-color: var(--orange);
+  color: white !important;
 }
 
 .cart-item {
@@ -362,8 +365,7 @@ i {
 
 .cart-total {
   height: 20%;
-  border: 2px solid var(--main);
-  border-radius:15px;
+
 }
 
 .cart-item-title {
@@ -395,11 +397,10 @@ i {
   text-align: center;
 }
 
-.btn-danger {
-  font-size: 14px;
-  font-weight: 400;
+.badge{
+  color:white;
+  background-color: var(--orange);
 }
-
 
 /* Food options Section End */
 
