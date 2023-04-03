@@ -236,9 +236,6 @@ i {
   border-bottom-left-radius: 25px;
 }
 
-#myCarousel .carousel-inner {
-  background-color: var(--pastel);
-}
 
 #myCarousel .card-body {
   background-color: var(--white);
