@@ -195,8 +195,21 @@ function ready() {
         document.getElementsByClassName('cart-service')[0].innerText = 'RM ' + service.toFixed(2);
         sales = net * 0.06;
         document.getElementsByClassName('cart-sales')[0].innerText = 'RM ' + sales.toFixed(2);
-        total = net + service + sales;
-        document.getElementsByClassName('cart-total-price')[0].innerText = 'RM ' + total.toFixed(2);
+
+        final = net * 1.16;
+        secondDecimal = Math.floor(final * 100) % 10;
+
+        if (secondDecimal <= 4) {
+            final = Math.floor(final * 10) / 10;
+        } else {
+            final = Math.ceil(final * 10) / 10;
+        }
+
+        document.getElementsByClassName('cart-total-price')[0].innerText = 'RM ' + final.toFixed(2);
+
+
+
+
         updateCartIcon();
     }
 
@@ -218,6 +231,13 @@ function ready() {
         event.preventDefault();
 
         var cartItems = document.getElementsByClassName('cart-items')[0];
+        var cartItemCount = cartItems.children.length;
+        // Check if cart is empty
+        if (cartItemCount == 0) {
+            alert('Your cart is empty. Please add some items before placing your order.');
+            return;
+        }
+        console.log('Cart item count:', cartItemCount);
         var cartRows = cartItems.getElementsByClassName('cart-row');
         var orderData = [];
         var totalPrice = parseFloat(document.getElementsByClassName('cart-total-price')[0].textContent.replace('RM ', ''));

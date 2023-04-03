@@ -290,7 +290,7 @@
                                 <h6 class="cart-sales">RM 0</h6>
                             </div>
                             <div class="col-12 d-flex flex-row justify-content-between mt-2">
-                                <h5><strong class="cart-total-title">Grand Total</strong></h5>
+                                <h5><strong class="cart-total-title">Grand Total </strong><span class="text-muted" style="font-size:12px">(rounded price)</span></h5>
                                 <h5><strong><span class="cart-total-price">RM 0</span></strong></h5>
                             </div>
                             <div class="col-12 d-flex mt-4 justify-content-center align-items-end">

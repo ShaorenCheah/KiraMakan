@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2023 at 03:38 PM
+-- Generation Time: Apr 03, 2023 at 02:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -75,6 +75,7 @@ CREATE TABLE `menu` (
   `menuID` varchar(5) NOT NULL,
   `restaurantID` varchar(5) NOT NULL,
   `itemName` varchar(100) NOT NULL,
+  `category` varchar(255) NOT NULL,
   `itemDescription` longtext NOT NULL,
   `itemPrice` decimal(10,2) NOT NULL,
   `menuURL` longtext NOT NULL,
@@ -85,10 +86,10 @@ CREATE TABLE `menu` (
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `itemDescription`, `itemPrice`, `menuURL`, `availability`) VALUES
-('M0001', 'R0001', 'Fillet O Fish', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '12.00', 'filletofish.jpg', 'Available'),
-('M0002', 'R0001', 'Mc Chicken', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '10.00', 'mcchicken.jpg', 'Available'),
-('M0003', 'R0001', 'Ayam Goreng McD', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '14.00', 'ayamgorengmcd.png', 'Available');
+INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `category`, `itemDescription`, `itemPrice`, `menuURL`, `availability`) VALUES
+('M0001', 'R0001', 'Fillet O Fish', 'Meals', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '12.00', 'filletofish.jpg', 'Available'),
+('M0002', 'R0001', 'Mc Chicken', 'Meals', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '10.00', 'mcchicken.jpg', 'Available'),
+('M0003', 'R0001', 'Ayam Goreng McD', 'Add-Ons', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '14.00', 'ayamgorengmcd.png', 'Available');
 
 -- --------------------------------------------------------
 
@@ -105,6 +106,14 @@ CREATE TABLE `orders` (
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderID`, `restaurantID`, `customerID`, `orderDate`, `totalPrice`, `status`) VALUES
+('ORD0001', 'R0001', 'C0002', '2023-04-03 13:05:20', '0.00', 'Pending'),
+('ORD0002', 'R0001', 'C0002', '2023-04-03 14:09:38', '25.52', 'Pending');
+
 -- --------------------------------------------------------
 
 --
@@ -116,6 +125,13 @@ CREATE TABLE `order_person` (
   `orderID` varchar(7) NOT NULL,
   `personName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_person`
+--
+
+INSERT INTO `order_person` (`opID`, `orderID`, `personName`) VALUES
+('OP0001', 'ORD0002', 'Cheah Shaoren');
 
 -- --------------------------------------------------------
 
@@ -130,6 +146,14 @@ CREATE TABLE `person_menu` (
   `price` double(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `person_menu`
+--
+
+INSERT INTO `person_menu` (`opID`, `menuID`, `quantity`, `price`) VALUES
+('OP0001', 'M0001', 1, 12.00),
+('OP0001', 'M0002', 1, 10.00);
+
 -- --------------------------------------------------------
 
 --
@@ -141,21 +165,22 @@ CREATE TABLE `restaurants` (
   `restaurantName` varchar(256) NOT NULL,
   `accountID` varchar(5) NOT NULL,
   `restaurantDescription` longtext NOT NULL,
-  `restaurantURL` longtext NOT NULL
+  `restaurantURL` longtext NOT NULL,
+  `status` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `restaurants`
 --
 
-INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `restaurantURL`) VALUES
-('R0001', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
-('R0002', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
-('R0003', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
-('R0004', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
-('R0005', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
-('R0006', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png'),
-('R0007', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'mcdonaldslogo.png');
+INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `restaurantURL`, `status`) VALUES
+('R0001', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
+('R0002', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
+('R0003', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
+('R0004', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
+('R0005', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
+('R0006', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
+('R0007', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', '');
 
 --
 -- Indexes for dumped tables
