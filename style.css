@@ -67,7 +67,8 @@ body::-webkit-scrollbar {
 
 .white-btn:hover svg {
   transition: filter 0.1s ease-in-out;
-  filter: invert(1);
+  filter: invert(1) brightness(100%) grayscale(100%);
+  color: white;
 }
 
 .orange-btn.btn {
@@ -333,26 +334,22 @@ i {
 
 /* Food options Section Start */
 #pills-tab .nav-link {
-  border: 2px solid #005fbb;
-  border-radius: 10px;
-  padding: 5px 10px;
+  border: 1px solid var(--orange);
   background-color: white;
-  color: black;
-  width: 20%;
-  font-weight: bold;
+  color: var(--primary);
+  width:20%;
 }
 
 #pills-tab .active {
-  border-radius: 10px;
-  padding: 5px 10px;
-  background-color: #005fbb;
+  border: 1px solid var(--orange);
+  background-color: var(--orange);
   color: white;
 
 }
 
 #pills-tab button.nav-link:hover {
-  background-color: #005fbb;
-  color: white;
+  background-color: var(--orange);
+  color: white !important;
 }
 
 .cart-item {

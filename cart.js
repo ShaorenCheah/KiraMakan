@@ -31,12 +31,24 @@ function ready() {
         return false;
     }
 
+    const cartButton = document.querySelector('.btn');
+    const cartItemCount = 0; // replace with actual item count from shopping cart
+
+    const cartBadge = cartButton.querySelector('.badge');
+    if (cartItemCount > 0) {
+        cartBadge.textContent = cartItemCount;
+        cartBadge.classList.add('visible');
+    } else {
+        cartBadge.classList.remove('visible');
+    }
+
     function clearCart() {
         var cartItemContainer = document.getElementsByClassName('cart-items')[0];
         while (cartItemContainer.hasChildNodes()) {
             cartItemContainer.removeChild(cartItemContainer.firstChild);
         }
         updateCartTotal();
+        updateCartIcon();
         localStorage.removeItem('cartData');
     }
 
@@ -51,6 +63,7 @@ function ready() {
         if (localStorage.getItem('cartData')) {
             cartItemContainer.innerHTML = localStorage.getItem('cartData');
         }
+        updateCartIcon();
     }
 
     // Call the existing loadCartData() function
@@ -89,6 +102,7 @@ function ready() {
         // Update cart rows
         var cartItemContainer = document.getElementsByClassName('cart-items')[0];
         var cartRows = cartItemContainer.getElementsByClassName('cart-row');
+        updateCartIcon();
     }
 
     // Update the 'quantityChanged' function
@@ -112,6 +126,7 @@ function ready() {
         var selectedName = orderNameDropdown.value;
         addItemToCart(title, quantity, price, menuID, selectedName);
         updateCartTotal();
+        updateCartIcon();
         saveCartData(); // Save cart data after adding a new item
     };
 
@@ -181,6 +196,17 @@ function ready() {
         total = Math.round(total * 100) / 100;
         document.getElementsByClassName('cart-total-price')[0].innerText = 'RM ' + total.toFixed(2);
     }
+
+    function updateCartIcon() {
+        var cartItemCount = document.getElementsByClassName('cart-row').length;
+        var cartBadge = document.querySelector('.badge');
+        if (cartItemCount > 0) {
+          cartBadge.textContent = cartItemCount;
+          cartBadge.classList.add('visible');
+        } else {
+          cartBadge.classList.remove('visible');
+        }
+      }
 
     document.getElementById('submitCart').addEventListener('click', submitCart);
 

@@ -48,7 +48,7 @@
 
 
         <div class="row m-0 col-10 d-flex align-items-start">
-            <div class="row col-12 g-5 m-0 mt-1 p-0 d-flex justify-content-center align-items-center">
+            <div class="row col-12 g-5 m-0 mt-1 p-0 d-flex justify-content-start">
 
                 <?php
                 if (isset($_GET['search'])) {
