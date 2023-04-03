@@ -20,8 +20,8 @@
         <?php include 'header.php'; ?>
     </header>
 
-    <div class="container pt-4 min-vh-100">
-        <div class="row m-0">
+    <div class="container pt-4 min-vh-100 d-flex flex-column  align-items-center">
+        <div class="row m-0 col-10 d-flex align-items-start">
             <div class="col-12 d-flex justify-content-center mt-4 mb-3">
                 <h1><strong>Select a <span style="color:var(--orange)">Restaurant</span></strong></h1>
             </div>
@@ -30,10 +30,10 @@
                 <div class="col-3"></div>
                 <div class="col-5">
                     <div class="input-group">
-                        
+
                         <input type="text" class="form-control w-25" name="search" placeholder="Enter restaurant name..." value="<?php if (isset($_GET['search'])) {
-                                                                                                                                echo $_GET['search'];
-                                                                                                                            } ?>" autocomplete="off">
+                                                                                                                                        echo $_GET['search'];
+                                                                                                                                    } ?>" autocomplete="off">
                     </div>
                 </div>
                 <div class="col-2 d-flex align-items-center">
@@ -44,15 +44,16 @@
                 </div>
                 <div class="col-2"></div>
             </form>
+        </div>
 
 
-
+        <div class="row m-0 col-10 d-flex align-items-start">
             <div class="row col-12 g-5 m-0 mt-1 p-0 d-flex justify-content-center align-items-center">
-            
+
                 <?php
-                if(isset($_GET['search'])){
+                if (isset($_GET['search'])) {
                     $filterValues = $_GET['search'];
-                }else{
+                } else {
                     $filterValues = '';
                 }
 
@@ -76,9 +77,9 @@
                         </div>
                 <?php
                     }
-                }else{
+                } else {
                     echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
-                            <h5><strong>No results found for <span style="color:var(--orange)">'.$filterValues.'</span></strong></h5>
+                            <h5><strong>No results found for <span style="color:var(--orange)">' . $filterValues . '</span></strong></h5>
                         </div>
                         <div class="col-12 d-flex justify-content-center mb-3 p-0">
                             <img src="images/search.png" alt="empty" class="img-fluid" style="width: 25%;">
