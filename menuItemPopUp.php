@@ -5,8 +5,6 @@ echo '
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">' . $row['itemName'] . '</h1><br>
-
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex h-auto flex-row w-100 container-fluid justify-content-between" id="type-modal">
                 <div class=" col-12 d-flex flex-column">

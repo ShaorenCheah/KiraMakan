@@ -86,7 +86,7 @@
                 ?>
                         <div class="col-md-3">
                             <div class="card">
-                                <img src="images/restaurants/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                                <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
                                 <div class="card-body">
                                     <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                     <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -134,7 +134,7 @@
             ?>
                     <div class="col-md-3">
                         <div class="card">
-                            <img src="images/restaurants/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                            <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                 <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -182,7 +182,7 @@
         ?>
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="images/restaurants/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                        <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
                         <div class="card-body">
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -233,7 +233,7 @@
         ?>
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="images/restaurants/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                        <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
                         <div class="card-body">
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -271,26 +271,36 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <?php if (isset($_SESSION['accountID'])) {
         ?>
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <div class="offcanvas-header d-flex justify-content-center flex-column">
+                <h5 class="offcanvas-title"><strong>Your Cart</strong></h5>
+                <h6 class="text-muted mt-2" id="add-text">Start adding items into your cart</h6>
             </div>
-            <div class="offcanvas-body row w-auto h-100 mx-2 d-flex flex-column">
+
+            <div class="offcanvas-body px-4 pb-4  w-100 h-100 p-0 d-flex flex-column">
                 <form id="cart-form" class="p-0 h-100 d-flex flex-column">
                     <div class="cart-items flex-grow-1"></div>
                     <div class="cart-total container-fluid w-100 p-0">
-                        <div class="row">
-                            <div class="col-12 d-flex flex-row">
-                                <strong class="cart-total-title">Total: </strong>
-                                <span class="cart-total-price">RM 0</span>
+                        <div class="d-flex flex-column">
+                            <div class="col-12 d-flex flex-row justify-content-between">
+                                <h6>Service Tax (10%)</h6>
+                                <h6  class="cart-service">RM 0</h6>
                             </div>
-                            <div class="col-12 d-flex justify-content-center">
-                                <button class="btn btn-primary" id="submitCart">Submit Cart</button>
+                            <div class="col-12 d-flex flex-row justify-content-between">
+                                <h6>Sales Tax (6%)</h6>
+                                <h6 class="cart-sales">RM 0</h6>
+                            </div>
+                            <div class="col-12 d-flex flex-row justify-content-between mt-2">
+                                <h5><strong class="cart-total-title">Grand Total</strong></h5>
+                                <h5><strong><span class="cart-total-price">RM 0</span></strong></h5>
+                            </div>
+                            <div class="col-12 d-flex mt-4 justify-content-center align-items-end">
+                                <button class="btn orange-btn" id="submitCart">Submit Cart</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
+
         <?php } else {
         ?> <div class="offcanvas-body row w-auto h-100 mx-2 d-flex flex-column justify-content-center align-items-center">
                 <div class="col-12 mb-5">
@@ -303,7 +313,7 @@
         <?php
         }; ?>
     </div>
-    </div>
+
 
 
 

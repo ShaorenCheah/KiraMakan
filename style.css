@@ -32,6 +32,12 @@ body::-webkit-scrollbar {
   box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
 }
 
+.form-select select:focus,
+.form-select select:active {
+  border-color: #ff7629;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
+}
+
 .back-btn.btn {
   border: none;
   border-radius: 0px;
@@ -359,8 +365,7 @@ i {
 
 .cart-total {
   height: 20%;
-  border: 2px solid var(--main);
-  border-radius:15px;
+
 }
 
 .cart-item-title {
@@ -392,11 +397,10 @@ i {
   text-align: center;
 }
 
-.btn-danger {
-  font-size: 14px;
-  font-weight: 400;
+.badge{
+  color:white;
+  background-color: var(--orange);
 }
-
 
 /* Food options Section End */
 

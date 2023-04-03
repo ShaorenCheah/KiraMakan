@@ -65,7 +65,7 @@
                 ?>
                         <div class="col-md-4">
                             <div class="card">
-                                <img src="images/restaurants/<?php echo $rows['restaurantURL']; ?>" class="card-img-top" alt="<?php echo $rows['restaurantName']; ?>">
+                                <img src="images/restaurants/<?php echo $rows['restaurantName'] ?>/<?php echo $rows['restaurantURL']; ?>" class="card-img-top" alt="<?php echo $rows['restaurantName']; ?>">
                                 <div class="card-body">
                                     <h5 class="card-title"><strong><?php echo $rows['restaurantName']; ?></strong></h5>
                                     <p class="card-text"><?php echo $rows['restaurantDescription']; ?></p>
