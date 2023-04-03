@@ -65,77 +65,78 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class=" restaurant-carousel" id="restaurant-carousel">
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center mt-5 mb-4">
-                    <h1 class="display-4 font-weight-bold" style="color:var(--primary)"><strong>Our <span style="color:var(--orange)">Restaurant</span> Partners</strong></h1>
-                </div>
+    <div class=" restaurant-carousel mt-2" id="restaurant-carousel">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center mt-5 mb-4">
+                <h1 class="display-4 font-weight-bold" style="color:var(--primary)"><strong>Our <span style="color:var(--orange)">Restaurant</span> Partners</strong></h1>
+            </div>
 
-                <div class="col-2"></div>
-                <div id="myCarousel" class="col-8 carousel slide my-3" data-bs-ride="carousel">
-                    <?php
-                    include './includes/connection.inc.php';
-                    $sql = "SELECT * FROM Restaurants";
-                    $run = mysqli_query($conn, $sql);
-                    $rows = mysqli_fetch_all($run, MYSQLI_ASSOC);
-                    ?>
+            <div class="col-1"></div>
+            <div id="myCarousel" class="col-10 carousel slide my-3" data-bs-ride="carousel">
+                <?php
+                include './includes/connection.inc.php';
+                $sql = "SELECT * FROM Restaurants";
+                $run = mysqli_query($conn, $sql);
+                $rows = mysqli_fetch_all($run, MYSQLI_ASSOC);
+                ?>
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner pb-5">
-                        <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
-                            <div class="carousel-item <?php echo $i == 0 ? 'active' : ''; ?>">
-                                <div class="row g-5">
-                                    <?php for ($j = $i; $j < $i + 3 && $j < count($rows); $j++) { ?>
-                                        <div class="col-md-4 px-5">
-                                            <div class="card">
-                                                <img src="images/restaurants/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top rounded" alt="<?php echo $rows[$j]['restaurantName']; ?>">
-                                                <div class="card-body">
-                                                    <h4 class="card-title" style="font-weight:500"><?php echo $rows[$j]['restaurantName']; ?></h4>
-                                                    <p class="card-text"><?php echo $rows[$j]['restaurantDescription']; ?></p>
-                                                </div>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner pb-5">
+                    <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
+                        <div class="carousel-item <?php echo $i == 0 ? 'active' : ''; ?>">
+                            <div class="row g-2 ">
+                                <?php for ($j = $i; $j < $i + 3 && $j < count($rows); $j++) { ?>
+                                    <div class="col-md-4">
+                                        <div class="card px-2">
+                                            <img src="images/restaurants/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top rounded" alt="<?php echo $rows[$j]['restaurantName']; ?>">
+                                            <div class="card-body">
+                                                <h4 class="card-title" style="font-weight:500"><?php echo $rows[$j]['restaurantName']; ?></h4>
+                                                <p class="card-text"><?php echo $rows[$j]['restaurantDescription']; ?></p>
                                             </div>
                                         </div>
-                                    <?php } ?>
-                                </div>
+                                    </div>
+                                <?php } ?>
                             </div>
+                        </div>
+                    <?php } ?>
+                </div>
+                <div class="pt-5">
+                    <!-- Indicators -->
+                    <div class="carousel-indicators mt-5">
+                        <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
+                            <button type="button" style="background-color:var(--orange);" data-bs-target="#myCarousel" data-bs-slide-to="<?php echo $i / 3; ?>" class="<?php echo $i == 0 ? 'active' : ''; ?>" aria-current="<?php echo $i == 0 ? 'true' : 'false'; ?>" aria-label="Slide <?php echo $i / 3 + 1; ?>"></button>
                         <?php } ?>
                     </div>
-                    <div class="pt-5">
-                        <!-- Indicators -->
-                        <div class="carousel-indicators mt-5">
-                            <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
-                                <button type="button" style="background-color:var(--orange);" data-bs-target="#myCarousel" data-bs-slide-to="<?php echo $i / 3; ?>" class="<?php echo $i == 0 ? 'active' : ''; ?>" aria-current="<?php echo $i == 0 ? 'true' : 'false'; ?>" aria-label="Slide <?php echo $i / 3 + 1; ?>"></button>
-                            <?php } ?>
-                        </div>
-                    </div>
-
-                    <!-- Left and right controls -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                        <span aria-hidden="true"><i>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="var(--primary)" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                                </svg></i></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-
-                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                        <span aria-hidden="true"><i>
-                                <svg xmlns="http://www.w3.org/2000/svg"  width="50" height="50" fill="var(--primary)" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                                </svg>
-                            </i></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <div class="col-2"></div>
-                <div class="col-12 d-flex justify-content-center mb-5">
-                    <a href="restaurantOptions.php" class="btn orange-btn fs-4">Order now</a>
                 </div>
 
-                <?php include 'restaurantPopUp.php'; ?>
+                <!-- Left and right controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span aria-hidden="true"><i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="var(--primary)" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                            </svg></i></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span aria-hidden="true"><i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="var(--primary)" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </i></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
+            <div class="col-"></div>
+            <div class="col-12 d-flex justify-content-center mb-5">
+                <a href="restaurantOptions.php" class="btn orange-btn fs-4">Order now</a>
+            </div>
+
+            <?php include 'restaurantPopUp.php'; ?>
         </div>
+    </div>
 
 
 </body>
