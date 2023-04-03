@@ -4,7 +4,8 @@
   --orange: #ff7629;
   --orange-secondary:#ffad71;
   --pastel: #ffe9d4;
-  --light:#fff5ed;
+  --light:#fbf8f9;
+
 }
 
 
@@ -105,17 +106,21 @@ body::-webkit-scrollbar {
   color:transparent
 }
 
-
-
-
 /* Header Navbar End */
 
-/* Hero section Start */
+/* Index section Start */
+.restaurant-carousel{
+  background-color: var(--light);
+}
+
+#restaurant-carousel h1{
+  font-weight: 500;
+  color: var(--primary);
+}
 
 
 
-
-/* Hero section End */
+/* Index section End */
 
 
 /* Contact-us Section Start */
@@ -204,12 +209,7 @@ i {
 /* Contact-Us Section End */
 
 /* Restaurant options Section Start */
-#myCarousel .restaurant-button {
-  border: none;
-  background-color: white;
-  color: #005fbb;
 
-}
 
 #myCarousel .cards-wrapper {
   display: flex;
@@ -219,6 +219,11 @@ i {
 #myCarousel .card img {
   max-width: 100%;
   max-height: 100%;
+}
+
+#myCarousel .card-title h5{
+  font-weight: 500;
+  color: var(--primary);
 }
 
 #myCarousel .card {
@@ -234,8 +239,8 @@ i {
 }
 
 #myCarousel .card-body {
-  background-color: #005fbb;
-  color: white;
+  background-color: var(--white);
+  color: var(--primary);
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
 }
@@ -245,20 +250,22 @@ i {
   position: absolute;
   top: 50%;
   height: 100px;
+  font-weight: 600;
   transform: translateY(-50%);
   width: auto;
   margin-top: -22px;
-  background-color: #005fbb;
+  background-color: transparent;
   opacity: 100%;
   border-radius: 25px;
 }
 
+
 .carousel-control-prev {
-  left: -50px;
+  left: -100px;
 }
 
 .carousel-control-next {
-  right: -50px;
+  right: -100px;
 }
 
 /* Center the form */
