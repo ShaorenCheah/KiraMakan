@@ -20,87 +20,84 @@
     <?php
     session_start();
     include '../includes/connection.inc.php';
-    
-    if(isset($_POST['completeOrder'])){
+
+    if (isset($_POST['completeOrder'])) {
         $orderID = $_POST['completeOrder'];
         $sql = "UPDATE orders SET status = 'Completed' WHERE orderID = '$orderID'";
         mysqli_query($conn, $sql);
-        if(mysqli_affected_rows($conn) > 0){
+        if (mysqli_affected_rows($conn) > 0) {
             echo "<script>alert('Order Completed!'); window.location='index.php'</script>";
         }
-        
     }
     ?>
-    <header>
-        <!-- Header -->
-        <?php include 'header.php'; ?>
-    </header>
-    <div class="row m-3" style="width:70%">
-        <div class="col-md-3 h-auto">
-            <div class="row m-0 d-flex flex-column justify-content-center align-items-center g-3">
-                <div class="col-md-12">
-                    <?php
-                        $sql = "SELECT * FROM restaurants WHERE restaurantID = '$_SESSION[restaurantID]'";
-                        $result = mysqli_query($conn, $sql);
-                        $row = mysqli_fetch_assoc($result);
-                    ?>
-                    <div class="card">
-                        <img src="../images/restaurants/mcdonaldslogo.png" class="card-img-top img-fluid" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Welcome <strong><?= $row['restaurantName'] ?></strong> ! </h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="row d-flex">
+        <?php include "sidebar.php"; ?>
+        <div class="col-md-10 my-4 d-flex justify-content-center">
+            <div class="col-md-11">
+                <div class="col-md-12 d-flex flex-row">
+                    <div class="col-md-3">
+                        <div class="card col-md-11">
+                            <div class="card-body">
+                                <h6 class="card-title"><strong>Daily Orders</strong></h6>
+                                <h3 class="card-text d-flex justify-content-end">5</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card col-md-11">
+                            <div class="card-body">
+                                <h6 class="card-title"><strong>Daily Sale</strong></h6>
+                                <h3 class="card-text d-flex justify-content-end">RM 10.00</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card col-md-11">
+                            <div class="card-body">
+                                <h6 class="card-title"><strong>Monthly Orders</strong></h6>
+                                <h3 class="card-text d-flex justify-content-end">5</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card col-md-11">
+                            <div class="card-body">
+                                <h6 class="card-title"><strong>Monthly Sales</strong></h6>
+                                <h3 class="card-text d-flex justify-content-end">RM 10.00</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="row m-0 mt-3 me-3 d-flex flex-column justify-content-center align-items-center g-3 flex-grow-1">
+                    <div class="col-md-12">
+                        <?php $today = date("Y-m-d"); ?>
+                        <h4>Todays Order (<?= $today ?>)</h4>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-borderless table-hover table-striped text-center align-middle table-bordered" style="white-space: nowrap; font-size:14px;" id="dashboard-table">
 
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text"></p>
-                        </div>
+                            <thead class="text-wrap m-auto p-auto table-dark ">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Customer Name</th>
+                                    <th scope="col">Order Time</th>
+                                    <th scope="col">Total Price</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Manage</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="text-wrap m-auto p-auto table-group-divider">
+                                <?php include "../includes/restaurant/displayOrderToday.inc.php"; ?>
+                            </tbody>
+                            <?php include "../includes/restaurant/displayOrderModal.inc.php"; ?>
+
+                        </table>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-9 h-auto">
-            <div class="row m-0 d-flex flex-column justify-content-center align-items-center g-3">
-                <div class="col-md-12">
-                    <?php $today = date("Y-m-d"); ?>
-                    <h2>Todays Order (<?= $today ?>):</h2>
-                </div>
-                <div class="col-md-12">
-                    <table class="table table-borderless table-hover table-striped text-center align-middle table-bordered fs-6 " style="white-space: nowrap;" id="dashboard-table">
-
-                        <thead class="text-wrap m-auto p-auto table-dark ">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Order Time</th>
-                                <th scope="col">Total Price</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Manage</th>
-                            </tr>
-                        </thead>
-
-                        <tbody class="text-wrap m-auto p-auto table-group-divider">
-                            <?php include "../includes/restaurant/displayOrderToday.inc.php"; ?>
-                        </tbody>
-
-                    </table>
-                </div>
-                <div class="col-md-12">
-                    <div class="col d-flex justify-content-center align-items-center my-4" id="pagination">
+                <div class="col-md-12 w-100 h-auto d-flex justify-content-center">
+                    <div class="d-flex justify-content-center align-items-center my-4 position-fixed bottom-0" id="pagination">
                         <?php
                         if ($pageno > 1) {
                             echo "<a href='index.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex' ><i class='fa fa-angle-left big' ></i></a>";
@@ -121,14 +118,15 @@
 
 </body>
 <script>
-let selectedOrderID = '';
-const orderButtons = document.querySelectorAll('.order-button');
+    let selectedOrderID = '';
+    const orderButtons = document.querySelectorAll('.order-button');
 
-orderButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        selectedOrderID = button.value;
-        console.log(selectedOrderID)
+    orderButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            selectedOrderID = button.value;
+            console.log(selectedOrderID)
+        });
     });
-});
 </script>
+
 </html>

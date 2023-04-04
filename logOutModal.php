@@ -3,16 +3,13 @@
     tabindex='-1'>
     <div class='modal-dialog modal-dialog-centered'>
         <div class='modal-content'>
-            <div class='modal-header'>
-                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-            </div>
             <div class='modal-body' id='logout-modal'>
                 <div class='row'>
-                    <div class='col-12 mt-3'>
-                        <h5 class='text-center'>Are you sure you want to log out?</h5>
+                <div class="col-12 d-flex justify-content-center align-items-center mt-4">
+                        <h4 class="fw-bold mb-2">Are you sure you want to log out?</h4>
                     </div>
                     <div class='col-12 d-flex justify-content-center mt-3'>
-                        <a href='./logOut.php' class='btn btn-primary'><i class='me-2'>
+                        <a href='./logOut.php' class='btn orange-btn'><i class='me-2'>
                                 <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white'
                                     class='bi bi-box-arrow-right' viewBox='0 0 16 16'>
                                     <path fill-rule='evenodd'
