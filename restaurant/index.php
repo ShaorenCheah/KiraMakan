@@ -68,6 +68,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="row m-0 mt-3 me-3 d-flex flex-column justify-content-center align-items-center g-3 flex-grow-1">
                     <div class="col-md-12">
                         <?php $today = date("Y-m-d"); ?>

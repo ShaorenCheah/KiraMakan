@@ -37,7 +37,12 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
     // Loop through the results and display each order in a table row
-    $count = 1;
+    if(isset($_GET['pageno'])) {
+        $count = $offset + 1;
+    } else {
+        $count = 1;
+    }
+    
     while ($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
             <th scope='row'><?= $count ?></th>
@@ -54,7 +59,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 } else {
     // If no rows were returned, display a message in a table row
-    echo "<tr><td colspan='9'>No records found.</td></tr>";
+    echo "<tr><td colspan='7'>No records found.</td></tr>";
 }
 
 // Return the total number of pages for pagination 
