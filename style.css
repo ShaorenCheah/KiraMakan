@@ -2,9 +2,9 @@
   --main: #222222;
   --secondary: #504c4a;
   --orange: #ff7629;
-  --orange-secondary:#ffad71;
+  --orange-secondary: #ffad71;
   --pastel: #ffe9d4;
-  --light:#fbf8f9;
+  --light: #fbf8f9;
 
 }
 
@@ -43,14 +43,18 @@ body::-webkit-scrollbar {
   border-radius: 0px;
   background-color: white;
   color: var(--primary);
-  border-bottom: 2px solid transparent; /* Add border instead of text-decoration */
-  padding-bottom: 3px; /* Increase the padding to add spacing */
-  transition: all 0.3s ease-in-out; /* add a transition effect for a smooth animation */
+  border-bottom: 2px solid transparent;
+  /* Add border instead of text-decoration */
+  padding-bottom: 3px;
+  /* Increase the padding to add spacing */
+  transition: all 0.3s ease-in-out;
+  /* add a transition effect for a smooth animation */
 }
 
 
 .back-btn:hover {
-  transform: scale(1.05); /* scale the button up by 5% on hover */
+  transform: scale(1.05);
+  /* scale the button up by 5% on hover */
 }
 
 
@@ -103,27 +107,32 @@ body::-webkit-scrollbar {
 
 .navbar {
   background-color: transparent;
-  box-shadow: 0px 16px 22px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 16px 22px 0px rgba(0, 0, 0, 0.1);
 }
 
 #header .nav-link {
-  border-bottom: 2px solid transparent; /* Add border instead of text-decoration */
-  padding-bottom: 3px; /* Increase the padding to add spacing */
-  transition: border-color 0.3s ease-in-out; /* Transition border-color instead of text-decoration-color */
+  border-bottom: 2px solid transparent;
+  /* Add border instead of text-decoration */
+  padding-bottom: 3px;
+  /* Increase the padding to add spacing */
+  transition: border-color 0.3s ease-in-out;
+  /* Transition border-color instead of text-decoration-color */
 }
 
-#header .active{
+#header .active {
   color: var(--main);
   font-weight: bolder;
-  border-bottom: 2px solid var(--orange); /* Add border-bottom to active class */
+  border-bottom: 2px solid var(--orange);
+  /* Add border-bottom to active class */
 }
 
 #header .nav-link:hover,
-.navbar-nav .show > .nav-link,
+.navbar-nav .show>.nav-link,
 .navbar-nav .nav-link.active,
 .nav-link:focus {
   color: var(--main);
-  border-color: var(--orange); /* Change border-color on hover/focus */
+  border-color: var(--orange);
+  /* Change border-color on hover/focus */
 }
 
 #header .navbar-toggler {
@@ -133,17 +142,17 @@ body::-webkit-scrollbar {
 }
 
 #header .navbar-toggler:focus {
-  color:transparent
+  color: transparent
 }
 
 /* Header Navbar End */
 
 /* Index section Start */
-.restaurant-carousel{
+.restaurant-carousel {
   background-color: var(--light);
 }
 
-#restaurant-carousel h1{
+#restaurant-carousel h1 {
   font-weight: 500;
   color: var(--primary);
 }
@@ -154,9 +163,6 @@ body::-webkit-scrollbar {
 
 
 /* Contact-us Section Start */
-
-
-
 .contactus {
   margin: 10px;
   max-width: 500px;
@@ -251,7 +257,7 @@ i {
   max-height: 100%;
 }
 
-#myCarousel .card-title h5{
+#myCarousel .card-title h5 {
   font-weight: 500;
   color: var(--primary);
 }
@@ -324,7 +330,7 @@ i {
   color: #721c24;
 }
 
-.numCol{
+.numCol {
   font-weight: bold;
 
 }
@@ -343,7 +349,7 @@ i {
   border: 1px solid var(--orange);
   background-color: white;
   color: var(--primary);
-  width:20%;
+  width: 20%;
 }
 
 #pills-tab .active {
@@ -397,8 +403,8 @@ i {
   text-align: center;
 }
 
-.badge{
-  color:white;
+.badge {
+  color: white;
   background-color: var(--orange);
 }
 
@@ -474,3 +480,12 @@ i {
   font-size: 14px;
   color: #0584ff;
 }
+
+/* Footer Section End */
+
+/* Sidebar Section Start */
+.sidebar{
+  box-shadow: 0px 16px 22px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Section End */

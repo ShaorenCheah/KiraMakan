@@ -20,59 +20,19 @@
     <?php
     session_start();
     include '../includes/connection.inc.php';
-    
-    if(isset($_POST['completeOrder'])){
+
+    if (isset($_POST['completeOrder'])) {
         $orderID = $_POST['completeOrder'];
         $sql = "UPDATE orders SET status = 'Completed' WHERE orderID = '$orderID'";
         mysqli_query($conn, $sql);
-        if(mysqli_affected_rows($conn) > 0){
+        if (mysqli_affected_rows($conn) > 0) {
             echo "<script>alert('Order Completed!'); window.location='index.php'</script>";
         }
-        
     }
     ?>
-    <header>
-        <!-- Header -->
-        <?php include 'header.php'; ?>
-    </header>
-    <div class="row m-3" style="width:70%">
-        <div class="col-md-3 h-auto">
-            <div class="row m-0 d-flex flex-column justify-content-center align-items-center g-3">
-                <div class="col-md-12">
-                    <?php
-                        $sql = "SELECT * FROM restaurants WHERE restaurantID = '$_SESSION[restaurantID]'";
-                        $result = mysqli_query($conn, $sql);
-                        $row = mysqli_fetch_assoc($result);
-                    ?>
-                    <div class="card">
-                        <img src="../images/restaurants/<?= $row['restaurantName'] ?>/mcdonaldslogo.png" class="card-img-top img-fluid" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Welcome <strong><?= $row['restaurantName'] ?></strong> ! </h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-8 h-auto">
+    <div class="row">
+        <?php include "sidebar.php"; ?>
+        <div class="col-md-10 h-auto">
             <div class="row m-0 d-flex flex-column justify-content-center align-items-center g-3">
                 <div class="col-md-12">
                     <?php $today = date("Y-m-d"); ?>
@@ -117,18 +77,20 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 </body>
 <script>
-let selectedOrderID = '';
-const orderButtons = document.querySelectorAll('.order-button');
+    let selectedOrderID = '';
+    const orderButtons = document.querySelectorAll('.order-button');
 
-orderButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        selectedOrderID = button.value;
-        console.log(selectedOrderID)
+    orderButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            selectedOrderID = button.value;
+            console.log(selectedOrderID)
+        });
     });
-});
 </script>
+
 </html>
