@@ -20,22 +20,22 @@
             <ul class="navbar-nav">
                 <div class="w-auto">
                     <li class="nav-item p-2 px-4">
-                        <a class="nav-link active fs-4" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link active fs-5" aria-current="page" href="index.php">Home</a>
                     </li>
                 </div>
                 <div class="w-auto p-2 px-4">
                     <li class="nav-item">
-                        <a class="nav-link fs-4" href="restaurantOptions.php">Restaurants</a>
+                        <a class="nav-link fs-5" href="restaurantOptions.php">Restaurants</a>
                     </li>
                 </div>
                 <div class="w-auto p-2 px-4">
                     <li class="nav-item">
-                        <a class="nav-link fs-4" href="#">How it Works</a>
+                        <a class="nav-link fs-5" href="#">How it Works</a>
                     </li>
                 </div>
                 <div class="w-auto p-2 px-4">
                     <li class="nav-item">
-                        <a class="nav-link fs-4" href="#">Contact</a>
+                        <a class="nav-link fs-5" href="#">Contact</a>
                     </li>
                 </div>
             </ul>
@@ -60,7 +60,7 @@
             if (!isset($_SESSION["accountID"])) {
                 echo '
                 <!-- Button trigger modal -->
-                <button class="btn fs-5 px-4 white-btn"  type="button" data-bs-toggle="modal" data-bs-target="#loginModalToggle">
+                <button class="btn fs-6 px-4 white-btn"  type="button" data-bs-toggle="modal" data-bs-target="#loginModalToggle">
                 
                 <i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--main)" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
@@ -69,7 +69,7 @@
                 Log In
                 </button>
 
-                <button class="btn fs-5 orange-btn"  data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-person" viewBox="0 0 16 16">
+                <button class="btn fs-6 orange-btn"  data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-person" viewBox="0 0 16 16">
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
                 </svg></i>Sign Up</button>
                 ';
