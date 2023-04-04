@@ -35,14 +35,14 @@
                             </h1>
                         </div>
                         <div class="col-md-12 mt-5">
-                            <p class="fs-5 pb-5 lead">
+                            <p class="fs-5 pb-3 lead">
                                 <span style="color:var(--orange); font-weight:bolder;">Kira Makan</span> is a food ordering web application designed to improve group dining experience.
                                 Enjoy various features such as <span style="color:#ef4207;">group payment calculation</span>,
                                 and <span style="color:#ef4207;">send payment receipt</span>
                                 to ease your problems when eating out in a group. Just register an account and you can enjoy the perks above.
                             </p>
                         </div>
-                        <div class="col-md-12 mt-2 d-flex">
+                        <div class="col-md-12 mt-4 d-flex">
                             <a href="restaurantOptions.php" class="btn orange-btn fs-4">Order now</a>
                         </div>
                     </div>
@@ -50,15 +50,15 @@
                     <div class="col-md-6 ps-5 d-flex h-100 gap-3 align-items-stretch flex-row">
                         <div class="col-md-5 d-flex gap-3 flex-column">
                             <div class="col-md-12 d-flex justify-content-center align-items-center">
-                                <img src="images/coffee.png" class="object-fit-cover img-fluid rounded h-100" alt="hero">
+                                <img src="images/coffee.png" class="object-fit-cover img-fluid rounded h-100" alt="Coffee">
                             </div>
                             <div class="col-md-12 d-flex justify-content-center align-items-center">
-                                <img src="images/noodles.png" class="img-fluid rounded h-100 w-100 object-fit-cover" alt="hero">
+                                <img src="images/noodles.png" class="img-fluid rounded h-100 w-100 object-fit-cover" alt="Noodles">
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="col-md-12 h-100">
-                                <img src="images/pastries.jpg" class="img-fluid rounded h-100 " alt="hero">
+                                <img src="images/pastries.jpg" class="img-fluid rounded h-100 " alt="Pastries">
                             </div>
                         </div>
                     </div>

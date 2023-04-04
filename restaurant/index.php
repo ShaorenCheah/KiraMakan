@@ -45,7 +45,7 @@
                         $row = mysqli_fetch_assoc($result);
                     ?>
                     <div class="card">
-                        <img src="../images/restaurants/mcdonaldslogo.png" class="card-img-top img-fluid" alt="...">
+                        <img src="../images/restaurants/<?= $row['restaurantName'] ?>/mcdonaldslogo.png" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Welcome <strong><?= $row['restaurantName'] ?></strong> ! </h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <div class="col-md-9 h-auto">
+        <div class="col-md-8 h-auto">
             <div class="row m-0 d-flex flex-column justify-content-center align-items-center g-3">
                 <div class="col-md-12">
                     <?php $today = date("Y-m-d"); ?>
