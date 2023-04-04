@@ -48,7 +48,7 @@ if (mysqli_num_rows($result) > 0) {
             <?php $totalPrice = $row["totalPrice"]; ?>
             <td>RM <?= $row["totalPrice"] ?></td>
             <td><?= $row["status"] ?></td>
-            <td><button class="btn btn-primary order-button" value="<?= $row['orderID'] ?>" id="<?= $row['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?= $row['orderID'] ?>Modal">Order</button></td>
+            <td><button class="btn white-btn order-button" style="font-size:14px" value="<?= $row['orderID'] ?>" id="<?= $row['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?= $row['orderID'] ?>Modal">Order</button></td>
         </tr>
         <?php
         $count++;
