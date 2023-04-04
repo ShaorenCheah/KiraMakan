@@ -30,54 +30,90 @@
         }
     }
     ?>
-    <div class="row">
+    <div class="row d-flex">
         <?php include "sidebar.php"; ?>
-        <div class="col-md-10 h-auto">
-            <div class="row m-0 d-flex flex-column justify-content-center align-items-center g-3">
-                <div class="col-md-12">
-                    <?php $today = date("Y-m-d"); ?>
-                    <h2>Todays Order (<?= $today ?>):</h2>
+        <div class="col-md-10 my-4 d-flex justify-content-center">
+            <div class="col-md-11 h-auto">
+                <div class="col-md-12 d-flex flex-row">
+                    <div class="col-md-3">
+                        <div class="card col-md-11">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>Daily Orders</strong></h5>
+                                <h2 class="card-text d-flex justify-content-end">5</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card col-md-11">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>Daily Sale</strong></h5>
+                                <h2 class="card-text d-flex justify-content-end">RM 10.00</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card col-md-11">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>Monthly Orders</strong></h5>
+                                <h2 class="card-text d-flex justify-content-end">5</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card col-md-11">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>Monthly Sales</strong></h5>
+                                <h2 class="card-text d-flex justify-content-end">RM 10.00</h2>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <table class="table table-borderless table-hover table-striped text-center align-middle table-bordered fs-6 " style="white-space: nowrap;" id="dashboard-table">
+                <div class="row m-0 mt-4 me-3 d-flex flex-column justify-content-center align-items-center g-3">
+                    <div class="col-md-12">
+                        <?php $today = date("Y-m-d"); ?>
+                        <h2>Todays Order (<?= $today ?>)</h2>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-borderless table-hover table-striped text-center align-middle table-bordered fs-6 " style="white-space: nowrap;" id="dashboard-table">
 
-                        <thead class="text-wrap m-auto p-auto table-dark ">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Order Time</th>
-                                <th scope="col">Total Price</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Manage</th>
-                            </tr>
-                        </thead>
+                            <thead class="text-wrap m-auto p-auto table-dark ">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Customer Name</th>
+                                    <th scope="col">Order Time</th>
+                                    <th scope="col">Total Price</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Manage</th>
+                                </tr>
+                            </thead>
 
-                        <tbody class="text-wrap m-auto p-auto table-group-divider">
-                            <?php include "../includes/restaurant/displayOrderToday.inc.php"; ?>
-                        </tbody>
+                            <tbody class="text-wrap m-auto p-auto table-group-divider">
+                                <?php include "../includes/restaurant/displayOrderToday.inc.php"; ?>
+                            </tbody>
+                                <?php include "../includes/restaurant/displayOrderModal.inc.php"; ?>
 
-                    </table>
-                </div>
-                <div class="col-md-12">
-                    <div class="col d-flex justify-content-center align-items-center my-4" id="pagination">
-                        <?php
-                        if ($pageno > 1) {
-                            echo "<a href='index.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex' ><i class='fa fa-angle-left big' ></i></a>";
-                        }
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col d-flex justify-content-center align-items-center my-4" id="pagination">
+                            <?php
+                            if ($pageno > 1) {
+                                echo "<a href='index.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex' ><i class='fa fa-angle-left big' ></i></a>";
+                            }
 
-                        for ($i = 0; $i < $total_pages; $i++) {
-                            echo "<a href='index.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex'>" . ($i + 1) . "</a>";
-                        }
-                        if ($i > $pageno) {
-                            echo "<a href='index.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex'><i class='fa fa-angle-right big'></i></a>";
-                        }
-                        ?>
+                            for ($i = 0; $i < $total_pages; $i++) {
+                                echo "<a href='index.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex'>" . ($i + 1) . "</a>";
+                            }
+                            if ($i > $pageno) {
+                                echo "<a href='index.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex'><i class='fa fa-angle-right big'></i></a>";
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 </body>
