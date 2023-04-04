@@ -21,11 +21,14 @@
     include './includes/connection.inc.php';
     $orderID = $_GET['orderID'];
 
-    $sql = "SELECT orderDate, totalPrice FROM orders WHERE orderID = '$orderID'";
+    $sql = "SELECT o.orderDate, o.serviceTotal, o.salesTotal, o.totalPrice, r.restaurantName FROM orders o, restaurants r WHERE o.restaurantID = r.restaurantID AND orderID = '$orderID'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $orderDate = $row['orderDate'];
+    $serviceTotal = $row['serviceTotal'];
+    $salesTotal = $row['salesTotal'];
     $totalPrice = $row['totalPrice'];
+    $restaurantName = $row['restaurantName'];
 
     ?>
     <header>
@@ -33,14 +36,17 @@
         <?php include 'header.php'; ?>
     </header>
 
-    <div class="container col-5 h-100 my-4">
+    <div class="container col-6 h-100 my-4">
         <div class="card w-100">
             <div class="card-header">
-                Order <strong>#
-                    <?= $orderID ?>
-                </strong> on <strong>
-                    <?= $orderDate ?>
-                </strong>
+                <h5 class="font-weight-bold mb-0">
+                    <strong>
+                        Order <span style="color:var(--orange)">#<?= $orderID ?>
+                        </span> on <span style="color:var(--orange)">
+                            <?= $orderDate ?>
+                        </span>@ <span style="color:var(--orange)" id="restaurantName"><?=$restaurantName?></span>
+                    </strong>
+                </h5>
             </div>
             <div class="card-body">
                 <?php
@@ -51,9 +57,11 @@
 
                         $opID = $row['opID'];
                         $personName = $row['personName'];
-
-                        echo "<h5 class='mt-3'>$personName</h5>";
-
+                ?>
+                        <div class="d-flex flex-row">
+                            <h5 class='mt-2 mb-3'><strong><?= $personName ?></strong></h5>
+                        </div>
+                        <?php
                         $sql = "SELECT * FROM person_menu WHERE opID = '$opID'";
                         $result2 = mysqli_query($conn, $sql);
                         $sum = 0;
@@ -69,50 +77,117 @@
 
                             $itemName = $row3['itemName'];
                             $unit = $row3['itemPrice'];
-                            echo "<p>$itemName x $quantity (RM " . $unit . "/unit)</p>";
-                            echo "<p>RM " . $price . "</p>";
+                        ?>
+                            <div class="d-flex flex-row justify-content-between mb-2">
+                                <h6><?= $itemName ?> x <?= $quantity ?> (RM <?= $unit ?>/unit)</h6>
+                                <h6>RM <?= $price ?></h6>
+                            </div>
+                        <?php
                         }
-                        echo
-                        "<div class='d-flex justify-content-between'>
-                        <button class='btn btn-primary align-self-end send-email' data-bs-target='#emailRecipientModalToggle' data-bs-toggle='modal' id='opID' value='$opID'>Send Email</button>
-                        <p class='d-flex justify-content-end'>Total : RM " . $sum . "</p>
-                        </div><div class='cart-item mb-4'></div>";
+                        ?>
+                        <div class='d-flex justify-content-between flex-row mt-3'>
+                            <?php if ($personName == $_SESSION['name']) {
+                                echo '<div class="col-7"></div>';
+                            } else {
+                                echo '
+                            <div class="d-flex align-items-center col-7">
+                                <button class="btn white-btn d-flex align-items-center justify-content-center send-email" data-bs-target="#emailRecipientModalToggle" data-bs-toggle="modal" id="opID" value="'.$opID.'"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-envelope mb-1" viewBox="0 0 16 16">
+                                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                                        </svg></i>Send Receipt
+                                </button>
+                            </div>';
+                            }
+
+                            $net = round($sum * 100) / 100;
+                            $service = $net * 0.1;
+                            $sales = $net * 0.06;
+
+                            $final = $net * 1.16;
+                            $secondDecimal = floor($final * 100) % 10;
+
+                            if ($secondDecimal <= 4) {
+                                $final = floor($final * 10) / 10;
+                            } else {
+                                $final = ceil($final * 10) / 10;
+                            }
+                            $service = number_format($service, 2);
+                            $sales = number_format($sales, 2);
+                            $final = number_format($final, 2);
+
+                            ?>
+                            <div class="d-flex flex-column col-5">
+                                <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                                    <p class="mb-0" style="font-size:14px">Service Tax (10%)</p>
+                                    <p class="mb-0" style="font-size:14px">RM <?= $service ?></p>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                                    <p class="mb-0" style="font-size:14px">Sales Tax (6%)</p>
+                                    <p class="mb-0" style="font-size:14px">RM <?= $sales ?></p>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+
+                                    <h5 class="mb-0"><strong>Subtotal</strong><span class="text-muted" style="font-size:12px"> (rounded price)</span></h5>
+                                    <h5 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $final ?></span></strong></h5>
+
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                        echo "<div class='cart-item mb-4'></div>";
                     }
-                    echo "<h5 class='d-flex justify-content-end'>Grand Total : <strong>RM " . $totalPrice . "</strong></h5>";
+
+
+                    ?>
+                    <div class="d-flex flex-column col-12 justify-content-end">
+                        <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                            <p class="mb-0" style="font-size:14px">Service Tax (10%)</p>
+                            <p class="mb-0" style="font-size:14px">RM <?= $serviceTotal ?></p>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                            <p class="mb-0" style="font-size:14px">Sales Tax (6%)</p>
+                            <p class="mb-0" style="font-size:14px">RM <?= $salesTotal ?></p>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+
+                            <h4 class="mb-0"><strong>Grand Total</strong><span class="text-muted" style="font-size:12px"> (rounded price)</span></h4>
+                            <h4 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $totalPrice ?></span></strong></h4>
+
+                        </div>
+                    </div>
+                <?php
                 } else {
                     echo "No results found";
                 }
                 ?>
-                 <!-- Recipient Email Modal -->
-                 <div class="modal fade" id="emailRecipientModalToggle" aria-hidden="true" aria-labelledby="emailRecipientModalToggleLabel" tabindex="-1">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="emailRecipientModalToggleLabel">Please enter recipient's email</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- Recipient Email Modal -->
+                <div class="modal fade" id="emailRecipientModalToggle" aria-hidden="true" aria-labelledby="emailRecipientModalToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="col-12 d-flex justify-content-center align-items-center mt-4">
+                                <h3 class="fw-bold mb-2">Enter recipient's email</h3>
+                            </div>
+                            <div class="modal-body" id="login-modal">
+                              
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"  style="color:var(--orange); ">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                                            </svg>
+                                        </span>
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="recEmail" name="recEmail" placeholder="name@example.com" required autocomplete="off">
+                                            <label for="recEmail">Email address</label>
+                                            <input type="hidden" name="orderID" id="opID" value="<?php echo $orderID; ?>">
+                                        </div>
                                     </div>
-                                    <div class="modal-body" id="login-modal">
-                                        <form>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                                                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
-                                                    </svg>
-                                                </span>
-                                                <div class="form-floating">
-                                                    <input type="email" class="form-control" id="recEmail" name="recEmail" placeholder="name@example.com" required autocomplete="off">
-                                                    <label for="recEmail">Email address</label>
-                                                    <input type="hidden" name="orderID" value="<?php echo $orderID; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <button type="button" class="btn btn-primary" id="submit-btn" name="recSubmit">Submit</button>
-                                            </div>
-                                        </form>
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <button type="button" class="btn orange-btn" id="submit-btn" name="recSubmit">Send</button>
                                     </div>
-                                </div>
+                       
                             </div>
                         </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -141,6 +216,7 @@
 
     // add a click event listener to the submit button
     submitBtn.addEventListener('click', () => {
+    
         // get the values of the inputs
         // get the selectedopID value
         const recEmail = document.getElementById('recEmail').value;
@@ -150,6 +226,7 @@
             alert('Please enter a valid email address');
             return;
         }
+        const restaurantName = document.getElementById("restaurantName").textContent;
         const orderID = document.getElementsByName('orderID')[0].value;
 
 
@@ -157,6 +234,7 @@
         const data = {
             recEmail: recEmail,
             orderID: orderID,
+            restaurantName: restaurantName,
             opID: selectedopID
         };
         console.log(data); // log the data object
@@ -172,9 +250,9 @@
             .then(data => {
                 console.log(data);
                 if (data.success) {
-                    alert('Email sent successfully');
+                    alert('Receipt sent successfully');
                 } else {
-                    alert('Error sending email');
+                    alert('Error sending receipt');
                 }
             });
     });

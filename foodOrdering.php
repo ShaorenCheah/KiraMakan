@@ -84,9 +84,9 @@
                     while ($row = mysqli_fetch_assoc($result)) {
                         // Create a card for the menu item
                 ?>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="card">
-                                <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                                <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
                                 <div class="card-body">
                                     <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                     <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -132,9 +132,9 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     // Create a card for the menu item
             ?>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card">
-                            <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                            <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                 <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -180,9 +180,9 @@
             while ($row = mysqli_fetch_assoc($result)) {
                 // Create a card for the menu item
         ?>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="card">
-                        <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                        <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
                         <div class="card-body">
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -231,9 +231,9 @@
             while ($row = mysqli_fetch_assoc($result)) {
                 // Create a card for the menu item
         ?>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="card">
-                        <img src="images/restaurants/<?=$restaurantName?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                        <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
                         <div class="card-body">
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -279,24 +279,24 @@
             <div class="offcanvas-body px-4 pb-4  w-100 h-100 p-0 d-flex flex-column">
                 <form id="cart-form" class="p-0 h-100 d-flex flex-column">
                     <div class="cart-items flex-grow-1"></div>
-                    <div class="cart-total container-fluid w-100 p-0">
-                        <div class="d-flex flex-column">
-                            <div class="col-12 d-flex flex-row justify-content-between">
-                                <h6>Service Tax (10%)</h6>
-                                <h6  class="cart-service">RM 0</h6>
-                            </div>
-                            <div class="col-12 d-flex flex-row justify-content-between">
-                                <h6>Sales Tax (6%)</h6>
-                                <h6 class="cart-sales">RM 0</h6>
-                            </div>
-                            <div class="col-12 d-flex flex-row justify-content-between mt-2">
-                                <h5><strong class="cart-total-title">Grand Total </strong><span class="text-muted" style="font-size:12px">(rounded price)</span></h5>
-                                <h5><strong><span class="cart-total-price">RM 0</span></strong></h5>
-                            </div>
-                            <div class="col-12 d-flex mt-4 justify-content-center align-items-end">
-                                <button class="btn orange-btn" id="submitCart">Submit Cart</button>
-                            </div>
+                    <div class="cart-total container-fluid w-100 mt-4 p-0 d-flex flex-column">
+
+                        <div class="col-12 d-flex flex-row justify-content-between">
+                            <h6>Service Tax (10%)</h6>
+                            <h6 class="cart-service">RM 0</h6>
                         </div>
+                        <div class="col-12 d-flex flex-row justify-content-between">
+                            <h6>Sales Tax (6%)</h6>
+                            <h6 class="cart-sales">RM 0</h6>
+                        </div>
+                        <div class="col-12 d-flex flex-row justify-content-between mt-2">
+                            <h5><strong class="cart-total-title">Grand Total </strong><span class="text-muted" style="font-size:12px">(rounded price)</span></h5>
+                            <h5><strong><span class="cart-total-price">RM 0</span></strong></h5>
+                        </div>
+                        <div class="col-12 d-flex mt-4 pb-3 justify-content-center align-items-end">
+                            <button class="btn orange-btn" id="submitCart">Submit Cart</button>
+                        </div>
+
                     </div>
                 </form>
             </div>

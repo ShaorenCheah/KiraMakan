@@ -1,4 +1,5 @@
 <?php
+session_start();
 $orderJSON = file_get_contents('php://input');
 $order = json_decode($orderJSON, true);
 
@@ -7,6 +8,7 @@ include '../connection.inc.php';
 $email = $order['recEmail'];
 $orderID = $order['orderID'];
 $opID = $order['opID'];
+$restaurantName = $order['restaurantName'];
 
 $sql = "SELECT * FROM order_person WHERE opID = '$opID'";
 $result = mysqli_query($conn, $sql);
@@ -18,24 +20,56 @@ $date = date("d/m/Y");
 $time = date("h:i:sa");
 
 // Email subject
-$subject = "Order Confirmation";
+$subject = "Receipt for Order #".$orderID."";
 
 // Email message
 $message = "
     <html>
     <head>
-        <title>Order Confirmation</title>
+        <title>Receipt for Order #".$orderID."</title>
+        <style>
+        .table {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-collapse: separate;
+            border-spacing: 0px;
+            text-align: center;
+          }
+          
+          .table th,
+          .table td {
+            padding: 10px;
+          }
+          
+          .table tr {
+            margin-bottom: 10px;
+          }
+          
+          .table tbody tr:last-child td {
+            border-bottom: none;
+          }
+          
+          .table td:last-child {
+            font-weight: bold;
+          }
+          
+        </style>
     </head>
     <body>
-        <p>Dear $personName,</p>
-        <p>Thank you for ordering from us. Your order has been confirmed.</p>
-        <p>Order Details:</p>
-        <table>
-            <tr>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-            </tr>";
+        <div class='container'>
+            <div class='row'>
+                <div class='col-md-12'>
+                    <p>Dear $personName,</p>
+                    <p>Thank you for using Kira Makan. Here's your order receipt of dining in with <strong>" . $_SESSION['name'] . "</strong> at <strong>" . $restaurantName . "</strong>. Here are your order details: </p>
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
 
 $sql = "SELECT * FROM person_menu WHERE opID = '$opID'";
 $result = mysqli_query($conn, $sql);
@@ -52,25 +86,53 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     $itemName = $row2['itemName'];
     $message .= "        
-            <tr>
+            <tr class='d-flex justify-content-center align-items-center'>
                 <td>$itemName</td>
                 <td>$quantity</td>
-                <td>$price</td>
+                <td>RM $price</td>
             </tr>";
 
     $sum += $price;
 }
+$net = round($sum * 100) / 100;
+$service = $net * 0.1;
+$sales = $net * 0.06;
+
+$final = $net * 1.16;
+$secondDecimal = floor($final * 100) % 10;
+
+if ($secondDecimal <= 4) {
+    $final = floor($final * 10) / 10;
+} else {
+    $final = ceil($final * 10) / 10;
+}
+$service = number_format($service, 2);
+$sales = number_format($sales, 2);
+$final = number_format($final, 2);
+
 $message .= "
-            </table>
-            <p>Total Price: $sum</p>
-            <p>Order Date: $date</p>
-            <p>Order Time: $time</p>
-            <p>Thank you for your order.</p>
-            <p>Regards,</p>
-            <p>Restaurant Name</p>
-        </body>
+                    </tbody>
+                    </table>
+                    <p>
+                    Service Tax (10%): RM$service<br>
+                    Sales Tax (10%): RM$sales<br>
+                    Grand Total: <strong>RM$final</strong>
+                    </p>
+                    <p>
+                    Order Date: $date<br>
+                    Order Time: $time
+                    </p>
+                    <br>
+                    <p>Thank you for your order.</p>
+                    <p>Regards,</p>
+                    <p>Kira Makan</p>
+                </div>
+            </div>
+        </div>
+    </body>
     </html>
 ";
+
 
 // Email headers
 $headers = "From: kiramakan@outlook.com\r\n";
@@ -90,4 +152,3 @@ $response = [
 ];
 
 echo json_encode($response);
-?>
