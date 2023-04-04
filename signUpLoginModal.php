@@ -13,7 +13,7 @@
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
             </div>
             <div class="col-12 d-flex justify-content-center align-items-center">
-              <p class=" mb-3">Please enter your login and password!</p>
+              <p class=" mb-3">Please enter your email and password</p>
             </div>
 
             <form action="signUpLogin.php" method="post" novalidate onsubmit="return validateLoginForm()" class="col-12 row g-4 m-0">

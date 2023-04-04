@@ -21,10 +21,12 @@
     include './includes/connection.inc.php';
     $orderID = $_GET['orderID'];
 
-    $sql = "SELECT o.orderDate, o.totalPrice, r.restaurantName FROM orders o, restaurants r WHERE o.restaurantID = r.restaurantID AND orderID = '$orderID'";
+    $sql = "SELECT o.orderDate, o.serviceTotal, o.salesTotal, o.totalPrice, r.restaurantName FROM orders o, restaurants r WHERE o.restaurantID = r.restaurantID AND orderID = '$orderID'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $orderDate = $row['orderDate'];
+    $serviceTotal = $row['serviceTotal'];
+    $salesTotal = $row['salesTotal'];
     $totalPrice = $row['totalPrice'];
     $restaurantName = $row['restaurantName'];
 
@@ -42,9 +44,7 @@
                         Order <span style="color:var(--orange)">#<?= $orderID ?>
                         </span> on <span style="color:var(--orange)">
                             <?= $orderDate ?>
-                        </span>@ <span style="color:var(--orange)">
-                            <?= $restaurantName ?>
-                        </span>
+                        </span>@ <span style="color:var(--orange)" id="restaurantName"><?=$restaurantName?></span>
                     </strong>
                 </h5>
             </div>
@@ -91,7 +91,7 @@
                             } else {
                                 echo '
                             <div class="d-flex align-items-center col-7">
-                                <button class="btn white-btn d-flex align-items-center justify-content-center" data-bs-target="#emailRecipientModalToggle" data-bs-toggle="modal" id="opID" value="$opID"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-envelope mb-1" viewBox="0 0 16 16">
+                                <button class="btn white-btn d-flex align-items-center justify-content-center send-email" data-bs-target="#emailRecipientModalToggle" data-bs-toggle="modal" id="opID" value="'.$opID.'"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-envelope mb-1" viewBox="0 0 16 16">
                                             <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                                         </svg></i>Send Receipt
                                 </button>
@@ -136,30 +136,21 @@
                         echo "<div class='cart-item mb-4'></div>";
                     }
 
-                    $clean = $totalPrice * 0.84;
-
-                    $net = round($clean * 100) / 100;
-                    $service = $net * 0.1;
-                    $sales = $net * 0.06;
-
-                    $service = number_format($service, 2);
-                    $sales = number_format($sales, 2);
-          
 
                     ?>
                     <div class="d-flex flex-column col-12 justify-content-end">
                         <div class="d-flex flex-row justify-content-between gap-1 mb-1">
                             <p class="mb-0" style="font-size:14px">Service Tax (10%)</p>
-                            <p class="mb-0" style="font-size:14px">RM <?= $service ?></p>
+                            <p class="mb-0" style="font-size:14px">RM <?= $serviceTotal ?></p>
                         </div>
                         <div class="d-flex flex-row justify-content-between gap-1 mb-1">
                             <p class="mb-0" style="font-size:14px">Sales Tax (6%)</p>
-                            <p class="mb-0" style="font-size:14px">RM <?= $sales ?></p>
+                            <p class="mb-0" style="font-size:14px">RM <?= $salesTotal ?></p>
                         </div>
                         <div class="d-flex flex-row justify-content-between gap-1 mb-1">
 
-                            <h5 class="mb-0"><strong>Grandtotal</strong><span class="text-muted" style="font-size:12px"> (rounded price)</span></h5>
-                            <h5 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $totalPrice ?></span></strong></h5>
+                            <h4 class="mb-0"><strong>Grand Total</strong><span class="text-muted" style="font-size:12px"> (rounded price)</span></h4>
+                            <h4 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $totalPrice ?></span></strong></h4>
 
                         </div>
                     </div>
@@ -172,14 +163,13 @@
                 <div class="modal fade" id="emailRecipientModalToggle" aria-hidden="true" aria-labelledby="emailRecipientModalToggleLabel" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="emailRecipientModalToggleLabel">Please enter recipient's email</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="col-12 d-flex justify-content-center align-items-center mt-4">
+                                <h3 class="fw-bold mb-2">Enter recipient's email</h3>
                             </div>
                             <div class="modal-body" id="login-modal">
-                                <form>
+                              
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text">
+                                        <span class="input-group-text"  style="color:var(--orange); ">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
                                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                                             </svg>
@@ -187,13 +177,13 @@
                                         <div class="form-floating">
                                             <input type="email" class="form-control" id="recEmail" name="recEmail" placeholder="name@example.com" required autocomplete="off">
                                             <label for="recEmail">Email address</label>
-                                            <input type="hidden" name="orderID" value="<?php echo $orderID; ?>">
+                                            <input type="hidden" name="orderID" id="opID" value="<?php echo $orderID; ?>">
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-center">
-                                        <button type="button" class="btn btn-primary" id="submit-btn" name="recSubmit">Submit</button>
+                                        <button type="button" class="btn orange-btn" id="submit-btn" name="recSubmit">Send</button>
                                     </div>
-                                </form>
+                       
                             </div>
                         </div>
                     </div>
@@ -226,6 +216,7 @@
 
     // add a click event listener to the submit button
     submitBtn.addEventListener('click', () => {
+    
         // get the values of the inputs
         // get the selectedopID value
         const recEmail = document.getElementById('recEmail').value;
@@ -235,6 +226,7 @@
             alert('Please enter a valid email address');
             return;
         }
+        const restaurantName = document.getElementById("restaurantName").textContent;
         const orderID = document.getElementsByName('orderID')[0].value;
 
 
@@ -242,6 +234,7 @@
         const data = {
             recEmail: recEmail,
             orderID: orderID,
+            restaurantName: restaurantName,
             opID: selectedopID
         };
         console.log(data); // log the data object
@@ -257,9 +250,9 @@
             .then(data => {
                 console.log(data);
                 if (data.success) {
-                    alert('Email sent successfully');
+                    alert('Receipt sent successfully');
                 } else {
-                    alert('Error sending email');
+                    alert('Error sending receipt');
                 }
             });
     });

@@ -7,6 +7,8 @@ $orderJSON = $_POST['orderData'];
 $order = json_decode($orderJSON, true);
 
 $restaurantID = $order['restaurantID'];
+$totalService = $order['servicePrice'];
+$totalSales = $order['salesPrice'];
 $totalPrice = $order['totalPrice'];
 $current_time = date("Y-m-d H:i:s");
 
@@ -17,11 +19,11 @@ $row = mysqli_fetch_assoc($result);
 
 $orderID = $row['orderID'];
 
-$stmt = $conn->prepare("INSERT INTO Orders (orderID, restaurantID, customerID, orderDate, totalPrice,status) VALUES (?, ?, ?, ?, ?,?)");
+$stmt = $conn->prepare("INSERT INTO Orders (orderID, restaurantID, customerID, orderDate,serviceTotal, salesTotal, totalPrice,status) VALUES (?, ?, ?,?,?, ?, ?,?)");
 $customerID = $_SESSION['customerID'];
 $status = "Pending";
 // Bind the parameters
-$stmt->bind_param('ssssds', $orderID, $restaurantID, $customerID, $current_time, $totalPrice,$status);
+$stmt->bind_param('ssssddds', $orderID, $restaurantID, $customerID, $current_time,$totalService, $totalSales, $totalPrice,$status);
 $stmt->execute();
 
 $success = true;

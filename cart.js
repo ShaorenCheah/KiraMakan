@@ -242,6 +242,8 @@ function ready() {
         var orderData = [];
         var totalPrice = parseFloat(document.getElementsByClassName('cart-total-price')[0].textContent.replace('RM ', ''));
         var restaurantID = document.getElementById('restaurantID').value;
+        var servicePrice = parseFloat(document.getElementsByClassName('cart-service')[0].textContent.replace('RM ', ''));
+        var salesPrice = parseFloat(document.getElementsByClassName('cart-sales')[0].textContent.replace('RM ', ''));
         for (var i = 0; i < cartRows.length; i++) {
             var cartRow = cartRows[i];
 
@@ -250,7 +252,6 @@ function ready() {
             var menuID = cartRow.getElementsByClassName('menu-item-id')[0].value;
             var price = parseFloat(cartRow.getElementsByClassName('cart-price')[0].textContent.replace('RM ', ''));
             var quantity = parseInt(cartRow.getElementsByClassName('cart-quantity-input')[0].value);
-
             orderData.push({
                 name: selectedName,
                 menuID: menuID,
@@ -263,6 +264,8 @@ function ready() {
         var order = {
             restaurantID: restaurantID,
             orderData: orderData,
+            servicePrice: servicePrice,
+            salesPrice: salesPrice,
             totalPrice: totalPrice
         };
 
