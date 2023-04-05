@@ -147,8 +147,6 @@
                             <tbody class="text-wrap m-auto p-auto table-group-divider">
                                 <?php include "../includes/restaurant/displayOrderToday.inc.php"; ?>
                             </tbody>
-        
-
                         </table>
                         <?php include "../includes/restaurant/displayOrderModal.inc.php"; ?>
                     </div>

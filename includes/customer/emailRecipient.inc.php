@@ -115,7 +115,7 @@ $message .= "
                     </table>
                     <p>
                     Service Tax (10%): RM$service<br>
-                    Sales Tax (10%): RM$sales<br>
+                    Sales Tax (6%): RM$sales<br>
                     Grand Total: <strong>RM$final</strong>
                     </p>
                     <p>
