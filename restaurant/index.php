@@ -61,7 +61,7 @@
                         <div class="card col-md-11">
                             <div class="card-body">
                                 <?php
-                                $sql = "SELECT SUM(salesTotal) AS dailySales
+                                $sql = "SELECT SUM(totalPrice) AS dailySales
                                         FROM orders
                                         WHERE restaurantID = '$restaurantID' AND DATE(orderDate) = CURDATE();";
                                 $result = mysqli_query($conn, $sql);
@@ -101,7 +101,7 @@
                         <div class="card col-md-11">
                             <div class="card-body">
                                 <?php
-                                $sql = "SELECT SUM(salesTotal) AS monthlySales
+                                $sql = "SELECT SUM(totalPrice) AS monthlySales
                                         FROM orders
                                         WHERE restaurantID = '$restaurantID' AND MONTH(orderDate) = MONTH(CURDATE()) AND YEAR(orderDate) = YEAR(CURDATE());";
                                 $result = mysqli_query($conn, $sql);
