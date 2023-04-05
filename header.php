@@ -38,6 +38,15 @@
                         <a class="nav-link fs-5" href="#">Contact</a>
                     </li>
                 </div>
+                <?php if (isset($_SESSION['accountID'])) {
+                    echo '
+                    <div class="w-auto p-2 px-4">
+                        <li class="nav-item">
+                            <a class="nav-link fs-5" href="myOrders.php">My Orders</a>
+                        </li>
+                    </div>';
+                } 
+                ?>
             </ul>
         </div>
         <!-- Navbar logo right -->
