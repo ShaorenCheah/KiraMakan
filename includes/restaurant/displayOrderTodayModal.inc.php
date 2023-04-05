@@ -20,7 +20,7 @@ if (mysqli_num_rows($result) > 0) {
                     <div class='modal-header d-flex justify-content-start'>
                         Order <strong class='px-1'>#$orderID</strong> on <strong class='px-1'>$orderID</strong>
                     </div>
-                    <div class='modal-body' id='$orderID-modal'>";
+                    <div class='modal-body' id='".$orderID."-modal'>";
 
         // prepare and execute the SQL query
 

@@ -67,6 +67,7 @@
                                             <th scope="col">Item Name</th>
                                             <th scope="col">Item Description</th>
                                             <th scope="col">Item Price</th>
+                                            <th scope="col">Item Image</th>
                                             <th scope="col">Availability</th>
                                             <th scope="col">Manage</th>
                                         </tr>

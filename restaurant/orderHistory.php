@@ -45,14 +45,17 @@
                                             <th scope="col">Order Time</th>
                                             <th scope="col">Total Price</th>
                                             <th scope="col">Status</th>
+                                            <th scope="col">Manage</th>
                                         </tr>
                                     </thead>
 
                                     <tbody class="text-wrap m-auto p-auto table-group-divider">
                                         <?php include "../includes/restaurant/displayOrderHistory.inc.php"; ?>
                                     </tbody>
+            
 
                                 </table>
+                                <?php include "../includes/restaurant/displayOrderHistoryModal.inc.php"; ?>
                             </div>
                         </div>
 
