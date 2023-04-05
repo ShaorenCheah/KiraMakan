@@ -52,9 +52,10 @@
                                     <tbody class="text-wrap m-auto p-auto table-group-divider">
                                         <?php include "../includes/restaurant/displayOrderHistory.inc.php"; ?>
                                     </tbody>
-                                    <?php include "../includes/restaurant/displayOrderHistoryModal.inc.php"; ?>
+            
 
                                 </table>
+                                <?php include "../includes/restaurant/displayOrderHistoryModal.inc.php"; ?>
                             </div>
                         </div>
 

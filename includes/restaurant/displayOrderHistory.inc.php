@@ -53,7 +53,7 @@ if (mysqli_num_rows($result) > 0) {
             <?php $totalPrice = $row["totalPrice"]; ?>
             <td>RM <?= $row["totalPrice"] ?></td>
             <td><?= $row["status"] ?></td>
-            <td><button class="btn white-btn view-button" style="font-size:14px" value="<?= $row['orderID'] ?>" id="<?= $row['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?= $row['orderID'] ?>HistoryModal">View</button></td>
+            <td><button class="btn white-btn view-button" style="font-size:14px" value="<?= $row['orderID'] ?>" id="<?= $row['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?=$row['orderID']?>HistoryModal">View</button></td>
         </tr>
 
         <?php $count++;

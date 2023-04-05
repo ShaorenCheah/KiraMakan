@@ -17,7 +17,7 @@ if (mysqli_num_rows($result) > 0) {
 
         echo "
         <div class='modal fade' id='orderID" . $orderID . "HistoryModal' aria-hidden='true'
-            aria-labelledby='orderID" . $orderID . "ModalLabel' tabindex='-1'>
+            aria-labelledby='orderID" . $orderID . "HistoryModalLabel' tabindex='-1'>
             <div class='modal-dialog modal-dialog-centered'>
                 <div class='modal-content'>
                     <div class='modal-header d-flex justify-content-start'>
@@ -31,34 +31,38 @@ if (mysqli_num_rows($result) > 0) {
                             </strong>
                         </h5>
                     </div>
-                    <div class='modal-body' id=' ". $orderID . "-modal'>
+                    <div class='modal-body' id='" . $orderID . "-modal'>
                     ";
 
         // query to get the menuID, quantity and price of the order
         $sql = "SELECT * FROM order_person WHERE orderID = '$orderID'";
-        $result = mysqli_query($conn, $sql);
+        $result2 = mysqli_query($conn, $sql);
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $opID = $row['opID'];
+        while ($row2 = mysqli_fetch_assoc($result2)) {
 
+            $opID = $row2['opID'];
             $sql = "SELECT * FROM person_menu WHERE opID = '$opID'";
-            $result2 = mysqli_query($conn, $sql);
+            $result3 = mysqli_query($conn, $sql);
             $sum = 0;
 
-            while ($row2 = mysqli_fetch_assoc($result2)) {
-                $menuID = $row2['menuID'];
-                $quantity = $row2['quantity'];
-                $price = $row2['price'];
+            while ($row3 = mysqli_fetch_assoc($result3)) {
+                $menuID = $row3['menuID'];
+                $quantity = $row3['quantity'];
+                $price = $row3['price'];
 
                 $sql = "SELECT * FROM menu WHERE menuID = '$menuID'";
-                $result3 = mysqli_query($conn, $sql);
+                $result4 = mysqli_query($conn, $sql);
 
-                $row3 = mysqli_fetch_assoc($result3);
-                $itemName = $row3['itemName'];
-                $unit = $row3['itemPrice'];
+                $row4 = mysqli_fetch_assoc($result4);
+                $itemName = $row4['itemName'];
+                $unit = $row4['itemPrice'];
+                echo "Menu Item" . $itemName . "<br>";
+                echo "Menu Item" . $unit . "<br><br>";
             }
-                echo "
-                    </div>
+        }
+
+        echo "
+                </div>
                     <div class='modal-footer d-flex justify-content-between align-items-center'>
                         <div class='d-flex justify-content-start'>
                             <h4 class='m-0'>Total Price: RM  $totalPrice </h4>
@@ -70,8 +74,5 @@ if (mysqli_num_rows($result) > 0) {
                 </div>
             </div>
         </div>";
-            
-        }
     }
 }
-?>

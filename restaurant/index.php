@@ -147,9 +147,10 @@
                             <tbody class="text-wrap m-auto p-auto table-group-divider">
                                 <?php include "../includes/restaurant/displayOrderToday.inc.php"; ?>
                             </tbody>
-                            <?php include "../includes/restaurant/displayOrderModal.inc.php"; ?>
+        
 
                         </table>
+                        <?php include "../includes/restaurant/displayOrderModal.inc.php"; ?>
                     </div>
                 </div>
                 <div class="col-md-12 w-100 h-auto d-flex justify-content-center">
