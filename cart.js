@@ -291,7 +291,21 @@ function ready() {
             .then(data => {
                 if (data.success) {
                     alert('Order submitted successfully');
-                    window.location.href = 'orderReceipt.php?orderID=' + data.orderID;
+                    // Create a form element
+                    var form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = 'orderReceipt.php';
+
+                    // Create a hidden input field for the order ID
+                    var input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'orderID';
+                    input.value = data.orderID;
+                    form.appendChild(input);
+
+                    // Submit the form to redirect to the order receipt page with the order ID as a POST parameter
+                    document.body.appendChild(form);
+                    form.submit();
                 } else {
                     alert('Error submitting order');
                 }

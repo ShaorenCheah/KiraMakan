@@ -71,8 +71,8 @@
                                 }
                                 ?>
                                 <h6 class="card-title"><strong>Daily Sale</strong></h6>
-                                <h3 class="card-text d-flex justify-content-end">RM
-                                    <?= $dailySales ?>
+                                <h3 class="card-text d-flex justify-content-end">
+                                <?php if($dailySales != 0){ echo "RM". $dailySales.""; } else { echo"RM 0.00"; }?>
                                 </h3>
                             </div>
                         </div>
@@ -111,8 +111,8 @@
                                 }
                                 ?>
                                 <h6 class="card-title"><strong>Monthly Sales</strong></h6>
-                                <h3 class="card-text d-flex justify-content-end">RM
-                                    <?= $monthlySales ?>
+                                <h3 class="card-text d-flex justify-content-end">
+                                    <?php if($monthlySales != 0){ echo "RM". $monthlySales.""; } else { echo"RM 0.00"; }?>
                                 </h3>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                                 <?php include "../includes/restaurant/displayOrderToday.inc.php"; ?>
                             </tbody>
                         </table>
-                        <?php include "../includes/restaurant/displayOrderModal.inc.php"; ?>
+                        <?php include "../includes/restaurant/displayOrderTodayModal.inc.php"; ?>
                     </div>
                 </div>
                 <div class="col-md-12 w-100 h-auto d-flex justify-content-center">

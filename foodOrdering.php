@@ -59,7 +59,7 @@
                 if (!isset($_SESSION["email"])) {
                     echo "<option value=\"Guest\">Guest</option>";
                 } else {
-                    echo "<option value='{$_SESSION["name"]}'>{$_SESSION["name"]}</option>";
+                    echo "<option value='{$_SESSION["customerName"]}'>{$_SESSION["customerName"]}</option>";
                 }
                 foreach ($namesArray as $name) {
                     echo "<option value=\"$name\">$name</option>";

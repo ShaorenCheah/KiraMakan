@@ -19,7 +19,12 @@
     session_start();
 
     include './includes/connection.inc.php';
-    $orderID = $_GET['orderID'];
+    if(isset($_POST['orderID'])){
+        $orderID = $_POST['orderID'];
+    } else {
+        echo '<script>alert("Please order first"); window.location= "restaurantOptions.php";</script>';
+
+    }
 
     $sql = "SELECT o.orderDate, o.serviceTotal, o.salesTotal, o.totalPrice, r.restaurantName FROM orders o, restaurants r WHERE o.restaurantID = r.restaurantID AND orderID = '$orderID'";
     $result = mysqli_query($conn, $sql);
@@ -86,7 +91,7 @@
                         }
                         ?>
                         <div class='d-flex justify-content-between flex-row mt-3'>
-                            <?php if ($personName == $_SESSION['name']) {
+                            <?php if ($personName == $_SESSION['customerName']) {
                                 echo '<div class="col-7"></div>';
                             } else {
                                 echo '
@@ -226,7 +231,6 @@
             alert('Please enter a valid email address');
             return;
         }
-        const restaurantName = document.getElementById("restaurantName").textContent;
         const orderID = document.getElementsByName('orderID')[0].value;
 
 
@@ -234,7 +238,6 @@
         const data = {
             recEmail: recEmail,
             orderID: orderID,
-            restaurantName: restaurantName,
             opID: selectedopID
         };
         console.log(data); // log the data object

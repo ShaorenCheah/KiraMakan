@@ -59,7 +59,7 @@
                                     <td><?= $row["orderTime"] ?></td>
                                     <td>RM <?= $row["totalPrice"] ?></td>
                                     <td><?= $row["status"] ?></td>
-                                    <td><button class="btn white-btn order-button" style="font-size:14px" value="<?= $row['orderID'] ?>" id="<?= $row['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?= $row['orderID'] ?>Modal">Order</button></td>
+                                    <td><button class="btn white-btn order-button order-button" style="font-size:14px" value="<?= $row['orderID'] ?>" id="<?= $row['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?= $row['orderID'] ?>Modal">Order</button></td>
                                 </tr>
                         <?php $count++;
                                 include "includes/customer/displayMyOrderModal.inc.php";
@@ -105,11 +105,21 @@
         </div>
 </body>
 <script>
-    const sendEmailButtons = document.querySelectorAll('.send-email');
-    let opIDInput = document.getElementById('opID');
 
+    let orderbtn = document.querySelector('.order-button');
+    let selectedorderID = '';
+
+    const checkOrderButtons = document.querySelectorAll('.order-button');
+    checkOrderButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            selectedorderID = button.value;
+            console.log(selectedorderID);
+        });
+    });
+
+    let opID = document.querySelector('.opID');
     let selectedopID = '';
-
+    const sendEmailButtons = document.querySelectorAll('.send-email');
     sendEmailButtons.forEach(button => {
         button.addEventListener('click', () => {
             selectedopID = button.value;
@@ -136,15 +146,11 @@
             alert('Please enter a valid email address');
             return;
         }
-        const restaurantName = document.getElementById("restaurantName").textContent;
-        const orderID = document.getElementsByName('orderID')[0].value;
-
 
         // create a JavaScript object with the values
         const data = {
             recEmail: recEmail,
-            orderID: orderID,
-            restaurantName: restaurantName,
+            orderID: selectedorderID,
             opID: selectedopID
         };
         console.log(data); // log the data object

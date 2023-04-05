@@ -55,7 +55,7 @@ if (mysqli_num_rows($result) > 0) {
                     <h6>$itemName x  $quantity (RM $unit/unit)</h6>
                     <h6>RM $price</h6>
                 </div>
-                <div class='border-bottom'></div>";
+                ";
         }
 
         echo "

@@ -4,7 +4,9 @@ echo "
         <div class='modal-dialog modal-dialog-centered'>
             <div class='modal-content'>
                 <div class='modal-header d-flex justify-content-start'>
-                    Order <strong class='px-1'>#" . $row['orderID'] . "</strong> on <strong class='px-1'>" . $row['orderID'] . "</strong>
+                    Order <strong class='px-1'>#" . $row['orderID'] . "</strong> on <strong class='px-1'>" . $row['orderDate'] . " ".$row['orderTime']."</strong> @ <strong class='px-1'>" . $row['restaurantName'] . "</strong>
+                    <input type='hidden' id='restaurantName' value='" . $row['restaurantName'] . "'>
+                    <input type='hidden' id='orderIDReceipt' value='" . $row['orderID'] . "'>
                 </div>
                 <div class='modal-body' id='" . $row['orderID'] . "-modal'>";
 
@@ -48,7 +50,7 @@ while ($row2 = mysqli_fetch_assoc($result2)) {
     }
     ?>
     <div class='d-flex justify-content-between flex-row mt-3'>
-        <?php if ($personName == $_SESSION['name']) {
+        <?php if ($personName == $_SESSION['customerName']) {
             echo '<div class="col-7"></div>';
         } else {
             echo '

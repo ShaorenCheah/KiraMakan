@@ -60,7 +60,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 } else {
     // If no rows were returned, display a message in a table row
-    echo "<tr><td colspan='7'>No records found.</td></tr>";
+    echo "<tr><td colspan='8'>No records found.</td></tr>";
 }
 
 // Return the total number of pages for pagination 

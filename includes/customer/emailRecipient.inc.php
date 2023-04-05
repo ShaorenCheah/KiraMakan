@@ -8,7 +8,11 @@ include '../connection.inc.php';
 $email = $order['recEmail'];
 $orderID = $order['orderID'];
 $opID = $order['opID'];
-$restaurantName = $order['restaurantName'];
+
+$sql = "SELECT r.restaurantName FROM restaurants r, orders o WHERE o.orderID = '$orderID' AND o.restaurantID = r.restaurantID";
+$result=mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$restaurantName = $row['restaurantName'];
 
 $sql = "SELECT * FROM order_person WHERE opID = '$opID'";
 $result = mysqli_query($conn, $sql);
@@ -60,7 +64,7 @@ $message = "
             <div class='row'>
                 <div class='col-md-12'>
                     <p>Dear $personName,</p>
-                    <p>Thank you for using Kira Makan. Here's your order receipt of dining in with <strong>" . $_SESSION['name'] . "</strong> at <strong>" . $restaurantName . "</strong>. Here are your order details: </p>
+                    <p>Thank you for using Kira Makan. Here's your order receipt of dining in with <strong>" . $_SESSION['customerName'] . "</strong> at <strong>" . $restaurantName . "</strong>. Here are your order details: </p>
                     <table class='table'>
                         <thead>
                             <tr>
