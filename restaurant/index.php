@@ -63,7 +63,7 @@
                                 <?php
                                 $sql = "SELECT SUM(salesTotal) AS dailySales
                                         FROM orders
-                                        WHERE restaurantID = '$restaurantID' AND DATE(orderDate) = CURDATE();"; 
+                                        WHERE restaurantID = '$restaurantID' AND DATE(orderDate) = CURDATE();";
                                 $result = mysqli_query($conn, $sql);
                                 if (mysqli_num_rows($result) > 0) {
                                     $row = mysqli_fetch_assoc($result);
@@ -71,7 +71,9 @@
                                 }
                                 ?>
                                 <h6 class="card-title"><strong>Daily Sale</strong></h6>
-                                <h3 class="card-text d-flex justify-content-end">RM <?= $dailySales ?></h3>
+                                <h3 class="card-text d-flex justify-content-end">RM
+                                    <?= $dailySales ?>
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -89,7 +91,9 @@
                                 }
                                 ?>
                                 <h6 class="card-title"><strong>Monthly Orders</strong></h6>
-                                <h3 class="card-text d-flex justify-content-end"><?= $monthlyOrders ?></h3>
+                                <h3 class="card-text d-flex justify-content-end">
+                                    <?= $monthlyOrders ?>
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -99,7 +103,7 @@
                                 <?php
                                 $sql = "SELECT SUM(salesTotal) AS monthlySales
                                         FROM orders
-                                        WHERE restaurantID = '$restaurantID' AND MONTH(orderDate) = MONTH(CURDATE()) AND YEAR(orderDate) = YEAR(CURDATE());"; 
+                                        WHERE restaurantID = '$restaurantID' AND MONTH(orderDate) = MONTH(CURDATE()) AND YEAR(orderDate) = YEAR(CURDATE());";
                                 $result = mysqli_query($conn, $sql);
                                 if (mysqli_num_rows($result) > 0) {
                                     $row = mysqli_fetch_assoc($result);
@@ -107,7 +111,9 @@
                                 }
                                 ?>
                                 <h6 class="card-title"><strong>Monthly Sales</strong></h6>
-                                <h3 class="card-text d-flex justify-content-end">RM <?= $monthlySales ?></h3>
+                                <h3 class="card-text d-flex justify-content-end">RM
+                                    <?= $monthlySales ?>
+                                </h3>
                             </div>
                         </div>
                     </div>
