@@ -44,7 +44,7 @@
                         Order <span style="color:var(--orange)">#<?= $orderID ?>
                         </span> on <span style="color:var(--orange)">
                             <?= $orderDate ?>
-                        </span>@ <span style="color:var(--orange)" id="restaurantName"><?=$restaurantName?></span>
+                        </span>@ <span style="color:var(--orange)" id="restaurantName"><?= $restaurantName ?></span>
                     </strong>
                 </h5>
             </div>
@@ -91,7 +91,7 @@
                             } else {
                                 echo '
                             <div class="d-flex align-items-center col-7">
-                                <button class="btn white-btn d-flex align-items-center justify-content-center send-email" data-bs-target="#emailRecipientModalToggle" data-bs-toggle="modal" id="opID" value="'.$opID.'"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-envelope mb-1" viewBox="0 0 16 16">
+                                <button class="btn white-btn d-flex align-items-center justify-content-center send-email" data-bs-target="#emailRecipientModalToggle" data-bs-toggle="modal" id="opID" value="' . $opID . '"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-envelope mb-1" viewBox="0 0 16 16">
                                             <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                                         </svg></i>Send Receipt
                                 </button>
@@ -167,23 +167,23 @@
                                 <h3 class="fw-bold mb-2">Enter recipient's email</h3>
                             </div>
                             <div class="modal-body" id="login-modal">
-                              
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text"  style="color:var(--orange); ">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
-                                            </svg>
-                                        </span>
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" id="recEmail" name="recEmail" placeholder="name@example.com" required autocomplete="off">
-                                            <label for="recEmail">Email address</label>
-                                            <input type="hidden" name="orderID" id="opID" value="<?php echo $orderID; ?>">
-                                        </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" style="color:var(--orange); ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                                        </svg>
+                                    </span>
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="recEmail" name="recEmail" placeholder="name@example.com" required autocomplete="off">
+                                        <label for="recEmail">Email address</label>
+                                        <input type="hidden" name="orderID" id="opID" value="<?php echo $orderID; ?>">
                                     </div>
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <button type="button" class="btn orange-btn" id="submit-btn" name="recSubmit">Send</button>
-                                    </div>
-                       
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <button type="button" class="btn orange-btn" id="submit-btn" name="recSubmit">Send</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -216,7 +216,7 @@
 
     // add a click event listener to the submit button
     submitBtn.addEventListener('click', () => {
-    
+
         // get the values of the inputs
         // get the selectedopID value
         const recEmail = document.getElementById('recEmail').value;
