@@ -92,7 +92,8 @@
                             <tbody class="text-wrap m-auto p-auto table-group-divider">
                                 <?php include "../includes/restaurant/displayOrderToday.inc.php"; ?>
                             </tbody>
-                            <?php include "../includes/restaurant/displayOrderModal.inc.php"; ?>
+
+                            <?php include "../includes/restaurant/displayOrderTodayModal.inc.php"; ?>
 
                         </table>
                     </div>
