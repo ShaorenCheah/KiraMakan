@@ -46,12 +46,12 @@ if (isset($_POST['loginSubmit'])) {
             $_SESSION['accountID'] = $fetch['accountID'];
             $_SESSION['accountType'] = $accountType;
             if ($accountType == "Customer") {
-                $_SESSION['name'] = $name;
+                $_SESSION['customerName'] = $name;
                 $_SESSION['customerID'] = $customerID;
                 $_SESSION[$accountType . 'Name'] = $name;
                 echo "<script>alert('Successful Login! Welcome $name!'); window.location='index.php'</script>";
             } else {
-                $_SESSION['name'] = $name;
+                $_SESSION['restaurantName'] = $name;
                 $_SESSION['restaurantID'] = $restaurantID;
                 echo "<script>alert('Successful Login! Welcome $name!'); window.location='./restaurant/index.php'</script>";
             }

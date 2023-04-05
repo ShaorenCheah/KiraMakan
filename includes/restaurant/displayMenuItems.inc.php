@@ -12,6 +12,7 @@ $offset = ($pageno - 1) * $no_of_records_per_page;
 
 // Get the restaurant ID from the session
 $restaurantID = $_SESSION['restaurantID'];
+$restaurantName = $_SESSION['restaurantName'];
 
 // Query the database to get the total number of menu items from menu table
 $sql = "SELECT COUNT(*) FROM menu WHERE restaurantID = '$restaurantID';";
@@ -24,7 +25,7 @@ $total_rows = mysqli_fetch_array($result)[0];
 $total_pages = ceil($total_rows / $no_of_records_per_page);
 
 // Query the database to get the menu items from menu table
-$sql = "SELECT `menuID`, `itemName`, `itemDescription`, `itemPrice`, `availability` FROM menu WHERE restaurantID = '$restaurantID' LIMIT $offset, $no_of_records_per_page;";
+$sql = "SELECT `menuID`, `itemName`, `itemDescription`, `itemPrice`, `menuURL`, `availability` FROM menu WHERE restaurantID = '$restaurantID' LIMIT $offset, $no_of_records_per_page;";
 
 // Execute the query and check if any rows were returned
 $result = mysqli_query($conn, $sql);
@@ -48,6 +49,9 @@ if (mysqli_num_rows($result) > 0) {
             </td>
             <td>
                 <?= $row["itemPrice"] ?>
+            </td>
+            <td>
+                <img src="../images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="rounded img-fluid my-1 w-75" alt="Item Image">
             </td>
             <td>
                 <?= $row["availability"] ?>
