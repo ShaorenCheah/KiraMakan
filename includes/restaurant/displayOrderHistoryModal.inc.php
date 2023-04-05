@@ -35,30 +35,27 @@ if (mysqli_num_rows($result) > 0) {
                     ";
 
         // query to get the menuID, quantity and price of the order
-        $sql = "SELECT * FROM order_person WHERE orderID = '$orderID'";
+        $sql = "SELECT m.itemName, pm.quantity, m.itemPrice, SUM(pm.price) AS total_price
+                FROM order_person op
+                JOIN person_menu pm ON op.opID = pm.opID
+                JOIN menu m ON pm.menuID = m.menuID
+                WHERE op.orderID = '$orderID'
+                GROUP BY m.itemName, pm.quantity, m.itemPrice";
         $result2 = mysqli_query($conn, $sql);
 
         while ($row2 = mysqli_fetch_assoc($result2)) {
 
-            $opID = $row2['opID'];
-            $sql = "SELECT * FROM person_menu WHERE opID = '$opID'";
-            $result3 = mysqli_query($conn, $sql);
-            $sum = 0;
+            $itemName = $row2['itemName'];
+            $quantity = $row2['quantity'];
+            $unit = $row2['itemPrice'];
+            $price = $row2['total_price'];
 
-            while ($row3 = mysqli_fetch_assoc($result3)) {
-                $menuID = $row3['menuID'];
-                $quantity = $row3['quantity'];
-                $price = $row3['price'];
-
-                $sql = "SELECT * FROM menu WHERE menuID = '$menuID'";
-                $result4 = mysqli_query($conn, $sql);
-
-                $row4 = mysqli_fetch_assoc($result4);
-                $itemName = $row4['itemName'];
-                $unit = $row4['itemPrice'];
-                echo "Menu Item" . $itemName . "<br>";
-                echo "Menu Item" . $unit . "<br><br>";
-            }
+            echo
+                "<div class='d-flex flex-row justify-content-between my-3'>
+                    <h6>$itemName x  $quantity (RM $unit/unit)</h6>
+                    <h6>RM $price</h6>
+                </div>
+                <div class='border-bottom'></div>";
         }
 
         echo "
@@ -67,12 +64,10 @@ if (mysqli_num_rows($result) > 0) {
                         <div class='d-flex justify-content-start'>
                             <h4 class='m-0'>Total Price: RM  $totalPrice </h4>
                         </div>
-                        <form action='index.php' method='POST'>
-                            <button type='submit' class='btn btn-primary' name='completeOrder' value='$orderID'>Complete Order</button>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>";
     }
 }
+?>
