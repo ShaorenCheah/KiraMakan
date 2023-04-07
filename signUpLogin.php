@@ -144,85 +144,92 @@ if (isset($_POST['loginSubmit'])) {
     $accountType = 'Restaurant';
     $status = 'Pending';
 
-    // Get the uploaded image file
-    $file = $_FILES['resImage'];
-    $resURL = pathinfo($file['name'], PATHINFO_FILENAME);
-    $fileExt = pathinfo($file['name'], PATHINFO_EXTENSION);
+    if (isset($_FILES['resImage']) && !empty($_FILES['resImage']['name'])) {
+        // Get the uploaded image file
+        $file = $_FILES['resImage'];
+        $resURL = pathinfo($file['name'], PATHINFO_FILENAME);
+        $fileExt = pathinfo($file['name'], PATHINFO_EXTENSION);
 
-    // Define the directory where restaurant images will be stored
-    $targetDir = "C:/xampp/htdocs/KiraMakan/images/restaurants/";
+        // Define the directory where restaurant images will be stored
+        $targetDir = "C:/xampp/htdocs/KiraMakan/images/restaurants/";
 
-    // Create directory with the name of the restaurant
-    if (!file_exists($targetDir . $resName)) {
-        mkdir($targetDir . $resName);
-    }
+        // Create directory with the name of the restaurant
+        if (!file_exists($targetDir . $resName)) {
+            mkdir($targetDir . $resName);
+        }
 
-    // Define the target path of the image
-    $targetPath = $targetDir . $resName . "/" . $resURL . "." . $fileExt;
+        // Define the target path of the image
+        $targetPath = $targetDir . $resName . "/" . $resURL . "." . $fileExt;
 
-    // Upload the image to the directory
-    if (!move_uploaded_file($file['resImage'], $targetPath)) {
+        // Upload the image to the directory
+        if (!move_uploaded_file($_FILES['resImage']['tmp_name'], $targetPath)) {
+            echo "<script>alert('Woops! Something went wrong. Please try again.');</script>";
+            exit();
+        } else {
+            // Hash the password
+            $hashedPassword = password_hash($resPassword, PASSWORD_DEFAULT);
+
+            // Generate new accountID by getting the last accountID from the database and incrementing it by 1
+            $sql = "SELECT accountID FROM accounts ORDER BY accountID DESC LIMIT 1";
+            $stmt = mysqli_prepare($conn, $sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $last_accountID = $row["accountID"];
+                $new_accountID_num = intval(substr($last_accountID, 1)) + 1;
+            } else {
+                $new_accountID_num = 1;
+            }
+            $new_accountID = "A" . str_pad($new_accountID_num, 4, "0", STR_PAD_LEFT);
+            $stmt->close();
+
+            // Prepare and bind parameters for account data insertion
+            $stmt = mysqli_prepare($conn, "INSERT INTO accounts (accountID, email, password, accountType) VALUES (?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt, "ssss", $new_accountID, $resEmail, $hashedPassword, $accountType);
+            if (mysqli_stmt_execute($stmt) === FALSE) {
+                echo "Error: " . mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                mysqli_close($conn);
+                exit();
+            }
+            mysqli_stmt_close($stmt);
+
+            // Get the latest restaurantID from restaurants table
+            $sql = "SELECT restaurantID FROM restaurants ORDER BY restaurantID DESC LIMIT 1";
+            $stmt = mysqli_prepare($conn, $sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $last_restaurantID = $row["restaurantID"];
+                $new_restaurantID_num = intval(substr($last_restaurantID, 1)) + 1;
+            } else {
+                $new_restaurantID_num = 1;
+            }
+            $new_restaurantID = "R" . str_pad($new_restaurantID_num, 4, "0", STR_PAD_LEFT);
+            $stmt->close();
+
+            // Prepare and bind parameters for restaurant data insertion
+            $stmt = mysqli_prepare($conn, "INSERT INTO restaurants (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `restaurantURL`, `status`) VALUES (?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt, "ssssss", $new_restaurantID, $resName, $new_accountID, $resDescription, $resURL, $status);
+            if (mysqli_stmt_execute($stmt) === FALSE) {
+                echo "Error: " . mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                mysqli_close($conn);
+                exit();
+            }
+            mysqli_stmt_close($stmt);
+
+            echo "<script>alert('Restaurant $resName has been successfully registered!'); window.location='admin/index.php'</script>";
+
+            mysqli_close($conn);
+
+        }
+    } else {
         echo "<script>alert('Woops! Something went wrong. Please try again.'); window.location='admin/index.php'</script>";
         exit();
     }
-
-    // Hash the password
-    $hashedPassword = password_hash($resPassword, PASSWORD_DEFAULT);
-
-    // Generate new accountID by getting the last accountID from the database and incrementing it by 1
-    $sql = "SELECT accountID FROM accounts ORDER BY accountID DESC LIMIT 1";
-    $stmt = mysqli_prepare($conn, $sql);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $last_accountID = $row["accountID"];
-        $new_accountID_num = intval(substr($last_accountID, 1)) + 1;
-    } else {
-        $new_accountID_num = 1;
-    }
-    $new_accountID = "A" . str_pad($new_accountID_num, 4, "0", STR_PAD_LEFT);
-    $stmt->close();
-
-    // Prepare and bind parameters for account data insertion
-    $stmt = mysqli_prepare($conn, "INSERT INTO accounts (accountID, email, password, accountType) VALUES (?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "ssss", $new_accountID, $resEmail, $hashedPassword, $accountType);
-    if (mysqli_stmt_execute($stmt) === FALSE) {
-        echo "Error: " . mysqli_stmt_error($stmt);
-        mysqli_stmt_close($stmt);
-        mysqli_close($conn);
-        exit();
-    }
-    mysqli_stmt_close($stmt);
-
-    // Get the latest restaurantID from restaurants table
-    $sql = "SELECT restaurantID FROM restaurants ORDER BY restaurantID DESC LIMIT 1";
-    $stmt = mysqli_prepare($conn, $sql);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $last_restaurantID = $row["restaurantID"];
-        $new_restaurantID_num = intval(substr($last_restaurantID, 1)) + 1;
-    } else {
-        $new_restaurantID_num = 1;
-    }
-    $new_restaurantID = "R" . str_pad($new_restaurantID_num, 4, "0", STR_PAD_LEFT);
-    $stmt->close();
-
-    // Prepare and bind parameters for restaurant data insertion
-    $stmt = mysqli_prepare($conn, "INSERT INTO restaurants (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `restaurantURL`, `status`) VALUES (?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "ssssss", $new_restaurantID, $resName, $new_accountID, $resDescription, $resURL, $status);
-    if (mysqli_stmt_execute($stmt) === FALSE) {
-        echo "Error: " . mysqli_stmt_error($stmt);
-        mysqli_stmt_close($stmt);
-        mysqli_close($conn);
-        exit();
-    }
-    mysqli_stmt_close($stmt);
-
-    echo "<script>alert('Restaurant $resName has been successfully registered!'); window.location='admin/index.php'</script>";
-
-    mysqli_close($conn);
-
 }
+
+?>
