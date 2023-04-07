@@ -138,6 +138,7 @@ if (isset($_POST['loginSubmit'])) {
 
     // Define form inputs
     $resName = $_POST['resName'];
+    $resDesc = $_POST['resDesc'];
     $resEmail = $_POST['resEmail'];
     $resPassword = $_POST['resPassword'];
     $resRepeatPassword = $_POST['resRepeatPassword'];
@@ -147,9 +148,10 @@ if (isset($_POST['loginSubmit'])) {
     if (isset($_FILES['resImage']) && !empty($_FILES['resImage']['name'])) {
         // Get the uploaded image file
         $file = $_FILES['resImage'];
-        $resURL = pathinfo($file['name'], PATHINFO_FILENAME);
+        $fileName = pathinfo($file['name'], PATHINFO_FILENAME);
         $fileExt = pathinfo($file['name'], PATHINFO_EXTENSION);
-
+        $resURL = $fileName . '.' . $fileExt;
+        
         // Define the directory where restaurant images will be stored
         $targetDir = "C:/xampp/htdocs/KiraMakan/images/restaurants/";
 
@@ -159,7 +161,7 @@ if (isset($_POST['loginSubmit'])) {
         }
 
         // Define the target path of the image
-        $targetPath = $targetDir . $resName . "/" . $resURL . "." . $fileExt;
+        $targetPath = $targetDir . $resName . "/" . $fileName . "." . $fileExt;
 
         // Upload the image to the directory
         if (!move_uploaded_file($_FILES['resImage']['tmp_name'], $targetPath)) {
@@ -212,7 +214,7 @@ if (isset($_POST['loginSubmit'])) {
 
             // Prepare and bind parameters for restaurant data insertion
             $stmt = mysqli_prepare($conn, "INSERT INTO restaurants (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `restaurantURL`, `status`) VALUES (?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($stmt, "ssssss", $new_restaurantID, $resName, $new_accountID, $resDescription, $resURL, $status);
+            mysqli_stmt_bind_param($stmt, "ssssss", $new_restaurantID, $resName, $new_accountID, $resDesc, $resURL, $status);
             if (mysqli_stmt_execute($stmt) === FALSE) {
                 echo "Error: " . mysqli_stmt_error($stmt);
                 mysqli_stmt_close($stmt);

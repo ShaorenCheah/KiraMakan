@@ -38,7 +38,7 @@
                             <div class="col-12 d-flex justify-content-center align-items-center mb-1">
                                 <p class=" mb-3">Please enter restaurant details</p>
                             </div>
-                            <form action="../signUpLogin.php" method="post" novalidate class="col-12 row g-4 m-0">
+                            <form action="../signUpLogin.php" method="post" enctype="multipart/form-data" novalidate class="col-12 row g-4 m-0">
                                 <div class="col-1"></div>
                                 <div class="col-10 px-5">
                                     <div class="form-floating">
