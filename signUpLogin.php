@@ -161,7 +161,7 @@ if (isset($_POST['loginSubmit'])) {
         }
 
         // Define the target path of the image
-        $targetPath = $targetDir . $resName . "/" . $fileName . "." . $fileExt;
+        $targetPath = $targetDir . $resName . "/" . $resURL;
 
         // Upload the image to the directory
         if (!move_uploaded_file($_FILES['resImage']['tmp_name'], $targetPath)) {
