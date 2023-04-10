@@ -38,8 +38,8 @@
                             <div class="col-12 d-flex justify-content-center align-items-center mb-1">
                                 <p class=" mb-3">Please enter item details</p>
                             </div>
-                            <form action="../includes/admin/manageMenu.inc.php" method="post" enctype="multipart/form-data"
-                                novalidate class="col-12 row g-4 m-0">
+                            <form action="../includes/admin/manageMenu.inc.php" method="post"
+                                enctype="multipart/form-data" novalidate class="col-12 row g-4 m-0">
                                 <div class="col-1"></div>
                                 <div class="col-10 px-5">
                                     <div class="form-floating">
@@ -50,7 +50,7 @@
                                             $sql = "SELECT * FROM restaurants";
                                             $result = mysqli_query($conn, $sql);
                                             if ($result->num_rows > 0) {
-                                                while($row = $result->fetch_assoc()) {
+                                                while ($row = $result->fetch_assoc()) {
                                                     echo '<option value="' . $row["restaurantID"] . '">' . $row["restaurantName"] . '</option>
                                                     <input type="hidden" id="resName" name="resName" value="' . $row["restaurantName"] . '">';
                                                 }
