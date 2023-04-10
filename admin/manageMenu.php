@@ -45,16 +45,18 @@
                                     <div class="form-floating">
                                         <select class="form-select" aria-label=".form-select-sm" id="resID"
                                             name="resID">
+                                            <option value="" disabled selected>Choose a restaurant</option>
                                             <?php
                                             $sql = "SELECT * FROM restaurants";
                                             $result = mysqli_query($conn, $sql);
                                             if ($result->num_rows > 0) {
                                                 while ($row = $result->fetch_assoc()) {
-                                                    echo '
-                                                    <option value="" disabled selected>Choose a restaurant</option>
-                                                    <option value="' . $row["restaurantID"] . '">' . $row["restaurantName"] . '</option>
-                                                    <input type="hidden" id="resName" name="resName" value="' . $row["restaurantName"] . '">';
-                                                }
+                                                    echo '<option value="';
+                                                    echo htmlspecialchars($row["restaurantID"]);
+                                                    echo '">';
+                                                    echo htmlspecialchars($row["restaurantName"]);
+                                                    echo '</option>';  
+                                                } 
                                             } else {
                                                 echo '<option value="0">No restaurants found</option>';
                                             }

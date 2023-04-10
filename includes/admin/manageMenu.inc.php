@@ -4,13 +4,26 @@ include '../../includes/connection.inc.php';
 if (isset($_POST['addItemSubmit'])) {
 
     // Define form inputs
-    $resName = $_POST['resName'];
     $resID = $_POST['resID'];
     $itemName = $_POST['itemName'];
     $category = $_POST['category'];
     $itemDesc = $_POST['itemDesc'];
     $itemPrice = $_POST['itemPrice'];
     $availability = 'Available';
+
+    // Get restaurant name based on restaurant ID
+    $sql = "SELECT restaurantName FROM restaurants WHERE restaurantID = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $resID);
+    mysqli_stmt_execute($stmt);
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $resName = $row["restaurantName"];
+    } else {
+        echo "<script>alert('Woops! Something went wrong. Please try again.');</script>";
+        exit();
+    }
 
     if (isset($_FILES['itemImage']) && !empty($_FILES['itemImage']['name'])) {
         //Get the uploaded image
@@ -19,7 +32,7 @@ if (isset($_POST['addItemSubmit'])) {
         $fileExt = pathinfo($file['name'], PATHINFO_EXTENSION);
         $menuURL = $fileName . "." . $fileExt;
 
-        // Define the directory where restaurant images will be stored
+        // Define the directory where menu images will be stored
         $targetDir = "C:/xampp/htdocs/KiraMakan/images/restaurants/$resName";
 
         // Create directory for image upload
