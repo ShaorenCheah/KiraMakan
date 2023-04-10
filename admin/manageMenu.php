@@ -43,7 +43,6 @@
                                 <div class="col-1"></div>
                                 <div class="col-10 px-5">
                                     <div class="form-floating">
-                                        <label for="resName">Restaurant Name</label>
                                         <select class="form-select" aria-label=".form-select-sm" id="resID"
                                             name="resID">
                                             <?php
@@ -59,6 +58,7 @@
                                             }
                                             ?>
                                         </select>
+                                        <label for="resName" class="form-label">Restaurant Name</label>
                                     </div>
                                 </div>
                                 <div class="col-1"></div>
@@ -74,7 +74,6 @@
                                 <div class="col-1"></div>
                                 <div class="col-10 px-5">
                                     <div class="form-floating">
-                                        <label for="category">Category</label>
                                         <select class="form-select" aria-label=".form-select-sm" id="category"
                                             name="category">
                                             <option value="Meals">Meals</option>
@@ -82,6 +81,7 @@
                                             <option value="Desserts">Desserts</option>
                                             <option value="Add-Ons">Add-Ons</option>
                                         </select>
+                                        <label for="category" class="form-label">Category</label>
                                     </div>
                                 </div>
                                 <div class="col-1"></div>
