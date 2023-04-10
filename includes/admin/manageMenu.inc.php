@@ -32,7 +32,7 @@ if (isset($_POST['addItemSubmit'])) {
         $fileExt = pathinfo($file['name'], PATHINFO_EXTENSION);
         $menuURL = $fileName . "." . $fileExt;
 
-        // Define the directory where menu images will be stored
+        // Define the directory where menu images will be stored according to restaurant name
         $targetDir = "C:/xampp/htdocs/KiraMakan/images/restaurants/$resName";
 
         // Create directory for image upload
