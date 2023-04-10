@@ -51,7 +51,8 @@ if (isset($_POST['addItemSubmit'])) {
             $stmt->close();
 
             // Prepare and bind parameters for menu data insertion
-            $stmt = mysqli_prepare($conn, "INSERT INTO menu (`menuID`, `restaurantID`, `itemName`, `category`, `itemDescription`, `itemPrice`, `menuURL`, `availability`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $sql = "INSERT INTO menu (`menuID`, `restaurantID`, `itemName`, `category`, `itemDescription`, `itemPrice`, `menuURL`, `availability`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = mysqli_prepare($conn, $sql);
             mysqli_stmt_bind_param($stmt, "ssssssss", $new_menuID, $resID, $itemName, $category, $itemDesc, $itemPrice, $menuURL, $availability);
             if (mysqli_stmt_execute($stmt) === FALSE) {
                 echo "Error: " . mysqli_stmt_error($stmt);
