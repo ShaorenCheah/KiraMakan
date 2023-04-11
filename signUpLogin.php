@@ -36,6 +36,7 @@ if (isset($_POST['loginSubmit'])) {
             $fetch_name = mysqli_fetch_assoc($result);
             $name = $fetch_name['customerName'];
             $customerID = $fetch_name['customerID'];
+            $balance = $fetch_name['balance'];
         } else {
             echo "error";
         }
@@ -48,6 +49,7 @@ if (isset($_POST['loginSubmit'])) {
             if ($accountType == "Customer") {
                 $_SESSION['customerName'] = $name;
                 $_SESSION['customerID'] = $customerID;
+                $_SESSION['balance'] = $balance;
                 $_SESSION[$accountType . 'Name'] = $name;
                 echo "<script>alert('Successful Login! Welcome $name!'); window.location='index.php'</script>";
             } else {

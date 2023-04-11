@@ -8,14 +8,20 @@
 
 }
 
-
-body {
-  font-family: "Lato", sans-serif !important;
-  color: var(--main);
+/* Works for Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 body::-webkit-scrollbar {
   display: none;
+}
+
+body {
+  font-family: "Lato", sans-serif !important;
+  color: var(--main);
 }
 
 table {
@@ -23,12 +29,14 @@ table {
 
 }
 
-td, th, tr {
+td,
+th,
+tr {
   border: none;
 }
 
 .table-hover tbody tr:hover {
-  background-color: rgba(255,118,41,0.25);
+  background-color: rgba(255, 118, 41, 0.25);
 }
 
 
@@ -495,7 +503,7 @@ i {
 /* Footer Section End */
 
 /* Sidebar Section Start */
-.sidebar{
+.sidebar {
   box-shadow: 0px 16px 22px 0px rgba(0, 0, 0, 0.1);
 }
 

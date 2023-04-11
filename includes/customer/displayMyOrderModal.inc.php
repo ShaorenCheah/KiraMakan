@@ -143,7 +143,6 @@ $restaurantName = $fetch['restaurantName'];
     <div class="d-flex flex-row justify-content-between gap-1 mb-1">
         <h4 class="mb-0"><strong>Grand Total</strong><span class="text-muted" style="font-size:13px"> (rounded price)</span></h4>
         <h4 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $totalPrice ?></span></strong></h4>
-
     </div>
 </div>
 

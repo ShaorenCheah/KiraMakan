@@ -35,7 +35,6 @@
 <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-
       <div id="names-form" class="modal-body">
         <div class="col-12 d-flex justify-content-center align-items-center mt-2 mb-4">
           <h3 class="fw-bold mb-2">Enter customer names</h3>
