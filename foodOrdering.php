@@ -91,7 +91,7 @@
                                     <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                     <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
                                     <div class="row d-flex align-items-center">
-                                        <h6 class="card-price col-md-7 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                        <h5 class="card-price col-md-7 align-items-center m-0"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
                                         <?php
                                         if ($row['availability'] === "Unavailable") {
                                         ?>
@@ -145,7 +145,7 @@
                                 <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                 <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
                                 <div class="row d-flex align-items-center">
-                                    <h6 class="card-price col-md-7 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                    <h5 class="card-price col-md-7 align-items-center m-0"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
                                     <?php
                                     if ($row['availability'] === "Unavailable") {
                                     ?>
@@ -199,7 +199,7 @@
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
                             <div class="row d-flex align-items-center">
-                                <h6 class="card-price col-md-7 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                <h5 class="card-price col-md-7 align-items-center m-0"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
                                 <?php
                                 if ($row['availability'] === "Unavailable") {
                                 ?>
@@ -256,7 +256,7 @@
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
                             <div class="row d-flex align-items-center">
-                                <h6 class="card-price col-md-7 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                <h5 class="card-price col-md-7 align-items-center m-0"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
                                 <?php
                                 if ($row['availability'] === "Unavailable") {
                                 ?>
@@ -317,8 +317,8 @@
                             <h6 style="font-size:13px" class="cart-sales">RM 0</h6>
                         </div>
                         <div class="col-12 d-flex flex-row justify-content-between">
-                            <h6 style="font-size:13px">Cash Rounding (±)</h6>
-                            <h6 style="font-size:13px" class="cart-round">RM 0.00</h6>
+                            <h6 style="font-size:13px">Cash Rounding</h6>
+                            <h6 style="font-size:13px" class="cart-round">RM 0</h6>
                         </div>
                         <div class="col-12 d-flex flex-row justify-content-between mt-1">
                             <h5><strong class="cart-total-title">Grand Total </strong><span class="text-muted" style="font-size:13px">(rounded price)</span></h5>

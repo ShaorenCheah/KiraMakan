@@ -205,7 +205,8 @@ function ready() {
             finalRounded = Math.ceil(final * 10) / 10;
         }
         
-        round = final - finalRounded;
+        round = finalRounded-final;
+        console.log(round)
         document.getElementsByClassName('cart-round')[0].innerText = 'RM ' + round.toFixed(2);
 
         document.getElementsByClassName('cart-total-price')[0].innerText = 'RM ' + finalRounded.toFixed(2);
@@ -269,7 +270,6 @@ function ready() {
             totalPrice: totalPrice
         };
 
-        console.log(order);
 
         clearCart();
         // Send the order to your server
