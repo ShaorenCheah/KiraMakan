@@ -26,13 +26,12 @@
         <div class="row d-flex flex-col">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div class="col-md-12">
-                    <h2>My Orders
-                    </h2>
+                <div class="col-md-12 d-flex justify-content-center mb-2">
+                    <h1><strong>My <span style="color:var(--orange)">Orders</span></strong></h1>
                 </div>
                 <div class="col-md-12">
-                    <table class="table table-borderless table-hover table-striped text-center align-middle table-bordered fs-6 " style="white-space: nowrap;" id="dashboard-table">
-                        <thead class="text-wrap m-auto p-auto table-dark ">
+                    <table class="table table-borderless table-hover table-striped text-center align-middle table-bordered fs-6" style="white-space: nowrap;" id="dashboard-table">
+                        <thead class="text-wrap m-auto p-auto" style="background-color:var(--orange); color:white;">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Order ID</th>
@@ -105,7 +104,6 @@
         </div>
 </body>
 <script>
-
     let orderbtn = document.querySelector('.order-button');
     let selectedorderID = '';
 

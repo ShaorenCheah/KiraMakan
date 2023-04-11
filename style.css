@@ -9,7 +9,6 @@
 }
 
 
-
 body {
   font-family: "Lato", sans-serif !important;
   color: var(--main);
@@ -19,6 +18,18 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+table {
+  border-color: transparent;
+
+}
+
+td, th, tr {
+  border: none;
+}
+
+tr{
+  border-radius:10px;
+}
 
 .form-floating input:focus,
 .form-floating input:active {

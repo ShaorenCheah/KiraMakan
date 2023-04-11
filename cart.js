@@ -80,6 +80,7 @@ function ready() {
     function saveCartData() {
         var cartItemContainer = document.getElementsByClassName('cart-items')[0];
         localStorage.setItem('cartData', cartItemContainer.innerHTML);
+        console.log(localStorage);
     }
 
     function removeCartItem(event) {
@@ -101,15 +102,35 @@ function ready() {
         saveCartData(); // Save cart data after removing an item
     }
 
-    // Update the 'quantityChanged' function
     function quantityChanged(event) {
-        var input = event.target;
+        var input = event.currentTarget;
         if (isNaN(input.value) || input.value <= 0) {
             input.value = 1;
         }
+        // Update the quantity variable with the new value
+        quantity = input.value;
+
+        // Get a reference to the parent element of the input element
+        var parent = input.parentNode;
+
+        // Create a new input element with the updated quantity
+        var newInput = document.createElement('input');
+        newInput.setAttribute('class', 'cart-quantity-input form-control me-2');
+        newInput.setAttribute('type', 'number');
+        newInput.setAttribute('value', quantity);
+        newInput.setAttribute('style', 'width: 60%;');
+
+        // Replace the old input element with the new one
+        parent.replaceChild(newInput, input);
+
+        // Add the event listener to the new input element
+        newInput.addEventListener('change', quantityChanged);
+
         updateCartTotal();
-        saveCartData(); // Save cart data after changing the quantity
+        saveCartData();
     }
+
+
 
     function addToCartClicked(event) {
         var button = event.target;
@@ -198,15 +219,15 @@ function ready() {
 
         final = net * 1.16;
         secondDecimal = Math.floor(final * 100) % 10;
-        
+
         if (secondDecimal <= 4) {
             finalRounded = Math.floor(final * 10) / 10;
         } else {
             finalRounded = Math.ceil(final * 10) / 10;
         }
-        
-        round = finalRounded-final;
-        console.log(round)
+
+        round = finalRounded - final;
+
         document.getElementsByClassName('cart-round')[0].innerText = 'RM ' + round.toFixed(2);
 
         document.getElementsByClassName('cart-total-price')[0].innerText = 'RM ' + finalRounded.toFixed(2);
