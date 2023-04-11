@@ -91,9 +91,15 @@
                                     <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                     <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
                                     <div class="row d-flex align-items-center">
-                                        <h6 class="card-price col-md-8 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                        <h6 class="card-price col-md-7 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
                                         <?php
-                                        if (isset($_SESSION['accountID'])) {
+                                        if ($row['availability'] === "Unavailable") {
+                                        ?>
+                                            <div class="col-md-5 d-flex justify-content-end">
+                                                <h6 style="color:red">Out of Stock</h6>
+                                            </div>
+                                        <?php
+                                        } else if (isset($_SESSION['accountID'])) {
                                         ?>
                                             <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
                                         <?php } else { ?>
@@ -139,9 +145,15 @@
                                 <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                 <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
                                 <div class="row d-flex align-items-center">
-                                    <h6 class="card-price col-md-8 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                    <h6 class="card-price col-md-7 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
                                     <?php
-                                    if (isset($_SESSION['accountID'])) {
+                                    if ($row['availability'] === "Unavailable") {
+                                    ?>
+                                        <div class="col-md-5 d-flex justify-content-end">
+                                            <h6 style="color:red">Out of Stock</h6>
+                                        </div>
+                                    <?php
+                                    } else if (isset($_SESSION['accountID'])) {
                                     ?>
                                         <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
                                     <?php } else { ?>
@@ -187,9 +199,15 @@
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
                             <div class="row d-flex align-items-center">
-                                <h6 class="card-price col-md-8 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                <h6 class="card-price col-md-7 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
                                 <?php
-                                if (isset($_SESSION['accountID'])) {
+                                if ($row['availability'] === "Unavailable") {
+                                ?>
+                                    <div class="col-md-5 d-flex justify-content-end">
+                                        <h6 style="color:red">Out of Stock</h6>
+                                    </div>
+                                <?php
+                                } else if (isset($_SESSION['accountID'])) {
                                 ?>
                                     <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
                                 <?php } else { ?>
@@ -238,9 +256,15 @@
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
                             <div class="row d-flex align-items-center">
-                                <h6 class="card-price col-md-8 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
+                                <h6 class="card-price col-md-7 align-items-center ">RM <?= $row['itemPrice'] ?></h6>
                                 <?php
-                                if (isset($_SESSION['accountID'])) {
+                                if ($row['availability'] === "Unavailable") {
+                                ?>
+                                    <div class="col-md-5 d-flex justify-content-end">
+                                        <h6 style="color:red">Out of Stock</h6>
+                                    </div>
+                                <?php
+                                } else if (isset($_SESSION['accountID'])) {
                                 ?>
                                     <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
                                 <?php } else { ?>
@@ -280,20 +304,27 @@
                 <form id="cart-form" class="p-0 h-100 d-flex flex-column">
                     <div class="cart-items flex-grow-1"></div>
                     <div class="cart-total container-fluid w-100 mt-4 p-0 d-flex flex-column">
-
                         <div class="col-12 d-flex flex-row justify-content-between">
-                            <h6>Service Tax (10%)</h6>
-                            <h6 class="cart-service">RM 0</h6>
+                            <h6 style="font-size:13px">Subtotal</h6>
+                            <h6 style="font-size:13px" class="cart-sub">RM 0</h6>
                         </div>
                         <div class="col-12 d-flex flex-row justify-content-between">
-                            <h6>Sales Tax (6%)</h6>
-                            <h6 class="cart-sales">RM 0</h6>
+                            <h6 style="font-size:13px">Service Tax (10%)</h6>
+                            <h6 style="font-size:13px" class="cart-service">RM 0</h6>
                         </div>
-                        <div class="col-12 d-flex flex-row justify-content-between mt-2">
-                            <h5><strong class="cart-total-title">Grand Total </strong><span class="text-muted" style="font-size:12px">(rounded price)</span></h5>
+                        <div class="col-12 d-flex flex-row justify-content-between">
+                            <h6 style="font-size:13px">Sales Tax (6%)</h6>
+                            <h6 style="font-size:13px" class="cart-sales">RM 0</h6>
+                        </div>
+                        <div class="col-12 d-flex flex-row justify-content-between">
+                            <h6 style="font-size:13px">Cash Rounding (±)</h6>
+                            <h6 style="font-size:13px" class="cart-round">RM 0.00</h6>
+                        </div>
+                        <div class="col-12 d-flex flex-row justify-content-between mt-1">
+                            <h5><strong class="cart-total-title">Grand Total </strong><span class="text-muted" style="font-size:13px">(rounded price)</span></h5>
                             <h5><strong><span class="cart-total-price">RM 0</span></strong></h5>
                         </div>
-                        <div class="col-12 d-flex mt-4 pb-3 justify-content-center align-items-end">
+                        <div class="col-12 d-flex pt-3 pb-2 justify-content-center align-items-end">
                             <button class="btn orange-btn" id="submitCart">Submit Cart</button>
                         </div>
 

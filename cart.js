@@ -7,7 +7,6 @@ if (document.readyState == 'loading') {
 function ready() {
 
 
-
     // Function to get restaurantID from the URL
     function getRestaurantIDFromURL() {
         var urlParams = new URLSearchParams(window.location.search);
@@ -191,6 +190,7 @@ function ready() {
             }
         }
         net = Math.round(total * 100) / 100;
+        document.getElementsByClassName('cart-sub')[0].innerText = 'RM ' + net.toFixed(2);
         service = net * 0.1;
         document.getElementsByClassName('cart-service')[0].innerText = 'RM ' + service.toFixed(2);
         sales = net * 0.06;
@@ -198,17 +198,17 @@ function ready() {
 
         final = net * 1.16;
         secondDecimal = Math.floor(final * 100) % 10;
-
+        
         if (secondDecimal <= 4) {
-            final = Math.floor(final * 10) / 10;
+            finalRounded = Math.floor(final * 10) / 10;
         } else {
-            final = Math.ceil(final * 10) / 10;
+            finalRounded = Math.ceil(final * 10) / 10;
         }
+        
+        round = final - finalRounded;
+        document.getElementsByClassName('cart-round')[0].innerText = 'RM ' + round.toFixed(2);
 
-        document.getElementsByClassName('cart-total-price')[0].innerText = 'RM ' + final.toFixed(2);
-
-
-
+        document.getElementsByClassName('cart-total-price')[0].innerText = 'RM ' + finalRounded.toFixed(2);
 
         updateCartIcon();
     }
