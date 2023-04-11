@@ -1,19 +1,19 @@
 <?php
 echo "
-    <div class='modal fade modal-lg' id='orderID" . $row['orderID'] . "Modal' aria-hidden='true' aria-labelledby='orderID" . $row['orderID'] . "ModalLabel' tabindex='-1'>
+    <div class='modal fade modal-lg' id='orderID" . $rows['orderID'] . "Modal' aria-hidden='true' aria-labelledby='orderID" . $rows['orderID'] . "ModalLabel' tabindex='-1'>
         <div class='modal-dialog modal-dialog-centered'>
             <div class='modal-content'>
                 <div class='modal-header d-flex justify-content-start'>
-                    Order <strong class='px-1'>#" . $row['orderID'] . "</strong> on <strong class='px-1'>" . $row['orderDate'] . " ".$row['orderTime']."</strong> @ <strong class='px-1'>" . $row['restaurantName'] . "</strong>
-                    <input type='hidden' id='restaurantName' value='" . $row['restaurantName'] . "'>
-                    <input type='hidden' id='orderIDReceipt' value='" . $row['orderID'] . "'>
+                    <strong> Order <span class='px-1' style='color:var(--orange)'>#" . $rows['orderID'] . "</span> on <span class='px-1' style='color:var(--orange)'>" . $rows['orderDate'] . " " . $rows['orderTime'] . "</span> @ <span class='px-1' style='color:var(--orange)'>" . $rows['restaurantName'] . "</span>
+                    <input type='hidden' id='restaurantName' value='" . $rows['restaurantName'] . "'>
+                    <input type='hidden' id='orderIDReceipt' value='" . $rows['orderID'] . "'></strong>
                 </div>
-                <div class='modal-body' id='" . $row['orderID'] . "-modal'>";
+                <div class='modal-body' id='" . $rows['orderID'] . "-modal'>";
 
 // prepare and execute the SQL query
 
-
-$sql = "SELECT * FROM order_person WHERE orderID = '" . $row['orderID'] . "'";
+$subtotal = 0;
+$sql = "SELECT * FROM order_person WHERE orderID = '" . $rows['orderID'] . "'";
 $result2 = mysqli_query($conn, $sql);
 
 // display the results
@@ -34,7 +34,7 @@ while ($row2 = mysqli_fetch_assoc($result2)) {
         $quantity = $row3['quantity'];
         $price = $row3['price'];
         $sum += $price;
-
+        $subtotal += $price;
         $sql = "SELECT * FROM menu WHERE menuID = '$menuID'";
         $result4 = mysqli_query($conn, $sql);
         $row4 = mysqli_fetch_assoc($result4);
@@ -70,36 +70,49 @@ while ($row2 = mysqli_fetch_assoc($result2)) {
         $secondDecimal = floor($final * 100) % 10;
 
         if ($secondDecimal <= 4) {
-            $final = floor($final * 10) / 10;
+            $finalRounded = floor($final * 10) / 10;
         } else {
-            $final = ceil($final * 10) / 10;
+            $finalRounded = ceil($final * 10) / 10;
         }
+
         $service = number_format($service, 2);
         $sales = number_format($sales, 2);
-        $final = number_format($final, 2);
+        $round = number_format($finalRounded - $final, 2);
+        $finalRounded = number_format($finalRounded, 2);
 
         ?>
         <div class="d-flex flex-column col-5">
             <div class="d-flex flex-row justify-content-between gap-1 mb-1">
-                <p class="mb-0" style="font-size:14px">Service Tax (10%)</p>
-                <p class="mb-0" style="font-size:14px">RM <?= $service ?></p>
+                <p class="mb-0" style="font-size:13px">Subtotal</p>
+                <p class="mb-0" style="font-size:13px">RM <?= number_format($net, 2) ?></p>
             </div>
             <div class="d-flex flex-row justify-content-between gap-1 mb-1">
-                <p class="mb-0" style="font-size:14px">Sales Tax (6%)</p>
-                <p class="mb-0" style="font-size:14px">RM <?= $sales ?></p>
+                <p class="mb-0" style="font-size:13px">Service Tax (10%)</p>
+                <p class="mb-0" style="font-size:13px">RM <?= $service ?></p>
+            </div>
+            <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                <p class="mb-0" style="font-size:13px">Sales Tax (6%)</p>
+                <p class="mb-0" style="font-size:13px">RM <?= $sales ?></p>
+            </div>
+            <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                <p class="mb-0" style="font-size:13px">Cash Rounding</p>
+                <p class="mb-0" style="font-size:13px">RM <?= $round ?></p>
             </div>
             <div class="d-flex flex-row justify-content-between gap-1 mb-1">
 
-                <h5 class="mb-0"><strong>Subtotal</strong><span class="text-muted" style="font-size:12px"> (rounded price)</span></h5>
-                <h5 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $final ?></span></strong></h5>
+                <h5 class="mb-0"><strong>Total</strong><span class="text-muted" style="font-size:13px"> (rounded price)</span></h5>
+                <h5 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $finalRounded ?></span></strong></h5>
 
             </div>
         </div>
     </div>
+
 <?php
     echo "<div class='cart-item mb-4'></div>";
 }
-$sql = "SELECT o.orderDate, o.serviceTotal, o.salesTotal, o.totalPrice, r.restaurantName FROM orders o, restaurants r WHERE o.restaurantID = r.restaurantID AND orderID = '" . $row['orderID'] . "'";
+
+
+$sql = "SELECT o.orderDate, o.serviceTotal, o.salesTotal, o.totalPrice, r.restaurantName FROM orders o, restaurants r WHERE o.restaurantID = r.restaurantID AND orderID = '" . $rows['orderID'] . "'";
 $results = mysqli_query($conn, $sql);
 $fetch = mysqli_fetch_assoc($results);
 
@@ -112,6 +125,10 @@ $restaurantName = $fetch['restaurantName'];
 ?>
 <div class="d-flex flex-column col-12 justify-content-end">
     <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+        <p class="mb-0" style="font-size:14px">Subtotal</p>
+        <p class="mb-0" style="font-size:14px">RM <?= number_format($subtotal, 2) ?></p>
+    </div>
+    <div class="d-flex flex-row justify-content-between gap-1 mb-1">
         <p class="mb-0" style="font-size:14px">Service Tax (10%)</p>
         <p class="mb-0" style="font-size:14px">RM <?= $serviceTotal ?></p>
     </div>
@@ -120,9 +137,17 @@ $restaurantName = $fetch['restaurantName'];
         <p class="mb-0" style="font-size:14px">RM <?= $salesTotal ?></p>
     </div>
     <div class="d-flex flex-row justify-content-between gap-1 mb-1">
-
-        <h4 class="mb-0"><strong>Grand Total</strong><span class="text-muted" style="font-size:12px"> (rounded price)</span></h4>
+        <p class="mb-0" style="font-size:14px">Cash Rounding</p>
+        <p class="mb-0" style="font-size:14px">RM <?= number_format($totalPrice - $subtotal - $salesTotal - $serviceTotal, 2) ?></p>
+    </div>
+    <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+        <h4 class="mb-0"><strong>Grand Total</strong><span class="text-muted" style="font-size:13px"> (rounded price)</span></h4>
         <h4 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $totalPrice ?></span></strong></h4>
 
     </div>
+</div>
+
+</div>
+</div>
+</div>
 </div>

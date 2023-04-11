@@ -27,9 +27,10 @@ td, th, tr {
   border: none;
 }
 
-tr{
-  border-radius:10px;
+.table-hover tbody tr:hover {
+  background-color: rgba(255,118,41,0.25);
 }
+
 
 .form-floating input:focus,
 .form-floating input:active {
