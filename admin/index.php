@@ -21,6 +21,42 @@
     <?php
     session_start();
     include '../includes/connection.inc.php';
+
+    if (isset($_POST['manageRestaurant'])) {
+        $sql = "SELECT * FROM restaurants";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $restaurantID = $row['restaurantID'];
+            }
+        }
+        $status = $_POST['status'];
+        if ($status == "Open") {
+            $status = "Close";
+            $sql = "UPDATE restaurants SET `status` = '$status' WHERE restaurantID = '$restaurantID'";
+            mysqli_query($conn, $sql);
+            if (mysqli_affected_rows($conn) > 0) {
+                echo "<script>alert('Restaurant Status Updated!'); window.location='index.php'</script>";
+            }
+        } else if ($status == "Close") {
+            $sql = "SELECT * FROM restaurants";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $restaurantID = $row['restaurantID'];
+                }
+            }
+            $status = "Open";
+            $sql = "UPDATE restaurants SET `status` = '$status' WHERE restaurantID = '$restaurantID'";
+            mysqli_query($conn, $sql);
+            if (mysqli_affected_rows($conn) > 0) {
+                echo "<script>alert('Restaurant Status Updated!'); window.location='index.php'</script>";
+            }
+        } else {
+            echo "<script>alert('Error!'); window.location='index.php'</script>";
+        }
+    }
+
     ?>
 
     <div class="row d-flex">
@@ -38,7 +74,8 @@
                             <div class="col-12 d-flex justify-content-center align-items-center mb-1">
                                 <p class=" mb-3">Please enter restaurant details</p>
                             </div>
-                            <form action="../signUpLogin.php" method="post" enctype="multipart/form-data" novalidate class="col-12 row g-4 m-0">
+                            <form action="../signUpLogin.php" method="post" enctype="multipart/form-data" novalidate
+                                class="col-12 row g-4 m-0">
                                 <div class="col-1"></div>
                                 <div class="col-10 px-5">
                                     <div class="form-floating">
@@ -101,6 +138,25 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-7 m-4">
+                <table class="table table-borderless table-hover table-striped text-center align-middle table-bordered"
+                    style="white-space: nowrap; font-size:14px;" id="dashboard-table">
+
+                    <thead class="text-wrap m-auto p-auto table-dark ">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Restaurant ID</th>
+                            <th scope="col">Restaurant Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Manage</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="text-wrap m-auto p-auto table-group-divider">
+                        <?php include "../includes/admin/manageRestaurant.inc.php"; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
 
