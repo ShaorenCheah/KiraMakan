@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2023 at 01:47 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Apr 12, 2023 at 03:32 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `accounts` (
   `password` varchar(256) NOT NULL,
   `token` varchar(6) DEFAULT NULL,
   `accountType` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `accounts`
@@ -54,16 +54,17 @@ CREATE TABLE `customers` (
   `customerID` varchar(5) NOT NULL,
   `customerName` varchar(256) NOT NULL,
   `phoneNo` varchar(255) DEFAULT NULL,
-  `accountID` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `accountID` varchar(5) NOT NULL,
+  `balance` double(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`customerID`, `customerName`, `phoneNo`, `accountID`) VALUES
-('C0001', 'Guest', '012-3456789', 'A0002'),
-('C0002', 'Cheah Shaoren', '016-3381806', 'A0003');
+INSERT INTO `customers` (`customerID`, `customerName`, `phoneNo`, `accountID`, `balance`) VALUES
+('C0001', 'Guest', '012-3456789', 'A0002', 0.00),
+('C0002', 'Cheah Shaoren', '016-3381806', 'A0003', 0.00);
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,7 @@ CREATE TABLE `menu` (
   `itemPrice` decimal(10,2) NOT NULL,
   `menuURL` longtext NOT NULL,
   `availability` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `menu`
@@ -88,7 +89,7 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `category`, `itemDescription`, `itemPrice`, `menuURL`, `availability`) VALUES
 ('M0001', 'R0001', 'Fillet O Fish', 'Meals', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '12.00', 'filletofish.jpg', 'Available'),
-('M0002', 'R0001', 'Mc Chicken', 'Meals', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '10.00', 'mcchicken.jpg', 'Unavailable'),
+('M0002', 'R0001', 'Mc Chicken', 'Meals', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '10.00', 'mcchicken.jpg', 'Available'),
 ('M0003', 'R0001', 'Ayam Goreng McD', 'Add-Ons', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '14.00', 'ayamgorengmcd.png', 'Available');
 
 -- --------------------------------------------------------
@@ -106,22 +107,7 @@ CREATE TABLE `orders` (
   `salesTotal` double(10,2) NOT NULL,
   `totalPrice` decimal(10,2) NOT NULL,
   `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`orderID`, `restaurantID`, `customerID`, `orderDate`, `serviceTotal`, `salesTotal`, `totalPrice`, `status`) VALUES
-('ORD0001', 'R0001', 'C0002', '2023-04-03 13:05:20', 0.00, 0.00, '0.00', 'Pending'),
-('ORD0002', 'R0001', 'C0002', '2023-04-03 14:09:38', 0.00, 0.00, '25.52', 'Pending'),
-('ORD0003', 'R0001', 'C0002', '2023-04-04 04:55:21', 0.00, 0.00, '83.50', 'Completed'),
-('ORD0004', 'R0001', 'C0002', '2023-04-04 05:48:17', 0.00, 0.00, '85.80', 'Completed'),
-('ORD0005', 'R0001', 'C0002', '2023-04-04 07:27:29', 6.00, 3.60, '69.60', 'Pending'),
-('ORD0006', 'R0001', NULL, '2023-04-04 08:22:43', 1.00, 0.60, '11.60', 'Pending'),
-('ORD0007', 'R0001', NULL, '2023-04-04 08:22:54', 1.20, 0.72, '13.90', 'Pending'),
-('ORD0008', 'R0001', 'C0002', '2023-04-04 08:23:57', 1.20, 0.72, '13.90', 'Pending'),
-('ORD0009', 'R0001', 'C0002', '2023-04-04 08:27:30', 4.80, 2.88, '55.70', 'Pending');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -133,28 +119,7 @@ CREATE TABLE `order_person` (
   `opID` varchar(6) NOT NULL,
   `orderID` varchar(7) NOT NULL,
   `personName` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `order_person`
---
-
-INSERT INTO `order_person` (`opID`, `orderID`, `personName`) VALUES
-('OP0001', 'ORD0002', 'Cheah Shaoren'),
-('OP0002', 'ORD0003', 'Cheah Shaoren'),
-('OP0003', 'ORD0003', 'Kun'),
-('OP0004', 'ORD0003', 'Yong Quan'),
-('OP0005', 'ORD0004', 'Cheah Shaoren'),
-('OP0006', 'ORD0004', 'Kun'),
-('OP0007', 'ORD0004', 'Yong Quan'),
-('OP0008', 'ORD0005', 'Cheah Shaoren'),
-('OP0009', 'ORD0005', 'Kun Yan'),
-('OP0010', 'ORD0006', 'Cheah Shaoren'),
-('OP0011', 'ORD0007', 'Cheah Shaoren'),
-('OP0012', 'ORD0008', 'Cheah Shaoren'),
-('OP0013', 'ORD0009', 'Kate'),
-('OP0014', 'ORD0009', 'Khan Ren'),
-('OP0015', 'ORD0009', 'Cheah Shaoren');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -167,35 +132,7 @@ CREATE TABLE `person_menu` (
   `menuID` varchar(5) NOT NULL,
   `quantity` int(2) DEFAULT NULL,
   `price` double(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `person_menu`
---
-
-INSERT INTO `person_menu` (`opID`, `menuID`, `quantity`, `price`) VALUES
-('OP0001', 'M0001', 1, 12.00),
-('OP0001', 'M0002', 1, 10.00),
-('OP0002', 'M0001', 1, 12.00),
-('OP0002', 'M0003', 1, 14.00),
-('OP0003', 'M0002', 1, 10.00),
-('OP0003', 'M0003', 1, 14.00),
-('OP0004', 'M0001', 1, 12.00),
-('OP0004', 'M0002', 1, 10.00),
-('OP0005', 'M0001', 3, 36.00),
-('OP0006', 'M0002', 1, 10.00),
-('OP0007', 'M0003', 2, 28.00),
-('OP0008', 'M0001', 1, 12.00),
-('OP0008', 'M0002', 1, 10.00),
-('OP0008', 'M0003', 1, 14.00),
-('OP0009', 'M0002', 1, 10.00),
-('OP0009', 'M0003', 1, 14.00),
-('OP0010', 'M0002', 1, 10.00),
-('OP0011', 'M0001', 1, 12.00),
-('OP0012', 'M0001', 1, 12.00),
-('OP0013', 'M0003', 1, 14.00),
-('OP0014', 'M0002', 1, 10.00),
-('OP0015', 'M0001', 2, 24.00);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -210,20 +147,20 @@ CREATE TABLE `restaurants` (
   `restaurantDescription` longtext NOT NULL,
   `restaurantURL` longtext NOT NULL,
   `status` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `restaurants`
 --
 
 INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `restaurantURL`, `status`) VALUES
-('R0001', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0002', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0003', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0004', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0005', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0006', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0007', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', '');
+('R0001', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', 'Open'),
+('R0002', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', 'Open'),
+('R0003', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', 'Open'),
+('R0004', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', 'Open'),
+('R0005', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', 'Open'),
+('R0006', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', 'Open'),
+('R0007', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', 'Closed');
 
 --
 -- Indexes for dumped tables
