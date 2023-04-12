@@ -46,7 +46,7 @@
                 <label for="user-name">1</label>
               </div>
               <div class="col-9 slotCol">
-                <input type="text" name="user-name" placeholder="Enter name here" required autocomplete="off">
+                <input type="text" name="user-name" class="form-control" placeholder="Enter name here" required autocomplete="off">
               </div>
               <div class="col-2"></div>
             </div>

@@ -49,6 +49,11 @@
 </div>
 
 <script>
+  function getRestaurantIDFromURL() {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('restaurantID');
+  }
+
   const cashAmountInput = document.getElementById("cashAmount");
   cashAmountInput.oninput = function() {
     let cashAmount = cashAmountInput.value;
@@ -56,7 +61,7 @@
     // Remove any non-numeric characters and leading zeros
     cashAmount = cashAmount.replace(/[^0-9.]/g, '').replace(/^0+/, '');
 
-    // Limit the cash amount to 1000
+    // Limit the cash amount to 10000
     if (parseFloat(cashAmount) > 1000) {
       cashAmount = "1000";
     }
@@ -133,9 +138,9 @@
 
 
   // select the submit button element
-  const submitBtn = document.querySelector('#top-up');
+  const topUpBtn = document.querySelector('#top-up');
 
-  submitBtn.addEventListener('click', () => {
+  topUpBtn.addEventListener('click', () => {
 
     // get the values of the inputs
     const cashAmount = document.getElementById('cashAmount').value;
@@ -154,32 +159,62 @@
         creditCVV
       };
       console.log(data); // log the data object
+      const restaurantID = getRestaurantIDFromURL();
 
-      fetch('/kiramakan/includes/customer/topUp.inc.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(response => {
-          console.log(response);
-          if (response.success) {
-            alert('Top Up Success. RM' + response.cashAmount + ' has been added to your account. You now have RM' + response.balance + ' in your account.');
-            window.location.href = "/kiramakan/index.php";
-          } else {
-            alert('Top Up Failed');
-          }
-        })
-        .catch(error => {
-          console.error('There was a problem with the fetch operation:', error);
-        });
+      if (restaurantID !== null && restaurantID !== undefined) {
+        fetch('/kiramakan/includes/customer/topUp.inc.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(response => {
+            console.log(response);
+            if (response.success) {
+              alert('Top Up Success. RM' + response.cashAmount + ' has been added to your account. You now have RM' + response.balance + ' in your account.');
+              window.location.href = "/kiramakan/foodOrdering.php?restaurantID=" + restaurantID + "";
+            } else {
+              alert('Top Up Failed');
+            }
+          })
+          .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+          });
+
+      } else {
+        fetch('/kiramakan/includes/customer/topUp.inc.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(response => {
+            console.log(response);
+            if (response.success) {
+              alert('Top Up Success. RM' + response.cashAmount + ' has been added to your account. You now have RM' + response.balance + ' in your account.');
+              window.location.href = "/kiramakan/index.php";
+            } else {
+              alert('Top Up Failed');
+            }
+          })
+          .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+          });
+      }
     }
   });
 </script>

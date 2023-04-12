@@ -291,8 +291,6 @@ function ready() {
             totalPrice: totalPrice
         };
 
-
-        clearCart();
         // Send the order to your server
         sendDataToServer(order);
     }
@@ -301,37 +299,47 @@ function ready() {
         var formData = new FormData();
         formData.append('orderData', JSON.stringify(orderData));
 
-        fetch('/kiramakan/includes/customer/orderFood.inc.php', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => {
-                console.log(response);
-                return response.json();
+        if (customerBalance < orderData.totalPrice) {
+            alert('Insufficient balance. Please Top Up First.');
+            // Create a new instance of the Modal class
+            var modal = new bootstrap.Modal(document.getElementById('manageAccountModalToggle'));
+
+            // Call the show() method to display the modal
+            modal.show();
+
+        } else {
+            fetch('/kiramakan/includes/customer/orderFood.inc.php', {
+                method: 'POST',
+                body: formData
             })
-            .then(data => {
-                if (data.success) {
-                    alert('Order submitted successfully');
-                    // Create a form element
-                    var form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = 'orderReceipt.php';
+                .then(response => {
+                    console.log(response);
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert('Order submitted successfully. RM ' + data.totalPrice.toFixed(2) + ' has been deducted from your account. You have RM ' + data.balance.toFixed(2) + ' left in your account.');
+                        // Create a form element
+                        var form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = 'orderReceipt.php';
 
-                    // Create a hidden input field for the order ID
-                    var input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = 'orderID';
-                    input.value = data.orderID;
-                    form.appendChild(input);
+                        // Create a hidden input field for the order ID
+                        var input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'orderID';
+                        input.value = data.orderID;
+                        form.appendChild(input);
 
-                    // Submit the form to redirect to the order receipt page with the order ID as a POST parameter
-                    document.body.appendChild(form);
-                    form.submit();
-                } else {
-                    alert('Error submitting order');
-                }
-            })
-
+                        // Submit the form to redirect to the order receipt page with the order ID as a POST parameter
+                        document.body.appendChild(form);
+                        clearCart();
+                        form.submit();
+                    } else {
+                        alert('Error submitting order');
+                    }
+                })
+        }
     }
     updateCartTotal();
 };

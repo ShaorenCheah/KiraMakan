@@ -112,7 +112,7 @@
                             </div>
                         </div>
 
-                <?php include 'menuItemPopUp.php';
+                <?php include 'includes/customer/menuItemModal.inc.php';
                     }
                 } else {
                     echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
@@ -166,7 +166,7 @@
                         </div>
                     </div>
 
-            <?php include 'menuItemPopUp.php';
+            <?php include 'includes/customer/menuItemModal.inc.php';
                 }
             } else {
                 echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
@@ -220,7 +220,7 @@
                     </div>
                 </div>
 
-        <?php include 'menuItemPopUp.php';
+        <?php include 'includes/customer/menuItemModal.inc.php';
             }
         } else {
             echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
@@ -277,7 +277,7 @@
                     </div>
                 </div>
 
-        <?php include 'menuItemPopUp.php';
+        <?php include 'includes/customer/menuItemModal.inc.php';
             }
         } else {
             echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
@@ -351,3 +351,7 @@
 </body>
 
 </html>
+
+<script>
+  var customerBalance = "<?php echo $_SESSION['balance']; ?>";
+</script>

@@ -94,7 +94,7 @@
     </div>
 
 
-    <?php include 'restaurantPopUp.php'; ?>
+    <?php include 'includes/customer/restaurantModal.inc.php'; ?>
     </div>
     </div>
 
@@ -138,6 +138,7 @@
         var slotCol = document.createElement("div");
         slotCol.classList.add("col-9", "slotCol");
         var slotInput = document.createElement("input");
+        slotInput.classList.add("form-control");
         slotInput.setAttribute("type", "text");
         slotInput.setAttribute("name", "user-name");
         slotInput.setAttribute("autocomplete", "off");
