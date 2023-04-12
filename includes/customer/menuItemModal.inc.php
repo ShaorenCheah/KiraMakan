@@ -16,11 +16,11 @@ echo '
                             <h6 class="primary-color pb-3">' . $row['itemDescription'] . '</h6>
                             <div class="row">
                                 <div class="col-9 d-flex align-items-center">
-                                    <h6 class="primary-color m-0 p-0">Quantity:</h6>
+                                    <h6 class="primary-color m-0 p-0">Quantity</h6>
                                 </div>
                                 <div class="col-3 d-flex justify-content-end">
                                     <div class="input-group w-100">
-                                        <input type="number" name="quantity" min="1" aria-label="Quantity" value="1" style="max-width: 80px;">  
+                                        <input type="number" name="quantity" min="1" class="form-control" aria-label="Quantity" value="1" style="max-width: 80px;">  
                                     </div>                              
                                 </div>                            
                                 <div class="col-12 d-flex justify-content-center mt-4">

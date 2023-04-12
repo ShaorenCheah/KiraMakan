@@ -7,7 +7,6 @@ if (document.readyState == 'loading') {
 function ready() {
 
 
-
     // Function to get restaurantID from the URL
     function getRestaurantIDFromURL() {
         var urlParams = new URLSearchParams(window.location.search);
@@ -81,6 +80,7 @@ function ready() {
     function saveCartData() {
         var cartItemContainer = document.getElementsByClassName('cart-items')[0];
         localStorage.setItem('cartData', cartItemContainer.innerHTML);
+        console.log(localStorage);
     }
 
     function removeCartItem(event) {
@@ -102,15 +102,35 @@ function ready() {
         saveCartData(); // Save cart data after removing an item
     }
 
-    // Update the 'quantityChanged' function
     function quantityChanged(event) {
-        var input = event.target;
+        var input = event.currentTarget;
         if (isNaN(input.value) || input.value <= 0) {
             input.value = 1;
         }
+        // Update the quantity variable with the new value
+        quantity = input.value;
+
+        // Get a reference to the parent element of the input element
+        var parent = input.parentNode;
+
+        // Create a new input element with the updated quantity
+        var newInput = document.createElement('input');
+        newInput.setAttribute('class', 'cart-quantity-input form-control me-2');
+        newInput.setAttribute('type', 'number');
+        newInput.setAttribute('value', quantity);
+        newInput.setAttribute('style', 'width: 60%;');
+
+        // Replace the old input element with the new one
+        parent.replaceChild(newInput, input);
+
+        // Add the event listener to the new input element
+        newInput.addEventListener('change', quantityChanged);
+
         updateCartTotal();
-        saveCartData(); // Save cart data after changing the quantity
+        saveCartData();
     }
+
+
 
     function addToCartClicked(event) {
         var button = event.target;
@@ -191,6 +211,7 @@ function ready() {
             }
         }
         net = Math.round(total * 100) / 100;
+        document.getElementsByClassName('cart-sub')[0].innerText = 'RM ' + net.toFixed(2);
         service = net * 0.1;
         document.getElementsByClassName('cart-service')[0].innerText = 'RM ' + service.toFixed(2);
         sales = net * 0.06;
@@ -200,15 +221,16 @@ function ready() {
         secondDecimal = Math.floor(final * 100) % 10;
 
         if (secondDecimal <= 4) {
-            final = Math.floor(final * 10) / 10;
+            finalRounded = Math.floor(final * 10) / 10;
         } else {
-            final = Math.ceil(final * 10) / 10;
+            finalRounded = Math.ceil(final * 10) / 10;
         }
 
-        document.getElementsByClassName('cart-total-price')[0].innerText = 'RM ' + final.toFixed(2);
+        round = finalRounded - final;
 
+        document.getElementsByClassName('cart-round')[0].innerText = 'RM ' + round.toFixed(2);
 
-
+        document.getElementsByClassName('cart-total-price')[0].innerText = 'RM ' + finalRounded.toFixed(2);
 
         updateCartIcon();
     }
@@ -269,9 +291,6 @@ function ready() {
             totalPrice: totalPrice
         };
 
-        console.log(order);
-
-        clearCart();
         // Send the order to your server
         sendDataToServer(order);
     }
@@ -280,37 +299,47 @@ function ready() {
         var formData = new FormData();
         formData.append('orderData', JSON.stringify(orderData));
 
-        fetch('/kiramakan/includes/customer/orderFood.inc.php', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => {
-                console.log(response);
-                return response.json();
+        if (customerBalance < orderData.totalPrice) {
+            alert('Insufficient balance. Please Top Up First.');
+            // Create a new instance of the Modal class
+            var modal = new bootstrap.Modal(document.getElementById('manageAccountModalToggle'));
+
+            // Call the show() method to display the modal
+            modal.show();
+
+        } else {
+            fetch('/kiramakan/includes/customer/orderFood.inc.php', {
+                method: 'POST',
+                body: formData
             })
-            .then(data => {
-                if (data.success) {
-                    alert('Order submitted successfully');
-                    // Create a form element
-                    var form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = 'orderReceipt.php';
+                .then(response => {
+                    console.log(response);
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert('Order submitted successfully. RM ' + data.totalPrice.toFixed(2) + ' has been deducted from your account. You have RM ' + data.balance.toFixed(2) + ' left in your account.');
+                        // Create a form element
+                        var form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = 'orderReceipt.php';
 
-                    // Create a hidden input field for the order ID
-                    var input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = 'orderID';
-                    input.value = data.orderID;
-                    form.appendChild(input);
+                        // Create a hidden input field for the order ID
+                        var input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'orderID';
+                        input.value = data.orderID;
+                        form.appendChild(input);
 
-                    // Submit the form to redirect to the order receipt page with the order ID as a POST parameter
-                    document.body.appendChild(form);
-                    form.submit();
-                } else {
-                    alert('Error submitting order');
-                }
-            })
-
+                        // Submit the form to redirect to the order receipt page with the order ID as a POST parameter
+                        document.body.appendChild(form);
+                        clearCart();
+                        form.submit();
+                    } else {
+                        alert('Error submitting order');
+                    }
+                })
+        }
     }
     updateCartTotal();
 };

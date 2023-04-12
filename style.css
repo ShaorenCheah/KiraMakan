@@ -8,15 +8,42 @@
 
 }
 
+/* Works for Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+body::-webkit-scrollbar {
+  display: none;
+}
 
 body {
   font-family: "Lato", sans-serif !important;
   color: var(--main);
 }
 
-body::-webkit-scrollbar {
-  display: none;
+table {
+  border-color: transparent;
+
+}
+
+td,
+th,
+tr {
+  border: none;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(255, 118, 41, 0.25);
+}
+
+
+.form-control:focus,
+.form-control:active {
+  border-color: #ff7629;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
 }
 
 
@@ -43,9 +70,6 @@ body::-webkit-scrollbar {
   border-radius: 0px;
   background-color: white;
   color: var(--primary);
-  border-bottom: 2px solid transparent;
-  /* Add border instead of text-decoration */
-  padding-bottom: 3px;
   /* Increase the padding to add spacing */
   transition: all 0.3s ease-in-out;
   /* add a transition effect for a smooth animation */
@@ -244,7 +268,7 @@ i {
 
 /* Contact-Us Section End */
 
-/* Restaurant options Section Start */
+/* Carousel Section Start */
 
 
 #myCarousel .cards-wrapper {
@@ -303,6 +327,10 @@ i {
   right: -100px;
 }
 
+/* Carousel Section End */
+
+/* Restaurant options Section Start */
+
 /* Center the form */
 #names-form form {
   display: flex;
@@ -322,6 +350,12 @@ i {
   border-radius: 5px;
   box-shadow: 0px 0px 5px #ccc;
   width: 300px;
+}
+
+#names-form input:focus,
+#names-form input:active {
+  border-color: #ff7629;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
 }
 
 .is-invalid {
@@ -370,8 +404,7 @@ i {
 }
 
 .cart-total {
-  height: 25%;
-
+  height: 30%;
 }
 
 .cart-item-title {
@@ -484,7 +517,7 @@ i {
 /* Footer Section End */
 
 /* Sidebar Section Start */
-.sidebar{
+.sidebar {
   box-shadow: 0px 16px 22px 0px rgba(0, 0, 0, 0.1);
 }
 
