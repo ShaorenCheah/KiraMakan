@@ -1,5 +1,5 @@
 <?php
-include './includes/connection.inc.php';
+include '../connection.inc.php';
 if (isset($_POST['loginSubmit'])) {
 
     session_start();
@@ -51,7 +51,7 @@ if (isset($_POST['loginSubmit'])) {
                 $_SESSION['customerID'] = $customerID;
                 $_SESSION['balance'] = $balance;
                 $_SESSION[$accountType . 'Name'] = $name;
-                echo "<script>alert('Successful Login! Welcome $name!'); window.location='index.php'</script>";
+                echo "<script>alert('Successful Login! Welcome $name!'); window.location='../../index.php'</script>";
             } else {
                 $_SESSION['restaurantName'] = $name;
                 $_SESSION['restaurantID'] = $restaurantID;
@@ -133,7 +133,7 @@ if (isset($_POST['loginSubmit'])) {
     }
     mysqli_stmt_close($stmt);
 
-    echo "<script>alert('Successful Registration! Welcome $customerName!'); window.location='index.php'</script>";
+    echo "<script>alert('Successful Registration! Welcome $customerName!'); window.location='../../index.php'</script>";
 
     mysqli_close($conn);
 }

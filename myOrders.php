@@ -9,8 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="accounts.js" async></script>
-
+    <script src="orderHistory.js" async></script>
     <title>Kira Makan</title>
 </head>
 
@@ -59,12 +58,12 @@
                             </div>
 
                             <?php include "includes/customer/displayMyOrderModal.inc.php"; ?>
-                    <?php
+                        <?php
                         }
                     } else { ?>
                         <h5 class='text-muted p-0'>You have no active orders</h5>
                         <a href="restaurantOptions.php" class="btn orange-btn fs-5">Order now</a>
-                        <?php
+                    <?php
                     }
                     ?>
                 </div>
@@ -120,6 +119,9 @@
         </div>
     </div>
 </body>
+
+
+</html>
 
 <script>
     let orderbtn = document.querySelector('.order-button');
@@ -189,5 +191,3 @@
             });
     });
 </script>
-
-</html>

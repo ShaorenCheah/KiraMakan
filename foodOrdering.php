@@ -9,7 +9,7 @@
     <!-- Bootstrap JavaScript and jQuery libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    <script src="cart.js" async></script>
+    <script src="includes/customer/scripts/cart.js" async></script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Kira Makan</title>

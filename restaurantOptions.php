@@ -70,10 +70,10 @@
                                     <h5 class="card-title"><strong><?php echo $rows['restaurantName']; ?></strong></h5>
                                     <p class="card-text"><?php echo $rows['restaurantDescription']; ?></p>
                                     <div class="d-flex justify-content-end">
-                                        <?php if($rows['status'] == "Open"){?>
-                                        <button class="btn white-btn restaurant-button" data-bs-target="#exampleModalToggle" id="restaurantID" value="<?php echo $rows['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
+                                        <?php if ($rows['status'] == "Open") { ?>
+                                            <button class="btn white-btn restaurant-button" data-bs-target="#exampleModalToggle" id="restaurantID" value="<?php echo $rows['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
                                         <?php } else { ?>
-                                        <h6 style="color:red">Temporarily Closed</h6>
+                                            <h6 style="color:red">Temporarily Closed</h6>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -99,6 +99,8 @@
     </div>
 
 </body>
+
+</html>
 
 <script>
     const restaurantButtons = document.querySelectorAll('.restaurant-button');
@@ -246,5 +248,3 @@
         }
     });
 </script>
-
-</html>
