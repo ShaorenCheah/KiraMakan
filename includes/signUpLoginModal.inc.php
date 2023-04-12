@@ -16,7 +16,7 @@
               <p class=" mb-3">Please enter your email and password</p>
             </div>
 
-            <form action="includes/customer/signUpLogin.inc.php" method="post" novalidate onsubmit="return validateLoginForm()" class="col-12 row g-4 m-0">
+            <form action="includes/signUpLogin.inc.php" method="post" novalidate onsubmit="return validateLoginForm()" class="col-12 row g-4 m-0">
               <div class="col-1"></div>
               <div class="col-10 px-5">
                 <div class="form-floating">
@@ -60,7 +60,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="login-modal">
-        <form action="includes/customer/signUpLogin.inc.php" method="post" novalidate onsubmit="return validateRegisterForm()">
+        <form action="includes/signUpLogin.inc.php" method="post" novalidate onsubmit="return validateRegisterForm()">
           <div class="input-group mb-3">
             <span class="input-group-text">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">

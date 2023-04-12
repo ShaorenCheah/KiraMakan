@@ -24,19 +24,11 @@ body {
   color: var(--main);
 }
 
-table {
-  border-color: transparent;
 
-}
 
-td,
-th,
-tr {
-  border: none;
-}
-
-.table-hover tbody tr:hover {
-  background-color: rgba(255, 118, 41, 0.25);
+thead {
+  background-color: var(--orange);
+  color: white;
 }
 
 
@@ -64,6 +56,25 @@ tr {
   border-color: #ff7629;
   box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
 }
+
+
+
+.form-check-input:checked {
+  background-color: var(--orange);
+  border: none;
+}
+
+.form-check-input:hover:not(:checked) {
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
+  border-color: #ff7629;
+}
+
+.form-check-input:active:not(:checked) {
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
+  border-color: #ff7629;
+}
+
+
 
 .back-btn.btn {
   border: none;
