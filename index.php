@@ -18,7 +18,7 @@
     <?php session_start() ?>
     <div class="min-vh-100">
         <div class="row d-flex flex-col ">
-            <header class="col-md-12 mb-5">
+            <header class="col-md-12 mb-5 pe-0">
                 <!-- Header -->
                 <?php include 'header.php'; ?>
             </header>
@@ -134,7 +134,7 @@
                 <a href="restaurantOptions.php" class="btn orange-btn fs-4">Explore All</a>
             </div>
 
-            <?php include 'restaurantPopUp.php'; ?>
+            <?php include 'includes/customer/restaurantModal.inc.php'; ?>
         </div>
     </div>
 

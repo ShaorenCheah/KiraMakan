@@ -40,6 +40,12 @@ tr {
 }
 
 
+.form-control:focus,
+.form-control:active {
+  border-color: #ff7629;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
+}
+
 .form-floating input:focus,
 .form-floating input:active {
   border-color: #ff7629;
@@ -63,9 +69,6 @@ tr {
   border-radius: 0px;
   background-color: white;
   color: var(--primary);
-  border-bottom: 2px solid transparent;
-  /* Add border instead of text-decoration */
-  padding-bottom: 3px;
   /* Increase the padding to add spacing */
   transition: all 0.3s ease-in-out;
   /* add a transition effect for a smooth animation */
