@@ -40,9 +40,13 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`accountID`, `email`, `password`, `token`, `accountType`) VALUES
-('A0001', 'mcd@gmail.com', '$2y$10$5M4sMHISEPYD46Oc732kVu/II/iudTm60bvM6eR6IIdNA1anUw2qi', NULL, 'Restaurant'),
-('A0002', 'guest@gmail.com', '$2y$10$5M4sMHISEPYD46Oc732kVu/II/iudTm60bvM6eR6IIdNA1anUw2qi', NULL, 'Customer'),
-('A0003', 'shaorencheah@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', '259037', 'Customer');
+('A0001', 'guest@gmail.com', '$2y$10$5M4sMHISEPYD46Oc732kVu/II/iudTm60bvM6eR6IIdNA1anUw2qi', NULL, 'Customer'),
+('A0002', 'shaorencheah@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', '259037', 'Customer'),
+('A0003', 'sushihaven@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
+('A0004', 'goldenwok@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
+('A0005', 'minjikitchen@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
+('A0006', 'bellaitalia@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
+('A0007', 'restoranpersekutuan@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant');
 
 -- --------------------------------------------------------
 
@@ -62,8 +66,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customerID`, `customerName`, `phoneNo`, `accountID`) VALUES
-('C0001', 'Guest', '012-3456789', 'A0002'),
-('C0002', 'Cheah Shaoren', '016-3381806', 'A0003');
+('C0001', 'Guest', '012-3456789', 'A0001'),
+('C0002', 'Cheah Shaoren', '016-3381806', 'A0002');
 
 -- --------------------------------------------------------
 
@@ -86,10 +90,43 @@ CREATE TABLE `menu` (
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `category`, `itemDescription`, `itemPrice`, `menuURL`, `availability`) VALUES
-('M0001', 'R0001', 'Fillet O Fish', 'Meals', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '12.00', 'filletofish.jpg', 'Available'),
-('M0002', 'R0001', 'Mc Chicken', 'Meals', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '10.00', 'mcchicken.jpg', 'Unavailable'),
-('M0003', 'R0001', 'Ayam Goreng McD', 'Add-Ons', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo. Suspendisse sit amet leo dolor. ', '14.00', 'ayamgorengmcd.png', 'Available');
+INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `category`, `itemDescription` , `itemPrice`, `menuURL`, `availability`) VALUES
+('M0001', 'R0001', 'Spicy Tuna Roll', 'Meals', 'Fresh tuna mixed with spicy mayo, wrapped in seaweed and sushi rice.', '12.50', 'spicytunaroll.png', 'Available'),
+('M0002', 'R0001', 'Dragon Roll', 'Meals', 'Eel, cucumber, and avocado, topped with tobiko and eel sauce.', '16.00', 'dragonroll.png', 'Available'),
+('M0003', 'R0001', 'Salmon Nigiri', 'Meals', 'Fresh salmon on top of a small bed of sushi rice.', '5.00', 'salmonnigiri.png', 'Available'),
+('M0004', 'R0001', 'Unagi Don', 'Meals', 'Grilled eel served over rice with eel sauce, pickles, and miso soup.', '18.00', 'unagidon.png', 'Available'),
+('M0005', 'R0001', 'Sashimi Platter', 'Meals', 'Assortment of fresh fish slices served with wasabi and soy sauce.', '24.00', 'sashimiplatter.png', 'Available'),
+('M0006', 'R0001', 'Green Tea', 'Drinks', 'Traditional Japanese green tea.', '2.50', 'greentea.png', 'Available'),
+('M0007', 'R0001', 'Sake', 'Drinks','Japanese rice wine served hot or cold.', '8.00', 'sake.png', 'Available'),
+('M0008', 'R0002', 'Beijing Duck', 'Meals', 'Crispy roasted duck tossed with a sweet and savory sauce, served over a bed of steamed rice.', '15.00', 'beijingduck.png', 'Available'),
+('M0009', 'R0002', 'Kung Pao Chicken', 'Meals', 'Stir-fried diced chicken with peanuts, chili peppers, and vegetables in a spicy sauce, served with steamed rice.', '13.00', 'kungpaochicken.png', 'Available'),
+('M0010', 'R0002', 'Shrimp Fried Rice', 'Meals', 'Wok-fried rice with succulent shrimp, scrambled eggs, peas, and carrots.', '11.00', 'shrimpfriedrice.png', 'Available'),
+('M0011', 'R0002', 'Tomato Egg Noodle', 'Meals', 'Savory scrambled eggs and juicy tomatoes tossed with freshly made noodles.', '9.00', 'tomatoeggnoodle.png', 'Available'),
+('M0012', 'R0002', 'Hot and Sour Soup', 'Meals', 'A traditional Chinese soup with a spicy and sour flavor.', '6.00', 'hotandsoursoup.png', 'Available'),
+('M0013', 'R0002', 'Bubble Tea', 'Drinks', 'A Taiwanese tea-based drink with chewy tapioca pearls coated with brown sugar.', '8.50', 'bubbletea.png', 'Available'),
+('M0014', 'R0002', 'Jasmine Tea', 'Drinks', 'A hot pot of fragrant and delicate jasmine tea, perfect for after meal.', '7.00', 'jasminetea.png', 'Available'),
+('M0015', 'R0003', 'Bibimbap', 'Meals', 'A classic Korean rice bowl topped with beef, mixed vegetables, and a fried egg.',  '12.50', 'bibimbap.png', 'Available'), 
+('M0016', 'R0003', 'Galbi', 'Meals', 'Marinated beef short ribs grilled to perfection and served with steamed rice and Korean side dishes.', '18.00', 'galbi.png', 'Available'),
+('M0017', 'R0003', 'Jjajangmyeon', 'Meals', 'Noodles in black bean sauce, served with chopped meat and vegetables.', '11.00', 'jjajangmyeon.png', 'Available'),
+('M0018', 'R0003', 'Kimchi Jjigae', 'Meals', 'Spicy and sour stew made with kimchi and pork belly, served with steamed rice.', '15.00', 'kimchijjigae.png', 'Available'),
+('M0019', 'R0003', 'Japchae', 'Meals', 'Stir-fried glass noodles with mixed vegetables, beef, and sesame oil.', '13.00', 'japchae.png', 'Available'),
+('M0020', 'R0003', 'Soju', 'Drinks', 'A popular Korean distilled beverage with a smooth, slightly sweet taste.', '8.00', 'soju.png', 'Available'),
+('M0021', 'R0003', 'Makgeolli', 'Drinks', 'A traditional Korean rice wine with a slightly sweet and tangy taste.', '7.00', 'makgeolli.png', 'Available'),
+('M0022', 'R0004', 'Margherita Pizza', 'Meals', 'A classic pizza topped with tomato sauce, mozzarella cheese, and fresh basil.', '12.50', 'margheritapizza.png', 'Available'),
+('M0023', 'R0004', 'Spaghetti Carbonara', 'Meals', 'A pasta dish made with spaghetti, pancetta, eggs, and cheese in a creamy sauce.', '13.00', 'spaghetticarbonara.png', 'Available'),
+('M0024', 'R0004', 'Spaghetti Bolognaise', 'Meals', 'A pasta dish made with spaghetti coated with tomato-based sauce with ground beef.', '13.00', 'spaghettibolognaise.png', 'Available'),
+('M0025', 'R0004', 'Veal Scallopini', 'Meals', 'Thinly sliced veal sautéed with mushrooms, capers, and white wine in a butter sauce.', '22.00', 'vealscallopini.png', 'Available'), 
+('M0026', 'R0004', 'Linguine alle Vongole', 'Meals', 'Linguine pasta with fresh clams, garlic, white wine, and olive oil.', '18.00', 'linguineallevongole.png', 'Available'),
+('M0027', 'R0004', 'Tiramisu', 'Desserts', 'A classic Italian dessert made with layers of ladyfingers, espresso, and mascarpone cream.', '9.00', 'tiramisu.png', 'Available'),
+('M0028', 'R0004', 'Negroni Cocktail', 'Drinks', 'A classic Italian cocktail made with gin, vermouth, and Campari.', '10.00', 'negronicocktail.png', 'Available'),
+('M0029', 'R0004', 'Pinot Grigio', 'Drinks', 'A light-bodied Italian white wine with crisp citrus and tropical fruit flavors.', '9.00', 'pinotgrigio.png', 'Available'),
+('M0030', 'R0005', 'Nasi Lemak', 'Meals', 'Fragrant coconut rice served with crispy anchovies, roasted peanuts, cucumber, and spicy sambal.', '8.00', 'nasilemak.png', 'Available'),
+('M0031', 'R0005', 'Beef Rendang', 'Meals', 'Tender beef chunks slow-cooked in coconut milk and aromatic spices, served with steamed rice.', '11.00', 'beefrendang.png', 'Available'),
+('M0032', 'R0005', 'Nasi Goreng', 'Meals', 'Stir-fried rice with shrimp, chicken, egg, and a blend of fragrant spices.', '7.00', 'nasigoreng.png', 'Available'),
+('M0033', 'R0005', 'Curry Laksa', 'Meals', 'Creamy coconut curry noodle soup with shrimp, chicken, tofu, and bean sprouts.', '9.00', 'currylaksa.png', 'Available'),
+('M0034', 'R0005', 'Char Kway Teow', 'Meals', 'Stir-fried flat rice noodles with shrimp, Chinese sausage, egg, and bean sprouts.', '8.00', 'charkueyteow.png', 'Available'),
+('M0035', 'R0005', 'Teh Tarik', 'Drinks', 'Hot tea with condensed milk, frothed to perfection.', '3.50', 'tehtarik.png', 'Available'),
+('M0036', 'R0005', 'Sirap Bandung', 'Drinks', 'A refreshing pink drink made with rose syrup and evaporated milk.', '3.00', 'sirapbandung.png', 'Available'); 
 
 -- --------------------------------------------------------
 
@@ -112,20 +149,8 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`orderID`, `restaurantID`, `customerID`, `orderDate`, `serviceTotal`, `salesTotal`, `totalPrice`, `status`) VALUES
-('ORD0001', 'R0001', 'C0002', '2023-04-03 13:05:20', 0.00, 0.00, '0.00', 'Pending'),
-('ORD0002', 'R0001', 'C0002', '2023-04-03 14:09:38', 0.00, 0.00, '25.52', 'Pending'),
-('ORD0003', 'R0001', 'C0002', '2023-04-04 04:55:21', 0.00, 0.00, '83.50', 'Completed'),
-('ORD0004', 'R0001', 'C0002', '2023-04-04 05:48:17', 0.00, 0.00, '85.80', 'Completed'),
-('ORD0005', 'R0001', 'C0002', '2023-04-04 07:27:29', 6.00, 3.60, '69.60', 'Pending'),
-('ORD0006', 'R0001', NULL, '2023-04-04 08:22:43', 1.00, 0.60, '11.60', 'Pending'),
-('ORD0007', 'R0001', NULL, '2023-04-04 08:22:54', 1.20, 0.72, '13.90', 'Pending'),
-('ORD0008', 'R0001', 'C0002', '2023-04-04 08:23:57', 1.20, 0.72, '13.90', 'Pending'),
-('ORD0009', 'R0001', 'C0002', '2023-04-04 08:27:30', 4.80, 2.88, '55.70', 'Pending');
 
 -- --------------------------------------------------------
-
---
 -- Table structure for table `order_person`
 --
 
@@ -136,25 +161,6 @@ CREATE TABLE `order_person` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `order_person`
---
-
-INSERT INTO `order_person` (`opID`, `orderID`, `personName`) VALUES
-('OP0001', 'ORD0002', 'Cheah Shaoren'),
-('OP0002', 'ORD0003', 'Cheah Shaoren'),
-('OP0003', 'ORD0003', 'Kun'),
-('OP0004', 'ORD0003', 'Yong Quan'),
-('OP0005', 'ORD0004', 'Cheah Shaoren'),
-('OP0006', 'ORD0004', 'Kun'),
-('OP0007', 'ORD0004', 'Yong Quan'),
-('OP0008', 'ORD0005', 'Cheah Shaoren'),
-('OP0009', 'ORD0005', 'Kun Yan'),
-('OP0010', 'ORD0006', 'Cheah Shaoren'),
-('OP0011', 'ORD0007', 'Cheah Shaoren'),
-('OP0012', 'ORD0008', 'Cheah Shaoren'),
-('OP0013', 'ORD0009', 'Kate'),
-('OP0014', 'ORD0009', 'Khan Ren'),
-('OP0015', 'ORD0009', 'Cheah Shaoren');
 
 -- --------------------------------------------------------
 
@@ -168,36 +174,6 @@ CREATE TABLE `person_menu` (
   `quantity` int(2) DEFAULT NULL,
   `price` double(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `person_menu`
---
-
-INSERT INTO `person_menu` (`opID`, `menuID`, `quantity`, `price`) VALUES
-('OP0001', 'M0001', 1, 12.00),
-('OP0001', 'M0002', 1, 10.00),
-('OP0002', 'M0001', 1, 12.00),
-('OP0002', 'M0003', 1, 14.00),
-('OP0003', 'M0002', 1, 10.00),
-('OP0003', 'M0003', 1, 14.00),
-('OP0004', 'M0001', 1, 12.00),
-('OP0004', 'M0002', 1, 10.00),
-('OP0005', 'M0001', 3, 36.00),
-('OP0006', 'M0002', 1, 10.00),
-('OP0007', 'M0003', 2, 28.00),
-('OP0008', 'M0001', 1, 12.00),
-('OP0008', 'M0002', 1, 10.00),
-('OP0008', 'M0003', 1, 14.00),
-('OP0009', 'M0002', 1, 10.00),
-('OP0009', 'M0003', 1, 14.00),
-('OP0010', 'M0002', 1, 10.00),
-('OP0011', 'M0001', 1, 12.00),
-('OP0012', 'M0001', 1, 12.00),
-('OP0013', 'M0003', 1, 14.00),
-('OP0014', 'M0002', 1, 10.00),
-('OP0015', 'M0001', 2, 24.00);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `restaurants`
@@ -216,14 +192,12 @@ CREATE TABLE `restaurants` (
 -- Dumping data for table `restaurants`
 --
 
-INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `restaurantURL`, `status`) VALUES
-('R0001', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0002', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0003', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0004', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0005', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0006', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', ''),
-('R0007', 'McDonalds', 'A0001', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula dolor, scelerisque eu libero accumsan, venenatis mollis justo.', 'McDonaldslogo.png', '');
+INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `restaurantURl`, `status`) VALUES 
+('R0001', 'Sushi Haven', 'A0003', 'Enjoy our fresh and flavorful sushi rolls, nigiri, and sashimi with a modern twist.', 'sushihavenlogo.png', 'Open'),
+('R0002', 'Golden Wok', 'A0004', 'Savor our authentic Chinese dishes with a burst of bold flavors and aromatic spices.', 'goldenwoklogo.png', 'Open'),
+('R0003', 'Minji Kitchen', 'A0005', 'Delight in our mouth-watering Korean dishes made with the freshest ingredients.', 'minjikitchenlogo.png', 'Open'),
+('R0004', 'Bella Italia', 'A0006', 'Indulge in our classic Italian dishes with a modern flair, made from the finest imported ingredients.', 'bellaitalialogo.png', 'Open'),
+('R0005', 'Restoran Persekutuan', 'A0007', 'Experience the exotic flavors of Malaysia with our authentic dishes.', 'restoranpersekutuanlogo.png', 'Open');
 
 --
 -- Indexes for dumped tables
