@@ -29,9 +29,9 @@
             <div class="col-md-11 d-flex justify-content-center">
                 <div class="col-md-11 h-auto">
                     <div class="row m-0 d-flex flex-column justify-content-center align-items-center g-3">
-                        <div class="row m-0 mt-3 me-3 d-flex flex-row justify-content-center align-items-center g-3 flex-grow-1">
+                        <div class="row m-0 mt-1 me-3 d-flex flex-row justify-content-center align-items-center g-3 flex-grow-1">
                             <div class="col-md-7 d-flex flex-column">
-                                <h2 class="fw-bold">Order History</h2>
+                                <h3 class="fw-bold">Order History</h3>
                                 <h6 class="text-muted">View your order history here</h6>
                             </div>
                             <form class="col-md-5 d-flex justify-content-end" action="orderHistory.php" method="GET">
@@ -75,20 +75,20 @@
                         </div>
 
                         <div class="col-md-12 w-100 h-auto d-flex justify-content-center">
-                            <div class="d-flex justify-content-center align-items-center my-4 position-fixed bottom-0" id="pagination">
+                            <ul class="d-flex justify-content-center align-items-center my-4 position-fixed bottom-0 pagination" id="pagination">
                                 <?php
                                 if ($pageno > 1) {
-                                    echo "<a href='orderHistory.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex' ><i class='fa fa-angle-left big' ></i></a>";
+                                    echo "<li class='page-item'><a href='orderHistory.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex page-link' ><i class='fa fa-angle-left big' ></i></a></li>";
                                 }
 
                                 for ($i = 0; $i < $total_pages; $i++) {
-                                    echo "<a href='orderHistory.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex'>" . ($i + 1) . "</a>";
+                                    echo "<li class='page-item'><a href='orderHistory.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex page-link'>" . ($i + 1) . "</a>";
                                 }
                                 if ($i > $pageno) {
-                                    echo "<a href='orderHistory.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex'><i class='fa fa-angle-right big'></i></a>";
+                                    echo "<li class='page-item'><a href='orderHistory.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex page-link'><i class='fa fa-angle-right big'></i></a></li>";
                                 }
                                 ?>
-                            </div>
+                            </ul>
                         </div>
                     </div>
                 </div>

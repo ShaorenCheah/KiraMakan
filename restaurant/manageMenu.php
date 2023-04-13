@@ -53,11 +53,11 @@
                     <div class="row m-0 d-flex flex-column justify-content-center align-items-center g-3">
                         <div class="row m-0  me-3 d-flex flex-row justify-content-center align-items-center g-3 flex-grow-1">
                             <div class="col-md-7 d-flex flex-column">
-                                <h2 class="fw-bold">Menu</h2>
+                                <h3 class="fw-bold">Menu</h3>
                                 <h6 class="text-muted">View your menu items here</h6>
                             </div>
                             <div class="col-md-5 d-flex justify-content-end">
-                                <div class="col-md-9 ">
+                                <div class="col-md-9 me-4">
                                     <div class="input-group">
                                         <input type="text" class="form-control w-25" name="search" placeholder="Search menu items..." value="<?php if (isset($_GET['search'])) {
                                                                                                                                                 echo $_GET['search'];
