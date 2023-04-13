@@ -68,7 +68,7 @@
                                 <div class="d-flex justify-content-center align-items-center">
                                     <img src="images/restaurants/<?php echo $rows['restaurantName'] ?>/<?php echo $rows['restaurantURL']; ?>" class="card-img-top" style="width:70%" alt="<?php echo $rows['restaurantName']; ?>">
                                 </div>
-                                <div class="mx-3"style="border-top:2px solid var(--orange)"></div>
+                                <div class="mx-3" style="border-top:2px solid var(--orange)"></div>
                                 <div class="card-body">
                                     <h5 class="card-title"><strong><?php echo $rows['restaurantName']; ?></strong></h5>
                                     <p class="card-text"><?php echo $rows['restaurantDescription']; ?></p>
@@ -102,6 +102,10 @@
     </div>
 
 </body>
+
+<footer>
+    <?php include "footer.php"; ?>
+</footer>
 
 </html>
 

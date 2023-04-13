@@ -157,7 +157,7 @@
                     <div class="d-flex flex-column col-12 justify-content-end">
                         <div class="d-flex flex-row justify-content-between gap-1 mb-1">
                             <p class="mb-0" style="font-size:14px">Subtotal</p>
-                            <p class="mb-0" style="font-size:14px">RM <?= number_format($subtotal,2) ?></p>
+                            <p class="mb-0" style="font-size:14px">RM <?= number_format($subtotal, 2) ?></p>
                         </div>
                         <div class="d-flex flex-row justify-content-between gap-1 mb-1">
                             <p class="mb-0" style="font-size:14px">Service Tax (10%)</p>
@@ -169,7 +169,7 @@
                         </div>
                         <div class="d-flex flex-row justify-content-between gap-1 mb-1">
                             <p class="mb-0" style="font-size:14px">Cash Rounding</p>
-                            <p class="mb-0" style="font-size:14px">RM <?= number_format($totalPrice - $subtotal - $salesTotal - $serviceTotal,2) ?></p>
+                            <p class="mb-0" style="font-size:14px">RM <?= number_format($totalPrice - $subtotal - $salesTotal - $serviceTotal, 2) ?></p>
                         </div>
                         <div class="d-flex flex-row justify-content-between gap-1 mb-1">
                             <h4 class="mb-0"><strong>Grand Total</strong><span class="text-muted" style="font-size:13px"> (rounded price)</span></h4>
@@ -217,6 +217,12 @@
 
 
 </body>
+
+<footer>
+    <?php include "footer.php"; ?>
+</footer>
+
+</html>
 <script>
     const sendEmailButtons = document.querySelectorAll('.send-email');
     let opIDInput = document.getElementById('opID');
@@ -278,5 +284,3 @@
             });
     });
 </script>
-
-</html>
