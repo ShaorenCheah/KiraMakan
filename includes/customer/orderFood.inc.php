@@ -10,6 +10,7 @@ $restaurantID = $order['restaurantID'];
 $totalService = $order['servicePrice'];
 $totalSales = $order['salesPrice'];
 $totalPrice = $order['totalPrice'];
+date_default_timezone_set('Asia/Kuala_Lumpur');
 $current_time = date("Y-m-d H:i:s");
 
 // Get latest orderID

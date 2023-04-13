@@ -14,6 +14,8 @@ if (mysqli_num_rows($result) > 0) {
         $orderID = $row['orderID'];
         $orderDate = $row['orderDate'];
         $totalPrice = $row["totalPrice"];
+        $salesTotal = $row["salesTotal"];
+        $serviceTotal = $row["serviceTotal"];
 
         echo "
         <div class='modal fade' id='orderID" . $orderID . "HistoryModal' aria-hidden='true'
@@ -23,8 +25,7 @@ if (mysqli_num_rows($result) > 0) {
                     <div class='modal-header d-flex justify-content-start'>
                         <h5 class='font-weight-bold mb-0'>
                             <strong>
-                                Order <span style='color:var(--orange)'>#
-                                    " . $orderID . "
+                                Order <span style='color:var(--orange)'>#" . $orderID . "
                                 </span> on <span style='color:var(--orange)'>
                                     " . $orderDate . "
                                 </span>
@@ -42,32 +43,53 @@ if (mysqli_num_rows($result) > 0) {
                 WHERE op.orderID = '$orderID'
                 GROUP BY m.itemName, pm.quantity, m.itemPrice";
         $result2 = mysqli_query($conn, $sql);
-
+        $subtotal = 0;
         while ($row2 = mysqli_fetch_assoc($result2)) {
 
             $itemName = $row2['itemName'];
             $quantity = $row2['quantity'];
             $unit = $row2['itemPrice'];
             $price = $row2['total_price'];
-
+            $subtotal += $price;
             echo
-                "<div class='d-flex flex-row justify-content-between my-3'>
+            "<div class='d-flex flex-row justify-content-between my-3'>
                     <h6>$itemName x  $quantity (RM $unit/unit)</h6>
                     <h6>RM $price</h6>
                 </div>
                 ";
         }
 
-        echo "
+?>
+        </div>
+        <div class='modal-footer mx-2'>
+            <div class="d-flex flex-column col-12 justify-content-end">
+                <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                    <p class="mb-0" style="font-size:12px">Subtotal</p>
+                    <p class="mb-0" style="font-size:12px">RM <?= number_format($subtotal, 2) ?></p>
                 </div>
-                    <div class='modal-footer d-flex justify-content-between align-items-center'>
-                        <div class='d-flex justify-content-start'>
-                            <h4 class='m-0'>Total Price: RM  $totalPrice </h4>
-                        </div>
-                    </div>
+                <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                    <p class="mb-0" style="font-size:12px">Service Tax (10%)</p>
+                    <p class="mb-0" style="font-size:12px">RM <?= $serviceTotal ?></p>
+                </div>
+                <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                    <p class="mb-0" style="font-size:12px">Sales Tax (6%)</p>
+                    <p class="mb-0" style="font-size:12px">RM <?= $salesTotal ?></p>
+                </div>
+                <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                    <p class="mb-0" style="font-size:12px">Cash Rounding</p>
+                    <p class="mb-0" style="font-size:12px">RM <?= number_format($totalPrice - $subtotal - $salesTotal - $serviceTotal, 2) ?></p>
+                </div>
+                <div class="d-flex flex-row justify-content-between gap-1 mb-1 mt-2">
+                    <h4 class="mb-0"><strong>Grand Total</strong><span class="text-muted" style="font-size:13px"> (rounded price)</span></h4>
+                    <h4 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $totalPrice ?></span></strong></h4>
+
                 </div>
             </div>
-        </div>";
+        </div>
+        </div>
+        </div>
+        </div>
+<?php
     }
 }
 ?>

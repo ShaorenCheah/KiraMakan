@@ -7,10 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <script src="accounts.js" async></script>
 
     <title>Kira Makan</title>
 
@@ -35,7 +33,7 @@
     <div class="row d-flex">
         <?php include "sidebar.php"; ?>
         <div class="col-md-10 my-4 d-flex justify-content-center">
-            <div class="col-md-11">
+            <div class="col-md-10">
                 <div class="col-md-12 d-flex flex-row">
                     <div class="col-md-3">
                         <div class="card col-md-11">
@@ -51,8 +49,9 @@
                                 }
                                 ?>
                                 <h6 class="card-title"><strong>Daily Orders</strong></h6>
-                                <h3 class="card-text d-flex justify-content-end">
-                                    <?= $dailyOrders ?>
+                                <h3 class="card-text d-flex justify-content-end"><span style="color:var(--orange)">
+                                        <?= $dailyOrders ?>
+                                    </span>
                                 </h3>
                             </div>
                         </div>
@@ -72,7 +71,11 @@
                                 ?>
                                 <h6 class="card-title"><strong>Daily Sale</strong></h6>
                                 <h3 class="card-text d-flex justify-content-end">
-                                <?php if($dailySales != 0){ echo "RM". $dailySales.""; } else { echo"RM 0.00"; }?>
+                                    <?php if ($dailySales != 0) {
+                                        echo "RM <span style='color:var(--orange)'>&nbsp" . $dailySales . "</span>";
+                                    } else {
+                                        echo "RM<span style='color:var(--orange);'>&nbsp;0.00</span>";
+                                    } ?>
                                 </h3>
                             </div>
                         </div>
@@ -92,7 +95,9 @@
                                 ?>
                                 <h6 class="card-title"><strong>Monthly Orders</strong></h6>
                                 <h3 class="card-text d-flex justify-content-end">
-                                    <?= $monthlyOrders ?>
+                                    <span style="color:var(--orange)">
+                                        <?= $monthlyOrders ?>
+                                        </style>
                                 </h3>
                             </div>
                         </div>
@@ -112,27 +117,29 @@
                                 ?>
                                 <h6 class="card-title"><strong>Monthly Sales</strong></h6>
                                 <h3 class="card-text d-flex justify-content-end">
-                                    <?php if($monthlySales != 0){ echo "RM". $monthlySales.""; } else { echo"RM 0.00"; }?>
+                                    <?php if ($monthlySales != 0) {
+                                        echo "RM <span style='color:var(--orange)'>&nbsp" . $monthlySales . "</span>";
+                                    } else {
+                                        echo "RM<span style='color:var(--orange);'>&nbsp;0.00</span>";
+
+                                    } ?>
                                 </h3>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div
-                    class="row m-0 mt-3 me-3 d-flex flex-column justify-content-center align-items-center g-3 flex-grow-1">
-                    <div class="col-md-12">
-                        <?php $today = date("Y-m-d"); ?>
-                        <h4>Todays Order (
-                            <?= $today ?>)
-                        </h4>
+                <div class="row m-0 mt-3 me-3 d-flex flex-column justify-content-center align-items-center g-3 flex-grow-1">
+                    <div class="col-md-12 d-flex flex-column">
+                        <?php $today = date("j F Y"); ?>
+                        <h3 class="fw-bold">Todays Order (<span style="color:var(--orange)"> <?= $today ?> </span>)</h3>
+                        <?php $today = date('Y-m-d'); ?>
+                        <h6 class="text-muted">Manage your pending orders for today</h6>
                     </div>
                     <div class="col-md-12">
-                        <table
-                            class="table table-borderless table-hover table-striped text-center align-middle table-bordered"
-                            style="white-space: nowrap; font-size:14px;" id="dashboard-table">
+                        <table class="table table-borderless table-hover table-striped text-center align-middle" style="white-space: nowrap; font-size:14px;" id="dashboard-table">
 
-                            <thead class="text-wrap m-auto p-auto table-dark ">
+                            <thead class="text-wrap m-auto p-auto  ">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Order ID</th>
@@ -152,37 +159,24 @@
                     </div>
                 </div>
                 <div class="col-md-12 w-100 h-auto d-flex justify-content-center">
-                    <div class="d-flex justify-content-center align-items-center my-4 position-fixed bottom-0"
-                        id="pagination">
+                    <ul class="d-flex justify-content-center align-items-center my-4 position-fixed bottom-0 pagination" id="pagination">
                         <?php
                         if ($pageno > 1) {
-                            echo "<a href='index.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex' ><i class='fa fa-angle-left big' ></i></a>";
+                            echo "<li class='page-item'><a href='index.php?pageno=" . ($pageno - 1) . "' class=' d-flex page-link' >Previous</a></li>";
                         }
 
                         for ($i = 0; $i < $total_pages; $i++) {
-                            echo "<a href='index.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex'>" . ($i + 1) . "</a>";
+                            echo "<li class='page-item'><a href='index.php?pageno=" . ($i + 1) . "' class=' d-flex page-link'>" . ($i + 1) . "</a></li>";
                         }
                         if ($i > $pageno) {
-                            echo "<a href='index.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex'><i class='fa fa-angle-right big'></i></a>";
+                            echo "<li class='page-item'><a href='index.php?pageno=" . ($pageno + 1) . "' class=' d-flex page-link'>Next</a></li>";
                         }
                         ?>
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
 </body>
-<script>
-    let selectedOrderID = '';
-    const orderButtons = document.querySelectorAll('.order-button');
-
-    orderButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            selectedOrderID = button.value;
-            console.log(selectedOrderID)
-        });
-    });
-</script>
-
 </html>

@@ -1,4 +1,5 @@
 <?php
+$filtervalues = $_GET['search'] ?? "";
 // Check if the page number parameter is set, if not default to 1
 if (isset($_GET['pageno'])) {
     $pageno = $_GET['pageno'];
@@ -7,7 +8,7 @@ if (isset($_GET['pageno'])) {
 }
 
 // Set the number of records to display per page and calculate the offset
-$no_of_records_per_page = 7;
+$no_of_records_per_page = 3;
 $offset = ($pageno - 1) * $no_of_records_per_page;
 
 // Get the restaurant ID from the session
@@ -15,7 +16,7 @@ $restaurantID = $_SESSION['restaurantID'];
 $restaurantName = $_SESSION['restaurantName'];
 
 // Query the database to get the total number of menu items from menu table
-$sql = "SELECT COUNT(*) FROM menu WHERE restaurantID = '$restaurantID';";
+$sql = "SELECT COUNT(*) FROM menu WHERE restaurantID = '$restaurantID' AND CONCAT(itemName,category,itemDescription,itemPrice,availability) LIKE '%$filtervalues%';";
 
 // Execute the query and get the total number of rows
 $result = mysqli_query($conn, $sql);
@@ -25,14 +26,19 @@ $total_rows = mysqli_fetch_array($result)[0];
 $total_pages = ceil($total_rows / $no_of_records_per_page);
 
 // Query the database to get the menu items from menu table
-$sql = "SELECT `menuID`, `itemName`, `itemDescription`, `itemPrice`, `menuURL`, `availability` FROM menu WHERE restaurantID = '$restaurantID' LIMIT $offset, $no_of_records_per_page;";
+$sql = "SELECT * FROM menu WHERE restaurantID = '$restaurantID' AND CONCAT(itemName,category,itemDescription,itemPrice,availability) LIKE '%$filtervalues%' LIMIT $offset, $no_of_records_per_page;";
 
 // Execute the query and check if any rows were returned
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
     // Loop through the results and display each order in a table row
-    $count = 1;
+    if (isset($_GET['pageno'])) {
+        $count = $offset + 1;
+    } else {
+        $count = 1;
+    }
+    
     while ($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
             <th scope='row'>
@@ -48,6 +54,9 @@ if (mysqli_num_rows($result) > 0) {
                 <?= $row["itemDescription"] ?>
             </td>
             <td>
+                <?= $row["category"] ?>
+            </td>
+            <td>
                 <?= $row["itemPrice"] ?>
             </td>
             <td>
@@ -57,23 +66,23 @@ if (mysqli_num_rows($result) > 0) {
                 <?= $row["availability"] ?>
             </td>
             <td>
-                <form action="manageMenu.php" method="POST">
+                <form>
                     <?php
                     if ($row['availability'] == 'Available') {
-                        echo '<button class="btn btn-danger" value="' . $row['menuID'] . '" id="' . $row['menuID'] . '" name="manageMenu">Disable</button>';
-                        echo '<input type="hidden" name="availability" value="Available">';
-                    } else if ($row['availability'] == 'Unavailable'){
-                        echo '<button class="btn btn-success" value="' . $row['menuID'] . '" id="' . $row['menuID'] . '" name="manageMenu">Enable</button>';
-                        echo '<input type="hidden" name="availability" value="Unavailable">';
+                        $text = "Disable";
+                        $type = "btn-danger";
                     } else {
-                        echo 'error';
+                        $text = "Enable";
+                        $type = "btn-success";
                     }
+
+                    echo '<button class="btn ' . $type . ' menu-availability" value="' . $row['availability'] . '" id="' . $row['menuID'] . '" name="manageMenu">' . $text . '</button>';
                     ?>
                 </form>
             </td>
         </tr>
 
-        <?php $count++;
+<?php $count++;
     }
 } else {
     // If no rows were returned, display a message in a table row

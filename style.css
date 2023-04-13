@@ -8,12 +8,7 @@
 
 }
 
-/* Works for Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+
 
 body::-webkit-scrollbar {
   display: none;
@@ -24,19 +19,11 @@ body {
   color: var(--main);
 }
 
-table {
-  border-color: transparent;
 
-}
 
-td,
-th,
-tr {
-  border: none;
-}
-
-.table-hover tbody tr:hover {
-  background-color: rgba(255, 118, 41, 0.25);
+thead {
+  background-color: var(--orange);
+  color: white;
 }
 
 
@@ -59,10 +46,39 @@ tr {
   box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
 }
 
-.form-select select:focus,
-.form-select select:active {
-  border-color: #ff7629;
+.form-select:focus,
+.form-select:active {
+  border-color: #ff7629 !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25) !important;
+}
+
+.page-link {
+  color:var(--orange) !important;
+}
+
+.page-link:hover,
+.page-link:active{
+  border-color: #ff7629 !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25) !important;
+}
+.form-check-input:checked {
+  background-color: var(--orange);
+  border: none;
+}
+
+.form-check-input:hover:not(:checked) {
   box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
+  border-color: #ff7629;
+}
+
+.form-check-input:active:not(:checked) {
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
+  border-color: #ff7629;
+}
+
+.mute-btn:hover,
+.mute-btn:focus {
+  color: var(--orange) !important;
 }
 
 .back-btn.btn {
