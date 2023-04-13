@@ -125,6 +125,7 @@ if (mysqli_num_rows($result) > 0) {
             })
             .then(data => {
                 if (data.success) {
+                    alert('Order #' + data.orderID + ' completed');
                     window.location.href = data.url;
                 } else {
                     alert('Error updating order');

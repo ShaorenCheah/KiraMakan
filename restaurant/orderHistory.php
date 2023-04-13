@@ -78,14 +78,14 @@
                             <ul class="d-flex justify-content-center align-items-center my-4 position-fixed bottom-0 pagination" id="pagination">
                                 <?php
                                 if ($pageno > 1) {
-                                    echo "<li class='page-item'><a href='orderHistory.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex page-link' ><i class='fa fa-angle-left big' ></i></a></li>";
+                                    echo "<li class='page-item'><a href='orderHistory.php?" . (isset($filtervalues) ? 'search=' . $filtervalues . '&' : '') . "pageno=" . ($pageno - 1) . "' class=' d-flex page-link' >Previous</a></li>";
                                 }
 
                                 for ($i = 0; $i < $total_pages; $i++) {
-                                    echo "<li class='page-item'><a href='orderHistory.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex page-link'>" . ($i + 1) . "</a>";
+                                    echo "<li class='page-item'><a href='orderHistory.php?" . (isset($filtervalues) ? 'search=' . $filtervalues . '&' : '') . "pageno=" . ($i + 1) . "' class='d-flex page-link'>" . ($i + 1) . "</a></li>";
                                 }
                                 if ($i > $pageno) {
-                                    echo "<li class='page-item'><a href='orderHistory.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex page-link'><i class='fa fa-angle-right big'></i></a></li>";
+                                    echo "<li class='page-item'><a href='orderHistory.php?" . (isset($filtervalues) ? 'search=' . $filtervalues . '&' : '') . "pageno=" . ($pageno + 1) . "' class=' d-flex page-link'>Next</a></li>";
                                 }
                                 ?>
                             </ul>

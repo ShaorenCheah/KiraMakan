@@ -52,8 +52,15 @@ thead {
   box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25) !important;
 }
 
+.page-link {
+  color:var(--orange) !important;
+}
 
-
+.page-link:hover,
+.page-link:active{
+  border-color: #ff7629 !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25) !important;
+}
 .form-check-input:checked {
   background-color: var(--orange);
   border: none;

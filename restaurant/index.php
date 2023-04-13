@@ -72,7 +72,7 @@
                                 <h6 class="card-title"><strong>Daily Sale</strong></h6>
                                 <h3 class="card-text d-flex justify-content-end">
                                     <?php if ($dailySales != 0) {
-                                        echo "RM <span style='color:var(--orange)'>" . $dailySales . "</span>";
+                                        echo "RM <span style='color:var(--orange)'>&nbsp" . $dailySales . "</span>";
                                     } else {
                                         echo "RM<span style='color:var(--orange);'>&nbsp;0.00</span>";
                                     } ?>
@@ -118,7 +118,7 @@
                                 <h6 class="card-title"><strong>Monthly Sales</strong></h6>
                                 <h3 class="card-text d-flex justify-content-end">
                                     <?php if ($monthlySales != 0) {
-                                        echo "RM <span style='color:var(--orange)'>" . $monthlySales . "</span>";
+                                        echo "RM <span style='color:var(--orange)'>&nbsp" . $monthlySales . "</span>";
                                     } else {
                                         echo "RM<span style='color:var(--orange);'>&nbsp;0.00</span>";
 
@@ -162,14 +162,14 @@
                     <ul class="d-flex justify-content-center align-items-center my-4 position-fixed bottom-0 pagination" id="pagination">
                         <?php
                         if ($pageno > 1) {
-                            echo "<li class='page-item'><a href='index.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex page-link' ><i class='fa fa-angle-left big' ></i></a></li>";
+                            echo "<li class='page-item'><a href='index.php?pageno=" . ($pageno - 1) . "' class=' d-flex page-link' >Previous</a></li>";
                         }
 
                         for ($i = 0; $i < $total_pages; $i++) {
-                            echo "<li class='page-item'><a href='index.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex page-link'>" . ($i + 1) . "</a></li>";
+                            echo "<li class='page-item'><a href='index.php?pageno=" . ($i + 1) . "' class=' d-flex page-link'>" . ($i + 1) . "</a></li>";
                         }
                         if ($i > $pageno) {
-                            echo "<li class='page-item'><a href='index.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex page-link'><i class='fa fa-angle-right big'></i></a></li>";
+                            echo "<li class='page-item'><a href='index.php?pageno=" . ($pageno + 1) . "' class=' d-flex page-link'>Next</a></li>";
                         }
                         ?>
                     </ul>

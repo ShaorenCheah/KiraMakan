@@ -34,6 +34,7 @@ if($type=="Order"){
     $conn->close();
     $response = [
         'success' => true,
+        'orderID' => $orderID,
         'url' => $data['url']
     ];
     echo json_encode($response);
