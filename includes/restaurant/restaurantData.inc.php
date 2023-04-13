@@ -24,3 +24,18 @@ if($type=="Operation"){
     exit();
 }
 
+if($type=="Order"){
+    $orderID = $data['orderID'];
+    $sql = "UPDATE orders SET status = 'Completed' WHERE orderID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $orderID);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+    $response = [
+        'success' => true,
+        'url' => $data['url']
+    ];
+    echo json_encode($response);
+    exit();
+}
