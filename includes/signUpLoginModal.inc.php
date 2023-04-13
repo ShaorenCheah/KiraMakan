@@ -34,7 +34,7 @@
               </div>
               <div class="col-1"></div>
               <div class="col-12 d-flex justify-content-center align-items-center mb-3">
-                <button type="button" style="text-decoration:none;" class="btn bg-transparent border-0 text-secondary " data-bs-target="#forgetPasswordModalToggle" data-bs-toggle="modal"><span class="fs-6">Forgot
+                <button type="button" style="text-decoration:none;" class="btn bg-transparent border-0 text-secondary mute-btn" data-bs-target="#forgetPasswordModalToggle" data-bs-toggle="modal"><span class="fs-6">Forgot
                     Password?</span></button>
               </div>
               <div class="col-12 d-flex justify-content-center flex-column mb-5">
@@ -42,7 +42,7 @@
               </div>
             </form>
             <div class="col-12 d-flex justify-content-center align-items-center mb-3">
-              Don't have an account? <a class="btn p-0 ms-1" data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><span class="fs-6 text-muted"> Sign Up</span></a>
+              Don't have an account? <a class="btn p-0 ms-1" data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><span class="fs-6 text-muted mute-btn"> Sign Up</span></a>
             </div>
           </div>
         </div>

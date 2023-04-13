@@ -8,12 +8,7 @@
 
 }
 
-/* Works for Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+
 
 body::-webkit-scrollbar {
   display: none;
@@ -51,10 +46,10 @@ thead {
   box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
 }
 
-.form-select select:focus,
-.form-select select:active {
-  border-color: #ff7629;
-  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25);
+.form-select:focus,
+.form-select:active {
+  border-color: #ff7629 !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25) !important;
 }
 
 
@@ -74,7 +69,10 @@ thead {
   border-color: #ff7629;
 }
 
-
+.mute-btn:hover,
+.mute-btn:focus {
+  color: var(--orange) !important;
+}
 
 .back-btn.btn {
   border: none;
