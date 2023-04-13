@@ -88,9 +88,11 @@
                         <div class="carousel-item <?php echo $i == 0 ? 'active' : ''; ?>">
                             <div class="row gap-4 d-flex justify-content-evenly">
                                 <?php for ($j = $i; $j < $i + 3 && $j < count($rows); $j++) { ?>
-                                    <div class="col-md-3">
-                                        <div class="card ">
-                                            <img src="images/restaurants/<?php echo $rows[$j]['restaurantName']; ?>/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top rounded" alt="<?php echo $rows[$j]['restaurantName']; ?>">
+                                    <div class="col-md-3 ">
+                                        <div class="card h-100">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <img src="images/restaurants/<?php echo $rows[$j]['restaurantName']; ?>/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top" style="width:80%" alt="<?php echo $rows[$j]['restaurantName']; ?>">
+                                            </div>
                                             <div class="card-body">
                                                 <h4 class="card-title" style="font-weight:500"><?php echo $rows[$j]['restaurantName']; ?></h4>
                                                 <p class="card-text"><?php echo $rows[$j]['restaurantDescription']; ?></p>

@@ -48,7 +48,7 @@
 
 
         <div class="row m-0 col-10 d-flex align-items-start">
-            <div class="row col-12 g-5 m-0 mt-1 p-0 d-flex justify-content-start">
+            <div class="row col-12 g-5 m-0 mt-2 mb-5 p-0 d-flex justify-content-start">
 
                 <?php
                 if (isset($_GET['search'])) {
@@ -65,7 +65,10 @@
                 ?>
                         <div class="col-md-4">
                             <div class="card">
-                                <img src="images/restaurants/<?php echo $rows['restaurantName'] ?>/<?php echo $rows['restaurantURL']; ?>" class="card-img-top" alt="<?php echo $rows['restaurantName']; ?>">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <img src="images/restaurants/<?php echo $rows['restaurantName'] ?>/<?php echo $rows['restaurantURL']; ?>" class="card-img-top" style="width:70%" alt="<?php echo $rows['restaurantName']; ?>">
+                                </div>
+                                <div class="mx-3"style="border-top:2px solid var(--orange)"></div>
                                 <div class="card-body">
                                     <h5 class="card-title"><strong><?php echo $rows['restaurantName']; ?></strong></h5>
                                     <p class="card-text"><?php echo $rows['restaurantDescription']; ?></p>

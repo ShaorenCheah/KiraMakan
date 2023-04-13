@@ -4,12 +4,12 @@ echo '
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">' . $row['itemName'] . '</h1><br>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalToggleLabel">' . $row['itemName'] . '</h1><br>
             </div>
             <div class="modal-body d-flex h-auto flex-row w-100 container-fluid justify-content-between" id="type-modal">
                 <div class=" col-12 d-flex flex-column">
                     <div class="d-flex justify-content-center">
-                        <div class="shop-item-details">
+                        <div class="shop-item-details w-100">
                             <input type="hidden" class="menu-item-id" value="' . $row['menuID'] . '">
                             <input type="hidden" class="menu-item-name" value="' . $row['itemName'] . '">
                             <input type="hidden" class="menu-item-price" value="' . $row['itemPrice'] . '">

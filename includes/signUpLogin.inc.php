@@ -133,7 +133,7 @@ if (isset($_POST['loginSubmit'])) {
     }
     mysqli_stmt_close($stmt);
 
-    echo "<script>alert('Successful Registration! Welcome $customerName!'); window.location='../../index.php'</script>";
+    echo "<script>alert('Successful Registration! Welcome $customerName!'); window.location='../index.php'</script>";
 
     mysqli_close($conn);
 }
