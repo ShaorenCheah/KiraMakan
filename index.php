@@ -140,13 +140,11 @@
         </div>
     </div>
 
-<<<<<<< Updated upstream
+
     <footer>
         <?php include "footer.php"; ?>
     </footer>
-=======
-    <footer><?php include 'footer.php' ?></footer>
->>>>>>> Stashed changes
+
 </body>
 
 </html>
