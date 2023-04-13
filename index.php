@@ -161,7 +161,7 @@
 
     <div class="row d-flex">
         <footer class="col-md-12 mt-5">
-            <?php include 'footer.php'; ?>z
+            <?php include 'footer.php'; ?>
         </footer>
     </div>
 
