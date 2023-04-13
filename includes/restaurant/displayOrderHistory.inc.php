@@ -1,4 +1,6 @@
 <?php
+$filtervalues=$_GET['search']??"";
+
 // Check if the page number parameter is set, if not default to 1
 if (isset($_GET['pageno'])) {
     $pageno = $_GET['pageno'];
@@ -16,7 +18,7 @@ $restaurantID = $_SESSION['restaurantID'];
 // Query the database to get the total number of orders that are completed for any date, any time and current restaurant
 $sql = "SELECT DISTINCT COUNT(*)
                 FROM orders o  
-                WHERE o.restaurantID = '$restaurantID';";
+                WHERE o.restaurantID = '$restaurantID' AND CONCAT (o.orderID, o.orderDate, o.status) LIKE '%$filtervalues%';";
 
 // Execute the query and get the total number of rows
 $result = mysqli_query($conn, $sql);
@@ -29,7 +31,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 $sql = "SELECT *, DATE(o.orderDate) AS orderDate, TIME(o.orderDate) AS orderTime
     FROM orders o
     JOIN customers c ON o.customerID = c.customerID
-    WHERE o.restaurantID = '$restaurantID'
+    WHERE o.restaurantID = '$restaurantID'AND CONCAT (o.orderID, o.orderDate, o.status) LIKE '%$filtervalues%'
     LIMIT $offset, $no_of_records_per_page;";
 
 // Execute the query and check if any rows were returned

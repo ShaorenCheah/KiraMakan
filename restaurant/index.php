@@ -118,7 +118,7 @@
                                 <h6 class="card-title"><strong>Monthly Sales</strong></h6>
                                 <h3 class="card-text d-flex justify-content-end">
                                     <?php if ($monthlySales != 0) {
-                                        echo "RM" . $monthlySales . "";
+                                        echo "RM <span style='color:var(--orange)'>" . $monthlySales . "</span>";
                                     } else {
                                         echo "RM<span style='color:var(--orange);'>&nbsp;0.00</span>";
 
@@ -133,6 +133,7 @@
                     <div class="col-md-12 d-flex flex-column">
                         <?php $today = date("j F Y"); ?>
                         <h2 class="fw-bold">Todays Order (<span style="color:var(--orange)"> <?= $today ?> </span>)</h2>
+                        <?php $today = date('Y-m-d'); ?>
                         <h6 class="text-muted">Manage your pending orders for today</h6>
                     </div>
                     <div class="col-md-12">

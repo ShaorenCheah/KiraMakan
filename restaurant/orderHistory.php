@@ -34,8 +34,8 @@
                                 <h2 class="fw-bold">Order History</h2>
                                 <h6 class="text-muted">View your order history here</h6>
                             </div>
-                            <div class="col-md-5 d-flex justify-content-end">
-                                <div class="col-md-9 ">
+                            <form class="col-md-5 d-flex justify-content-end" action="orderHistory.php" method="GET">
+                                <div class="col-md-9  me-4">
                                     <div class="input-group">
                                         <input type="text" class="form-control w-25" name="search" placeholder="Search order history..." value="<?php if (isset($_GET['search'])) {
                                                                                                                                                     echo $_GET['search'];
@@ -48,7 +48,7 @@
                                             </svg></i> Search</button>
                                 </div>
 
-                            </div>
+                            </form>
                             <div class="col-md-12">
                                 <table class="table table-borderless table-hover table-striped text-center align-middle fs-6 " style="white-space: nowrap;" id="dashboard-table">
                                     <thead class="text-wrap m-auto p-auto ">

@@ -60,7 +60,7 @@ $row = mysqli_fetch_assoc($result);
         ?>
     </div>
 
-    <div class="d-flex justify-content-center align-items-center w-100 my-5">
+    <div class="d-flex justify-content-center align-items-center w-100 mt-2 mb-3">
         <button class="btn orange-btn me-3" type="button" data-bs-toggle="modal" data-bs-target="#logOutModalToggle">
             Log Out?
         </button>
