@@ -67,7 +67,3 @@ if (mysqli_num_rows($result) > 0) {
 return $total_pages;
 
 ?>
-
-<script>
-
-</script>

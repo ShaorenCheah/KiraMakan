@@ -56,12 +56,12 @@
                                 <h3 class="fw-bold">Menu</h3>
                                 <h6 class="text-muted">View your menu items here</h6>
                             </div>
-                            <div class="col-md-5 d-flex justify-content-end">
+                            <form class="col-md-5 d-flex justify-content-end" action="manageMenu.php" method="GET">
                                 <div class="col-md-9 me-4">
                                     <div class="input-group">
                                         <input type="text" class="form-control w-25" name="search" placeholder="Search menu items..." value="<?php if (isset($_GET['search'])) {
-                                                                                                                                                echo $_GET['search'];
-                                                                                                                                            } ?>" autocomplete="off">
+                                                                                                                                                    echo $_GET['search'];
+                                                                                                                                                } ?>" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-3 d-flex justify-content-end">
@@ -70,7 +70,7 @@
                                             </svg></i> Search</button>
                                 </div>
 
-                            </div>
+                            </form>
                             <div class="col-md-12">
                                 <table class="table table-borderless table-hover table-striped text-center align-middle  fs-6 " style="white-space: nowrap;" id="dashboard-table">
 
@@ -80,6 +80,7 @@
                                             <th scope="col">Menu ID</th>
                                             <th scope="col">Item Name</th>
                                             <th scope="col">Item Description</th>
+                                            <th scope="col">Category</th>
                                             <th scope="col">Item Price</th>
                                             <th scope="col">Item Image</th>
                                             <th scope="col">Availability</th>
@@ -99,14 +100,14 @@
                                 <?php
                                 if ($pageno > 1) {
 
-                                    echo "<li class='page-item'><a href='manageMenu.php?pageno=" . ($pageno - 1) . "' class='fs-5 px-3 py-1 d-flex page-link' ><i class='fa fa-angle-left big' ></i></a></li>";
+                                    echo "<li class='page-item'><a href='manageMenu.php?" . (isset($filtervalues) ? 'search=' . $filtervalues . '&' : '') . "pageno=" . ($pageno - 1) . "' class='d-flex page-link' >Previous</a></li>";
                                 }
 
                                 for ($i = 0; $i < $total_pages; $i++) {
-                                    echo "<li class='page-item'><a href='manageMenu.php?pageno=" . ($i + 1) . "' class='fs-4 px-3 py-1 d-flex page-link'>" . ($i + 1) . "</a></li>";
+                                    echo "<li class='page-item'><a href='manageMenu.php?" . (isset($filtervalues) ? 'search=' . $filtervalues . '&' : '') . "pageno=" . ($i + 1) . "' class='d-flex page-link'>" . ($i + 1) . "</a></li>";
                                 }
                                 if ($i > $pageno) {
-                                    echo "<li class='page-item'><a href='manageMenu.php?pageno=" . ($pageno + 1) . "' class='fs-5 px-3 py-1 d-flex page-link'><i class='fa fa-angle-right big'></i></a></li>";
+                                    echo "<li class='page-item'><a href='manageMenu.php?" . (isset($filtervalues) ? 'search=' . $filtervalues . '&' : '') . "pageno=" . ($pageno + 1) . "' class='d-flex page-link'>Next</a></li>";
                                 }
                                 ?>
                             </ul>
@@ -118,3 +119,53 @@
 </body>
 
 </html>
+
+<script>
+    var menuAvailabilityButtons = document.querySelectorAll('.menu-availability');
+
+    menuAvailabilityButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            var selectedMenuID = button.id;
+            var selectedStatus = button.value;
+
+
+            // Get the current URL of the page
+            var url = window.location.href;
+
+            var data = {
+                type: 'Update',
+                status: selectedStatus,
+                menuID: selectedMenuID,
+                url: url
+            };
+            // send switch state to server
+            sendDataToServer(data);
+
+        });
+    });
+
+
+    function sendDataToServer(data) {
+        var sentData = JSON.stringify(data);
+
+        fetch('/kiramakan/includes/restaurant/restaurantData.inc.php', {
+                method: 'POST',
+                body: sentData,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log(response);
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.url;
+                } else {
+                    alert('Error updating menu');
+                }
+            })
+
+    }
+</script>

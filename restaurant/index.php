@@ -33,7 +33,7 @@
     <div class="row d-flex">
         <?php include "sidebar.php"; ?>
         <div class="col-md-10 my-4 d-flex justify-content-center">
-            <div class="col-md-11">
+            <div class="col-md-10">
                 <div class="col-md-12 d-flex flex-row">
                     <div class="col-md-3">
                         <div class="card col-md-11">

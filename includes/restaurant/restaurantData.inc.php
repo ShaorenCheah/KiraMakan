@@ -40,3 +40,27 @@ if($type=="Order"){
     echo json_encode($response);
     exit();
 }
+
+if($type=="Update"){
+    $status = $data['status'];
+    $menuID = $data['menuID'];
+
+    if($status == "Available"){
+        $status = "Unavailable";
+    }else{
+        $status = "Available";
+    }
+
+    $sql = "UPDATE menu SET availability = ? WHERE menuID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ss', $status, $menuID);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+    $response = [
+        'success' => true,
+        'url' => $data['url']
+    ];
+    echo json_encode($response);
+    exit();
+}
