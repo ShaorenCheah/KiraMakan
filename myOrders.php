@@ -9,8 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="accounts.js" async></script>
-
     <title>Kira Makan</title>
 </head>
 
@@ -23,55 +21,101 @@
             <?php include 'header.php'; ?>
         </header>
 
-        <div class="row d-flex flex-col">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="col-md-12">
-                    <h2>My Orders
-                    </h2>
+        <div class="row d-flex flex-column">
+            <div class="col-md-12 d-flex flex-column justify-content-start align-items-center">
+                <div class="col-md-12 d-flex justify-content-center mb-3">
+                    <h1><strong><span style="color:var(--orange)">Active</span> Orders</strong></h1>
                 </div>
-                <div class="col-md-12">
-                    <table class="table table-borderless table-hover table-striped text-center align-middle table-bordered fs-6 " style="white-space: nowrap;" id="dashboard-table">
-                        <thead class="text-wrap m-auto p-auto table-dark ">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Restaurant Name</th>
-                                <th scope="col">Order Date</th>
-                                <th scope="col">Order Time</th>
-                                <th scope="col">Total Price</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Manage</th>
-                            </tr>
-                        </thead>
-                        <?php
-                        $customerID = $_SESSION['customerID'];
-                        $sql = "SELECT *, o.status, DATE(o.orderDate) AS orderDate, TIME(o.orderDate) AS orderTime FROM orders o , restaurants r WHERE customerID = '$customerID' AND o.restaurantID = r.restaurantID ";
-                        $count = 1;
-                        $result = mysqli_query($conn, $sql);
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) { ?>
-                                <tr>
-                                    <th scope='row'><?= $count ?></th>
-                                    <td><?= $row["orderID"] ?></td>
-                                    <td><?= $row["restaurantName"] ?></td>
-                                    <td><?= $row["orderDate"] ?></td>
-                                    <td><?= $row["orderTime"] ?></td>
-                                    <td>RM <?= $row["totalPrice"] ?></td>
-                                    <td><?= $row["status"] ?></td>
-                                    <td><button class="btn white-btn order-button order-button" style="font-size:14px" value="<?= $row['orderID'] ?>" id="<?= $row['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?= $row['orderID'] ?>Modal">Order</button></td>
-                                </tr>
-                        <?php $count++;
-                                include "includes/customer/displayMyOrderModal.inc.php";
-                            }
-                        } else {
-                            echo "<tr><td colspan='7'>No records found.</td></tr>";
-                        }
+                <div class="col-md-12 d-flex flex-column justify-content-center align-items-center mb-2 gap-3">
+                    <?php
+                    $customerID = $_SESSION['customerID'];
+                    $sql = "SELECT *, DATE(o.orderDate) AS orderDate, TIME(o.orderDate) AS orderTime FROM orders o , restaurants r WHERE customerID = '$customerID' AND o.restaurantID = r.restaurantID AND o.status='Pending' ORDER BY orderDate DESC, orderTime DESC";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($rows = mysqli_fetch_assoc($result)) {
+                    ?>
 
-                        ?>
-                    </table>
-                    <!-- Recipient Email Modal -->
-                    <div class="modal fade" id="emailRecipientModalToggle" aria-hidden="true" aria-labelledby="emailRecipientModalToggleLabel" tabindex="-1">
+                            <div class="card col-md-4">
+                                <div class="card-body d-flex flex-row">
+                                    <div class="col-md-3">
+                                        <img src="images/restaurants/<?php echo $rows['restaurantName'] ?>/<?php echo $rows['restaurantURL']; ?>" class="image-fluid rounded m-3" style="width 70px; height:70px;" alt="...">
+                                    </div>
+                                    <div class="col-md-6 mt-2 d-flex flex-column justify-content-between">
+                                        <h4><?php echo $rows['restaurantName']; ?></h4>
+                                        <h6 class="text-muted">Ordered on <?php echo date('j M, H:i', strtotime($rows['orderDate'] . ' ' . $rows['orderTime'])); ?></h6>
+                                    </div>
+                                    <div class="col-md-3 mt-2 d-flex justify-content-end">
+                                        <h5>RM <span style="color:var(--orange)"><?php echo $rows['totalPrice']; ?></span></h5>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-end">
+                                    <button class="btn white-btn order-button order-button" style="font-size:14px" value="<?= $rows['orderID'] ?>" id="<?= $rows['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?= $rows['orderID'] ?>Modal"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-receipt" viewBox="0 0 16 16">
+                                                <path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z" />
+                                                <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
+                                            </svg></i>View Receipt</button>
+                                </div>
+                            </div>
+
+                            <?php include "includes/customer/displayMyOrderModal.inc.php"; ?>
+                        <?php
+                        }
+                    } else { ?>
+                        <h5 class='text-muted p-0'>You have no active orders</h5>
+                        <a href="restaurantOptions.php" class="btn orange-btn fs-5">Order now</a>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="col-md-12 d-flex flex-column justify-content-start align-items-center mt-5 mb-2">
+                <div class="col-md-12 d-flex justify-content-center mb-3">
+                    <h1><strong><span style="color:var(--orange)">Completed</span> Orders</strong></h1>
+                </div>
+                <div class="col-md-12 d-flex flex-column justify-content-center align-items-center mb-2 gap-3">
+                    <?php
+                    $customerID = $_SESSION['customerID'];
+                    $sql = "SELECT *, DATE(o.orderDate) AS orderDate, TIME(o.orderDate) AS orderTime FROM orders o , restaurants r WHERE customerID = '$customerID' AND o.restaurantID = r.restaurantID AND o.status='Completed' ORDER BY orderDate DESC, orderTime DESC";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($rows = mysqli_fetch_assoc($result)) {
+                    ?>
+
+                            <div class="card col-md-4">
+                                <div class="card-body d-flex flex-row">
+                                    <div class="col-md-3">
+                                        <img src="images/restaurants/<?php echo $rows['restaurantName'] ?>/<?php echo $rows['restaurantURL']; ?>" class="image-fluid rounded m-3" style="width 70px; height:70px;" alt="...">
+                                    </div>
+                                    <div class="col-md-6 mt-2 d-flex flex-column justify-content-between">
+                                        <h4><?php echo $rows['restaurantName']; ?></h4>
+                                        <h6 class="text-muted">Ordered on <?php echo date('j M, H:i', strtotime($rows['orderDate'] . ' ' . $rows['orderTime'])); ?></h6>
+                                    </div>
+                                    <div class="col-md-3 mt-2 d-flex justify-content-end">
+                                        <h5>RM <span style="color:var(--orange)"><?php echo $rows['totalPrice']; ?></span></h5>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-end">
+                                    <button class="btn white-btn order-button order-button" style="font-size:14px" value="<?= $rows['orderID'] ?>" id="<?= $rows['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?= $rows['orderID'] ?>Modal"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-receipt" viewBox="0 0 16 16">
+                                                <path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z" />
+                                                <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
+                                            </svg></i>View Receipt</button>
+                                </div>
+                            </div>
+
+                            <?php include "includes/customer/displayMyOrderModal.inc.php"; ?>
+                    <?php
+                        }
+                    } else {
+                        echo "<h5 class='text-muted'>You have no completed orders</h5>";
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Recipient Email Modal -->
+        <div class="modal fade" id="emailRecipientModalToggle" aria-hidden="true" aria-labelledby="emailRecipientModalToggleLabel" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="col-12 d-flex justify-content-center align-items-center mt-4">
@@ -103,9 +147,13 @@
                 <div class="col-md-2"></div>
             </div>
         </div>
+    </div>
 </body>
-<script>
 
+
+</html>
+
+<script>
     let orderbtn = document.querySelector('.order-button');
     let selectedorderID = '';
 
@@ -173,5 +221,3 @@
             });
     });
 </script>
-
-</html>

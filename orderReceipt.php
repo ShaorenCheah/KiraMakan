@@ -19,11 +19,10 @@
     session_start();
 
     include './includes/connection.inc.php';
-    if(isset($_POST['orderID'])){
+    if (isset($_POST['orderID'])) {
         $orderID = $_POST['orderID'];
     } else {
         echo '<script>alert("Please order first"); window.location= "restaurantOptions.php";</script>';
-
     }
 
     $sql = "SELECT o.orderDate, o.serviceTotal, o.salesTotal, o.totalPrice, r.restaurantName FROM orders o, restaurants r WHERE o.restaurantID = r.restaurantID AND orderID = '$orderID'";
@@ -55,6 +54,7 @@
             </div>
             <div class="card-body">
                 <?php
+                $subtotal = 0;
                 $sql = "SELECT * FROM order_person WHERE orderID = '$orderID'";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) > 0) {
@@ -76,6 +76,7 @@
                             $quantity = $row2['quantity'];
                             $price = $row2['price'];
                             $sum += $price;
+                            $subtotal += $price;
                             $sql = "SELECT * FROM menu WHERE menuID = '$menuID'";
                             $result3 = mysqli_query($conn, $sql);
                             $row3 = mysqli_fetch_assoc($result3);
@@ -111,28 +112,38 @@
                             $secondDecimal = floor($final * 100) % 10;
 
                             if ($secondDecimal <= 4) {
-                                $final = floor($final * 10) / 10;
+                                $finalRounded = floor($final * 10) / 10;
                             } else {
-                                $final = ceil($final * 10) / 10;
+                                $finalRounded = ceil($final * 10) / 10;
                             }
+
                             $service = number_format($service, 2);
                             $sales = number_format($sales, 2);
-                            $final = number_format($final, 2);
+                            $round = number_format($finalRounded - $final, 2);
+                            $finalRounded = number_format($finalRounded, 2);
 
                             ?>
                             <div class="d-flex flex-column col-5">
                                 <div class="d-flex flex-row justify-content-between gap-1 mb-1">
-                                    <p class="mb-0" style="font-size:14px">Service Tax (10%)</p>
-                                    <p class="mb-0" style="font-size:14px">RM <?= $service ?></p>
+                                    <p class="mb-0" style="font-size:13px">Subtotal</p>
+                                    <p class="mb-0" style="font-size:13px">RM <?= number_format($net, 2) ?></p>
                                 </div>
                                 <div class="d-flex flex-row justify-content-between gap-1 mb-1">
-                                    <p class="mb-0" style="font-size:14px">Sales Tax (6%)</p>
-                                    <p class="mb-0" style="font-size:14px">RM <?= $sales ?></p>
+                                    <p class="mb-0" style="font-size:13px">Service Tax (10%)</p>
+                                    <p class="mb-0" style="font-size:13px">RM <?= $service ?></p>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                                    <p class="mb-0" style="font-size:13px">Sales Tax (6%)</p>
+                                    <p class="mb-0" style="font-size:13px">RM <?= $sales ?></p>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                                    <p class="mb-0" style="font-size:13px">Cash Rounding</p>
+                                    <p class="mb-0" style="font-size:13px">RM <?= $round ?></p>
                                 </div>
                                 <div class="d-flex flex-row justify-content-between gap-1 mb-1">
 
-                                    <h5 class="mb-0"><strong>Subtotal</strong><span class="text-muted" style="font-size:12px"> (rounded price)</span></h5>
-                                    <h5 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $final ?></span></strong></h5>
+                                    <h5 class="mb-0"><strong>Total</strong><span class="text-muted" style="font-size:13px"> (rounded price)</span></h5>
+                                    <h5 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $finalRounded ?></span></strong></h5>
 
                                 </div>
                             </div>
@@ -145,6 +156,10 @@
                     ?>
                     <div class="d-flex flex-column col-12 justify-content-end">
                         <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                            <p class="mb-0" style="font-size:14px">Subtotal</p>
+                            <p class="mb-0" style="font-size:14px">RM <?= number_format($subtotal,2) ?></p>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between gap-1 mb-1">
                             <p class="mb-0" style="font-size:14px">Service Tax (10%)</p>
                             <p class="mb-0" style="font-size:14px">RM <?= $serviceTotal ?></p>
                         </div>
@@ -153,8 +168,11 @@
                             <p class="mb-0" style="font-size:14px">RM <?= $salesTotal ?></p>
                         </div>
                         <div class="d-flex flex-row justify-content-between gap-1 mb-1">
-
-                            <h4 class="mb-0"><strong>Grand Total</strong><span class="text-muted" style="font-size:12px"> (rounded price)</span></h4>
+                            <p class="mb-0" style="font-size:14px">Cash Rounding</p>
+                            <p class="mb-0" style="font-size:14px">RM <?= number_format($totalPrice - $subtotal - $salesTotal - $serviceTotal,2) ?></p>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between gap-1 mb-1">
+                            <h4 class="mb-0"><strong>Grand Total</strong><span class="text-muted" style="font-size:13px"> (rounded price)</span></h4>
                             <h4 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $totalPrice ?></span></strong></h4>
 
                         </div>

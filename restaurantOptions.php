@@ -70,10 +70,10 @@
                                     <h5 class="card-title"><strong><?php echo $rows['restaurantName']; ?></strong></h5>
                                     <p class="card-text"><?php echo $rows['restaurantDescription']; ?></p>
                                     <div class="d-flex justify-content-end">
-                                        <?php if($rows['status'] == "Open"){?>
-                                        <button class="btn white-btn restaurant-button" data-bs-target="#exampleModalToggle" id="restaurantID" value="<?php echo $rows['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
+                                        <?php if ($rows['status'] == "Open") { ?>
+                                            <button class="btn white-btn restaurant-button" data-bs-target="#exampleModalToggle" id="restaurantID" value="<?php echo $rows['restaurantID'] ?>" data-bs-toggle="modal"><b>Order</b></button>
                                         <?php } else { ?>
-                                        <h6 style="color:red">Temporarily Closed</h6>
+                                            <h6 style="color:red">Temporarily Closed</h6>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -94,11 +94,13 @@
     </div>
 
 
-    <?php include 'restaurantPopUp.php'; ?>
+    <?php include 'includes/customer/restaurantModal.inc.php'; ?>
     </div>
     </div>
 
 </body>
+
+</html>
 
 <script>
     const restaurantButtons = document.querySelectorAll('.restaurant-button');
@@ -138,6 +140,7 @@
         var slotCol = document.createElement("div");
         slotCol.classList.add("col-9", "slotCol");
         var slotInput = document.createElement("input");
+        slotInput.classList.add("form-control");
         slotInput.setAttribute("type", "text");
         slotInput.setAttribute("name", "user-name");
         slotInput.setAttribute("autocomplete", "off");
@@ -245,5 +248,3 @@
         }
     });
 </script>
-
-</html>

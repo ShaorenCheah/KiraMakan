@@ -36,7 +36,11 @@ $sql = "SELECT *, TIME(o.orderDate) AS orderTime
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     // Loop through the results and display each order in a table row
-    $count = 1;
+    if(isset($_GET['pageno'])) {
+        $count = $offset + 1;
+    } else {
+        $count = 1;
+    }
     while ($row = mysqli_fetch_assoc($result)) { 
         ?>
     
@@ -47,15 +51,15 @@ if (mysqli_num_rows($result) > 0) {
             <td><?= $row["orderTime"] ?></td>
             <?php $totalPrice = $row["totalPrice"]; ?>
             <td>RM <?= $row["totalPrice"] ?></td>
-            <td><?= $row["status"] ?></td>
-            <td><button class="btn white-btn order-button" style="font-size:14px" value="<?= $row['orderID'] ?>" id="<?= $row['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?= $row['orderID'] ?>Modal">Order</button></td>
+            <td><?php if($row["status"] == "Pending"){ echo'<span style="color:#DC3545">'.$row["status"].'</span>';}else{echo'<span style="color:#198754">'.$row["status"].'</span>';} ?></td>
+            <td><button class="btn white-btn view-order" style="font-size:14px" value="<?= $row['orderID'] ?>" data-bs-toggle="modal" data-bs-target="#orderID<?= $row['orderID'] ?>Modal">Order</button></td>
         </tr>
         <?php
         $count++;
     }
 } else {
     // If no rows were returned, display a message in a table row
-    echo "<tr><td colspan='7'>No records found.</td></tr>";
+    echo "<tr><td colspan='8'>No records found.</td></tr>";
 }
 
 

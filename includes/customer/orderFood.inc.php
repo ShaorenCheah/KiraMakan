@@ -10,6 +10,7 @@ $restaurantID = $order['restaurantID'];
 $totalService = $order['servicePrice'];
 $totalSales = $order['salesPrice'];
 $totalPrice = $order['totalPrice'];
+date_default_timezone_set('Asia/Kuala_Lumpur');
 $current_time = date("Y-m-d H:i:s");
 
 // Get latest orderID
@@ -85,6 +86,18 @@ foreach ($order['orderData'] as $orderItem){
     }
 }
 
+$sql = "UPDATE customers SET balance = balance - ? WHERE customerID = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('ds', $totalPrice, $_SESSION['customerID']);
+$stmt->execute();
+
+$sql = "SELECT * FROM customers WHERE customerID = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('s', $_SESSION['customerID']);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = mysqli_fetch_assoc($result);
+$_SESSION['balance'] = $row['balance'];
 
 // Close the statement and connection
 $stmt->close();
@@ -93,7 +106,9 @@ $conn->close();
 // Send a JSON response indicating success or failure
 $response = [
     'success' => $success,
-    'orderID' => $orderID
+    'orderID' => $orderID,
+    'totalPrice' => $totalPrice,
+    'balance' => $_SESSION['balance']
 ];
 
 echo json_encode($response);

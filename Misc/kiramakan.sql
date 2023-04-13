@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2023 at 01:47 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Apr 12, 2023 at 03:32 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `accounts` (
   `password` varchar(256) NOT NULL,
   `token` varchar(6) DEFAULT NULL,
   `accountType` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `accounts`
@@ -58,16 +58,19 @@ CREATE TABLE `customers` (
   `customerID` varchar(5) NOT NULL,
   `customerName` varchar(256) NOT NULL,
   `phoneNo` varchar(255) DEFAULT NULL,
-  `accountID` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `accountID` varchar(5) NOT NULL,
+  `balance` double(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`customerID`, `customerName`, `phoneNo`, `accountID`) VALUES
-('C0001', 'Guest', '012-3456789', 'A0001'),
-('C0002', 'Cheah Shaoren', '016-3381806', 'A0002');
+
+INSERT INTO `customers` (`customerID`, `customerName`, `phoneNo`, `accountID`, `balance`) VALUES
+('C0001', 'Guest', '012-3456789', 'A0002', 0.00),
+('C0002', 'Cheah Shaoren', '016-3381806', 'A0003', 0.00);
+
 
 -- --------------------------------------------------------
 
@@ -84,11 +87,12 @@ CREATE TABLE `menu` (
   `itemPrice` decimal(10,2) NOT NULL,
   `menuURL` longtext NOT NULL,
   `availability` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `menu`
 --
+
 
 INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `category`, `itemDescription` , `itemPrice`, `menuURL`, `availability`) VALUES
 ('M0001', 'R0001', 'Spicy Tuna Roll', 'Meals', 'Fresh tuna mixed with spicy mayo, wrapped in seaweed and sushi rice.', '12.50', 'spicytunaroll.png', 'Available'),
@@ -128,6 +132,7 @@ INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `category`, `itemDescr
 ('M0035', 'R0005', 'Teh Tarik', 'Drinks', 'Hot tea with condensed milk, frothed to perfection.', '3.50', 'tehtarik.png', 'Available'),
 ('M0036', 'R0005', 'Sirap Bandung', 'Drinks', 'A refreshing pink drink made with rose syrup and evaporated milk.', '3.00', 'sirapbandung.png', 'Available'); 
 
+
 -- --------------------------------------------------------
 
 --
@@ -143,11 +148,13 @@ CREATE TABLE `orders` (
   `salesTotal` double(10,2) NOT NULL,
   `totalPrice` decimal(10,2) NOT NULL,
   `status` varchar(255) NOT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
 --
+
 
 
 -- --------------------------------------------------------
@@ -158,6 +165,7 @@ CREATE TABLE `order_person` (
   `opID` varchar(6) NOT NULL,
   `orderID` varchar(7) NOT NULL,
   `personName` varchar(50) NOT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -173,7 +181,9 @@ CREATE TABLE `person_menu` (
   `menuID` varchar(5) NOT NULL,
   `quantity` int(2) DEFAULT NULL,
   `price` double(10,2) DEFAULT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Table structure for table `restaurants`
@@ -186,11 +196,12 @@ CREATE TABLE `restaurants` (
   `restaurantDescription` longtext NOT NULL,
   `restaurantURL` longtext NOT NULL,
   `status` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `restaurants`
 --
+
 
 INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `restaurantURl`, `status`) VALUES 
 ('R0001', 'Sushi Haven', 'A0003', 'Enjoy our fresh and flavorful sushi rolls, nigiri, and sashimi with a modern twist.', 'sushihavenlogo.png', 'Open'),
@@ -198,6 +209,7 @@ INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `resta
 ('R0003', 'Minji Kitchen', 'A0005', 'Delight in our mouth-watering Korean dishes made with the freshest ingredients.', 'minjikitchenlogo.png', 'Open'),
 ('R0004', 'Bella Italia', 'A0006', 'Indulge in our classic Italian dishes with a modern flair, made from the finest imported ingredients.', 'bellaitalialogo.png', 'Open'),
 ('R0005', 'Restoran Persekutuan', 'A0007', 'Experience the exotic flavors of Malaysia with our authentic dishes.', 'restoranpersekutuanlogo.png', 'Open');
+
 
 --
 -- Indexes for dumped tables

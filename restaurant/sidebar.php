@@ -2,6 +2,7 @@
 $sql = "SELECT * FROM restaurants WHERE restaurantID = '$_SESSION[restaurantID]'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
+
 ?>
 
 <div class="col-md-2 min-vh-100  d-flex flex-column sidebar p-0 ps-2">
@@ -18,7 +19,7 @@ $row = mysqli_fetch_assoc($result);
         </div>
     </div>
 
-    <ul class="navbar-nav d-flex justify-content-start align-items-start flex-fill ps-4 ms-3 pt-4">
+    <ul class="navbar-nav d-flex justify-content-start align-items-start  ps-4 ms-3 pt-4">
         <h6 class="lead text-muted" style="font-size:11px;">CONTENT</h6>
         <li class="nav-item d-flex flex-row align-items-center">
             <i class="me-3 pb-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--orange)" class="bi bi-house" viewBox="0 0 16 16">
@@ -41,10 +42,75 @@ $row = mysqli_fetch_assoc($result);
         </li>
     </ul>
 
-    <div class="d-flex justify-content-center align-items-center w-100 my-5">
-        <button class="btn orange-btn me-3" type="button" data-bs-toggle="modal" data-bs-target="#logOutModalToggle">
-            Log Out?
-        </button>
-        <?php include 'logoutModal.php'; ?>
+    <div class="navbar-nav d-flex justify-content-start align-items-start flex-fill ps-4 ms-3 pt-4">
+        <h6 class="lead text-muted mb-3" style="font-size:11px;">MANAGE STORE</h6>
+        <?php
+        // determine switch state based on restaurant status
+        $switchState = ($row['status'] == 'Open') ? 'checked' : '';
+
+        // output switch HTML with dynamic state and label
+        echo '
+        <form>
+            <div class="form-check form-switch">
+                <label class="form-check-label ms-1" for="flexSwitchCheckDefault">Restaurant ' . $row['status'] . '</label>
+                <input class="form-check-input" type="checkbox" role="status" id="flexSwitchCheckDefault" ' . $switchState . '>
+            </div>
+        </form>
+        ';
+        ?>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center w-100 mt-2 mb-3">
+        <a href='logOut.php' class='btn orange-btn'><i class='me-2'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-box-arrow-right' viewBox='0 0 16 16'>
+                    <path fill-rule='evenodd' d='M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z' />
+                    <path fill-rule='evenodd' d='M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z' />
+                </svg>
+            </i>Log Out</a>
     </div>
 </div>
+
+<script>
+    // get the switch element
+    var switchElement = document.querySelector('.form-check-input');
+
+    // add event listener to switch
+    switchElement.addEventListener('change', function() {
+        // get the switch state
+        var switchState = (switchElement.checked) ? 'Open' : 'Closed';
+        // Get the current URL of the page
+        var url = window.location.href;
+
+        var data = {
+            type: 'Operation',
+            url: url,
+            state: switchState
+        };
+        // send switch state to server
+        sendDataToServer(data);
+    });
+
+    function sendDataToServer(data) {
+        var sentData = JSON.stringify(data);
+
+        fetch('/kiramakan/includes/restaurant/restaurantData.inc.php', {
+                method: 'POST',
+                body: sentData,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log(response);
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.url;
+                } else {
+                    alert('Error updating operation');
+                }
+            })
+
+    }
+</script>
