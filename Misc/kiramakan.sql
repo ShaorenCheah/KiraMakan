@@ -46,7 +46,12 @@ INSERT INTO `accounts` (`accountID`, `email`, `password`, `token`, `accountType`
 ('A0004', 'goldenwok@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
 ('A0005', 'minjikitchen@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
 ('A0006', 'bellaitalia@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
-('A0007', 'restoranpersekutuan@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant');
+('A0007', 'restoranpersekutuan@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
+('A0008', 'phogarden@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
+('A0009', 'lebistro@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
+('A0010', 'therosecrown@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
+('A0011', 'casadelosamigos@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
+('A0012', 'moscownights@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant');
 
 -- --------------------------------------------------------
 
@@ -68,8 +73,8 @@ CREATE TABLE `customers` (
 
 
 INSERT INTO `customers` (`customerID`, `customerName`, `phoneNo`, `accountID`, `balance`) VALUES
-('C0001', 'Guest', '012-3456789', 'A0002', 0.00),
-('C0002', 'Cheah Shaoren', '016-3381806', 'A0003', 0.00);
+('C0001', 'Guest', '012-3456789', 'A0001', 0.00),
+('C0002', 'Cheah Shaoren', '016-3381806', 'A0002', 0.00);
 
 
 -- --------------------------------------------------------
@@ -208,7 +213,12 @@ INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `resta
 ('R0002', 'Golden Wok', 'A0004', 'Savor our authentic Chinese dishes with a burst of bold flavors and aromatic spices.', 'goldenwoklogo.png', 'Open'),
 ('R0003', 'Minji Kitchen', 'A0005', 'Delight in our mouth-watering Korean dishes made with the freshest ingredients.', 'minjikitchenlogo.png', 'Open'),
 ('R0004', 'Bella Italia', 'A0006', 'Indulge in our classic Italian dishes with a modern flair, made from the finest imported ingredients.', 'bellaitalialogo.png', 'Open'),
-('R0005', 'Restoran Persekutuan', 'A0007', 'Experience the exotic flavors of Malaysia with our authentic dishes.', 'restoranpersekutuanlogo.png', 'Open');
+('R0005', 'Restoran Persekutuan', 'A0007', 'Experience the exotic flavors of Malaysia with our authentic dishes.', 'restoranpersekutuanlogo.png', 'Open'),
+('R0006', 'Pho Garden', 'A0008', 'Savor the bold flavors and aromatic spices of Vietnam in every bite at our restaurant.', 'phogardenlogo.png', 'Open'),
+('R0007', 'Le Bistro', 'A0009', 'Indulge in a gastronomic journey to France, where every dish is crafted with meticulous attention to detail.', 'lebistrologo.png', 'Open'),
+('R0008', 'The Rose Crown', 'A0010', 'Experience the hearty and comforting flavors of traditional British cuisine served with a modern twist.', 'therosecrownlogo.png', 'Open'),
+('R0009', 'Casa de los Amigos', 'A0011', 'Spice up your taste buds with the vibrant and zesty flavors of Mexico.', 'casadelosamigoslogo.png', 'Open'),
+('R0010', 'Moscos Nights', 'A0012', 'Embark on a culinary adventure to Russia, where the flavors of traditional cuisine meet modern innovation.', 'moscownightslogo.png', 'Open');
 
 
 --
