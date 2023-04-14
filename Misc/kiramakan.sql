@@ -254,7 +254,7 @@ INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `resta
 ('R0007', 'Le Bistro', 'A0009', 'Indulge in a gastronomic journey to France, where every dish is crafted with meticulous attention to detail.', 'lebistrologo.png', 'Open'),
 ('R0008', 'The Rose Crown', 'A0010', 'Experience the hearty and comforting flavors of traditional British cuisine served with a modern twist.', 'therosecrownlogo.png', 'Open'),
 ('R0009', 'Casa de los Amigos', 'A0011', 'Spice up your taste buds with the vibrant and zesty flavors of Mexico.', 'casadelosamigoslogo.png', 'Open'),
-('R0010', 'Moscos Nights', 'A0012', 'Embark on a culinary adventure to Russia, where the flavors of traditional cuisine meet modern innovation.', 'moscownightslogo.png', 'Open');
+('R0010', 'Moscow Nights', 'A0012', 'Embark on a culinary adventure to Russia, where the flavors of traditional cuisine meet modern innovation.', 'moscownightslogo.png', 'Open');
 
 
 --
