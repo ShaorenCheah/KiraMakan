@@ -69,18 +69,16 @@
         </div>
         <div class="col-md-3"></div>
 
-        <div class="col-md-3"></div>
-
-        <div class="tab-content col-md-6 mt-4" id="pills-tabContent">
+        <div class="tab-content col-md-12 mt-4 m-0 d-flex justify-content-center" id="pills-tabContent">
             <!-- Meal Section -->
-            <div class="tab-pane fade show active" id="pills-meal-tab" role="tabpanel" aria-labelledby="pills-meal-tab" tabindex="0">
+            <div class="m-0 tab-pane fade show active col-md-8" id="pills-meal-tab" role="tabpanel" aria-labelledby="pills-meal-tab" tabindex="0">
                 <?php
 
                 $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Meals'";
 
                 $result = mysqli_query($conn, $sql);
 
-                echo '<div class="row g-3 d-flex flex-row justify-content-start">';
+                echo '<div class="row m-0 g-4 d-flex flex-row justify-content-start">';
                 if (mysqli_num_rows($result) > 0) {
 
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -88,7 +86,7 @@
                 ?>
                         <div class="col-md-4">
                             <div class="card h-100">
-                                <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                                <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
                                 <div class="card-body h-100 d-flex flex-column">
                                     <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                     <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -302,7 +300,6 @@
     </div>
 
 
-    <div class="col-md-2"></div>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <?php if (isset($_SESSION['accountID'])) {
         ?>
