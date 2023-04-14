@@ -87,10 +87,10 @@ $row = mysqli_fetch_assoc($result);
             state: switchState
         };
         // send switch state to server
-        sendDataToServer(data);
+        sendStatusDataToServer(data);
     });
 
-    function sendDataToServer(data) {
+    function sendStatusDataToServer(data) {
         var sentData = JSON.stringify(data);
 
         fetch('/kiramakan/includes/restaurant/restaurantData.inc.php', {
