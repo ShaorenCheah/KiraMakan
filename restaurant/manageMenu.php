@@ -20,28 +20,6 @@
     session_start();
     include '../includes/connection.inc.php';
 
-    if (isset($_POST['manageMenu'])) {
-        $menuID = $_POST['manageMenu'];
-        $availability = $_POST['availability'];
-        if ($availability == "Available") {
-            $availability = "Unavailable";
-            $sql = "UPDATE menu SET `availability` = '$availability' WHERE menuID = '$menuID'";
-            mysqli_query($conn, $sql);
-            if (mysqli_affected_rows($conn) > 0) {
-                echo "<script>alert('Menu Availability Updated!'); window.location='manageMenu.php'</script>";
-            }
-        } else if ($availability == "Unavailable") {
-            $availability = "Available";
-            $sql = "UPDATE menu SET `availability` = '$availability' WHERE menuID = '$menuID'";
-            mysqli_query($conn, $sql);
-            if (mysqli_affected_rows($conn) > 0) {
-                echo "<script>alert('Menu Availability Updated!'); window.location='manageMenu.php'</script>";
-            }
-        } else {
-            echo "<script>alert('Error!'); window.location='manageMenu.php'</script>";
-        }
-    }
-
     ?>
 
 

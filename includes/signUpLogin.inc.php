@@ -16,46 +16,34 @@ if (isset($_POST['loginSubmit'])) {
     if (mysqli_num_rows($result) > 0) {
 
         $fetch = mysqli_fetch_assoc($result);
-        $accountType = $fetch['accountType'];
-
-        if ($accountType == "Restaurant") {
-            // Use prepared statement to prevent SQL injection
-            $stmt = mysqli_prepare($conn, "SELECT * FROM restaurants WHERE accountID = ?");
-            mysqli_stmt_bind_param($stmt, "s", $fetch['accountID']);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-            $fetch_name = mysqli_fetch_assoc($result);
-            $name = $fetch_name['restaurantName'];
-            $restaurantID = $fetch_name['restaurantID'];
-        } else if ($accountType == "Customer") {
-            // Use prepared statement to prevent SQL injection
-            $stmt = mysqli_prepare($conn, "SELECT * FROM customers WHERE accountID = ?");
-            mysqli_stmt_bind_param($stmt, "s", $fetch['accountID']);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-            $fetch_name = mysqli_fetch_assoc($result);
-            $name = $fetch_name['customerName'];
-            $customerID = $fetch_name['customerID'];
-            $balance = $fetch_name['balance'];
-        } else {
-            echo "error";
-        }
-
         $hashedPassword = $fetch['password'];
-        if (password_verify($password, $hashedPassword)) {
+
+        if (password_verify($password, $hashedPassword) && $fetch['email'] == $email) {
+
             $_SESSION['email'] = $email;
             $_SESSION['accountID'] = $fetch['accountID'];
-            $_SESSION['accountType'] = $accountType;
-            if ($accountType == "Customer") {
-                $_SESSION['customerName'] = $name;
-                $_SESSION['customerID'] = $customerID;
-                $_SESSION['balance'] = $balance;
-                $_SESSION[$accountType . 'Name'] = $name;
-                echo "<script>alert('Successful Login! Welcome $name!'); window.location='../index.php'</script>";
+            $_SESSION['accountType'] = $fetch['accountType'];
+
+            if ($_SESSION['accountType'] == "Customer") {
+                $stmt = mysqli_prepare($conn, "SELECT * FROM customers WHERE accountID = ?");
+                mysqli_stmt_bind_param($stmt, "s", $fetch['accountID']);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                $data = mysqli_fetch_assoc($result);
+
+                $_SESSION['customerName'] = $data['customerName'];
+                $_SESSION['customerID'] = $data['customerID'];
+                $_SESSION['balance'] = $data['balance'];
+                echo "<script>alert('Successful Login! Welcome " . $_SESSION['customerName'] . "!'); window.location='../index.php'</script>";
             } else {
-                $_SESSION['restaurantName'] = $name;
-                $_SESSION['restaurantID'] = $restaurantID;
-                echo "<script>alert('Successful Login! Welcome $name!'); window.location='../restaurant/index.php'</script>";
+                $stmt = mysqli_prepare($conn, "SELECT * FROM restaurants WHERE accountID = ?");
+                mysqli_stmt_bind_param($stmt, "s", $fetch['accountID']);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                $data = mysqli_fetch_assoc($result);
+                $_SESSION['restaurantName'] = $data['restaurantName'];
+                $_SESSION['restaurantID'] = $data['restaurantID'];
+                echo "<script>alert('Successful Login! Welcome " . $_SESSION['restaurantName'] . "!'); window.location='../restaurant/index.php'</script>";
             }
         } else {
             echo "<script>alert('Woops! Password is Wrong.'); window.location='index.php'</script>";

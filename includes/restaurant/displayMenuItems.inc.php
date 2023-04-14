@@ -8,7 +8,7 @@ if (isset($_GET['pageno'])) {
 }
 
 // Set the number of records to display per page and calculate the offset
-$no_of_records_per_page = 3;
+$no_of_records_per_page = 5;
 $offset = ($pageno - 1) * $no_of_records_per_page;
 
 // Get the restaurant ID from the session
@@ -60,7 +60,7 @@ if (mysqli_num_rows($result) > 0) {
                 <?= $row["itemPrice"] ?>
             </td>
             <td>
-                <img src="../images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="rounded img-fluid my-1 w-75" alt="Item Image">
+                <img src="../images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="rounded img-fluid my-1 w-25" alt="Item Image">
             </td>
             <td>
                 <?= $row["availability"] ?>
