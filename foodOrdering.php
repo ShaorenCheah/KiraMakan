@@ -98,8 +98,8 @@
                                         <?php
                                         if ($row['availability'] === "Unavailable") {
                                         ?>
-                                            <div class="col-md-5 d-flex justify-content-end">
-                                                <h6 style="color:red">Out of Stock</h6>
+                                            <div class="col-md-5 d-flex justify-content-end align-items-end">
+                                                <h6 style="color:red" class="m-0">Out of Stock</h6>
                                             </div>
                                         <?php
                                         } else if (isset($_SESSION['accountID'])) {
