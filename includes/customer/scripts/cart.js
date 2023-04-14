@@ -167,14 +167,14 @@ function ready() {
         var cartRow = document.createElement('div');
         cartRow.classList.add('cart-row');
         var cartRowContents = `
-        <div class="row cart-item mt-2">
-            <div class="col-md-8 d-flex flex-column justify-content-between">
+        <div class="col-md-12 d-flex cart-item mt-2 me-0">
+            <div class="col-md-8 ps-0 d-flex flex-column justify-content-between">
                 <div class="d-flex align-items-center">
                     <div class="col-8">
                     <h5 class="cart-item-title m-0">${title}</h5>
                     </div>
                     <div class="col-4 d-flex justify-content-end">
-                    <span class=" ms-2 badge cart-price">RM ${price.toFixed(2)}</span>
+                        <span class=" ms-2 badge cart-price" style="font-size:10px">RM ${price.toFixed(2)}</span>
                     </div>
                     <input class="menu-item-id" type="hidden" value="${menuID}" >
                 </div>

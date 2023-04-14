@@ -1,4 +1,4 @@
-<nav id="header" class="navbar navbar-expand-lg row p-2 m-0 gap-3 pe-0">
+<nav id="header" class="navbar navbar-expand-lg row p-2 m-0 gap-3 pe-0 me-0">
 
     <!-- Navbar brand -->
     <div class="col-2 w-auto ms-5">
@@ -15,7 +15,7 @@
     <!-- Navbar collapse menu button -->
 
     <!-- Navbar and Navitems -->
-    <div class="collapse navbar-collapse col-10 " id="navbarSupportedContent">
+    <div class="collapse navbar-collapse col-10 px-0" id="navbarSupportedContent">
         <div class="d-flex justify-content-around align-items-center flex-fill">
             <ul class="navbar-nav">
                 <div class="w-auto">
@@ -50,7 +50,7 @@
             </ul>
         </div>
         <!-- Navbar logo right -->
-        <div class="w-auto d-flex align-items-center gap-4 justify-content-center me-3">
+        <div class="w-auto d-flex align-items-center gap-4 justify-content-center">
             <?php
 
             if (isset($_GET["restaurantID"])) {

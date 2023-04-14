@@ -17,7 +17,7 @@
 <body>
     <?php session_start() ?>
     <div class="min-vh-100">
-        <div class="row d-flex flex-col ">
+        <div class="row d-flex flex-col me-0">
             <header class="col-md-12 mb-5 pe-0">
                 <!-- Header -->
                 <?php include 'header.php'; ?>
@@ -25,7 +25,7 @@
 
             <!-- Hero -->
             <div id="hero" class="col-md-12 mt-4 g-5">
-                <div class="row mx-5 d-flex  g-5 flex-row">
+                <div class="row mx-5 d-flex g-5 flex-row">
                     <div class="col-md-6 my-5 d-flex flex-column">
                         <div class="col-12  text-muted">
                             <h6>Group dining made convenient.</b>
@@ -68,7 +68,7 @@
     </div>
 
     <div class=" restaurant-carousel mt-2 min-vh-100 d-flex justify-content-center align-items-center" id="restaurant-carousel">
-        <div class="row">
+        <div class="row me-0">
             <div class="col-12 d-flex justify-content-center mt-5 mb-4">
                 <h1 class="display-4 font-weight-bold" style="color:var(--primary)"><strong>Our <span style="color:var(--orange)">Restaurant</span> Partners</strong></h1>
             </div>

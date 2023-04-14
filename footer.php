@@ -1,4 +1,4 @@
-<div id="footer" class="row py-5">
+<div id="footer" class="row py-5 w-100 m-0">
   <!-- Navbar brand -->
   <div class="col-md-2"></div>
   <div class="col-md-3">

@@ -31,7 +31,7 @@
         <?php include 'header.php'; ?>
     </header>
 
-    <div class="row col-md-12 mb-5">
+    <div class="row m-0 col-md-12 mb-5 w-100 ">
         <div class="col-md-12 d-flex justify-content-center mt-4">
             <?php
             $sql = "SELECT * FROM restaurants WHERE restaurantID = '$restaurantID'";
@@ -94,7 +94,7 @@
                                     <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
                                     <div class="d-flex flex-row align-items-end justify-content-between h-100">
 
-                                        <h5 class="card-price col-md-7 mb-1 p-0"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
+                                        <h5 class="card-price col-md-7=6 mb-1 p-0"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
                                         <?php
                                         if ($row['availability'] === "Unavailable") {
                                         ?>
@@ -104,7 +104,7 @@
                                         <?php
                                         } else if (isset($_SESSION['accountID'])) {
                                         ?>
-                                            <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                            <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
                                         <?php } else { ?>
                                             <div class="col-md-5"></div>
                                         <?php

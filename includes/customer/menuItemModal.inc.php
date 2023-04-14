@@ -14,7 +14,7 @@ echo '
                             <input type="hidden" class="menu-item-name" value="' . $row['itemName'] . '">
                             <input type="hidden" class="menu-item-price" value="' . $row['itemPrice'] . '">
                             <h6 class="primary-color pb-3">' . $row['itemDescription'] . '</h6>
-                            <div class="row">
+                            <div class="row m-0">
                                 <div class="col-9 d-flex align-items-center">
                                     <h6 class="primary-color m-0 p-0">Quantity</h6>
                                 </div>
