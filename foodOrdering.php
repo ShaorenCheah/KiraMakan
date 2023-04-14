@@ -31,7 +31,7 @@
         <?php include 'header.php'; ?>
     </header>
 
-    <div class="row col-md-12 m-0">
+    <div class="row col-md-12 mb-5">
         <div class="col-md-12 d-flex justify-content-center mt-4">
             <?php
             $sql = "SELECT * FROM restaurants WHERE restaurantID = '$restaurantID'";
@@ -357,10 +357,10 @@
     </div>
 
 
-
+    </div>
+    </div>
 
 </body>
-
 <footer>
     <?php include "footer.php"; ?>
 </footer>
