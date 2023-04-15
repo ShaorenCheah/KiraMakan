@@ -15,8 +15,6 @@ if ($email == true && isset($_SESSION['status'])) {
             $_SESSION['token'] = $_POST['otp'];
             echo "<script>alert('Please create a new password.'); window.location='newPassword.php'</script>";
             exit();
-        } else {
-            echo "<script>alert('Invalid code. Please check again.'); window.location='resetToken.php'</script>";
         }
     }
 } else {
@@ -36,6 +34,7 @@ if ($email == true && isset($_SESSION['status'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="includes/accounts.js"></script>
 
     <title>Kira Makan</title>
 </head>
@@ -56,7 +55,7 @@ if ($email == true && isset($_SESSION['status'])) {
                         <div class="col-12 w-auto d-flex justify-content-center align-items-center mb-3">
                             <p class="text-muted">Please enter the OTP sent to your email</p>
                         </div>
-                        <form action="resetToken.php" class="col-12 w-100 d-flex flex-column justify-content-center align-items-center" method="post" autocomplete="off">
+                        <form action="resetToken.php" class="col-12 w-100 d-flex flex-column justify-content-center align-items-center" novalidate method="post" autocomplete="off" onsubmit="return validateOTPForm()">
                             <div class="form-floating w-50">
                                 <input type="text" class="form-control" id="otp" name="otp" placeholder="OTP" required autocomplete="off">
                                 <label for="otp">One-Time Password</label>
