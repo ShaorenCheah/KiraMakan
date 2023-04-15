@@ -46,11 +46,11 @@ if (isset($_POST['loginSubmit'])) {
                 echo "<script>alert('Successful Login! Welcome " . $_SESSION['restaurantName'] . "!'); window.location='../restaurant/index.php'</script>";
             }
         } else {
-            echo "<script>alert('Woops! Password is Wrong.'); window.location='index.php'</script>";
+            echo "<script>alert('Woops! Password is Wrong.'); window.location='http://localhost/KiraMakan/index.php'</script>";
         }
     } else {
 
-        echo "<script>alert('Woops! Invalid or Wrong Email.'); window.location='index.php'</script>";
+        echo "<script>alert('Woops! Invalid or Wrong Email.'); window.location='http://localhost/KiraMakan/index.php'</script>";
     }
 
     mysqli_close($conn);
