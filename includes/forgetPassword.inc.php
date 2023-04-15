@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include './includes/connection.inc.php';
+include 'connection.inc.php';
 
 if(isset($_POST['forgetSubmit'])){
     $email = mysqli_real_escape_string($conn, $_POST['altEmail']);
@@ -21,16 +21,16 @@ if(isset($_POST['forgetSubmit'])){
                 $info = "OTP sent to $email. Please check all your folders including spam.";
                 $_SESSION['status'] = "Code Sent";
                 $_SESSION['email'] = $email;
-                echo "<script>alert('$info'); window.location='resetToken.php'</script>";
+                echo "<script>alert('$info'); window.location='../resetToken.php'</script>";
                 exit();
             }else{
-                echo "<script>alert('Error occured. OTP unable to sent. Please contact the administrator.'); window.location='index.php'</script>";
+                echo "<script>alert('Error occured. OTP unable to sent. Please contact the administrator.'); window.location='../index.php'</script>";
             }
         }else{
-            echo "<script>alert('Error occured. Please contact the administrator.'); window.location='index.php'</script>";
+            echo "<script>alert('Error occured. Please contact the administrator.'); window.location='../index.php'</script>";
         }
     }else{
-        echo "<script>alert('This email address does not exist.'); window.location='index.php'</script>";
+        echo "<script>alert('This email address does not exist.'); window.location='../index.php'</script>";
     }
 }
 ?>

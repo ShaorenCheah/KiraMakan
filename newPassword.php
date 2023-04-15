@@ -50,53 +50,42 @@ if (isset($_SESSION['token']) || $email == true) {
 
 <body>
     <div class="row d-flex flex-row m-0">
-        <div class="col-md-2 bg-color"></div>
-        <div class="col-md-8 min-vh-100 d-flex flex-column justify-content-center">
-            <div class="col-12 d-flex justify-content-center mb-5">
-                <img src="images/KiraMakanLogoWhite.jpg" alt="logo" class="logo img-fluid w-25">
-            </div>
-            <div class="div col-12 d-flex justify-content-center">
-                <div class="card col-4">
-                    <div class="card-header">
-                        <h5>Change Password</h5>
-                    </div>
+        <div class="col-2" style="background-color:var(--orange)"></div>
+        <div class="col-8 min-vh-100 d-flex  flex-column justify-content-around align-items-center">
+            <div class="card shadow py-4 px-2">
+                <div class="card-content">
                     <div class="card-body">
-                        <form action="newPassword.php" method="POST" autocomplete="off">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-                                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
-                                    </svg>
-                                </span>
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password" required autocomplete="off">
-                                    <label for="newPassword">New Password</label>
-                                </div>
+                        <div class="col-12 d-flex justify-content-center align-items-center mb-5">
+                            <img src="images/KiraMakanLogo.png" alt="logo" class="logo img-fluid h-50 w-50">
+                        </div>
+                        <div class="col-12 d-flex justify-content-center align-items-center mt-4 mb-2">
+                            <h3 class="fw-bold text-uppercase">Reset Password</h3>
+                        </div>
+                        <div class="col-12 w-auto d-flex justify-content-center align-items-center mb-3">
+                            <p class="text-muted">Please enter your new password</p>
+                        </div>
+                        <form action="newPassword.php" class="col-12 w-100 d-flex flex-column justify-content-center align-items-center" method="POST" autocomplete="off">
+
+                            <div class="form-floating w-50 mb-3">
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password" required autocomplete="off">
+                                <label for="newPassword">New Password</label>
                             </div>
 
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
-                                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
-                                    </svg>
-                                </span>
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" id="newRepeatPassword" name="newRepeatPassword" placeholder="Repeat Password" required autocomplete="off">
-                                    <label for="newRepeatPassword">Repeat Password</label>
-                                </div>
+                            <div class="form-floating w-50">
+                                <input type="password" class="form-control" id="newRepeatPassword" name="newRepeatPassword" placeholder="Repeat Password" required autocomplete="off">
+                                <label for="newRepeatPassword">Repeat Password</label>
                             </div>
-                            <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary" name="changePassword">Change Password</button>
+
+                            <div class="d-flex justify-content-center mt-5">
+                                <button type="submit" class="btn white-btn" name="changePassword">Change Password</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-2 bg-color"></div>
+        <div class="col-2" style="background-color:var(--orange)"></div>
     </div>
-
 </body>
 
 </html>
