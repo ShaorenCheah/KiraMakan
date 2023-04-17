@@ -34,12 +34,12 @@ if (mysqli_num_rows($result) > 0) {
                     ";
 
         // query to get the menuID, quantity and price of the order
-        $sql = "SELECT m.itemName, pm.quantity, m.itemPrice, SUM(pm.price) AS total_price
+        $sql = "SELECT i.itemName, pi.quantity, i.itemPrice, SUM(pi.price) AS total_price
                 FROM order_person op
-                JOIN person_menu pm ON op.opID = pm.opID
-                JOIN menu m ON pm.menuID = m.menuID
+                JOIN person_item pi ON op.opID = pi.opID
+                JOIN items i ON pi.itemID = i.itemID
                 WHERE op.orderID = '$orderID'
-                GROUP BY m.itemName, pm.quantity, m.itemPrice";
+                GROUP BY i.itemName, pi.quantity, i.itemPrice";
         $result2 = mysqli_query($conn, $sql);
         $subtotal = 0;
         while ($row2 = mysqli_fetch_assoc($result2)) {
