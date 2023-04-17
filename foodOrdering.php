@@ -24,6 +24,9 @@
     }
 
     $restaurantID = $_GET['restaurantID'];
+    // Echo the customerID to a JavaScript variable
+    echo "<script>var currentCustomerID = " . json_encode($_SESSION['customerID']) . ";</script>";
+
     if (isset($_GET['namesArray'])) {
         $namesArray = explode(",", $_GET['namesArray']);
     }

@@ -3,7 +3,6 @@ if (document.readyState == 'loading') {
 } else {
     ready();
 }
-
 function ready() {
 
 
@@ -24,8 +23,26 @@ function ready() {
         localStorage.setItem('previousRestaurantID', currentRestaurantID);
         return false;
     }
-    
 
+    // Function to check if the customerID has changed
+    // Function to check if the customerID has changed
+    function hasCustomerIDChanged() {
+        var currentCustomerID = window.currentCustomerID; // get the customerID from the global JS variable
+        var previousCustomerID = localStorage.getItem('previousCustomerID');
+        if (previousCustomerID && previousCustomerID !== currentCustomerID) {
+            localStorage.setItem('previousCustomerID', currentCustomerID);
+            return true;
+        }
+        localStorage.setItem('previousCustomerID', currentCustomerID);
+        return false;
+    }
+
+
+
+    // Check if the customerID has changed and clear the cart if necessary
+    if (hasCustomerIDChanged()) {
+        clearCart();
+    }
     // Check if the restaurantID has changed and clear the cart if necessary
     if (hasRestaurantIDChanged()) {
         clearCart();
@@ -50,6 +67,7 @@ function ready() {
     // Add this function to load the cart data from localStorage
     function loadCartData() {
         var cartItemContainer = document.getElementsByClassName('cart-items')[0];
+        console.log(localStorage)
         if (localStorage.getItem('cartData')) {
             cartItemContainer.innerHTML = localStorage.getItem('cartData');
         }

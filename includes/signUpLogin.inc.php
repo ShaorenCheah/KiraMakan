@@ -34,6 +34,7 @@ if (isset($_POST['loginSubmit'])) {
                 $_SESSION['customerName'] = $data['customerName'];
                 $_SESSION['customerID'] = $data['customerID'];
                 $_SESSION['balance'] = $data['balance'];
+
                 echo "<script>alert('Successful Login! Welcome " . $_SESSION['customerName'] . "!'); window.location='../index.php'</script>";
             } else {
                 $stmt = mysqli_prepare($conn, "SELECT * FROM restaurants WHERE accountID = ?");
