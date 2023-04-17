@@ -35,7 +35,7 @@ if ($email == true && isset($_SESSION['status'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="includes/accounts.js"></script>
-
+    <link rel="shortcut icon" href="images/KiraMakanIcon.png" type="image/x-icon">
     <title>Kira Makan</title>
 </head>
 
