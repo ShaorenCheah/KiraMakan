@@ -199,6 +199,7 @@ CREATE TABLE `orders` (
   `orderDate` datetime NOT NULL,
   `serviceTotal` double(10,2) NOT NULL,
   `salesTotal` double(10,2) NOT NULL,
+  `subTotal` double(10,2) NOT NULL,
   `totalPrice` decimal(10,2) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -239,7 +240,7 @@ CREATE TABLE `restaurants` (
   `restaurantName` varchar(256) NOT NULL,
   `accountID` varchar(5) NOT NULL,
   `restaurantDescription` longtext NOT NULL,
-  `category` varchar(255) NOT NULL,
+  `cuisine` varchar(255) NOT NULL,
   `restaurantURL` longtext NOT NULL,
   `status` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -248,7 +249,7 @@ CREATE TABLE `restaurants` (
 -- Dumping data for table `restaurants`
 --
 
-INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `category`, `restaurantURL`, `status`) VALUES
+INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `cuisine`, `restaurantURL`, `status`) VALUES
 ('R0001', 'Sushi Haven', 'A0003', 'Enjoy our fresh and flavorful sushi rolls, nigiri, and sashimi with a modern twist.', 'Japanese', 'sushihavenlogo.png', 'Open'),
 ('R0002', 'Golden Wok', 'A0004', 'Savor our authentic Chinese dishes with a burst of bold flavors and aromatic spices.', 'Chinese', 'goldenwoklogo.png', 'Open'),
 ('R0003', 'Minji Kitchen', 'A0005', 'Delight in our mouth-watering Korean dishes made with the freshest ingredients.', 'Korean', 'minjikitchenlogo.png', 'Open'),
