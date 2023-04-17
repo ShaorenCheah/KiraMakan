@@ -238,16 +238,16 @@ CREATE TABLE `restaurants` (
 --
 
 INSERT INTO `restaurants` (`restaurantID`, `restaurantName`, `accountID`, `restaurantDescription`, `category`, `restaurantURL`, `status`) VALUES
-('R0001', 'Sushi Haven', 'A0003', 'Enjoy our fresh and flavorful sushi rolls, nigiri, and sashimi with a modern twist.', '', 'sushihavenlogo.png', 'Open'),
-('R0002', 'Golden Wok', 'A0004', 'Savor our authentic Chinese dishes with a burst of bold flavors and aromatic spices.', '', 'goldenwoklogo.png', 'Open'),
-('R0003', 'Minji Kitchen', 'A0005', 'Delight in our mouth-watering Korean dishes made with the freshest ingredients.', '', 'minjikitchenlogo.png', 'Open'),
-('R0004', 'Bella Italia', 'A0006', 'Indulge in our classic Italian dishes with a modern flair, made from the finest imported ingredients.', '', 'bellaitalialogo.png', 'Open'),
-('R0005', 'Restoran Persekutuan', 'A0007', 'Experience the exotic flavors of Malaysia with our authentic dishes.', '', 'restoranpersekutuanlogo.png', 'Open'),
-('R0006', 'Pho Garden', 'A0008', 'Savor the bold flavors and aromatic spices of Vietnam in every bite at our restaurant.', '', 'phogardenlogo.png', 'Open'),
-('R0007', 'Le Bistro', 'A0009', 'Indulge in a gastronomic journey to France, where every dish is crafted with meticulous attention to detail.', '', 'lebistrologo.png', 'Open'),
-('R0008', 'The Rose Crown', 'A0010', 'Experience the hearty and comforting flavors of traditional British cuisine served with a modern twist.', '', 'therosecrownlogo.png', 'Open'),
-('R0009', 'Casa de los Amigos', 'A0011', 'Spice up your taste buds with the vibrant and zesty flavors of Mexico.', '', 'casadelosamigoslogo.png', 'Open'),
-('R0010', 'Moscow Nights', 'A0012', 'Embark on a culinary adventure to Russia, where the flavors of traditional cuisine meet modern innovation.', '', 'moscownightslogo.png', 'Open');
+('R0001', 'Sushi Haven', 'A0003', 'Enjoy our fresh and flavorful sushi rolls, nigiri, and sashimi with a modern twist.', 'Japanese', 'sushihavenlogo.png', 'Open'),
+('R0002', 'Golden Wok', 'A0004', 'Savor our authentic Chinese dishes with a burst of bold flavors and aromatic spices.', 'Chinese', 'goldenwoklogo.png', 'Open'),
+('R0003', 'Minji Kitchen', 'A0005', 'Delight in our mouth-watering Korean dishes made with the freshest ingredients.', 'Korean', 'minjikitchenlogo.png', 'Open'),
+('R0004', 'Bella Italia', 'A0006', 'Indulge in our classic Italian dishes with a modern flair, made from the finest imported ingredients.', 'Italian', 'bellaitalialogo.png', 'Open'),
+('R0005', 'Restoran Persekutuan', 'A0007', 'Experience the exotic flavors of Malaysia with our authentic dishes.', 'Malaysian', 'restoranpersekutuanlogo.png', 'Open'),
+('R0006', 'Pho Garden', 'A0008', 'Savor the bold flavors and aromatic spices of Vietnam in every bite at our restaurant.', 'Vietnamese', 'phogardenlogo.png', 'Open'),
+('R0007', 'Le Bistro', 'A0009', 'Indulge in a gastronomic journey to France, where every dish is crafted with meticulous attention to detail.', 'French', 'lebistrologo.png', 'Open'),
+('R0008', 'The Rose Crown', 'A0010', 'Experience the hearty and comforting flavors of traditional British cuisine served with a modern twist.', 'British', 'therosecrownlogo.png', 'Open'),
+('R0009', 'Casa de los Amigos', 'A0011', 'Spice up your taste buds with the vibrant and zesty flavors of Mexico.', 'Mexican', 'casadelosamigoslogo.png', 'Open'),
+('R0010', 'Moscow Nights', 'A0012', 'Embark on a culinary adventure to Russia, where the flavors of traditional cuisine meet modern innovation.', 'Russian', 'moscownightslogo.png', 'Open');
 
 --
 -- Indexes for dumped tables
