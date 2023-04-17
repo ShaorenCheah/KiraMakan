@@ -25,17 +25,17 @@ while ($row2 = mysqli_fetch_assoc($result2)) {
         <h5 class='mt-2 mb-3'><strong><?= $personName ?></strong></h5>
     </div>
     <?php
-    $sql = "SELECT * FROM person_menu WHERE opID = '$opID'";
+    $sql = "SELECT * FROM person_item WHERE opID = '$opID'";
     $result3 = mysqli_query($conn, $sql);
     $sum = 0;
 
     while ($row3 = mysqli_fetch_assoc($result3)) {
-        $menuID = $row3['menuID'];
+        $itemID = $row3['itemID'];
         $quantity = $row3['quantity'];
         $price = $row3['price'];
         $sum += $price;
         $subtotal += $price;
-        $sql = "SELECT * FROM menu WHERE menuID = '$menuID'";
+        $sql = "SELECT * FROM items WHERE itemID = '$itemID'";
         $result4 = mysqli_query($conn, $sql);
         $row4 = mysqli_fetch_assoc($result4);
 
