@@ -15,7 +15,14 @@
 
 <body>
     <?php 
-    session_start()?>
+    session_start();
+    
+    if(isset($_SESSION['restaurantID'])){
+        echo "<script>alert('You cannot access to customer interface as a restaurants. Please try again with a different account.'); window.location='http://localhost/KiraMakan/restaurant/index.php'</script>";
+    }
+
+    
+    ?>
     <div class="min-vh-100">
         <div class="row d-flex flex-col me-0">
             <header class="col-md-12 mb-5 pe-0">
