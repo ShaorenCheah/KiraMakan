@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-md-12 mt-4">
                             <p class="fs-6 pb-3 lead">
-                                <span style="color:var(--orange); font-weight:bolder;">Kira Makan</span> is a food ordering web application designed to improve group dining experience.
+                                <span style="color:var(--orange); font-weight:bolder;">KiraMakan</span> is a food ordering web application designed to improve group dining experience.
                                 Enjoy various features such as <span style="color:#ef4207;">group payment calculation</span>,
                                 and <span style="color:#ef4207;">send payment receipt</span>
                                 to ease your problems when eating out in a group. Just register an account and you can enjoy the perks above.
