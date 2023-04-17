@@ -137,7 +137,7 @@ $message .= "
                     <br>
                     <p>Thank you for your order.</p>
                     <p>Regards,</p>
-                    <p>Kira Makan</p>
+                    <p>KiraMakan</p>
                 </div>
             </div>
         </div>
