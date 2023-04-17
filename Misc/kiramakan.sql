@@ -197,9 +197,9 @@ CREATE TABLE `orders` (
   `restaurantID` varchar(5) NOT NULL,
   `customerID` varchar(5) DEFAULT NULL,
   `orderDate` datetime NOT NULL,
+  `subTotal` double(10,2) NOT NULL,
   `serviceTotal` double(10,2) NOT NULL,
   `salesTotal` double(10,2) NOT NULL,
-  `subTotal` double(10,2) NOT NULL,
   `totalPrice` decimal(10,2) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
