@@ -67,7 +67,7 @@ $message = "
             <div class='row'>
                 <div class='col-md-12'>
                     <p>Dear $personName,</p>
-                    <p>Thank you for using Kira Makan. Here's your order receipt of dining in with <strong>" . $_SESSION['customerName'] . "</strong> at <strong>" . $restaurantName . "</strong>. Here are your order details: </p>
+                    <p>Thank you for using KiraMakan. Here's your order receipt of dining in with <strong>" . $_SESSION['customerName'] . "</strong> at <strong>" . $restaurantName . "</strong>. Here are your order details: </p>
                     <table class='table'>
                         <thead>
                             <tr>
