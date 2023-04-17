@@ -170,7 +170,8 @@ INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `category`, `itemDescr
 ('M0068', 'R0010', 'Blini', 'Meals', 'Thin and delicate crepes filled with either sweet or savory ingredients, such as smoked salmon or jam.', '13.00', 'blini.png', 'Available'),
 ('M0069', 'R0010', 'Shashlik', 'Meals', 'Juicy and flavorful skewered meat, marinated in a mixture of spices and grilled to perfection.', '16.00', 'shashlik.png', 'Available'),
 ('M0070', 'R0010', 'Kvass', 'Drinks', 'A non-alcoholic, fermented beverage made from rye bread, with a slightly sour and tangy taste.', '10.00', 'kvass.png', 'Available'),
-('M0071', 'R0010', 'Vodka Martini', 'Drinks', 'A classic cocktail made with vodka, dry vermouth, and garnished with olives or a lemon twist', '15.00', 'vodkamartini.png', 'Available');
+('M0071', 'R0010', 'Vodka Martini', 'Drinks', 'A classic cocktail made with vodka, dry vermouth, and garnished with olives or a lemon twist', '15.00', 'vodkamartini.png', 'Available'),
+('M0072', 'R0010', 'Mushroom and Onion Kasha', 'Add-Ons', 'A side dish made with buckwheat, sautéed mushrooms, and onions, seasoned with herbs and spices.', '9.00', 'mushroomandonionkasha.png', 'Available');
 
 
 
