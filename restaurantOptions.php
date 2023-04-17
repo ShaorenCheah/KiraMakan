@@ -64,13 +64,13 @@
                 }
 
                 include './includes/connection.inc.php';
-                $sql = "SELECT * FROM Restaurants WHERE CONCAT(restaurantName, restaurantDescription) LIKE '%$filterValues%';";
+                $sql = "SELECT * FROM Restaurants WHERE CONCAT(restaurantName, restaurantDescription, category) LIKE '%$filterValues%';";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) > 0) {
                     while ($rows = mysqli_fetch_assoc($result)) {
                 ?>
                         <div class="col-md-4">
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <img src="images/restaurants/<?php echo $rows['restaurantName'] ?>/<?php echo $rows['restaurantURL']; ?>" class="card-img-top" style="width:70%" alt="<?php echo $rows['restaurantName']; ?>">
                                 </div>

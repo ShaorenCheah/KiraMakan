@@ -24,7 +24,7 @@
     
     ?>
     <div class="min-vh-100">
-        <div class="row d-flex flex-col me-0">
+        <div class="row d-flex flex-col me-0 ">
             <header class="col-md-12 mb-5 pe-0">
                 <!-- Header -->
                 <?php include 'header.php'; ?>
@@ -74,14 +74,14 @@
         </div>
     </div>
 
-    <div class=" restaurant-carousel mt-2 min-vh-100 d-flex justify-content-center align-items-center" id="restaurant-carousel">
+    <div class=" restaurant-carousel mt-2 d-flex justify-content-center align-items-center" id="restaurant-carousel">
         <div class="row me-0">
-            <div class="col-12 d-flex justify-content-center mt-5 mb-4">
-                <h1 class="display-4 font-weight-bold" style="color:var(--primary)"><strong>Our <span style="color:var(--orange)">Restaurant</span> Partners</strong></h1>
+            <div class="col-12 d-flex justify-content-center mt-5 ">
+                <h2 class="display-4 font-weight-bold" style="color:var(--primary)"><strong>Our <span style="color:var(--orange)">Restaurant</span> Partners</strong></h2>
             </div>
 
             <div class="col-1"></div>
-            <div id="myCarousel" class="col-10 carousel slide my-3" data-bs-ride="carousel">
+            <div id="myCarousel" class="col-10 carousel slide mb-3" data-bs-ride="carousel">
                 <?php
                 include './includes/connection.inc.php';
                 $sql = "SELECT * FROM Restaurants";
@@ -90,7 +90,7 @@
                 ?>
 
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner py-5 rounded">
+                <div class="carousel-inner py-5">
                     <?php for ($i = 0; $i < count($rows); $i += 3) { ?>
                         <div class="carousel-item <?php echo $i == 0 ? 'active' : ''; ?>">
                             <div class="row gap-4 d-flex justify-content-evenly">
@@ -98,11 +98,12 @@
                                     <div class="col-md-3 ">
                                         <div class="card h-100">
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <img src="images/restaurants/<?php echo $rows[$j]['restaurantName']; ?>/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top" style="width:80%" alt="<?php echo $rows[$j]['restaurantName']; ?>">
+                                                <img src="images/restaurants/<?php echo $rows[$j]['restaurantName']; ?>/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top" style="width:70%" alt="<?php echo $rows[$j]['restaurantName']; ?>">
                                             </div>
+                                            <div class="mx-3" style="border-top:2px solid var(--orange)"></div>
                                             <div class="card-body">
-                                                <h4 class="card-title" style="font-weight:500"><?php echo $rows[$j]['restaurantName']; ?></h4>
-                                                <p class="card-text"><?php echo $rows[$j]['restaurantDescription']; ?></p>
+                                                <p class="card-title fw-bold" style="font-size:20px;"><?php echo $rows[$j]['restaurantName']; ?></p>
+                                                <p class="card-text" style="font-size:13px;"><?php echo $rows[$j]['restaurantDescription']; ?></p>
                                             </div>
                                         </div>
                                     </div>

@@ -16,7 +16,7 @@
 
     <!-- Navbar and Navitems -->
     <div class="collapse navbar-collapse col-10 px-0" id="navbarSupportedContent">
-        <div class="d-flex justify-content-around align-items-center flex-fill">
+        <div class="d-flex justify-content-around align-items-center flex-fill col-md-10">
             <ul class="navbar-nav">
                 <div class="w-auto">
                     <li class="nav-item p-2 px-4">
@@ -40,7 +40,7 @@
             </ul>
         </div>
         <!-- Navbar logo right -->
-        <div class="w-auto d-flex align-items-center gap-4 justify-content-center">
+        <div class="w-auto d-flex align-items-center gap-4 justify-content-center col-md-2">
             <?php
 
             if (isset($_GET["restaurantID"])) {
