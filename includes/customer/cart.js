@@ -179,7 +179,7 @@ function ready() {
                     </div>
                     <input class="menu-item-id" type="hidden" value="${menuID}" >
                 </div>
-                <span class="cart-order-name">${selectedName}</span>
+                <span class="cart-order-name mt-2">${selectedName}</span>
             </div>
             <div class="col-md-4 cart-quantity d-flex flex-row justify-content-between align-items-center">
                 <input class="cart-quantity-input form-control me-2" type="number" value="${quantity}" style="width: 60%;">

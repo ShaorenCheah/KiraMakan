@@ -10,7 +10,7 @@ $orderID = $order['orderID'];
 $opID = $order['opID'];
 
 $sql = "SELECT r.restaurantName FROM restaurants r, orders o WHERE o.orderID = '$orderID' AND o.restaurantID = r.restaurantID";
-$result=mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $restaurantName = $row['restaurantName'];
 
@@ -19,18 +19,21 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $personName = $row['personName'];
 
-// Get the current date and time
-$date = date("d/m/Y");
-$time = date("h:i:sa");
+$sql = "SELECT DATE(orderDate) AS orderDate, TIME(orderDate) AS orderTime FROM orders WHERE orderID = '$orderID'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$date = $row['orderDate'];
+$time = $row['orderTime'];
+
 
 // Email subject
-$subject = "Receipt for Order #".$orderID."";
+$subject = "Receipt for Order #" . $orderID . "";
 
 // Email message
 $message = "
     <html>
     <head>
-        <title>Receipt for Order #".$orderID."</title>
+        <title>Receipt for Order #" . $orderID . "</title>
         <style>
         .table {
             margin-top: 20px;
@@ -106,21 +109,26 @@ $final = $net * 1.16;
 $secondDecimal = floor($final * 100) % 10;
 
 if ($secondDecimal <= 4) {
-    $final = floor($final * 10) / 10;
+    $finalRounded = floor($final * 10) / 10;
 } else {
-    $final = ceil($final * 10) / 10;
+    $finalRounded = ceil($final * 10) / 10;
 }
+
 $service = number_format($service, 2);
 $sales = number_format($sales, 2);
-$final = number_format($final, 2);
+$round = number_format($finalRounded - $final, 2);
+$finalRounded = number_format($finalRounded, 2);
+$net = number_format($net,2);
 
 $message .= "
                     </tbody>
                     </table>
                     <p>
+                    Subtotal: RM$net<br>
                     Service Tax (10%): RM$service<br>
                     Sales Tax (6%): RM$sales<br>
-                    Grand Total: <strong>RM$final</strong>
+                    Cash Rounded: RM$round<br>
+                    Grand Total: <strong>RM$finalRounded</strong>
                     </p>
                     <p>
                     Order Date: $date<br>

@@ -45,7 +45,7 @@
                                 <div class="card-body d-flex flex-row">
                                     <div class="col-md-3">
                                         <img src="images/restaurants/<?php echo $rows['restaurantName'] ?>/<?php echo $rows['restaurantURL']; ?>"
-                                            class="image-fluid rounded m-3" style="width 70px; height:70px;" alt="...">
+                                            class="image-fluid rounded" style="height:90px" alt="...">
                                     </div>
                                     <div class="col-md-6 mt-2 d-flex flex-column justify-content-between">
                                         <h4>
@@ -104,7 +104,7 @@
                                 <div class="card-body d-flex flex-row">
                                     <div class="col-md-3">
                                         <img src="images/restaurants/<?php echo $rows['restaurantName'] ?>/<?php echo $rows['restaurantURL']; ?>"
-                                            class="image-fluid rounded m-3" style="width 70px; height:70px;" alt="...">
+                                            class="image-fluid rounded" style="height:90px" alt="...">
                                     </div>
                                     <div class="col-md-6 mt-2 d-flex flex-column justify-content-between">
                                         <h4>
@@ -138,7 +138,7 @@
                             <?php
                         }
                     } else {
-                        echo "<h5 class='text-muted'>You have no completed orders</h5>";
+                        echo "<h5 class='text-muted mb-3'>You have no completed orders</h5>";
                     }
                     ?>
                 </div>
