@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <div class="col-md-12 d-flex flex-column justify-content-start align-items-center mt-5 mb-2">
+            <div class="col-md-12 d-flex flex-column justify-content-start align-items-center my-5">
                 <div class="col-md-12 d-flex justify-content-center mb-3">
                     <h1><strong><span style="color:var(--orange)">Completed</span> Orders</strong></h1>
                 </div>

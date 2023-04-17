@@ -43,7 +43,7 @@ if($type=="Order"){
 
 if($type=="Update"){
     $status = $data['status'];
-    $menuID = $data['menuID'];
+    $itemID = $data['itemID'];
 
     if($status == "Available"){
         $status = "Unavailable";
@@ -51,9 +51,9 @@ if($type=="Update"){
         $status = "Available";
     }
 
-    $sql = "UPDATE menu SET availability = ? WHERE menuID = ?";
+    $sql = "UPDATE items SET availability = ? WHERE itemID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ss', $status, $menuID);
+    $stmt->bind_param('ss', $status, $itemID);
     $stmt->execute();
     $stmt->close();
     $conn->close();
