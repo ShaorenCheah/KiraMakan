@@ -17,6 +17,10 @@
     <?php
     session_start();
 
+    if(isset($_SESSION['restaurantID'])){
+        echo "<script>alert('You cannot access to customer interface as a restaurant. Please try again with a different account.'); window.location='http://localhost/KiraMakan/restaurant/index.php'</script>";
+    }
+
     include './includes/connection.inc.php';
     if (isset($_POST['orderID'])) {
         $orderID = $_POST['orderID'];

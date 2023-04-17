@@ -18,9 +18,8 @@
     session_start();
     
     if(isset($_SESSION['restaurantID'])){
-        echo "<script>alert('You cannot access to customer interface as a restaurants. Please try again with a different account.'); window.location='http://localhost/KiraMakan/restaurant/index.php'</script>";
+        echo "<script>alert('You cannot access to customer interface as a restaurant. Please try again with a different account.'); window.location='http://localhost/KiraMakan/restaurant/index.php'</script>";
     }
-
     
     ?>
     <div class="min-vh-100">
