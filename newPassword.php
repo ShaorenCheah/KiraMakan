@@ -43,7 +43,7 @@ if (isset($_SESSION['token']) || $email == true) {
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="includes/accounts.js"></script>
-
+    <link rel="shortcut icon" href="images/KiraMakanIcon.png" type="image/x-icon">
     <title>Kira Makan</title>
 </head>
 

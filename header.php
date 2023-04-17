@@ -20,32 +20,22 @@
             <ul class="navbar-nav">
                 <div class="w-auto">
                     <li class="nav-item p-2 px-4">
-                        <a class="nav-link active fs-5" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link fs-5" id="nav-home" aria-current="page" href="index.php">Home</a>
                     </li>
                 </div>
                 <div class="w-auto p-2 px-4">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="restaurantOptions.php">Restaurants</a>
-                    </li>
-                </div>
-                <div class="w-auto p-2 px-4">
-                    <li class="nav-item">
-                        <a class="nav-link fs-5" href="#">How it Works</a>
-                    </li>
-                </div>
-                <div class="w-auto p-2 px-4">
-                    <li class="nav-item">
-                        <a class="nav-link fs-5" href="#">Contact</a>
+                        <a class="nav-link fs-5" id="nav-restaurant" href="restaurantOptions.php">Restaurants</a>
                     </li>
                 </div>
                 <?php if (isset($_SESSION['accountID'])) {
                     echo '
                     <div class="w-auto p-2 px-4">
                         <li class="nav-item">
-                            <a class="nav-link fs-5" href="myOrders.php">My Orders</a>
+                            <a class="nav-link fs-5" id="nav-history" href="myOrders.php">My Orders</a>
                         </li>
                     </div>';
-                } 
+                }
                 ?>
             </ul>
         </div>
