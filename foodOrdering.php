@@ -9,7 +9,7 @@
     <!-- Bootstrap JavaScript and jQuery libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    <script src="includes/customer/scripts/cart.js" async></script>
+    <script src="includes/customer/cart.js" async></script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Kira Makan</title>
@@ -18,6 +18,10 @@
 <body>
     <?php
     session_start();
+
+    if(isset($_SESSION['restaurantID'])){
+        echo "<script>alert('You cannot order as a restaurant. Please try again with a different account.'); window.location='./index.php'</script>";
+    }
 
     $restaurantID = $_GET['restaurantID'];
     if (isset($_GET['namesArray'])) {

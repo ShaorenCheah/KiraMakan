@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    <?php session_start() ?>
+    <?php 
+    session_start()?>
     <div class="min-vh-100">
         <div class="row d-flex flex-col me-0">
             <header class="col-md-12 mb-5 pe-0">

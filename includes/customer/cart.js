@@ -17,14 +17,20 @@ function ready() {
     function hasRestaurantIDChanged() {
         var currentRestaurantID = getRestaurantIDFromURL();
         var previousRestaurantID = localStorage.getItem('previousRestaurantID');
-
         if (previousRestaurantID && previousRestaurantID !== currentRestaurantID) {
+            localStorage.setItem('previousRestaurantID', currentRestaurantID);
             return true;
         }
-
         localStorage.setItem('previousRestaurantID', currentRestaurantID);
         return false;
     }
+    
+
+    // Check if the restaurantID has changed and clear the cart if necessary
+    if (hasRestaurantIDChanged()) {
+        clearCart();
+    }
+
 
     const cartButton = document.querySelector('.btn');
     var cartItemCount = 0; // replace with actual item count from shopping cart
@@ -39,11 +45,6 @@ function ready() {
         updateCartTotal();
         updateCartIcon();
         localStorage.removeItem('cartData');
-    }
-
-    // Check if the restaurantID has changed and clear the cart if necessary
-    if (hasRestaurantIDChanged()) {
-        clearCart();
     }
 
     // Add this function to load the cart data from localStorage

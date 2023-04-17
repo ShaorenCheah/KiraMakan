@@ -9,7 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="accounts.js" async></script>
 
     <title>Kira Makan</title>
 </head>
@@ -223,64 +222,4 @@
 </footer>
 
 </html>
-<script>
-    const sendEmailButtons = document.querySelectorAll('.send-email');
-    let opIDInput = document.getElementById('opID');
-
-    let selectedopID = '';
-
-    sendEmailButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            selectedopID = button.value;
-            console.log(selectedopID);
-        });
-    });
-
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    // select the submit button element
-    const submitBtn = document.querySelector('#submit-btn');
-
-    // add a click event listener to the submit button
-    submitBtn.addEventListener('click', () => {
-
-        // get the values of the inputs
-        // get the selectedopID value
-        const recEmail = document.getElementById('recEmail').value;
-
-        // validate the email input
-        if (!isValidEmail(recEmail)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        const orderID = document.getElementsByName('orderID')[0].value;
-
-
-        // create a JavaScript object with the values
-        const data = {
-            recEmail: recEmail,
-            orderID: orderID,
-            opID: selectedopID
-        };
-        console.log(data); // log the data object
-
-        fetch('/kiramakan/includes/customer/emailRecipient.inc.php', {
-                method: 'POST',
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                console.log(response);
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                if (data.success) {
-                    alert('Receipt sent successfully');
-                } else {
-                    alert('Error sending receipt');
-                }
-            });
-    });
-</script>
+<script><?php include 'includes/customer/sendReceipt.js'; ?></script>
