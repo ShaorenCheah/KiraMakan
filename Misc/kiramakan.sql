@@ -107,7 +107,7 @@ INSERT INTO `menu` (`menuID`, `restaurantID`, `itemName`, `category`, `itemDescr
 ('M0005','R0001','Sashimi Platter','Meals','Assortment of fresh fish slices served with wasabi and soy sauce.','24.00','sashimiplatter.png','Available'),
 ('M0006','R0001','Green Tea','Drinks','Traditional Japanese green tea.','2.50','greentea.png','Available'),
 ('M0007','R0001','Sake','Drinks','Japanese rice wine served hot or cold.','8.00','sake.png','Available'),
-('M0008 ','R0001','Mochi Ice Cream','Desserts','A small, round ball of sweet rice cake wrapped around a ball of ice cream with various flavours.','7.50','mochiicecream.png','Available'),
+('M0008','R0001','Mochi Ice Cream','Desserts','A small, round ball of sweet rice cake wrapped around a ball of ice cream with various flavours.','7.50','mochiicecream.png','Available'),
 ('M0009','R0001','Dorayaki','Desserts','Two small, pancake-like patties filled with sweet red bean paste in a slightly chewy texture.','5.00','dorayaki.png','Available'),
 ('M0010','R0001','Takoyaki','Add-Ons','Five small balls of batter filled with diced octopus, tempura scraps and green onion, topped with savory sauce and mayonnaise.','7.50','takoyaki.png','Available'),
 ('M0011','R0002','Beijing Duck','Meals','Crispy roasted duck tossed with a sweet and savory sauce, served over a bed of steamed rice.','15.00','beijingduck.png','Available'),
