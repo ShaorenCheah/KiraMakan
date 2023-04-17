@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="includes/accounts.js" async></script>
     <link rel="shortcut icon" href="images/KiraMakanIcon.png" type="image/x-icon">
-    <title>Kira Makan</title>
+    <title>KiraMakan</title>
 </head>
 
 <body>
