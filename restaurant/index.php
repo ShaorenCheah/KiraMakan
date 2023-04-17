@@ -25,15 +25,6 @@
 
     include '../includes/connection.inc.php';
     $restaurantID = $_SESSION['restaurantID'];
-
-    if (isset($_POST['completeOrder'])) {
-        $orderID = $_POST['completeOrder'];
-        $sql = "UPDATE orders SET status = 'Completed' WHERE orderID = '$orderID'";
-        mysqli_query($conn, $sql);
-        if (mysqli_affected_rows($conn) > 0) {
-            echo "<script>alert('Order Completed!'); window.location='index.php'</script>";
-        }
-    }
     ?>
     <div class="row d-flex">
         <?php include "sidebar.php"; ?>

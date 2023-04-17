@@ -16,13 +16,14 @@ if (mysqli_num_rows($result) > 0) {
         $totalPrice = $row["totalPrice"];
         $salesTotal = $row["salesTotal"];
         $serviceTotal = $row["serviceTotal"];
+        $time = $row['orderTime'];
 
         echo "
         <div class='modal fade' id='orderID" . $orderID . "Modal' aria-hidden='true' aria-labelledby='orderID" . $orderID . "ModalLabel' tabindex='-1'>
             <div class='modal-dialog modal-dialog-centered'>
                 <div class='modal-content'>
                     <div class='modal-header d-flex justify-content-start'>
-                        Order <strong class='px-1'>#$orderID</strong> on <strong class='px-1'>$orderID</strong>
+                        <h5 class='fw-bold m-0'>Order &nbsp<span style='color:var(--orange)'>#$orderID</span>&nbsp on <span style='color:var(--orange)'>&nbsp $time</span></h5>
                     </div>
                     <div class='modal-body' id='" . $orderID . "-modal'>";
 
@@ -40,9 +41,12 @@ if (mysqli_num_rows($result) > 0) {
         $subtotal = 0;
         // display the results
         while ($row2 = mysqli_fetch_assoc($result2)) {
-            echo 'Menu Item:' . $row2["itemName"] . '<br>';
-            echo 'Price: ' . $row2["price"] . '<br>';
-            echo 'Total Ordered: ' . $row2["total_ordered"] . '<br><br>';
+            echo
+            "<div class='d-flex flex-row justify-content-between my-3'>
+                    <h6>" . $row2['itemName'] . " x  <span style='color:var(--orange)'>" . $row2['total_ordered'] . "</span> (RM " . $row2['itemPrice'] . "/unit)</h6>
+                    <h6>RM " . $row2['price'] . "</h6>
+                </div>
+                ";
             $subtotal += $row2["price"];
         }
 
@@ -72,7 +76,7 @@ if (mysqli_num_rows($result) > 0) {
                     <h4 class="mb-0"><strong>RM <span style="color:var(--orange)"><?= $totalPrice ?></span></strong></h4>
                 </div>
                 <form action='index.php' method='POST' class="d-flex justify-content-center mt-4">
-                    <button type='submit' class='btn orange-btn' name='completeOrder' value='$orderID' id="orderBtn">Complete Order</button>
+                    <button type='submit' class='btn orange-btn orderBtn' name='completeOrder' value='<?php echo $orderID; ?>'>Complete Order</button>
                 </form>
             </div>
         </div>
@@ -94,19 +98,21 @@ if (mysqli_num_rows($result) > 0) {
         });
     });
 
-    var orderBtn = document.getElementById('orderBtn');
+    var orderBtn = document.querySelectorAll('.orderBtn');
 
-    orderBtn.addEventListener('click', function() {
-        // Get the current URL of the page
-        var url = window.location.href;
+    orderBtn.forEach(button => {
+        button.addEventListener('click', () => {
+            // Get the current URL of the page
+            var url = window.location.href;
 
-        var data = {
-            type: 'Order',
-            orderID: selectedOrderID,
-            url: url
-        };
-        // send switch state to server
-        sendDataToServer(data);
+            var data = {
+                type: 'Order',
+                orderID: selectedOrderID,
+                url: url
+            };
+            // send switch state to server
+            sendDataToServer(data);
+        });
     });
 
     function sendDataToServer(data) {

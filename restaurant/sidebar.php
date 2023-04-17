@@ -9,7 +9,7 @@ $row = mysqli_fetch_assoc($result);
     <div class="d-flex justify-content-center align-items-center w-100">
         <img src="../images/KiraMakanLogo.png" class="img-fluid m-3 pt-3" style="width:60%" alt="Responsive image">
     </div>
-    <div class="d-flex justify-content-center align-items-center mt-3 flex-column">
+    <div class="d-flex justify-content-center align-items-center flex-column">
         <div class="card w-75">
             <div class="card-body d-flex justify-content-center flex-column">
                 <img src="../images/restaurants/<?= $row['restaurantName'] ?>/<?= $row['restaurantURL'] ?>" class="rounded img-fluid mb-3 h-75" alt="Restaurant Logo">

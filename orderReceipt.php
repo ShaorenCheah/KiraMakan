@@ -43,8 +43,8 @@
         <?php include 'header.php'; ?>
     </header>
 
-    <div class="container col-6 h-100 my-4">
-        <div class="card w-100">
+    <div class="container col-6 min-vh-100">
+        <div class="card w-100 mt-5">
             <div class="card-header">
                 <h5 class="font-weight-bold mb-0">
                     <strong>

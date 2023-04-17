@@ -23,13 +23,11 @@ if (mysqli_num_rows($result) > 0) {
             <div class='modal-dialog modal-dialog-centered'>
                 <div class='modal-content'>
                     <div class='modal-header d-flex justify-content-start'>
-                        <h5 class='font-weight-bold mb-0'>
-                            <strong>
+                        <h5 class='fw-bold mb-0'>
                                 Order <span style='color:var(--orange)'>#" . $orderID . "
                                 </span> on <span style='color:var(--orange)'>
                                     " . $orderDate . "
                                 </span>
-                            </strong>
                         </h5>
                     </div>
                     <div class='modal-body' id='" . $orderID . "-modal'>
@@ -53,7 +51,7 @@ if (mysqli_num_rows($result) > 0) {
             $subtotal += $price;
             echo
             "<div class='d-flex flex-row justify-content-between my-3'>
-                    <h6>$itemName x  $quantity (RM $unit/unit)</h6>
+                    <h6>$itemName x  <span style='color:var(--orange)'>$quantity</span> (RM $unit/unit)</h6>
                     <h6>RM $price</h6>
                 </div>
                 ";

@@ -8,7 +8,7 @@ if (isset($_GET['pageno'])) {
 }
 
 // Set the number of records to display per page and calculate the offset
-$no_of_records_per_page = 5;
+$no_of_records_per_page = 4;
 $offset = ($pageno - 1) * $no_of_records_per_page;
 
 // Get the restaurant ID from the session
