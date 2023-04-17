@@ -175,7 +175,7 @@ function ready() {
                     <h5 class="cart-item-title m-0">${title}</h5>
                     </div>
                     <div class="col-4 d-flex justify-content-end">
-                        <span class=" ms-2 badge cart-price" style="font-size:10px">RM ${price.toFixed(2)}</span>
+                        <span class="ms-2 badge cart-price me-3" style="font-size:13px">RM ${price.toFixed(2)}</span>
                     </div>
                     <input class="menu-item-id" type="hidden" value="${menuID}" >
                 </div>
