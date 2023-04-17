@@ -44,7 +44,7 @@
     </header>
 
     <div class="container col-6 min-vh-100">
-        <div class="card w-100 mt-5">
+        <div class="card w-100 my-5 ">
             <div class="card-header">
                 <h5 class="font-weight-bold mb-0">
                     <strong>
@@ -70,17 +70,17 @@
                             <h5 class='mt-2 mb-3'><strong><?= $personName ?></strong></h5>
                         </div>
                         <?php
-                        $sql = "SELECT * FROM person_menu WHERE opID = '$opID'";
+                        $sql = "SELECT * FROM person_item WHERE opID = '$opID'";
                         $result2 = mysqli_query($conn, $sql);
                         $sum = 0;
 
                         while ($row2 = mysqli_fetch_assoc($result2)) {
-                            $menuID = $row2['menuID'];
+                            $itemID = $row2['itemID'];
                             $quantity = $row2['quantity'];
                             $price = $row2['price'];
                             $sum += $price;
                             $subtotal += $price;
-                            $sql = "SELECT * FROM menu WHERE menuID = '$menuID'";
+                            $sql = "SELECT * FROM items WHERE itemID = '$itemID'";
                             $result3 = mysqli_query($conn, $sql);
                             $row3 = mysqli_fetch_assoc($result3);
 

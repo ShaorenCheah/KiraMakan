@@ -78,16 +78,16 @@ $message = "
                         </thead>
                         <tbody>";
 
-$sql = "SELECT * FROM person_menu WHERE opID = '$opID'";
+$sql = "SELECT * FROM person_item WHERE opID = '$opID'";
 $result = mysqli_query($conn, $sql);
 $sum = 0;
 
 while ($row = mysqli_fetch_assoc($result)) {
     $quantity = $row['quantity'];
     $price = $row['price'];
-    $menuID = $row['menuID'];
+    $itemID = $row['itemID'];
 
-    $sql2 = "SELECT * FROM menu WHERE menuID = '$menuID'";
+    $sql2 = "SELECT * FROM items WHERE itemID = '$itemID'";
     $result2 = mysqli_query($conn, $sql2);
     $row2 = mysqli_fetch_assoc($result2);
 

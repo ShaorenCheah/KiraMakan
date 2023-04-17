@@ -1,6 +1,6 @@
 <?php
 echo '
-<div class="modal fade" id="' . $row['menuID'] . '" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+<div class="modal fade" id="' . $row['itemID'] . '" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,7 +10,7 @@ echo '
                 <div class=" col-12 d-flex flex-column">
                     <div class="d-flex justify-content-center">
                         <div class="shop-item-details w-100">
-                            <input type="hidden" class="menu-item-id" value="' . $row['menuID'] . '">
+                            <input type="hidden" class="menu-item-id" value="' . $row['itemID'] . '">
                             <input type="hidden" class="menu-item-name" value="' . $row['itemName'] . '">
                             <input type="hidden" class="menu-item-price" value="' . $row['itemPrice'] . '">
                             <h6 class="text-muted pb-3">' . $row['itemDescription'] . '</h6>

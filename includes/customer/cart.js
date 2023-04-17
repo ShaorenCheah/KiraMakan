@@ -139,16 +139,16 @@ function ready() {
         var title = shopItem.getElementsByClassName('menu-item-name')[0].value;
         var quantity = shopItem.querySelector('input[name="quantity"]').value;
         var price = shopItem.getElementsByClassName('menu-item-price')[0].value;
-        var menuID = shopItem.getElementsByClassName('menu-item-id')[0].value;
+        var itemID = shopItem.getElementsByClassName('menu-item-id')[0].value;
         var orderNameDropdown = document.querySelector('.order-name-dropdown');
         var selectedName = orderNameDropdown.value;
-        addItemToCart(title, quantity, price, menuID, selectedName);
+        addItemToCart(title, quantity, price, itemID, selectedName);
         updateCartTotal();
         updateCartIcon();
         saveCartData(); // Save cart data after adding a new item
     };
 
-    function addItemToCart(title, quantity, price, menuID, selectedName) {
+    function addItemToCart(title, quantity, price, itemID, selectedName) {
         var cartItems = document.getElementsByClassName('cart-items')[0];
         var cartItemsID = cartItems.getElementsByClassName('menu-item-id');
 
@@ -156,7 +156,7 @@ function ready() {
         for (var i = 0; i < cartItemsID.length; i++) {
             var cartItemId = cartItemsID[i].value;
             var cartItemCustomerName = cartItemsID[i].closest('.cart-row').querySelector('.cart-order-name').textContent;
-            if (cartItemId == menuID && cartItemCustomerName == selectedName) {
+            if (cartItemId == itemID && cartItemCustomerName == selectedName) {
                 alert('This item is already added to the cart under your name');
                 return;
             };
@@ -177,7 +177,7 @@ function ready() {
                     <div class="col-4 d-flex justify-content-end">
                         <span class="ms-2 badge cart-price me-3" style="font-size:13px">RM ${price.toFixed(2)}</span>
                     </div>
-                    <input class="menu-item-id" type="hidden" value="${menuID}" >
+                    <input class="menu-item-id" type="hidden" value="${itemID}" >
                 </div>
                 <span class="cart-order-name mt-2">${selectedName}</span>
             </div>
@@ -272,12 +272,12 @@ function ready() {
 
             var selectedName = cartRow.getElementsByClassName('cart-order-name')[0].textContent;
             var item = cartRow.getElementsByClassName('cart-item-title')[0].textContent;
-            var menuID = cartRow.getElementsByClassName('menu-item-id')[0].value;
+            var itemID = cartRow.getElementsByClassName('menu-item-id')[0].value;
             var price = parseFloat(cartRow.getElementsByClassName('cart-price')[0].textContent.replace('RM ', ''));
             var quantity = parseInt(cartRow.getElementsByClassName('cart-quantity-input')[0].value);
             orderData.push({
                 name: selectedName,
-                menuID: menuID,
+                itemID: itemID,
                 item: item,
                 price: price,
                 quantity: quantity
