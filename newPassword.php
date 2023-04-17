@@ -68,14 +68,14 @@ if (isset($_SESSION['token']) || $email == true) {
                             novalidate method="POST" autocomplete="off" onsubmit="return validateNewPasswordForm()">
 
                             <div class="form-floating w-50 mb-3">
-                                <input type="password" class="form-control" id="newPassword" name="newPassword"
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" minlength="8" maxlength="25"
                                     placeholder="Password" required autocomplete="off">
                                 <label for="newPassword">New Password</label>
                             </div>
 
                             <div class="form-floating w-50">
                                 <input type="password" class="form-control" id="newRepeatPassword"
-                                    name="newRepeatPassword" placeholder="Repeat Password" required autocomplete="off">
+                                    name="newRepeatPassword" placeholder="Repeat Password" minlength="8" maxlength="25" required autocomplete="off">
                                 <label for="newRepeatPassword">Repeat Password</label>
                             </div>
 
