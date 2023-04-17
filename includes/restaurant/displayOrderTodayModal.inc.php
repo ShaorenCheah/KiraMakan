@@ -30,12 +30,12 @@ if (mysqli_num_rows($result) > 0) {
         // prepare and execute the SQL query
 
         $sql = 'SELECT m.*, SUM(pm.quantity) as total_ordered, SUM(pm.price) as price
-                        FROM Menu m
-                        INNER JOIN person_menu pm ON pm.menuID = m.menuID
+                        FROM items m
+                        INNER JOIN person_item pm ON pm.itemID = m.itemID
                         INNER JOIN order_person op ON op.opID = pm.opID
                         INNER JOIN Orders o ON o.orderID = op.orderID
                         WHERE o.orderID = "' . $orderID . '"
-                        GROUP BY m.menuID';
+                        GROUP BY m.itemID';
 
         $result2 = mysqli_query($conn, $sql);
         $subtotal = 0;

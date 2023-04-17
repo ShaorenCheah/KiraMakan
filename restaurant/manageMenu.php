@@ -60,7 +60,7 @@
                                     <thead class=" m-auto p-auto">
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Menu ID</th>
+                                            <th scope="col">Item ID</th>
                                             <th scope="col">Item Name</th>
                                             <th scope="col">Item Description</th>
                                             <th scope="col">Category</th>
@@ -104,11 +104,11 @@
 </html>
 
 <script>
-    var menuAvailabilityButtons = document.querySelectorAll('.menu-availability');
+    var itemAvailabilityButtons = document.querySelectorAll('.item-availability');
 
-    menuAvailabilityButtons.forEach(button => {
+    itemAvailabilityButtons.forEach(button => {
         button.addEventListener('click', () => {
-            var selectedMenuID = button.id;
+            var selectedItemID = button.id;
             var selectedStatus = button.value;
 
 
@@ -118,7 +118,7 @@
             var data = {
                 type: 'Update',
                 status: selectedStatus,
-                menuID: selectedMenuID,
+                itemID: selectedItemID,
                 url: url
             };
             // send switch state to server
@@ -146,7 +146,7 @@
                 if (data.success) {
                     window.location.href = data.url;
                 } else {
-                    alert('Error updating menu');
+                    alert('Error updating item');
                 }
             })
 

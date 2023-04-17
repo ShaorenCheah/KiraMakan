@@ -63,7 +63,7 @@ foreach ($order['orderData'] as $personName) {
 
 // Get the order items
 foreach ($order['orderData'] as $orderItem){
-    $menuID = $orderItem['menuID'];
+    $itemID = $orderItem['itemID'];
     $quantity = $orderItem['quantity'];
     $price = $orderItem['price'] * $quantity;
     $personName = $orderItem['name'];
@@ -77,8 +77,8 @@ foreach ($order['orderData'] as $orderItem){
     $row = mysqli_fetch_assoc($result);
     $opID = $row['opID'];
 
-    $stmt = $conn->prepare("INSERT INTO person_menu (opID, menuID, quantity, price) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param('ssid', $opID, $menuID, $quantity, $price);
+    $stmt = $conn->prepare("INSERT INTO person_item (opID, itemID, quantity, price) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param('ssid', $opID, $itemID, $quantity, $price);
 
     if (!$stmt->execute()) {
         $success = false;

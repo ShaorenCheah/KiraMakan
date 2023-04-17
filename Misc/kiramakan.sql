@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 11:29 AM
+-- Generation Time: Apr 17, 2023 at 11:58 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -41,7 +41,7 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`accountID`, `email`, `password`, `token`, `accountType`) VALUES
 ('A0001', 'guest@gmail.com', '$2y$10$5M4sMHISEPYD46Oc732kVu/II/iudTm60bvM6eR6IIdNA1anUw2qi', NULL, 'Customer'),
-('A0002', 'shaorencheah@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', '259037', 'Customer'),
+('A0002', 'shaorencheah@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Customer'),
 ('A0003', 'sushihaven@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
 ('A0004', 'goldenwok@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
 ('A0005', 'minjikitchen@gmail.com', '$2y$10$z8aOm.7TDzUfsljzzoQtFuK9Kdr4sRDdIu7aPrWh0n2t9Pwpb/FFC', NULL, 'Restaurant'),
@@ -73,7 +73,7 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`customerID`, `customerName`, `phoneNo`, `accountID`, `balance`) VALUES
 ('C0001', 'Guest', '012-3456789', 'A0001', 0.00),
-('C0002', 'Cheah Shaoren', '016-3381806', 'A0002', 0.00);
+('C0002', 'Cheah Shaoren', '016-3381806', 'A0002', 886.30);
 
 -- --------------------------------------------------------
 
@@ -207,12 +207,12 @@ CREATE TABLE `order_person` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `person_menu`
+-- Table structure for table `person_item`
 --
 
-CREATE TABLE `person_menu` (
+CREATE TABLE `person_item` (
   `opID` varchar(7) NOT NULL,
-  `menuID` varchar(5) NOT NULL,
+  `itemID` varchar(5) NOT NULL,
   `quantity` int(2) DEFAULT NULL,
   `price` double(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -289,11 +289,11 @@ ALTER TABLE `order_person`
   ADD KEY `orderID` (`orderID`);
 
 --
--- Indexes for table `person_menu`
+-- Indexes for table `person_item`
 --
-ALTER TABLE `person_menu`
-  ADD PRIMARY KEY (`opID`,`menuID`),
-  ADD KEY `menuID` (`menuID`);
+ALTER TABLE `person_item`
+  ADD PRIMARY KEY (`opID`,`itemID`),
+  ADD KEY `menuID` (`itemID`);
 
 --
 -- Indexes for table `restaurants`
@@ -332,11 +332,11 @@ ALTER TABLE `order_person`
   ADD CONSTRAINT `order_person_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`);
 
 --
--- Constraints for table `person_menu`
+-- Constraints for table `person_item`
 --
-ALTER TABLE `person_menu`
-  ADD CONSTRAINT `person_menu_ibfk_1` FOREIGN KEY (`opID`) REFERENCES `order_person` (`opID`),
-  ADD CONSTRAINT `person_menu_ibfk_2` FOREIGN KEY (`menuID`) REFERENCES `items` (`itemID`);
+ALTER TABLE `person_item`
+  ADD CONSTRAINT `person_item_ibfk_1` FOREIGN KEY (`opID`) REFERENCES `order_person` (`opID`),
+  ADD CONSTRAINT `person_item_ibfk_2` FOREIGN KEY (`itemID`) REFERENCES `items` (`itemID`);
 
 --
 -- Constraints for table `restaurants`

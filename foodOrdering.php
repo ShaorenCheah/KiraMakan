@@ -90,7 +90,7 @@
                 ?>
                         <div class="col-md-4">
                             <div class="card h-100">
-                                <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
+                                <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['itemURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
                                 <div class="card-body h-100 d-flex flex-column">
                                     <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                     <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -106,7 +106,7 @@
                                             <?php
                                             } else if (isset($_SESSION['accountID'])) {
                                             ?>
-                                                <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                                <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['itemID'] ?>" value="<?= $row['itemID'] ?>" data-bs-toggle="modal">Order</button>
                                             <?php } else { ?>
                                                 <div class="col-md-5"></div>
                                             <?php
@@ -136,7 +136,7 @@
 
             <?php
 
-            $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Drinks'";
+            $sql = "SELECT * FROM items WHERE restaurantID = '$restaurantID' AND category = 'Drinks'";
 
             $result = mysqli_query($conn, $sql);
 
@@ -148,7 +148,7 @@
             ?>
                     <div class="col-md-4">
                         <div class="card h-100">
-                            <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
+                            <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['itemURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
                             <div class="card-body h-100 d-flex flex-column">
                                 <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                 <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -164,7 +164,7 @@
                                         <?php
                                         } else if (isset($_SESSION['accountID'])) {
                                         ?>
-                                            <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                            <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['itemID'] ?>" value="<?= $row['itemID'] ?>" data-bs-toggle="modal">Order</button>
                                         <?php } else { ?>
                                             <div class="col-md-5"></div>
                                         <?php
@@ -194,7 +194,7 @@
 
         <?php
 
-        $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Desserts'";
+        $sql = "SELECT * FROM items WHERE restaurantID = '$restaurantID' AND category = 'Desserts'";
 
         $result = mysqli_query($conn, $sql);
         echo '<div class="row m-0 g-4 d-flex flex-row justify-content-start">';
@@ -205,7 +205,7 @@
         ?>
                 <div class="col-md-4">
                     <div class="card h-100">
-                        <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
+                        <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['itemURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
                         <div class="card-body h-100 d-flex flex-column">
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -221,7 +221,7 @@
                                     <?php
                                     } else if (isset($_SESSION['accountID'])) {
                                     ?>
-                                        <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                        <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['itemID'] ?>" value="<?= $row['itemID'] ?>" data-bs-toggle="modal">Order</button>
                                     <?php } else { ?>
                                         <div class="col-md-5"></div>
                                     <?php
@@ -252,7 +252,7 @@
 
         <?php
 
-        $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Add-Ons'";
+        $sql = "SELECT * FROM items WHERE restaurantID = '$restaurantID' AND category = 'Add-Ons'";
 
         $result = mysqli_query($conn, $sql);
 
@@ -264,7 +264,7 @@
         ?>
                 <div class="col-md-4">
                     <div class="card h-100">
-                        <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
+                        <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['itemURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
                         <div class="card-body h-100 d-flex flex-column">
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
@@ -281,7 +281,7 @@
                                     <?php
                                     } else if (isset($_SESSION['accountID'])) {
                                     ?>
-                                        <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                        <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['itemID'] ?>" value="<?= $row['itemID'] ?>" data-bs-toggle="modal">Order</button>
                                     <?php } else { ?>
                                         <div class="col-md-5"></div>
                                     <?php

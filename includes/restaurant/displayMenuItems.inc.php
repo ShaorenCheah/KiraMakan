@@ -60,7 +60,7 @@ if (mysqli_num_rows($result) > 0) {
                 <?= $row["itemPrice"] ?>
             </td>
             <td>
-                <img src="../images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="rounded img-fluid my-1 w-25" alt="Item Image">
+                <img src="../images/restaurants/<?= $restaurantName ?>/menu/<?= $row['itemURL'] ?>" class="rounded img-fluid my-1 w-25" alt="Item Image">
             </td>
             <td>
                 <?= $row["availability"] ?>
@@ -76,7 +76,7 @@ if (mysqli_num_rows($result) > 0) {
                         $type = "btn-success";
                     }
 
-                    echo '<button class="btn ' . $type . ' menu-availability" value="' . $row['availability'] . '" id="' . $row['itemID'] . '" name="manageMenu">' . $text . '</button>';
+                    echo '<button class="btn ' . $type . ' item-availability" value="' . $row['availability'] . '" id="' . $row['itemID'] . '" name="manageitem">' . $text . '</button>';
                     ?>
                 </form>
             </td>
