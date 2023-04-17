@@ -28,7 +28,7 @@
               <div class="col-1"></div>
               <div class="col-10 px-5">
                 <div class="form-floating">
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required autocomplete="off">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="8" maxlength="25" required autocomplete="off">
                   <label for="password">Password</label>
                 </div>
               </div>
@@ -73,15 +73,15 @@
                 <label for="regEmail">Email address</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="phoneNo" name="phoneNo" placeholder="Enter your phone number" required autocomplete="off">
+                <input type="tel" class="form-control" id="phoneNo" name="phoneNo" placeholder="Enter your phone number" maxlength="11" required autocomplete="off">
                 <label for="phoneNo">Phone Number</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="Password" required autocomplete="off">
+                <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="Password" minlength="8" maxlength="25" required autocomplete="off">
                 <label for="regPassword">Password</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="regRepeatPassword" name="regRepeatPassword" placeholder="Repeat Password" required autocomplete="off">
+                <input type="password" class="form-control" id="regRepeatPassword" name="regRepeatPassword" placeholder="Repeat Password" minlength="8" maxlength="25" required autocomplete="off">
                 <label for="regRepeatPassword">Repeat Password</label>
               </div>
               <div class="col-12 d-flex justify-content-center">

@@ -57,7 +57,7 @@ if ($email == true && isset($_SESSION['status'])) {
                         </div>
                         <form action="resetToken.php" class="col-12 w-100 d-flex flex-column justify-content-center align-items-center" novalidate method="post" autocomplete="off" onsubmit="return validateOTPForm()">
                             <div class="form-floating w-50">
-                                <input type="text" class="form-control" id="otp" name="otp" placeholder="OTP" required autocomplete="off">
+                                <input type="text" class="form-control" id="otp" name="otp" placeholder="OTP" maxlength="6" required autocomplete="off">
                                 <label for="otp">One-Time Password</label>
                             </div>
                             <div class="d-flex justify-content-center mt-5">

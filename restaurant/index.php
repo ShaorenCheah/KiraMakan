@@ -18,6 +18,11 @@
 
     <?php
     session_start();
+
+    if(isset($_SESSION['customerID'])){
+        echo "<script>alert('You cannot access to restaurant interface as a customer. Please try again with a different account.'); window.location='../index.php'</script>";
+    }
+
     include '../includes/connection.inc.php';
     $restaurantID = $_SESSION['restaurantID'];
 
