@@ -15,13 +15,13 @@
 </head>
 
 <body>
-    <?php 
+    <?php
     session_start();
-    
-    if(isset($_SESSION['restaurantID'])){
+
+    if (isset($_SESSION['restaurantID'])) {
         echo "<script>alert('You cannot access to customer interface as a restaurant. Please try again with a different account.'); window.location='http://localhost/KiraMakan/restaurant/index.php'</script>";
     }
-    
+
     ?>
     <div class="min-vh-100">
         <div class="row d-flex flex-col me-0 ">
@@ -38,7 +38,7 @@
                             <h6>Group dining made convenient.</b>
                         </div>
                         <div class="col-md-12 mt-3">
-                            <h1 class="display-4 fw-bold">Find your next meal <br>with <span style="color:var(--orange)">KiraMakan</span>.
+                            <h1 class="display-5 fw-bold">Find your next meal <br>with <span style="color:var(--orange)">KiraMakan</span>.
                             </h1>
                         </div>
                         <div class="col-md-12 mt-4">
@@ -77,7 +77,7 @@
     <div class=" restaurant-carousel mt-2 d-flex justify-content-center align-items-center" id="restaurant-carousel">
         <div class="row me-0">
             <div class="col-12 d-flex justify-content-center mt-5 ">
-                <h2 class="display-4 font-weight-bold" style="color:var(--primary)"><strong>Our <span style="color:var(--orange)">Restaurant</span> Partners</strong></h2>
+                <h1 class="display-5 fw-bold" style="color:var(--primary)">Our <span style="color:var(--orange)">Restaurant</span> Partners</h1>
             </div>
 
             <div class="col-1"></div>
@@ -139,7 +139,6 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            <div class="col-"></div>
             <div class="col-12 d-flex justify-content-center mb-5">
                 <a href="restaurantOptions.php" class="btn orange-btn fs-4">Explore All</a>
             </div>
@@ -147,8 +146,49 @@
             <?php include 'includes/customer/restaurantModal.inc.php'; ?>
         </div>
     </div>
-
-
+    <div class="row d-flex justify-content-center align-items-center objective px-5 py-5">
+        <div class="d-flex flex-column col-md-6">
+            <h2 class="display-5 fw-bold ms-5">Our best<span style="color:var(--orange)"> features</span>!</h2>
+            <div class="col d-flex flex-row ms-5 mt-3">
+                <div class="col-md-1 d-flex justify-content-start align-items-start">
+                    <img src="images/tick.png" class="img-fluid rounded" style="width:90%" alt="Food">
+                </div>
+                <div class="col-md-11 d-flex flex-column mt-4 ms-3">
+                    <h3 class="fw-bold">Improve group dining experience</h3>
+                    <p class="text-muted">KiraMakan address the inconvenience of calculating payback during group dining.</p>
+                </div>
+            </div>
+            <div class="col d-flex flex-row ms-5 mt-3">
+                <div class="col-md-1 d-flex justify-content-start align-items-start">
+                    <img src="images/tick.png" class="img-fluid rounded" style="width:90%" alt="Food">
+                </div>
+                <div class="col-md-11 d-flex flex-column mt-4 ms-3">
+                    <h3 class="fw-bold">Convenient payback request</h3>
+                    <p class="text-muted">Implement an automatic email notification system to inform payees of their payback amount.</p>
+                </div>
+            </div>
+            <div class="col d-flex flex-row ms-5 mt-3">
+                <div class="col-md-1 d-flex justify-content-start align-items-start">
+                    <img src="images/tick.png" class="img-fluid rounded" style="width:90%" alt="Food">
+                </div>
+                <div class="col-md-11 d-flex flex-column mt-4 ms-3">
+                    <h3 class="fw-bold">Affordable food ordering platform</h3>
+                    <p class="text-muted">Streamline restaurant management operations for improved efficiency.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img src="images/mobilePayment.png" class="img-fluid rounded h-50" style="width:50%" alt="Food">
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center p-5 min-vh-100" style="background-color:var(--light)">
+        <div class="col-md-11 d-flex justify-content-around align-items-center p-5" style="background-color:var(--pastel)">
+           <img src="images/cashier.jpg" class="img-fluid h-50 rounded" style="width:20%" alt="Cashier">
+            <div>
+                <h2 class="display-5 fw-bold ms-5">Your Dining Experience Starts Here</h2>
+            </div>
+        </div>
+    </div>
     <footer>
         <?php include "footer.php"; ?>
     </footer>

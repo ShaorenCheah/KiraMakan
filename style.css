@@ -53,14 +53,15 @@ thead {
 }
 
 .page-link {
-  color:var(--orange) !important;
+  color: var(--orange) !important;
 }
 
 .page-link:hover,
-.page-link:active{
+.page-link:active {
   border-color: #ff7629 !important;
   box-shadow: 0 0 0 0.25rem rgba(255, 118, 41, 0.25) !important;
 }
+
 .form-check-input:checked {
   background-color: var(--orange);
   border: none;
@@ -188,103 +189,23 @@ thead {
 /* Header Navbar End */
 
 /* Index section Start */
-.restaurant-carousel {
-  background-color: #FAFAFA;
+
+.objective {
+  background: rgb(251, 248, 249);
+  background: linear-gradient(90deg, rgba(251, 248, 249, 1) 0%, rgba(251, 240, 236, 1) 35%);
 }
 
-#restaurant-carousel h1 {
-  font-weight: 500;
-  color: var(--primary);
-}
 
 
 
 /* Index section End */
 
 
-/* Contact-us Section Start */
-.contactus {
-  margin: 10px;
-  max-width: 500px;
-  margin-right: 80px;
-}
-
-.contactus b {
-  padding-left: 3px
-}
-
-.inputcontainer {
-  display: flex;
-  margin-top: 15px;
-  border: 2px solid #005fbb;
-  border-radius: 20px;
-  padding: 20px;
-  padding-bottom: 100px;
-  height: 220px;
-}
-
-.input {
-  display: block;
-  border: 2px solid #0584ff;
-  border-radius: 5px;
-  margin-top: 15px;
-  align-items: center;
-  width: 300px;
-  height: 30px;
-}
-
-.input:focus {
-  outline: none;
-  transition: 0.5s
-}
-
-.input::placeholder {
-  color: #0584ff;
-}
-
-.text {
-  display: block;
-  border: 2px solid #0584ff;
-  border-radius: 5px;
-  margin-top: 15px;
-  align-items: center;
-  width: 300px;
-  height: 80px;
-  resize: none;
-}
-
-.text:focus {
-  outline: none;
-  transition: 0.5s
-}
-
-.text::placeholder {
-  color: #0584ff;
-}
-
-.submit {
-  border: 2px solid #0584ff;
-  border-radius: 15px;
-  margin-top: 15px;
-  width: 80px;
-  height: 30px;
-  background-color: #0584ff;
-  color: white;
-}
-
-.submit:hover {
-  transition: 0.5s;
-  cursor: pointer;
-  transform: scale(1.1);
-}
-
-i {
-  color: #0584ff;
-}
-
-/* Contact-Us Section End */
-
 /* Carousel Section Start */
+
+.restaurant-carousel {
+  background-color: var(--light);
+}
 
 
 #myCarousel .cards-wrapper {
@@ -336,13 +257,15 @@ i {
 }
 
 .carousel-control-prev:hover svg,
-.carousel-control-prev:active svg{
-  fill: var(--orange); /* Change to the color you want */
+.carousel-control-prev:active svg {
+  fill: var(--orange);
+  /* Change to the color you want */
 }
 
 .carousel-control-next:hover svg,
-.carousel-control-next:active svg  {
-  fill: var(--orange); /* Change to the color you want */
+.carousel-control-next:active svg {
+  fill: var(--orange);
+  /* Change to the color you want */
 }
 
 
