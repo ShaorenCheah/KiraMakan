@@ -9,7 +9,7 @@
     <!-- Bootstrap JavaScript and jQuery libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    <script src="includes/customer/scripts/cart.js" async></script>
+    <script src="includes/customer/cart.js" async></script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Kira Makan</title>
@@ -18,6 +18,10 @@
 <body>
     <?php
     session_start();
+
+    if (isset($_SESSION['restaurantID'])) {
+        echo "<script>alert('You cannot order as a restaurant. Please try again with a different account.'); window.location='./index.php'</script>";
+    }
 
     $restaurantID = $_GET['restaurantID'];
     if (isset($_GET['namesArray'])) {
@@ -69,9 +73,9 @@
         </div>
         <div class="col-md-3"></div>
 
-        <div class="tab-content col-md-12 mt-4 m-0 d-flex justify-content-center" id="pills-tabContent">
+        <div class="tab-content col-md-12 mt-3 m-0 d-flex justify-content-center" id="pills-tabContent">
             <!-- Meal Section -->
-            <div class="m-0 tab-pane fade show active col-md-8" id="pills-meal-tab" role="tabpanel" aria-labelledby="pills-meal-tab" tabindex="0">
+            <div class="m-0 tab-pane fade show active col-md-8 min-vh-100" id="pills-meal-tab" role="tabpanel" aria-labelledby="pills-meal-tab" tabindex="0">
                 <?php
 
                 $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Meals'";
@@ -90,13 +94,71 @@
                                 <div class="card-body h-100 d-flex flex-column">
                                     <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                                     <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
-                                    <div class="d-flex flex-row align-items-end justify-content-between h-100">
+                                    <div class="d-flex flex-row align-items-end h-100">
+                                        <div class="col d-flex">
+                                            <h5 class="card-price col-md-7 m-0 p-0 d-flex align-items-center"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
+                                            <?php
+                                            if ($row['availability'] === "Unavailable") {
+                                            ?>
+                                                <div class="col-md-5 d-flex justify-content-end align-items-center">
+                                                    <h6 style="color:red" class="m-0">Out of Stock</h6>
+                                                </div>
+                                            <?php
+                                            } else if (isset($_SESSION['accountID'])) {
+                                            ?>
+                                                <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                            <?php } else { ?>
+                                                <div class="col-md-5"></div>
+                                            <?php
+                                            };
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                                        <h5 class="card-price col-md-7=6 mb-1 p-0"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
+                <?php include 'includes/customer/menuItemModal.inc.php';
+                    }
+                } else {
+                    echo '<div class="col-12 d-flex justify-content-center mt-5 mb-3 p-0">
+                    <h5><strong>There are currently no <span style="color:var(--orange)">desserts</span> available</strong></h5>
+                </div>
+                <div class="col-12 d-flex justify-content-center mb-3 p-0">
+                    <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 20%; height:90%;">
+                </div>';
+                } ?>
+            </div>
+        </div>
+
+        <!-- Drinks Section -->
+        <div class="m-0 tab-pane fade col-md-8 min-vh-100" id="pills-drinks-tab" role="tabpanel" aria-labelledby="pills-drinks-tab" tabindex="0">
+
+            <?php
+
+            $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Drinks'";
+
+            $result = mysqli_query($conn, $sql);
+
+            echo '<div class="row m-0 g-4 d-flex flex-row justify-content-start">';
+            if (mysqli_num_rows($result) > 0) {
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    // Create a card for the menu item
+            ?>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
+                            <div class="card-body h-100 d-flex flex-column">
+                                <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
+                                <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
+                                <div class="d-flex flex-row align-items-end h-100">
+                                    <div class="col d-flex">
+                                        <h5 class="card-price col-md-7 m-0 p-0 d-flex align-items-center"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
                                         <?php
                                         if ($row['availability'] === "Unavailable") {
                                         ?>
-                                            <div class="col-md-5 d-flex justify-content-end align-items-end">
+                                            <div class="col-md-5 d-flex justify-content-end align-items-center">
                                                 <h6 style="color:red" class="m-0">Out of Stock</h6>
                                             </div>
                                         <?php
@@ -112,79 +174,23 @@
                                 </div>
                             </div>
                         </div>
-
-                <?php include 'includes/customer/menuItemModal.inc.php';
-                    }
-                } else {
-                    echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
-                        <h5><strong>There are currently no <span style="color:var(--orange)">meals</span> available</strong></h5>
-                    </div>
-                    <div class="col-12 d-flex justify-content-center mb-3 p-0">
-                        <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 25%;">
-                    </div>';
-                } ?>
-            </div>
-        </div>
-
-        <!-- Drinks Section -->
-        <div class="tab-pane fade" id="pills-drinks-tab" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-
-            <?php
-
-            $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Drinks'";
-
-            $result = mysqli_query($conn, $sql);
-
-            echo '<div class="row g-3 d-flex flex-row justify-content-start">';
-            if (mysqli_num_rows($result) > 0) {
-
-                while ($row = mysqli_fetch_assoc($result)) {
-                    // Create a card for the menu item
-            ?>
-                    <div class="col-md-4">
-                        <div class="card h-100">
-                            <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
-                            <div class="card-body h-100 d-flex flex-column">
-                                <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
-                                <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
-                                <div class="d-flex flex-row align-items-end justify-content-between h-100">
-
-                                    <h5 class="card-price col-md-7 mb-1 p-0"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
-                                    <?php
-                                    if ($row['availability'] === "Unavailable") {
-                                    ?>
-                                        <div class="col-md-5 d-flex justify-content-end">
-                                            <h6 style="color:red">Out of Stock</h6>
-                                        </div>
-                                    <?php
-                                    } else if (isset($_SESSION['accountID'])) {
-                                    ?>
-                                        <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
-                                    <?php } else { ?>
-                                        <div class="col-md-5"></div>
-                                    <?php
-                                    };
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
             <?php include 'includes/customer/menuItemModal.inc.php';
                 }
             } else {
-                echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
-                        <h5><strong>There are currently no <span style="color:var(--orange)">drinks</span> available</strong></h5>
-                    </div>
-                    <div class="col-12 d-flex justify-content-center mb-3 p-0">
-                        <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 25%;">
-                    </div>';
+                echo '<div class="col-12 d-flex justify-content-center mt-5 mb-3 p-0">
+                <h5><strong>There are currently no <span style="color:var(--orange)">desserts</span> available</strong></h5>
+            </div>
+            <div class="col-12 d-flex justify-content-center mb-3 p-0">
+                <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 20%; height:90%;">
+            </div>';
             } ?>
         </div>
     </div>
 
     <!-- Desserts Section -->
-    <div class="tab-pane fade" id="pills-desserts-tab" role="tabpanel" aria-labelledby="pills-desserts-tab" tabindex="0">
+    <div class="tab-pane fade min-vh-100" id="pills-desserts-tab" role="tabpanel" aria-labelledby="pills-desserts-tab" tabindex="0">
 
         <?php
 
@@ -231,19 +237,19 @@
         <?php include 'includes/customer/menuItemModal.inc.php';
             }
         } else {
-            echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
-                        <h5><strong>There are currently no <span style="color:var(--orange)">desserts</span> available</strong></h5>
-                    </div>
-                    <div class="col-12 d-flex justify-content-center mb-3 p-0">
-                        <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 25%;">
-                    </div>';
+            echo '<div class="col-12 d-flex justify-content-center mt-5 mb-3 p-0">
+            <h5><strong>There are currently no <span style="color:var(--orange)">desserts</span> available</strong></h5>
+        </div>
+        <div class="col-12 d-flex justify-content-center mb-3 p-0">
+            <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 20%; height:90%;">
+        </div>';
         } ?>
     </div>
 
     </div>
 
     <!-- Add-Ons Section -->
-    <div class="tab-pane fade" id="pills-addons-tab" role="tabpanel" aria-labelledby="pills-addons-tab" tabindex="0">
+    <div class="tab-pane fade min-vh-100" id="pills-addons-tab" role="tabpanel" aria-labelledby="pills-addons-tab" tabindex="0">
 
         <?php
 
@@ -289,11 +295,11 @@
         <?php include 'includes/customer/menuItemModal.inc.php';
             }
         } else {
-            echo '<div class="col-12 d-flex justify-content-center mt-5 p-0">
-                        <h5><strong>There are currently no <span style="color:var(--orange)">add-ons</span> available</strong></h5>
+            echo '<div class="col-12 d-flex justify-content-center mt-5 mb-3 p-0">
+                        <h5><strong>There are currently no <span style="color:var(--orange)">desserts</span> available</strong></h5>
                     </div>
                     <div class="col-12 d-flex justify-content-center mb-3 p-0">
-                        <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 25%;">
+                        <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 20%; height:90%;">
                     </div>';
         } ?>
     </div>

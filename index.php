@@ -9,13 +9,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="accounts.js" async></script>
-
+    <script src="includes/accounts.js" async></script>
     <title>Kira Makan</title>
 </head>
 
 <body>
-    <?php session_start() ?>
+    <?php 
+    session_start();
+    
+    if(isset($_SESSION['restaurantID'])){
+        echo "<script>alert('You cannot access to customer interface as a restaurant. Please try again with a different account.'); window.location='http://localhost/KiraMakan/restaurant/index.php'</script>";
+    }
+    
+    ?>
     <div class="min-vh-100">
         <div class="row d-flex flex-col me-0">
             <header class="col-md-12 mb-5 pe-0">

@@ -46,11 +46,11 @@ if (isset($_POST['loginSubmit'])) {
                 echo "<script>alert('Successful Login! Welcome " . $_SESSION['restaurantName'] . "!'); window.location='../restaurant/index.php'</script>";
             }
         } else {
-            echo "<script>alert('Woops! Password is Wrong.'); window.location='index.php'</script>";
+            echo "<script>alert('Woops! Password is Wrong.'); window.location='http://localhost/KiraMakan/index.php'</script>";
         }
     } else {
 
-        echo "<script>alert('Woops! Invalid or Wrong Email.'); window.location='index.php'</script>";
+        echo "<script>alert('Woops! Invalid or Wrong Email.'); window.location='http://localhost/KiraMakan/index.php'</script>";
     }
 
     mysqli_close($conn);
@@ -65,6 +65,7 @@ if (isset($_POST['loginSubmit'])) {
     $regPassword = $_POST['regPassword'];
     $regRepeatPassword = $_POST['regRepeatPassword'];
     $accountType = 'Customer';
+    $balance = 0.00;
 
     // Hash the password
     $hashedPassword = password_hash($regPassword, PASSWORD_DEFAULT);
@@ -111,8 +112,8 @@ if (isset($_POST['loginSubmit'])) {
     $stmt->close();
 
     // Prepare and bind parameters for customer data insertion
-    $stmt = mysqli_prepare($conn, "INSERT INTO customers (customerID, customerName, phoneNo, accountID) VALUES (?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "ssss", $new_customerID, $customerName, $phoneNo, $new_accountID);
+    $stmt = mysqli_prepare($conn, "INSERT INTO customers (customerID, customerName, phoneNo, accountID, balance) VALUES (?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "sssss", $new_customerID, $customerName, $phoneNo, $new_accountID, $balance);
     if (mysqli_stmt_execute($stmt) === FALSE) {
         echo "Error: " . mysqli_stmt_error($stmt);
         mysqli_stmt_close($stmt);
