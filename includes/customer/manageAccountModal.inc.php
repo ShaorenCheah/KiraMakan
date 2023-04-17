@@ -6,7 +6,7 @@
                 <div class='row d-flex flex-row'>
                     <div class="col-md-12 d-flex flex-column justify-content-center align-items-center my-2">
                         <h4><strong>Manage <span style="color:var(--orange)">Account</span></strong></h4>
-                        <div class="col-md-7 d-flex flex-row justify-content-between mt-2">
+                        <div class="col-md-8 d-flex flex-row justify-content-between mt-2">
                             <div>
                                 <h5>Remaining Balance</h5>
                             </div>

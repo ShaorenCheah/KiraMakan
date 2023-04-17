@@ -43,27 +43,19 @@ function validateRegisterForm() {
   // array to hold incomplete fields
   const incompleteFields = [];
 
-  // check for incomplete fields
-  if (customerName === '') {
-    incompleteFields.push('Name');
-  }
-  if (regEmail === '') {
-    incompleteFields.push('Email');
-  }
-  if (phoneNo === '') {
-    incompleteFields.push('Phone number');
-  }
-  if (regPassword === '') {
-    incompleteFields.push('Password');
-  }
-  if (regRepeatPassword === '') {
-    incompleteFields.push('Repeat password');
+  // loop through input fields and check for empty values
+  const inputFields = [customerName, regEmail, phoneNo, regPassword, regRepeatPassword];
+  const fieldNames = ['Name', 'Email', 'Phone number', 'Password', 'Repeat password'];
+
+  for (let i = 0; i < inputFields.length; i++) {
+    if (inputFields[i] === '') {
+      incompleteFields.push(fieldNames[i]);
+    }
   }
 
   // if any fields are incomplete, alert the user
   if (incompleteFields.length > 0) {
-    const alertMessage = `Please complete the following fields:\n${incompleteFields.join('\n')}`;
-    alert(alertMessage);
+    alert('Please fill in all input fields.');
     return false;
   }
 
@@ -98,26 +90,93 @@ function validateRegisterForm() {
 
 
 function validateForgetForm() {
-  
-    // get input values
-    const altEmail = document.getElementById('altEmail').value.trim();
-  
-    // regular expression for email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
-    // check if email is empty or in the wrong format
-    if (altEmail === '' || !emailRegex.test(altEmail)) {
-      alert('Please enter a valid email address.');
-      return false;
+
+  // get input values
+  const altEmail = document.getElementById('altEmail').value.trim();
+
+  // regular expression for email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // check if email is empty or in the wrong format
+  if (altEmail === '' || !emailRegex.test(altEmail)) {
+    alert('Please enter a valid email address.');
+    return false;
+  }
+
+  // if form is valid, return true to submit form
+  return true;
+
+}
+
+function validateOTPForm() {
+
+  // get input values
+  const otp = document.getElementById('otp').value.trim();
+
+  // regular expression for numeric values
+  const numericRegex = /^[1-9]+$/;
+
+  // check if otp is empty
+  if (otp === '') {
+    alert('Please enter the OTP sent to your email.');
+    return false;
+  }
+
+  // check if otp is 6 digits with no letters
+  if (!numericRegex.test(otp) || otp.length !== 6) {
+    alert('Please enter a valid OTP.');
+    return false;
+  }
+
+  // if form is valid, return true to submit form
+  return true;
+
+}
+
+function validateNewPasswordForm() {
+
+  // get input values
+  const newPassword = document.getElementById('newPassword').value.trim();
+  const newRepeatPassword = document.getElementById('newRepeatPassword').value.trim();
+
+  // array to hold incomplete fields
+  const incompleteFields = [];
+
+  // loop through input fields and check for empty values
+  const inputFields = [newPassword, newRepeatPassword];
+  const fieldNames = ['Password', 'Repeat password'];
+
+  for (let i = 0; i < inputFields.length; i++) {
+    if (inputFields[i] === '') {
+      incompleteFields.push(fieldNames[i]);
     }
-  
-    // if form is valid, return true to submit form
-    return true;
-  
+  }
+
+  // if any fields are incomplete, alert the user
+  if (incompleteFields.length > 0) {
+    alert('Please fill in all input fields.');
+    return false;
+  }
+
+  // check if password is empty or too short
+  if (newPassword === '' || newPassword.length < 8) {
+    alert('Please enter a password that is at least 8 characters long.');
+    return false;
+  }
+
+  // check if confirm password is the same as password
+  if (newRepeatPassword !== newPassword) {
+    alert('Please type the same password for repeat password.');
+    return false;
+  }
+
+  // if form is valid, return true to submit form
+  return true;
+
 }
 
 function validateRecipientForm() {
-  
+
   // get input values
   const recEmail = document.getElementById('recEmail').value.trim();
 
