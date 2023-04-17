@@ -190,15 +190,14 @@
     </div>
 
     <!-- Desserts Section -->
-    <div class="tab-pane fade min-vh-100" id="pills-desserts-tab" role="tabpanel" aria-labelledby="pills-desserts-tab" tabindex="0">
+    <div class="m-0 tab-pane fade col-md-8 min-vh-100" id="pills-desserts-tab" role="tabpanel" aria-labelledby="pills-desserts-tab" tabindex="0">
 
         <?php
 
         $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Desserts'";
 
         $result = mysqli_query($conn, $sql);
-
-        echo '<div class="row g-3 d-flex flex-row justify-content-start">';
+        echo '<div class="row m-0 g-4 d-flex flex-row justify-content-start">';
         if (mysqli_num_rows($result) > 0) {
 
             while ($row = mysqli_fetch_assoc($result)) {
@@ -206,33 +205,33 @@
         ?>
                 <div class="col-md-4">
                     <div class="card h-100">
-                        <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                        <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
                         <div class="card-body h-100 d-flex flex-column">
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
-                            <div class="d-flex flex-row align-items-end justify-content-between h-100">
-
-                                <h5 class="card-price col-md-7 mb-1 p-0"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
-                                <?php
-                                if ($row['availability'] === "Unavailable") {
-                                ?>
-                                    <div class="col-md-5 d-flex justify-content-end">
-                                        <h6 style="color:red">Out of Stock</h6>
-                                    </div>
-                                <?php
-                                } else if (isset($_SESSION['accountID'])) {
-                                ?>
-                                    <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
-                                <?php } else { ?>
-                                    <div class="col-md-5"></div>
-                                <?php
-                                };
-                                ?>
+                            <div class="d-flex flex-row align-items-end h-100">
+                                <div class="col d-flex">
+                                    <h5 class="card-price col-md-7 m-0 p-0 d-flex align-items-center"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
+                                    <?php
+                                    if ($row['availability'] === "Unavailable") {
+                                    ?>
+                                        <div class="col-md-5 d-flex justify-content-end align-items-center">
+                                            <h6 style="color:red">Out of Stock</h6>
+                                        </div>
+                                    <?php
+                                    } else if (isset($_SESSION['accountID'])) {
+                                    ?>
+                                        <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                    <?php } else { ?>
+                                        <div class="col-md-5"></div>
+                                    <?php
+                                    };
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
         <?php include 'includes/customer/menuItemModal.inc.php';
             }
@@ -249,7 +248,7 @@
     </div>
 
     <!-- Add-Ons Section -->
-    <div class="tab-pane fade min-vh-100" id="pills-addons-tab" role="tabpanel" aria-labelledby="pills-addons-tab" tabindex="0">
+    <div class="m-0 tab-pane fade col-md-8 min-vh-100" id="pills-addons-tab" role="tabpanel" aria-labelledby="pills-addons-tab" tabindex="0">
 
         <?php
 
@@ -257,7 +256,7 @@
 
         $result = mysqli_query($conn, $sql);
 
-        echo '<div class="row g-3 d-flex flex-row justify-content-start">';
+        echo '<div class="row m-0 g-4 d-flex flex-row justify-content-start">';
         if (mysqli_num_rows($result) > 0) {
 
             while ($row = mysqli_fetch_assoc($result)) {
@@ -265,28 +264,30 @@
         ?>
                 <div class="col-md-4">
                     <div class="card h-100">
-                        <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>">
+                        <img src="images/restaurants/<?= $restaurantName ?>/menu/<?= $row['menuURL'] ?>" class="card-img-top" alt=" <?= $row['itemName'] ?>" style="height:50%">
                         <div class="card-body h-100 d-flex flex-column">
                             <h5 class="card-title"><b><?= $row['itemName'] ?></b></h5>
                             <p class="card-text d-flex"><?= $row['itemDescription'] ?></p>
-                            <div class="d-flex flex-row align-items-end justify-content-between h-100">
+                            <div class="d-flex flex-row align-items-end h-100">
+                                <div class="col d-flex">
 
-                                <h5 class="card-price col-md-7 mb-1 p-0"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
-                                <?php
-                                if ($row['availability'] === "Unavailable") {
-                                ?>
-                                    <div class="col-md-5 d-flex justify-content-end">
-                                        <h6 style="color:red">Out of Stock</h6>
-                                    </div>
-                                <?php
-                                } else if (isset($_SESSION['accountID'])) {
-                                ?>
-                                    <button class="btn white-btn restaurantButton col-md-4" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
-                                <?php } else { ?>
-                                    <div class="col-md-5"></div>
-                                <?php
-                                };
-                                ?>
+                                    <h5 class="card-price col-md-7 m-0 p-0 d-flex align-items-center"><span class="badge badge-primary">RM <?= $row['itemPrice'] ?></span></h5>
+                                    <?php
+                                    if ($row['availability'] === "Unavailable") {
+                                    ?>
+                                        <div class="col-md-5 d-flex justify-content-end align-items-center">
+                                            <h6 style="color:red" class="m-0">Out of Stock</h6>
+                                        </div>
+                                    <?php
+                                    } else if (isset($_SESSION['accountID'])) {
+                                    ?>
+                                        <button class="btn white-btn restaurantButton col-md-5" data-bs-target="#<?= $row['menuID'] ?>" value="<?= $row['menuID'] ?>" data-bs-toggle="modal">Order</button>
+                                    <?php } else { ?>
+                                        <div class="col-md-5"></div>
+                                    <?php
+                                    };
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -296,15 +297,14 @@
             }
         } else {
             echo '<div class="col-12 d-flex justify-content-center mt-5 mb-3 p-0">
-                        <h5><strong>There are currently no <span style="color:var(--orange)">desserts</span> available</strong></h5>
-                    </div>
-                    <div class="col-12 d-flex justify-content-center mb-3 p-0">
-                        <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 20%; height:90%;">
-                    </div>';
+                <h5><strong>There are currently no <span style="color:var(--orange)">desserts</span> available</strong></h5>
+            </div>
+            <div class="col-12 d-flex justify-content-center mb-3 p-0">
+                <img src="images/cook.png" alt="empty" class="img-fluid" style="width: 20%; height:90%;">
+            </div>';
         } ?>
     </div>
     </div>
-
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <?php if (isset($_SESSION['accountID'])) {
