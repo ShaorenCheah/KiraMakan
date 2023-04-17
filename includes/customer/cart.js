@@ -193,7 +193,7 @@ function ready() {
                     <p class="cart-item-title m-0" style="font-size:16px">${title}</p>
                     </div>
                     <div class="col-4 d-flex justify-content-center">
-                        <span class=" badge cart-price" style="font-size:10px">RM ${price.toFixed(2)}</span>
+                        <span class=" badge cart-price" style="font-size:12px">RM ${price.toFixed(2)}</span>
                     </div>
                     <input class="menu-item-id" type="hidden" value="${itemID}" >
                 </div>
@@ -283,6 +283,7 @@ function ready() {
         var orderData = [];
         var totalPrice = parseFloat(document.getElementsByClassName('cart-total-price')[0].textContent.replace('RM ', ''));
         var restaurantID = document.getElementById('restaurantID').value;
+        var subTotal = parseFloat(document.getElementsByClassName('cart-sub')[0].textContent.replace('RM ', ''));
         var servicePrice = parseFloat(document.getElementsByClassName('cart-service')[0].textContent.replace('RM ', ''));
         var salesPrice = parseFloat(document.getElementsByClassName('cart-sales')[0].textContent.replace('RM ', ''));
         for (var i = 0; i < cartRows.length; i++) {
@@ -305,6 +306,7 @@ function ready() {
         var order = {
             restaurantID: restaurantID,
             orderData: orderData,
+            subTotal: subTotal,
             servicePrice: servicePrice,
             salesPrice: salesPrice,
             totalPrice: totalPrice

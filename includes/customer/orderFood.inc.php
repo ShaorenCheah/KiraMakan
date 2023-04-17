@@ -10,6 +10,7 @@ $restaurantID = $order['restaurantID'];
 $totalService = $order['servicePrice'];
 $totalSales = $order['salesPrice'];
 $totalPrice = $order['totalPrice'];
+$subtotal = $order['subTotal'];
 date_default_timezone_set('Asia/Kuala_Lumpur');
 $current_time = date("Y-m-d H:i:s");
 
@@ -20,11 +21,11 @@ $row = mysqli_fetch_assoc($result);
 
 $orderID = $row['orderID'];
 
-$stmt = $conn->prepare("INSERT INTO Orders (orderID, restaurantID, customerID, orderDate,serviceTotal, salesTotal, totalPrice,status) VALUES (?, ?, ?,?,?, ?, ?,?)");
+$stmt = $conn->prepare("INSERT INTO Orders (orderID, restaurantID, customerID, orderDate,subTotal, serviceTotal, salesTotal, totalPrice,status) VALUES (?, ?, ?,?,?,?, ?, ?,?)");
 $customerID = $_SESSION['customerID'];
 $status = "Pending";
 // Bind the parameters
-$stmt->bind_param('ssssddds', $orderID, $restaurantID, $customerID, $current_time,$totalService, $totalSales, $totalPrice,$status);
+$stmt->bind_param('ssssdddds', $orderID, $restaurantID, $customerID, $current_time,$subtotal,$totalService, $totalSales, $totalPrice,$status);
 $stmt->execute();
 
 $success = true;
