@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 11:18 AM
+-- Generation Time: Apr 17, 2023 at 11:29 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -78,25 +78,25 @@ INSERT INTO `customers` (`customerID`, `customerName`, `phoneNo`, `accountID`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item`
+-- Table structure for table `items`
 --
 
-CREATE TABLE `item` (
+CREATE TABLE `items` (
   `itemID` varchar(5) NOT NULL,
   `restaurantID` varchar(5) NOT NULL,
   `itemName` varchar(100) NOT NULL,
   `category` varchar(255) NOT NULL,
   `itemDescription` longtext NOT NULL,
   `itemPrice` decimal(10,2) NOT NULL,
-  `menuURL` longtext NOT NULL,
+  `itemURL` longtext NOT NULL,
   `availability` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `item`
+-- Dumping data for table `items`
 --
 
-INSERT INTO `item` (`itemID`, `restaurantID`, `itemName`, `category`, `itemDescription`, `itemPrice`, `menuURL`, `availability`) VALUES
+INSERT INTO `items` (`itemID`, `restaurantID`, `itemName`, `category`, `itemDescription`, `itemPrice`, `itemURL`, `availability`) VALUES
 ('M0001', 'R0001', 'Spicy Tuna Roll', 'Meals', 'Fresh tuna mixed with spicy mayo, wrapped in seaweed and sushi rice.', '12.50', 'spicytunaroll.png', 'Available'),
 ('M0002', 'R0001', 'Dragon Roll', 'Meals', 'Eel, cucumber, and avocado, topped with tobiko and eel sauce.', '16.00', 'dragonroll.png', 'Available'),
 ('M0003', 'R0001', 'Salmon Nigiri', 'Meals', 'Fresh salmon on top of a small bed of sushi rice.', '5.00', 'salmonnigiri.png', 'Available'),
@@ -267,9 +267,9 @@ ALTER TABLE `customers`
   ADD KEY `accountID` (`accountID`);
 
 --
--- Indexes for table `item`
+-- Indexes for table `items`
 --
-ALTER TABLE `item`
+ALTER TABLE `items`
   ADD PRIMARY KEY (`itemID`),
   ADD KEY `restaurantID` (`restaurantID`);
 
@@ -313,10 +313,10 @@ ALTER TABLE `customers`
   ADD CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`accountID`) REFERENCES `accounts` (`accountID`);
 
 --
--- Constraints for table `item`
+-- Constraints for table `items`
 --
-ALTER TABLE `item`
-  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`restaurantID`) REFERENCES `restaurants` (`restaurantID`);
+ALTER TABLE `items`
+  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`restaurantID`) REFERENCES `restaurants` (`restaurantID`);
 
 --
 -- Constraints for table `orders`
@@ -336,7 +336,7 @@ ALTER TABLE `order_person`
 --
 ALTER TABLE `person_menu`
   ADD CONSTRAINT `person_menu_ibfk_1` FOREIGN KEY (`opID`) REFERENCES `order_person` (`opID`),
-  ADD CONSTRAINT `person_menu_ibfk_2` FOREIGN KEY (`menuID`) REFERENCES `item` (`itemID`);
+  ADD CONSTRAINT `person_menu_ibfk_2` FOREIGN KEY (`menuID`) REFERENCES `items` (`itemID`);
 
 --
 -- Constraints for table `restaurants`
