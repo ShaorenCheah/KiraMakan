@@ -78,7 +78,7 @@
             <div class="m-0 tab-pane fade show active col-md-8 min-vh-100" id="pills-meal-tab" role="tabpanel" aria-labelledby="pills-meal-tab" tabindex="0">
                 <?php
 
-                $sql = "SELECT * FROM Menu WHERE restaurantID = '$restaurantID' AND category = 'Meals'";
+                $sql = "SELECT * FROM items WHERE restaurantID = '$restaurantID' AND category = 'Meals'";
 
                 $result = mysqli_query($conn, $sql);
 

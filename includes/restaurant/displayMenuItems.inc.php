@@ -16,7 +16,7 @@ $restaurantID = $_SESSION['restaurantID'];
 $restaurantName = $_SESSION['restaurantName'];
 
 // Query the database to get the total number of menu items from menu table
-$sql = "SELECT COUNT(*) FROM menu WHERE restaurantID = '$restaurantID' AND CONCAT(itemName,category,itemDescription,itemPrice,availability) LIKE '%$filtervalues%';";
+$sql = "SELECT COUNT(*) FROM items WHERE restaurantID = '$restaurantID' AND CONCAT(itemName,category,itemDescription,itemPrice,availability) LIKE '%$filtervalues%';";
 
 // Execute the query and get the total number of rows
 $result = mysqli_query($conn, $sql);
@@ -26,7 +26,7 @@ $total_rows = mysqli_fetch_array($result)[0];
 $total_pages = ceil($total_rows / $no_of_records_per_page);
 
 // Query the database to get the menu items from menu table
-$sql = "SELECT * FROM menu WHERE restaurantID = '$restaurantID' AND CONCAT(itemName,category,itemDescription,itemPrice,availability) LIKE '%$filtervalues%' LIMIT $offset, $no_of_records_per_page;";
+$sql = "SELECT * FROM items WHERE restaurantID = '$restaurantID' AND CONCAT(itemName,category,itemDescription,itemPrice,availability) LIKE '%$filtervalues%' LIMIT $offset, $no_of_records_per_page;";
 
 // Execute the query and check if any rows were returned
 $result = mysqli_query($conn, $sql);
@@ -45,7 +45,7 @@ if (mysqli_num_rows($result) > 0) {
                 <?= $count ?>
             </th>
             <td>
-                <?= $row["menuID"] ?>
+                <?= $row["itemID"] ?>
             </td>
             <td>
                 <?= $row["itemName"] ?>
@@ -76,7 +76,7 @@ if (mysqli_num_rows($result) > 0) {
                         $type = "btn-success";
                     }
 
-                    echo '<button class="btn ' . $type . ' menu-availability" value="' . $row['availability'] . '" id="' . $row['menuID'] . '" name="manageMenu">' . $text . '</button>';
+                    echo '<button class="btn ' . $type . ' menu-availability" value="' . $row['availability'] . '" id="' . $row['itemID'] . '" name="manageMenu">' . $text . '</button>';
                     ?>
                 </form>
             </td>
