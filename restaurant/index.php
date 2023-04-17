@@ -18,7 +18,7 @@
 
     <?php
     session_start();
-
+    date_default_timezone_set('Asia/Kuala_Lumpur');
     if(isset($_SESSION['customerID'])){
         echo "<script>alert('You cannot access to restaurant interface as a customer. Please try again with a different account.'); window.location='../index.php'</script>";
     }
