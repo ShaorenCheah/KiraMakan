@@ -6,7 +6,7 @@
 
         <div class="modal-body" id="login-modal">
           <div class="row m-0 d-flex justify-content-center align-items-center">
-            <div class="col-12 d-flex justify-content-center align-items-center mt-5">
+            <div class="col-12 d-flex justify-content-center align-items-center mt-3">
               <img src="images/KiraMakanIcon.png" class="img-fluid" alt="Kira Makan Icon" style="width: 75px;">
             </div>
             <div class="col-12 d-flex justify-content-center align-items-center mt-4">
@@ -41,8 +41,8 @@
                 <button type="submit" class="btn orange-btn btn-b mx-auto px-3 d-block fs-5" name="loginSubmit">Login</button>
               </div>
             </form>
-            <div class="col-12 d-flex justify-content-center align-items-center mb-3">
-              Don't have an account? <a class="btn p-0 ms-1" data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><span class="fs-6 text-muted mute-btn"> Sign Up</span></a>
+            <div class="col-12 d-flex justify-content-center align-items-center mb-2">
+              Don't have an account? <button type="button" style="text-decoration:none;" class="btn bg-transparent border-0 text-secondary mute-btn"data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><span>Sign Up</span></button>
             </div>
           </div>
         </div>

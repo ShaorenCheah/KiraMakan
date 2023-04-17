@@ -181,14 +181,6 @@
             <img src="images/mobilePayment.png" class="img-fluid rounded h-50" style="width:50%" alt="Food">
         </div>
     </div>
-    <div class="row d-flex justify-content-center align-items-center p-5 min-vh-100" style="background-color:var(--light)">
-        <div class="col-md-11 d-flex justify-content-around align-items-center p-5" style="background-color:var(--pastel)">
-           <img src="images/cashier.jpg" class="img-fluid h-50 rounded" style="width:20%" alt="Cashier">
-            <div>
-                <h2 class="display-5 fw-bold ms-5">Your Dining Experience Starts Here</h2>
-            </div>
-        </div>
-    </div>
     <footer>
         <?php include "footer.php"; ?>
     </footer>

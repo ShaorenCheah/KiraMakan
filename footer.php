@@ -46,7 +46,8 @@
   <div class="col-md-7 justify-content-between">
     <div class="row d-flex justify-content-end mx-5">
       <div class="col-md-6 d-flex flex-column justify-content-center px-5 mb-4 text-muted">
-        <h4 class="mb-4"><b>Contact Us</b></h4>
+        <h4 class="mb-2"><b>Contact Us</b></h4>
+        <p class="text-muted mb-4" style="font-size:13px">Become a restaurant partner today!</p>
         <p class="m-0 mb-1" style="font-size:12px"><b>Phone: </b></p>
         <p style="font-size:12px">(123)456-7890</p>
         <p class="m-0 mb-1" style="font-size:12px"><b>Email:</b>
