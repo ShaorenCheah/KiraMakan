@@ -114,7 +114,7 @@ function validateOTPForm() {
   const otp = document.getElementById('otp').value.trim();
 
   // regular expression for numeric values
-  const numericRegex = /^[1-9]+$/;
+  const numericRegex = /^(0|[1-9]\d*)$/;
 
   // check if otp is empty
   if (otp === '') {
@@ -123,7 +123,7 @@ function validateOTPForm() {
   }
 
   // check if otp is 6 digits with no letters
-  if (!numericRegex.test(otp) || otp.length !== 6) {
+  if (!numericRegex.test(otp) || otp.length != 6) {
     alert('Please enter a valid OTP.');
     return false;
   }
