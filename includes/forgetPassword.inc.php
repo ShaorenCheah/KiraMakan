@@ -15,7 +15,7 @@ if(isset($_POST['forgetSubmit'])){
         if($run){
             $subject = "Password Reset Code";
             $message = "Your password reset code is $token .";
-            $sender = "From: kiramakan@outlook.com";
+            $sender = "From: kiramakan2@outlook.com";
             if(mail($email, $subject, $message, $sender)){
 
                 $info = "OTP sent to $email. Please check all your folders including spam.";
