@@ -18,7 +18,7 @@ if ($email == true && isset($_SESSION['status'])) {
         }
     }
 } else {
-    echo "<script>alert('Please request for an OTP first.'); window.location='forgotPassword.php'</script>";
+    echo "<script>alert('Please request for an OTP first.'); window.location='../index.php'</script>";
 }
 
 ?>

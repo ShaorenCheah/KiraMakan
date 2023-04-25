@@ -23,6 +23,10 @@
         echo "<script>alert('You cannot access to restaurant interface as a customer. Please try again with a different account.'); window.location='../index.php'</script>";
     }
 
+    if(!isset($_SESSION['restaurantID'])){
+        echo "<script>alert('You are not logged in. Please login to continue.'); window.location='../index.php'</script>";
+    }
+
     include '../includes/connection.inc.php';
     $restaurantID = $_SESSION['restaurantID'];
     ?>

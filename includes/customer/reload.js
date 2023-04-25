@@ -16,7 +16,7 @@ function ready() {
         // Remove any non-numeric characters and leading zeros
         cashAmount = cashAmount.replace(/[^0-9.]/g, '').replace(/^0+/, '');
 
-        // Limit the cash amount to 10000
+        // Limit the cash amount to 1000
         if (parseFloat(cashAmount) > 1000) {
             cashAmount = "1000";
         }
