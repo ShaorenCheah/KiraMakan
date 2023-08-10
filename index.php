@@ -146,7 +146,7 @@
             <?php include 'includes/customer/restaurantModal.inc.php'; ?>
         </div>
     </div>
-    <div class="row d-flex justify-content-center align-items-center objective px-5 py-5">
+    <div class="row d-flex justify-content-center align-items-center objective px-5 py-5 m-0 w-100">
         <div class="d-flex flex-column col-md-6">
             <h2 class="display-5 fw-bold ms-5">Our best<span style="color:var(--orange)"> features</span>!</h2>
             <div class="col d-flex flex-row ms-5 mt-3">
