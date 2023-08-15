@@ -80,8 +80,7 @@
                 <h1 class="display-5 fw-bold" style="color:var(--primary)">Our <span style="color:var(--orange)">Restaurant</span> Partners</h1>
             </div>
 
-            <div class="col-1"></div>
-            <div id="myCarousel" class="col-10 carousel slide mb-3" data-bs-ride="carousel">
+            <div id="myCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
                 <?php
                 include './includes/connection.inc.php';
                 $sql = "SELECT * FROM Restaurants";
@@ -95,7 +94,7 @@
                         <div class="carousel-item <?php echo $i == 0 ? 'active' : ''; ?>">
                             <div class="row gap-4 d-flex justify-content-evenly">
                                 <?php for ($j = $i; $j < $i + 3 && $j < count($rows); $j++) { ?>
-                                    <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                    <div class="col d-flex justify-content-center align-items-center">
                                         <div class="card" style="height:350px; width:250px">
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <img src="images/restaurants/<?php echo $rows[$j]['restaurantName']; ?>/<?php echo $rows[$j]['restaurantURL']; ?>" class="card-img-top" style="width:70%" alt="<?php echo $rows[$j]['restaurantName']; ?>">
