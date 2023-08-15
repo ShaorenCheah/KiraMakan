@@ -13,7 +13,15 @@ Check out the demo video for KiraMakan: https://youtu.be/gZPCSB2Z7dk
 
 ## Installation
 
-Softwares required for this project: XAMPP and MYSQL
+Softwares required for this project: XAMPP, Apache and, MySQL
 
-1. Import the files into label:htdocs
+1. Install XAMPP and import the files into (`\xampp\htdocs`) in XAMPP folder
+2. Open XAMPP control panel and click (`Admin`) to access the database
+3. Create a new database called (`kiramakan`)
+4. Import the SQL that can be found in (`\xampp\htdocs\KiraMakan\Misc`)
+
+Configuration to enable PHP mailing feature
+
+1. Update the SMTP port number and server from (`\xampp\sendmail\sendmail.ini`)
+   <img src="images/logo.png" alt="Logo" width="80" height="80">
 
