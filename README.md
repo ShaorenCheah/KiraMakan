@@ -1,3 +1,12 @@
+<div align="center">
+  <a href="https://github.com/ShaorenCheah/KiraMakan">
+    <img src="images/KiraMakanLogo.png" alt="Logo" width="80" height="80">
+  </a>
+
+<h3 align="center">KiraMakan</h3>
+</div>
+
+
 ## Description
 
 Group dining has always been accompanied by one issue: who is going to pay the bill in advance ? Whether the bill is paid separately or voluntarily paid for everyone first, it will still bring up an additional issue: how to split the tax. The payer is also obligated to request back the money from debtors afterwards, which may be awkward as requesting back money does affect one psychologically. Therefore, paying during group dining has always been a hassle. 
@@ -22,12 +31,12 @@ Enable PHP mailing feature
 1. Update the SMTP port number and server from (`\xampp\sendmail\sendmail.ini`)
 <br><img src="images/documentation/sendmail.png">
 2. Update the send mail function from (`\xampp\php\php.ini`)
-<br><img src="images/documentation/php.png">
+<br><img src="images/documentation/php.png"><br>
 ** Default sender email is (`kiramakan@outlook.com`) with the password of (`KMFYP202108`)
 
 ## Accessing
 
-To access KiraMakan, you can create a new account or log in with a guest email (`guest@gmail.com`)
-For restaurant emails, follow the format of (`<restaurant name>@gmail.com`)
-All account has a password of (`12345678`)
+To access KiraMakan, you can create a new account or log in with a guest email (`guest@gmail.com`).
+For restaurant emails, follow the format of (`<restaurant name>@gmail.com`).
+All account has a password of (`12345678`).
 
