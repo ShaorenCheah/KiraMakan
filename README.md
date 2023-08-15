@@ -20,5 +20,14 @@ Softwares required for this project: XAMPP, Apache and, MySQL
 Enable PHP mailing feature
 
 1. Update the SMTP port number and server from (`\xampp\sendmail\sendmail.ini`)
-<br><img src="images/documentation/sendmail.png" alt="Logo" width="80" height="80">
+<br><img src="images/documentation/sendmail.png">
+2. Update the send mail function from (`\xampp\php\php.ini`)
+<br><img src="images/documentation/php.png">
+** Default sender email is (`kiramakan@outlook.com`) with the password of (`KMFYP202108`)
+
+## Accessing
+
+To access KiraMakan, you can create a new account or log in with a guest email (`guest@gmail.com`)
+For restaurant emails, follow the format of (`<restaurant name>@gmail.com`)
+All account has a password of (`12345678`)
 
