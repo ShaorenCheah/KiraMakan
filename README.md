@@ -20,8 +20,10 @@ Softwares required for this project: XAMPP, Apache and, MySQL
 3. Create a new database called (`kiramakan`)
 4. Import the SQL that can be found in (`\xampp\htdocs\KiraMakan\Misc`)
 
-Configuration to enable PHP mailing feature
+##Configuration
+
+Enable PHP mailing feature
 
 1. Update the SMTP port number and server from (`\xampp\sendmail\sendmail.ini`)
-   <img src="images/logo.png" alt="Logo" width="80" height="80">
+<br><img src="images/documentation/sendmail.png" alt="Logo" width="80" height="80">
 
