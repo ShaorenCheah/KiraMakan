@@ -1,3 +1,5 @@
+<br>
+
 <div align="center">
   <a href="https://github.com/ShaorenCheah/KiraMakan">
     <img src="images/KiraMakanLogo.png" style="width:200px;" alt="Logo">
