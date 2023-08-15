@@ -1,55 +1,53 @@
-<div id="account-modal">
-  <!-- Login Modal -->
-  <div class="modal fade" id="loginModalToggle" aria-hidden="true" aria-labelledby="loginModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+<!-- Login Modal -->
+<div class="modal fade" id="loginModalToggle" aria-hidden="true" aria-labelledby="loginModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" id="login-modal">
+        <div class="row m-0 d-flex justify-content-center align-items-center">
+          <div class="col-12 d-flex justify-content-center align-items-center mt-3">
+            <img src="images/KiraMakanIcon.png" class="img-fluid" alt="Kira Makan Icon" style="width: 75px;">
+          </div>
+          <div class="col-12 d-flex justify-content-center align-items-center mt-4">
+            <h3 class="fw-bold mb-2 text-uppercase">Login</h3>
+          </div>
+          <div class="col-12 d-flex justify-content-center align-items-center">
+            <p class=" mb-3">Please enter your email and password</p>
+          </div>
 
-        <div class="modal-body" id="login-modal">
-          <div class="row m-0 d-flex justify-content-center align-items-center">
-            <div class="col-12 d-flex justify-content-center align-items-center mt-3">
-              <img src="images/KiraMakanIcon.png" class="img-fluid" alt="Kira Makan Icon" style="width: 75px;">
-            </div>
-            <div class="col-12 d-flex justify-content-center align-items-center mt-4">
-              <h3 class="fw-bold mb-2 text-uppercase">Login</h3>
-            </div>
-            <div class="col-12 d-flex justify-content-center align-items-center">
-              <p class=" mb-3">Please enter your email and password</p>
-            </div>
-
-            <form action="includes/signUpLogin.inc.php" method="post" novalidate onsubmit="return validateLoginForm()" class="col-12 row g-4 m-0">
-              <div class="col-1"></div>
-              <div class="col-10 px-5">
-                <div class="form-floating">
-                  <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required autocomplete="off">
-                  <label for="email">Email address</label>
-                </div>
+          <form action="includes/signUpLogin.inc.php" method="post" novalidate onsubmit="return validateLoginForm()" class="col-12 row g-4 m-0">
+            <div class="col-1"></div>
+            <div class="col-10 px-5">
+              <div class="form-floating">
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required autocomplete="off">
+                <label for="email">Email address</label>
               </div>
-              <div class="col-1"></div>
-              <div class="col-1"></div>
-              <div class="col-10 px-5">
-                <div class="form-floating">
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="8" maxlength="25" required autocomplete="off">
-                  <label for="password">Password</label>
-                </div>
-              </div>
-              <div class="col-1"></div>
-              <div class="col-12 d-flex justify-content-center align-items-center mb-3">
-                <button type="button" style="text-decoration:none;" class="btn bg-transparent border-0 text-secondary mute-btn" data-bs-target="#forgetPasswordModalToggle" data-bs-toggle="modal"><span class="fs-6">Forgot
-                    Password?</span></button>
-              </div>
-              <div class="col-12 d-flex justify-content-center flex-column mb-5">
-                <button type="submit" class="btn orange-btn btn-b mx-auto px-3 d-block fs-5" name="loginSubmit">Login</button>
-              </div>
-            </form>
-            <div class="col-12 d-flex justify-content-center align-items-center mb-2">
-              Don't have an account? <button type="button" style="text-decoration:none;" class="btn bg-transparent border-0 text-secondary mute-btn"data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><span>Sign Up</span></button>
             </div>
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+            <div class="col-10 px-5">
+              <div class="form-floating">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="8" maxlength="25" required autocomplete="off">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-12 d-flex justify-content-center align-items-center mb-3">
+              <button type="button" style="text-decoration:none;" class="btn bg-transparent border-0 text-secondary mute-btn" data-bs-target="#forgetPasswordModalToggle" data-bs-toggle="modal"><span class="fs-6">Forgot
+                  Password?</span></button>
+            </div>
+            <div class="col-12 d-flex justify-content-center flex-column mb-5">
+              <button type="submit" class="btn orange-btn btn-b mx-auto px-3 d-block fs-5" name="loginSubmit">Login</button>
+            </div>
+          </form>
+          <div class="col-12 d-flex justify-content-center align-items-center mb-2">
+            Don't have an account? <button type="button" style="text-decoration:none;" class="btn bg-transparent border-0 text-secondary mute-btn" data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><span>Sign Up</span></button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- User Registration Modal -->
 <div class="modal modal-lg fade" id="userSignUpModalToggle" aria-hidden="true" aria-labelledby="userSignUpModalToggleLabel" tabindex="-1">
@@ -130,5 +128,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>

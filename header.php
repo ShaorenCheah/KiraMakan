@@ -1,46 +1,43 @@
-<nav id="header" class="navbar navbar-expand-lg row p-2 m-0 gap-3 pe-0 me-0">
-
-    <!-- Navbar brand -->
-    <div class="col-2 w-auto ms-5">
-        <a class="navbar-brand h-auto" href="index.php">
-            <img src="images/KiraMakanLogo.png" alt="Bootstrap" height="50">
-        </a>
-    </div>
-    <!-- Navbar brand -->
+<nav id="header" class="navbar navbar-expand-lg">
 
     <!-- Navbar collapse menu button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <!-- Navbar collapse menu button -->
 
     <!-- Navbar and Navitems -->
-    <div class="collapse navbar-collapse col-10 px-0 w-auto" id="navbarSupportedContent">
-        <div class="d-flex justify-content-around align-items-center flex-fill col-md-10">
-            <ul class="navbar-nav">
-                <div class="w-auto">
-                    <li class="nav-item p-2 px-4">
-                        <a class="nav-link fs-5" id="nav-home" aria-current="page" href="index.php">Home</a>
-                    </li>
-                </div>
-                <div class="w-auto p-2 px-4">
-                    <li class="nav-item">
-                        <a class="nav-link fs-5" id="nav-restaurant" href="restaurantOptions.php">Restaurants</a>
-                    </li>
-                </div>
-                <?php if (isset($_SESSION['accountID'])) {
-                    echo '
-                    <div class="w-auto p-2 px-4">
-                        <li class="nav-item">
-                            <a class="nav-link fs-5" id="nav-history" href="myOrders.php">My Orders</a>
-                        </li>
-                    </div>';
-                }
-                ?>
-            </ul>
+    <div class="collapse navbar-collapse mx-5 w-auto" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+        <div class="d-flex justify-content-center">
+            <a class="navbar-brand m-0 p-0" href="index.php">
+                <img src="images/KiraMakanLogo.png" alt="Bootstrap" height="50">
+            </a>
         </div>
+        <!-- Navbar collapse menu button -->
+        
+        <ul class="navbar-nav d-flex gap-4 w-auto flex-grow-1 justify-content-center align-items-center my-3">
+
+            <li class="nav-item">
+                <a class="nav-link fs-5" id="nav-home" aria-current="page" href="index.php">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link fs-5" id="nav-restaurant" href="restaurantOptions.php">Restaurants</a>
+            </li>
+
+            <?php if (isset($_SESSION['accountID'])) {
+                echo '
+                 
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" id="nav-history" href="myOrders.php">My Orders</a>
+                    </li>
+                    ';
+            }
+            ?>
+        </ul>
+
         <!-- Navbar logo right -->
-        <div class="w-auto d-flex align-items-center gap-4 justify-content-center col-md-2">
+        <div class="d-flex justify-content-center gap-4">
             <?php
 
             if (isset($_GET["restaurantID"])) {
@@ -68,7 +65,7 @@
                 Log In
                 </button>
 
-                <button class="btn fs-6 orange-btn me-5"  data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-person" viewBox="0 0 16 16">
+                <button class="btn fs-6 orange-btn"  data-bs-target="#userSignUpModalToggle" data-bs-toggle="modal"><i class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-person" viewBox="0 0 16 16">
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
                 </svg></i>Sign Up</button>
                 ';
@@ -76,7 +73,7 @@
             } else {
                 echo '
                 <!-- Button trigger modal -->
-                <button class="btn white-btn me-5" type="button" data-bs-toggle = "modal" data-bs-target = "#manageAccountModalToggle">
+                <button class="btn white-btn" type="button" data-bs-toggle = "modal" data-bs-target = "#manageAccountModalToggle">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" class="bi bi-person" viewBox="0 0 16 16">
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
                 </svg>
@@ -88,7 +85,4 @@
         </div>
         <!-- Navbar logo right -->
     </div>
-
-    <!-- Navbar and Navitems -->
-
 </nav>

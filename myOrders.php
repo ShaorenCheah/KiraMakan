@@ -28,7 +28,7 @@
             <?php include 'header.php'; ?>
         </header>
 
-        <div class="row d-flex flex-column">
+        <div class="row d-flex flex-column px-5">
             <div class="col-md-12 d-flex flex-column justify-content-start align-items-center">
                 <div class="col-md-12 d-flex justify-content-center mb-3">
                     <h1><strong><span style="color:var(--orange)">Active</span> Orders</strong></h1>
