@@ -11,3 +11,9 @@ This project aims to resolve such inconvenience by developing an improvised food
 
 Check out the demo video for KiraMakan: https://youtu.be/gZPCSB2Z7dk
 
+## Installation
+
+Softwares required for this project: XAMPP and MYSQL
+
+1. Import the files into label:htdocs
+
