@@ -7,7 +7,7 @@
 <h5>Diploma in Information Technology @ Sunway College Kuala Lumpur</h5>
 </div>
 
-
+<br>
 ## Description
 
 Group dining has always been accompanied by one issue: who is going to pay the bill in advance ? Whether the bill is paid separately or voluntarily paid for everyone first, it will still bring up an additional issue: how to split the tax. The payer is also obligated to request back the money from debtors afterwards, which may be awkward as requesting back money does affect one psychologically. Therefore, paying during group dining has always been a hassle. 
@@ -16,6 +16,7 @@ This project aims to resolve such inconvenience by developing an improvised food
 
 Check out the demo video for KiraMakan: https://youtu.be/gZPCSB2Z7dk
 
+<br>
 ## Installation
 
 Softwares required for this project: XAMPP, Apache and, MySQL
@@ -25,6 +26,7 @@ Softwares required for this project: XAMPP, Apache and, MySQL
 3. Create a new database called (`kiramakan`)
 4. Import the SQL that can be found in (`\xampp\htdocs\KiraMakan\Misc`)
 
+<br>
 ## Configuration
 
 Enable PHP mailing feature
@@ -35,6 +37,7 @@ Enable PHP mailing feature
 <br><img src="images/documentation/php.png"><br>
 ** Default sender email is (`kiramakan@outlook.com`) with the password of (`KMFYP202108`)
 
+<br>
 ## Accessing
 
 To access KiraMakan, you can create a new account or log in with a guest email (`guest@gmail.com`).
