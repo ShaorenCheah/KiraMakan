@@ -1,9 +1,10 @@
 <div align="center">
   <a href="https://github.com/ShaorenCheah/KiraMakan">
-    <img src="images/KiraMakanLogo.png" alt="Logo" width="80" height="80">
+    <img src="images/KiraMakanLogo.png" alt="Logo">
   </a>
 
-<h3 align="center">KiraMakan</h3>
+<h4 align="center">Final Year Project made by Cheah Shaoren & Sho Yong Quan</h4>
+<h5>Diploma in Information Technology @ Sunway College Kuala Lumpur</h5>
 </div>
 
 
