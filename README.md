@@ -15,7 +15,7 @@ Softwares required for this project: XAMPP, Apache and, MySQL
 3. Create a new database called (`kiramakan`)
 4. Import the SQL that can be found in (`\xampp\htdocs\KiraMakan\Misc`)
 
-##Configuration
+## Configuration
 
 Enable PHP mailing feature
 
